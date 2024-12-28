@@ -1,0 +1,39 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#22353E",
+    "activityBar.background": "#22353E",
+    "activityBar.foreground": "#ffffff",
+    "activityBar.inactiveForeground": "#ffffff99",
+    "activityBarBadge.background": "#0e940b",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#ffffff",
+    "sash.hoverBorder": "#22353E",
+    "statusBar.background": "#22353E",
+    "statusBar.foreground": "#ffffff",
+    "statusBarItem.hoverBackground": "#f04246",
+    "statusBarItem.remoteBackground": "#22353E",
+    "statusBarItem.remoteForeground": "#ffffff",
+    "titleBar.activeBackground": "#22353E",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#22353E",
+    "titleBar.inactiveForeground": "#ffffff"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "todo-tree.general.tags": ["TODO", "REPLACE"],
+  "todo-tree.tree.autoRefresh": true,
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "foreground": "#000000",
+      "background": "#FFFF00",
+      "iconColour": "#ffffff",
+    },
+    "REPLACE": {
+      "foreground": "#ffffff",
+      "background": "#648843",
+      "iconColour": "#ffffff",
+      "icon": "pencil"
+    }
+  }
+}
