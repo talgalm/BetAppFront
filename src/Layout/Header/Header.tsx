@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import  {useState } from "react";
 import {
+  BackArrowDiv,
   ButtonsDiv,
   HeaderComponent,
   LogoDiv,
@@ -8,20 +9,45 @@ import {
 } from "./Header.styles";
 import { ReactComponent as AddPeople } from "../../Theme/Icons/AddPeopleIcon.svg";
 import { ReactComponent as Notification } from "../../Theme/Icons/Notification.svg";
-import { ReactComponent as Logo } from "../../Theme/Icons/Logo.svg";
+import { ReactComponent as LogoBright } from "../../Theme/Icons/LogoWhite.svg";
+import { ReactComponent as LogoDark } from "../../Theme/Icons/LogoDark.svg";
+import { ReactComponent as ArrowRightDark } from "../../Theme/Icons/ArrowRightDark.svg";
 import { Typography } from "../../components/Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import Button from "../../components/Button/Button";
 import { PRIMARY_BUTTON_COLOR } from "../../Theme/ColorTheme";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
+import { layoutAtom } from "../../Jotai/atoms";
+import { useAtom } from "jotai";
+import { HeaderStyle } from "../../Theme/ThemeInterfaces";
+import { useNavigate } from "react-router-dom";
+import { isPrimaryExpand } from "../../utils/Helpers";
 
 const Header = () => {
+    const isPrimary = isPrimaryExpand();
+
   const [points, setPoints] = useState<number>(187);
+  const [layout, setLayout] = useAtom(layoutAtom);
+
+  const navigate = useNavigate();
+
+  const handleAddIconClick = () => {
+    setLayout({ headerStyle: HeaderStyle.SECONDARY_SHORT });
+    navigate("/create-bet");
+  };
+    const handleBackIconClick = () => {
+      setLayout({ headerStyle: HeaderStyle.PRIMARY_EXPAND });
+      navigate("/");
+    };
 
   return (
-    <HeaderComponent>
+    <HeaderComponent headerStyle={layout.headerStyle}>
       <LogoDiv>
-        <Logo width={56} height={24} />
+        {isPrimary ? (
+          <LogoBright width={56} height={24} />
+        ) : (
+          <LogoDark width={56} height={24} />
+        )}
       </LogoDiv>
       <TotalPointsDiv>
         <PointText>
@@ -29,23 +55,34 @@ const Header = () => {
         </PointText>
         <Typography value={points} variant={TypographyTypes.H1} />
       </TotalPointsDiv>
-      <ButtonsDiv>
-        <Button
-          bgColor={PRIMARY_BUTTON_COLOR}
-          icon={<Notification width={24} height={24} />}
-          onClick={() => {}}
-        />
-        <Button
-          bgColor={PRIMARY_BUTTON_COLOR}
-          icon={<AddPeople width={24} height={24} />}
-          onClick={() => {}}
-        />
-        <Button
-          bgColor={PRIMARY_BUTTON_COLOR}
-          icon={<AddIcon width={24} height={24} />}
-          onClick={() => {}}
-        />
-      </ButtonsDiv>
+      {isPrimary && (
+        <ButtonsDiv>
+          <Button
+            bgColor={PRIMARY_BUTTON_COLOR}
+            icon={<Notification width={24} height={24} />}
+            onClick={() => {}}
+          />
+          <Button
+            bgColor={PRIMARY_BUTTON_COLOR}
+            icon={<AddPeople width={24} height={24} />}
+            onClick={() => {}}
+          />
+          <Button
+            bgColor={PRIMARY_BUTTON_COLOR}
+            icon={<AddIcon width={24} height={24} />}
+            onClick={handleAddIconClick}
+          />
+        </ButtonsDiv>
+      )}
+      <BackArrowDiv>
+        {!isPrimary && (
+          <ArrowRightDark
+            width={24}
+            height={24}
+            onClick={handleBackIconClick}
+          />
+        )}
+      </BackArrowDiv>
     </HeaderComponent>
   );
 };

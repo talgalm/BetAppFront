@@ -8,6 +8,7 @@ import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
 import GroupsManagement from "./pages/GroupsManagement/GroupsManagement";
 import GroupPage from "./pages/GroupPage/GroupPage";
+import NewBet from "./pages/NewBet/NewBet";
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -27,12 +28,8 @@ export const pagesRouter = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/groups",
-        element: <GroupsManagement />,
-      },
-      {
-        path: "/groups/:groupId", 
-        element: <GroupPage />,
+        path: "/create-bet",
+        element: <NewBet />,
       },
     ],
   },
