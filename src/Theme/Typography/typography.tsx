@@ -4,34 +4,38 @@ export const TypographyTypes = {
     fontSize: "48px",
   },
   H2: {
-    fontWeight: "Medium",
-    fontSize: "18px",
+    fontWeight: 700,
+    fontSize: 24,
+    color: "#9798A2",
   },
   H3: {
-    fontWeight: "Medium",
+    fontWeight: 700,
     fontSize: "18px",
+    color: "#9798A2",
+    lineHeight: "24px",
   },
   H4: {
     fontWeight: "Medium",
     fontSize: "16px",
-    
   },
   H5: {
-    fontWeight: "Medium",
-    fontSize: "14px",
+    fontWeight: 500,
+    fontSize: 14,
     fontStyle: "normal",
     lineHeight: "normal",
     color: "#9798A2",
   },
   H6: {
-    fontWeight: "Regular",
+    fontWeight: 400,
     fontSize: "14px",
+    color: "#48494D",
   },
   H7: {
-    fontWeight: "Bold",
-    fontSize: "10px",
+    fontWeight: 700,
+    fontSize: 10,
     fontStyle: "normal",
     lineHeight: "normal",
     letterSpacing: "0.2",
+    color: "#9798A2",
   },
 };
