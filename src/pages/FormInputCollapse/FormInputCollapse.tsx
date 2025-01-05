@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StyledCalendar, {
+import {
   AddConditionsDiv,
   AddParticipantsDiv,
   AddParticipantTag,
@@ -11,8 +11,6 @@ import StyledCalendar, {
 } from "./FormInputCollapse.styles";
 import { Typography } from "../../components/Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
-import { ReactComponent as RightArrow } from "../../Theme/Icons/arrowRight.svg";
-import { ReactComponent as LeftArrow } from "../../Theme/Icons/arrowLeft.svg";
 import Collapse from "@mui/material/Collapse";
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
 import {
@@ -23,6 +21,12 @@ import {
 import { User } from "../../api/interfaces";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddGray.svg";
 import Circle from "../../components/Circle/CircleComponent";
+import Calendar from "../../components/Calendar/Calendar";
+import InputWithTags from "../../components/Inputs/InputWithTags/InputWithTags";
+import InputWithPoints, {
+  InputWithPointsType,
+} from "../../components/Inputs/InputWithPoints/InputWithPoints";
+import InputTextFull from "../../components/Inputs/InputTextFull/InputTextFull";
 
 interface FormInputCollapseProps {
   title: string;
@@ -36,28 +40,10 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
   type,
 }) => {
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState(new Date());
-  const [descriptionInput, setDescriptionInput] = useState("");
 
   const handleToggle = () => {
     setOpen(!open);
   };
-
-  const users: User[] = [
-    {
-      username: "TalG",
-      fullName: "טל גלמור",
-      image: undefined,
-    },
-    {
-      username: "Vlad",
-      image: undefined,
-    },
-    {
-      username: "Vlad",
-      image: undefined,
-    },
-  ];
 
   return (
     <InputDiv>
@@ -77,79 +63,17 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
           }
           variant={TypographyTypes.H6}
         />
-        {type === InputTypesCollapse.Text && (
-          <div>
-            <BetInput
-              placeholder="הקלד כאן את התיאור..."
-              typography={TypographyTypes.H5}
-              value={descriptionInput} 
-              onChange={(e) => setDescriptionInput(e.target.value)} 
-            />
-            <NumOfChars>
-              <Typography
-                value={`${descriptionInput.length} / 100`}
-                variant={TypographyTypes.H7}
-              />
-            </NumOfChars>
-          </div>
-        )}
-        {type === InputTypesCollapse.AddParticipants && (
-          <AddParticipantsDiv>
-            {users.map((user, index) => (
-              <ParticipantTag key={user.username}>
-                <Circle key={index} index={index} participantsNumber={1} />
-                <Typography
-                  value={user.fullName || user.username}
-                  variant={TypographyTypes.H4}
-                />
-              </ParticipantTag>
-            ))}
-            <AddParticipantTag>
-              <AddIcon style={{ color: TEXT_ICON_COLOR_SEC }} />
-              <Typography
-                value={"הוסף"}
-                variant={TypographyTypes.H4}
-                update={{ color: TEXT_ICON_COLOR_SEC }}
-              />
-            </AddParticipantTag>
-          </AddParticipantsDiv>
-        )}
+        {type === InputTypesCollapse.Text && <InputTextFull />}
+        {type === InputTypesCollapse.AddParticipants && <InputWithTags />}
         {type === InputTypesCollapse.AddConditions && (
-          <AddConditionsDiv>
-            {users.map((user) => (
-              <AddParticipantTag>
-                <AddIcon />
-                <Typography
-                  value={user.fullName || user.username}
-                  variant={TypographyTypes.H4}
-                />
-              </AddParticipantTag>
-            ))}
-          </AddConditionsDiv>
+          <InputWithPoints type={InputWithPointsType.CONDITIONS} />
         )}
         {type === InputTypesCollapse.Files && (
-          <AddConditionsDiv>
-            <AddParticipantTag>
-              <AddIcon />
-              <Typography value={"הוסף קובץ"} variant={TypographyTypes.H4} />
-            </AddParticipantTag>
-          </AddConditionsDiv>
+          <InputWithPoints type={InputWithPointsType.FILES} />
         )}
         {type === InputTypesCollapse.Calender && (
           <AddConditionsDiv>
-            <StyledCalendar
-              onChange={(value) => setDate(value as Date)}
-              value={date}
-              nextLabel={<LeftArrow />}
-              prevLabel={<RightArrow />}
-              next2Label={null}
-              prev2Label={null}
-              formatShortWeekday={(locale, date) =>
-                date.toLocaleDateString(locale, { weekday: "narrow" })
-              }
-              locale="he"
-              showNeighboringMonth={false}
-            />
+            <Calendar />
           </AddConditionsDiv>
         )}
       </Collapse>
