@@ -1,4 +1,4 @@
-import  {useState } from "react";
+import { useState } from "react";
 import {
   BackArrowDiv,
   ButtonsDiv,
@@ -14,8 +14,12 @@ import { ReactComponent as LogoDark } from "../../Theme/Icons/LogoDark.svg";
 import { ReactComponent as ArrowRightDark } from "../../Theme/Icons/ArrowRightDark.svg";
 import { Typography } from "../../components/Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
-import Button from "../../components/Button/Button";
-import { PRIMARY_BUTTON_COLOR } from "../../Theme/ColorTheme";
+import Button from "../../components/Button - deprected/Button";
+import {
+  PRIMARY_BUTTON_COLOR,
+  TEXT_SEC_COLOR,
+  TEXT_THIRD_COLOR,
+} from "../../Theme/ColorTheme";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
 import { layoutAtom } from "../../Jotai/atoms";
 import { useAtom } from "jotai";
@@ -24,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { isPrimaryExpand } from "../../utils/Helpers";
 
 const Header = () => {
-    const isPrimary = isPrimaryExpand();
+  const isPrimary = isPrimaryExpand();
 
   const [points, setPoints] = useState<number>(187);
   const [layout, setLayout] = useAtom(layoutAtom);
@@ -35,10 +39,10 @@ const Header = () => {
     setLayout({ headerStyle: HeaderStyle.SECONDARY_SHORT });
     navigate("/create-bet");
   };
-    const handleBackIconClick = () => {
-      setLayout({ headerStyle: HeaderStyle.PRIMARY_EXPAND });
-      navigate("/");
-    };
+  const handleBackIconClick = () => {
+    setLayout({ headerStyle: HeaderStyle.PRIMARY_EXPAND });
+    navigate("/");
+  };
 
   return (
     <HeaderComponent headerStyle={layout.headerStyle}>
@@ -51,7 +55,11 @@ const Header = () => {
       </LogoDiv>
       <TotalPointsDiv>
         <PointText>
-          <Typography value={"נקודות"} variant={TypographyTypes.H6} />
+          <Typography
+            value={"נקודות"}
+            variant={TypographyTypes.H6}
+            update={{ color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR }}
+          />
         </PointText>
         <Typography value={points} variant={TypographyTypes.H1} />
       </TotalPointsDiv>

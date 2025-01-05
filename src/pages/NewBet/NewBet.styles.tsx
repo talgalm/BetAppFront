@@ -1,38 +1,21 @@
 import { styled } from "@mui/material/styles";
 import { TypographyTypes } from "../../Theme/Typography/typography";
+import { PRIMARY_COLOR } from "../../Theme/ColorTheme";
 
 export const PageContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  justifyContent: "flex-start",
+  justifyContent: "space-between",
   textAlign: "right",
   gap: 16,
   paddingRight: 24,
   paddingLeft: 24,
   paddingTop: 36,
-  height: "70vh",
+  height: "73vh",
   overflowY: "auto",
+  overflowX: "hidden",
 });
-
-export const BetInput = styled("input")<{
-  typography: typeof TypographyTypes.H5;
-}>(({ typography }) => ({
-  width: "100%",
-  direction: "rtl",
-  marginTop: 16,
-  border: "1.5px solid #9798A2",
-  borderRadius: 8,
-  fontSize: typography.fontSize,
-  fontFamily: "IBM Plex Sans Hebrew",
-  fontWeight: typography.fontWeight,
-  outline: "none",
-  color: typography.color,
-  padding: '16px 16px 96px',
-  "&::placeholder": {
-    color: "#BDBDBD",
-  },
-}));
 
 export const BetNameInput = styled("input")<{
   typography: typeof TypographyTypes.H2;
@@ -50,27 +33,16 @@ export const BetNameInput = styled("input")<{
   borderBottom: "1px solid transparent",
 }));
 
-export const InputDiv = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  gap: 8,
-});
-
-export const InputHeadline = styled("div")({
+export const StyledButton = styled("button")({
+  width: 343,
+  height: 48,
+  border: 1.5,
+  borderRadius: 12,
+  backgroundColor: PRIMARY_COLOR,
+  padding: 15,
+  cursor: "pointer",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
-  textAlign: "right",
-  gap: 8,
-  paddingTop: 24,
-  direction: "rtl",
-  paddingBottom: 5,
-  borderBottom: "1px solid #9798A2",
-});
-
-export const NumOfChars = styled("div")({
-  display: "flex",
-  justifyContent: "flex-start",
-  paddingLeft: 16,
-  marginTop: -32
+  justifyContent: "center",
+  gap: 10,
 });

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import Button from "../../components/Button - deprected/Button";
+import Input from "../../components/Input - deprected/Input";
 import { useLogin, useRegister } from "../../Hooks/useAuth";
 import { validationRules } from "../../utils/Validations";
 import { useAtom } from "jotai";

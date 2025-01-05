@@ -1,4 +1,3 @@
-import exp from "constants";
 
 export const PRIMARY_BACKGROUND = "#EDEDF5";
 export const PRIMARY_COLOR = "#22353E";

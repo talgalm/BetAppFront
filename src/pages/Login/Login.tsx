@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import Button from "../../components/Button - deprected/Button";
+import Input from "../../components/Input - deprected/Input";
 import {
   FormContainer,
   HeadlineContainer,
@@ -35,7 +35,7 @@ const Login = (): JSX.Element => {
   } = useForm<LoginFormInputs>();
   const { mutate, isPending } = useLogin();
   const [_, setUser] = useAtom(userAtom);
-const { showBoundary } = useErrorBoundary();
+  const { showBoundary } = useErrorBoundary();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = ({ username, password }) => {
     mutate(
@@ -53,11 +53,9 @@ const { showBoundary } = useErrorBoundary();
     );
   };
 
-
-const createNewAccount = () => {
-  ErrorHandler(showBoundary); 
-};
-
+  const createNewAccount = () => {
+    ErrorHandler(showBoundary);
+  };
 
   if (isPending) {
     return (

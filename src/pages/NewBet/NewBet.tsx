@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import {
-  BetInput,
-  BetNameInput,
-  InputDiv,
-  InputHeadline,
-  NumOfChars,
-  PageContainer,
-} from "./NewBet.styles";
+import { useState } from "react";
+import { BetNameInput, PageContainer, StyledButton } from "./NewBet.styles";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import { Typography } from "../../components/Topography/topography";
 import FormInputCollapse from "../FormInputCollapse/FormInputCollapse";
@@ -17,15 +10,10 @@ import { ReactComponent as CalenderIcon } from "../../Theme/Icons/CalendarIcon.s
 import { ReactComponent as FilesIcon } from "../../Theme/Icons/DocumentUploadIcon.svg";
 import { ReactComponent as SupervisorIcon } from "../../Theme/Icons/OctagonUserIcon.svg";
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
-
+import { TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
+import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
 
 const NewBet = () => {
-  const [open, setOpen] = useState(false); 
-
-  const handleToggle = () => {
-    setOpen(!open); 
-  };
-
   return (
     <PageContainer>
       <form onSubmit={() => {}}>
@@ -64,6 +52,14 @@ const NewBet = () => {
           type={InputTypesCollapse.AddParticipants}
         />
       </form>
+      <StyledButton>
+        <Typography
+          value={"צור התערבות"}
+          variant={TypographyTypes.H5}
+          update={{ color: TEXT_SEC_COLOR }}
+        />
+        <AddIcon color={TEXT_SEC_COLOR} />
+      </StyledButton>
     </PageContainer>
   );
 };

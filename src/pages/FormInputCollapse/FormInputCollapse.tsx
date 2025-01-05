@@ -1,26 +1,14 @@
 import { useState } from "react";
 import {
   AddConditionsDiv,
-  AddParticipantsDiv,
-  AddParticipantTag,
-  BetInput,
   InputDiv,
   InputHeadline,
-  NumOfChars,
-  ParticipantTag,
 } from "./FormInputCollapse.styles";
 import { Typography } from "../../components/Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import Collapse from "@mui/material/Collapse";
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
-import {
-  TEXT_ICON_COLOR,
-  TEXT_ICON_COLOR_SEC,
-  TEXT_THIRD_COLOR,
-} from "../../Theme/ColorTheme";
-import { User } from "../../api/interfaces";
-import { ReactComponent as AddIcon } from "../../Theme/Icons/AddGray.svg";
-import Circle from "../../components/Circle/CircleComponent";
+import { TEXT_ICON_COLOR, TEXT_THIRD_COLOR } from "../../Theme/ColorTheme";
 import Calendar from "../../components/Calendar/Calendar";
 import InputWithTags from "../../components/Inputs/InputWithTags/InputWithTags";
 import InputWithPoints, {

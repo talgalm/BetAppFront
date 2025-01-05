@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
+import Input from "../../components/Input - deprected/Input";
+import Button from "../../components/Button - deprected/Button";
 import withAuth from "../../Providers/withAuth";
 import { useGetUsers } from "../../Hooks/useGetUsers";
 import { useGroupCreation } from "../../Hooks/useCreateGroup";
@@ -11,7 +11,14 @@ import { groupAtom, userAtom } from "../../Jotai/atoms";
 import { useLogout } from "../../Providers/LogoutProvider";
 import UserAutocomplete from "../../components/UserAutocomplete/UserAutocomplete";
 import { useGetGroupsByUser } from "../../Hooks/useGetGroupsByUser";
-import { HomeDivContainer, InnerCustomDiv, FormContainer, FormStyled, AutocompleteContainer, ButtonContainer } from "./GroupsManagement.styles";
+import {
+  HomeDivContainer,
+  InnerCustomDiv,
+  FormContainer,
+  FormStyled,
+  AutocompleteContainer,
+  ButtonContainer,
+} from "./GroupsManagement.styles";
 import { useNavigate } from "react-router-dom";
 import { Group } from "../../api/interfaces";
 
@@ -33,19 +40,18 @@ const GroupsManagement = () => {
       users: [],
     },
   });
-  
+
   const navigate = useNavigate();
   const [user] = useAtom(userAtom);
-  const [_ , setCurrentGroup] = useAtom(groupAtom);
+  const [_, setCurrentGroup] = useAtom(groupAtom);
   const { logout } = useLogout();
   const { users } = useGetUsers();
   const { mutate, isPending } = useGroupCreation();
   const { groups, isLoading, isError } = useGetGroupsByUser(user.username);
 
-
-  useEffect(()=>{
-      setCurrentGroup({ groupId: "", groupName: "", users: [] });
-  },[])
+  useEffect(() => {
+    setCurrentGroup({ groupId: "", groupName: "", users: [] });
+  }, []);
 
   const onSubmit: SubmitHandler<GroupFormInputs> = ({ groupName, users }) => {
     users = [...users, user.username];
@@ -55,7 +61,7 @@ const GroupsManagement = () => {
       {
         onSuccess: () => {
           alert("Group created successfully!");
-          setValue("groupName", ""); 
+          setValue("groupName", "");
           setValue("users", []);
         },
         onError: (err) => {
@@ -68,10 +74,10 @@ const GroupsManagement = () => {
     );
   };
 
-  const onGroupClick = (group : Group) =>{
-    setCurrentGroup(group)
+  const onGroupClick = (group: Group) => {
+    setCurrentGroup(group);
     navigate(`/groups/${group.groupId}`);
-  }
+  };
 
   return (
     <HomeDivContainer>
