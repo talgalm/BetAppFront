@@ -10,10 +10,4 @@ export const PrimaryBackground = styled("div")({
   flexDirection: "column",
 });
 
-export const LoaderContainer = styled("div")({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  backgroundColor: "#f9f9f9",
-});
+

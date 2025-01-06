@@ -2,8 +2,12 @@ import { HomeDivContainer } from "./Home.styles";
 import withAuth from "../../Providers/withAuth";
 import MyBets from "../MyBets/MyBets";
 import MyGroups from "../MyGroups/MyGroups";
+import BetLoader from "../../Theme/Loader/loader";
 
-const Home = (): JSX.Element => {  
+const Home = (): JSX.Element => {
+  if (false) {
+    return <BetLoader />;
+  }
 
   return (
     <HomeDivContainer>
