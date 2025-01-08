@@ -11,8 +11,8 @@ export const PageContainer = styled("div")({
   gap: 16,
   paddingRight: 24,
   paddingLeft: 24,
-  paddingTop: 36,
-  height: "73vh",
+  paddingTop: 150,
+  height: "83vh",
   overflowY: "auto",
   overflowX: "hidden",
 });
@@ -34,15 +34,16 @@ export const BetNameInput = styled("input")<{
 }));
 
 export const StyledButton = styled("button")({
-  width: 343,
+  width: "100%",
   height: 48,
+  padding: 15,
   border: 1.5,
   borderRadius: 12,
   backgroundColor: PRIMARY_COLOR,
-  padding: 15,
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   gap: 10,
+  marginBottom: 20
 });

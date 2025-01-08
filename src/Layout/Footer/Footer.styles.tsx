@@ -7,7 +7,10 @@ export const FooterComponent = styled("div")({
   alignItems: "center",
   backgroundColor: PRIMARY_COLOR,
   boxShadow: "0px -3px 8px 0px rgba(34, 53, 62, 0.25)",
-  padding: "10px 16px", 
+  padding: "5px 16px", 
+  marginTop: "auto",
+  position: "fixed",
+  bottom: 0,
 });
 
 

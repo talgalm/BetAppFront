@@ -25,10 +25,10 @@ import { layoutAtom } from "../../Jotai/atoms";
 import { useAtom } from "jotai";
 import { HeaderStyle } from "../../Theme/ThemeInterfaces";
 import { useNavigate } from "react-router-dom";
-import { isPrimaryExpand } from "../../utils/Helpers";
+import { useIsPrimaryExpand } from "../../utils/Helpers";
 
 const Header = () => {
-  const isPrimary = isPrimaryExpand();
+  const isPrimary = useIsPrimaryExpand();
 
   const [points, setPoints] = useState<number>(187);
   const [layout, setLayout] = useAtom(layoutAtom);
