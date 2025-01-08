@@ -3,15 +3,15 @@ import React from "react";
 interface TopographyProps {
   value: string | number;
   variant?: React.CSSProperties;
-  update?: React.CSSProperties;
+  styleProps?: React.CSSProperties;
 }
 
 export const Typography: React.FC<TopographyProps> = ({
   value,
   variant,
-  update,
+  styleProps: styleProps,
 }) => {
-  const mergedStyles = update ? { ...variant, ...update } : variant;
+  const mergedStyles = styleProps ? { ...variant, ...styleProps } : variant;
 
   return <div style={mergedStyles}>{value}</div>;
 };

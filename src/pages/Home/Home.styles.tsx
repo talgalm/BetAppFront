@@ -5,6 +5,6 @@ export const HomeDivContainer = styled("div")({
   width: "100%",
   alignContent: "center",
   flexDirection: "column",
-  height: "67vh",
+  height: "60vh",
   overflowY: "auto",
 });

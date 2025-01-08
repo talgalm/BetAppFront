@@ -5,7 +5,6 @@ export const PrimaryBackground = styled("div")({
   display: "flex",
   backgroundColor: PRIMARY_BACKGROUND,
   fontFamily: MAIN_FONT,
-  height: "100vh", 
   width: "100%",
   flexDirection: "column",
 });

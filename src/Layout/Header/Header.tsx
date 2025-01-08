@@ -58,7 +58,9 @@ const Header = () => {
           <Typography
             value={"נקודות"}
             variant={TypographyTypes.H6}
-            update={{ color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR }}
+            styleProps={{
+              color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR,
+            }}
           />
         </PointText>
         <Typography value={points} variant={TypographyTypes.H1} />

@@ -12,54 +12,99 @@ import { ReactComponent as SupervisorIcon } from "../../Theme/Icons/OctagonUserI
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
 import { TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
+import SuccessfullNewBet from "../MyBets/SuccessfullNewBet/SuccessfullNewBet";
+import BetLoader from "../../Theme/Loader/loader";
+
+enum CollapseTitles {
+  DESCRIPTION = "DESCRIPTION",
+  PARTICIPANTS = "PARTICIPANTS",
+  CONDITIONS = "CONDITIONS",
+  DATE = "DATE",
+  FILES = "FILES",
+  SUPERVISOR = "SUPERVISOR",
+}
 
 const NewBet = () => {
+  const [Successfull, setSuccessfull] = useState(false);
+  const [currentOpen, setCurrentOpen] = useState<CollapseTitles | null>(null);
+
+  if (false) {
+    return <BetLoader />;
+  }
+
+    const handleBetNameInputKeyDown = (
+      event: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+      if (event.key === "Enter") {
+        event.preventDefault(); 
+        setCurrentOpen(CollapseTitles.DESCRIPTION);
+      }
+    };
+
+  const handleCollapseToggle = (title: CollapseTitles) => {
+    setCurrentOpen((prev) => (prev === title ? null : title));
+  };
+
   return (
     <PageContainer>
       <form onSubmit={() => {}}>
         <BetNameInput
           placeholder="הקלד כאן שם התערבות..."
           typography={TypographyTypes.H2}
+          onKeyDown={handleBetNameInputKeyDown}
         />
         <FormInputCollapse
           title="תיאור"
           icon={EditDark}
           type={InputTypesCollapse.Text}
+          isOpen={currentOpen === CollapseTitles.DESCRIPTION}
+          onToggle={() => handleCollapseToggle(CollapseTitles.DESCRIPTION)}
         />
         <FormInputCollapse
           title="משתתפים"
           icon={AddUser}
           type={InputTypesCollapse.AddParticipants}
+          isOpen={currentOpen === CollapseTitles.PARTICIPANTS}
+          onToggle={() => handleCollapseToggle(CollapseTitles.PARTICIPANTS)}
         />
         <FormInputCollapse
           title="תנאים"
           icon={AddPen}
           type={InputTypesCollapse.AddConditions}
+          isOpen={currentOpen === CollapseTitles.CONDITIONS}
+          onToggle={() => handleCollapseToggle(CollapseTitles.CONDITIONS)}
         />
         <FormInputCollapse
           title="תאריך"
           icon={CalenderIcon}
           type={InputTypesCollapse.Calender}
+          isOpen={currentOpen === CollapseTitles.DATE}
+          onToggle={() => handleCollapseToggle(CollapseTitles.DATE)}
         />
         <FormInputCollapse
           title="קבצים"
           icon={FilesIcon}
           type={InputTypesCollapse.Files}
+          isOpen={currentOpen === CollapseTitles.FILES}
+          onToggle={() => handleCollapseToggle(CollapseTitles.FILES)}
         />
         <FormInputCollapse
           title="מפקח התערבות"
           icon={SupervisorIcon}
           type={InputTypesCollapse.AddParticipants}
+          isOpen={currentOpen === CollapseTitles.SUPERVISOR}
+          onToggle={() => handleCollapseToggle(CollapseTitles.SUPERVISOR)}
         />
       </form>
-      <StyledButton>
+      <StyledButton onClick={() => setSuccessfull(true)}>
         <Typography
           value={"צור התערבות"}
           variant={TypographyTypes.H5}
-          update={{ color: TEXT_SEC_COLOR }}
+          styleProps={{ color: TEXT_SEC_COLOR }}
         />
         <AddIcon color={TEXT_SEC_COLOR} />
       </StyledButton>
+      {Successfull && <SuccessfullNewBet />}
     </PageContainer>
   );
 };

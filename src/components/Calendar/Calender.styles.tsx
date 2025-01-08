@@ -6,6 +6,7 @@ export const StyledCalendar = styled(Calendar)`
   font-family: "IBM Plex Sans Hebrew", sans-serif;
   font-size: 14px;
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -47,7 +48,7 @@ export const StyledCalendar = styled(Calendar)`
     background: none;
     box-shadow: none;
     padding: 0;
-    width: 250px;
+    width: 200px;
   }
 
   .react-calendar__navigation button {
@@ -73,3 +74,10 @@ export const StyledCalendar = styled(Calendar)`
     list-style: none;
   }
 `;
+
+export const CheckboxDiv = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "flex-start",
+});

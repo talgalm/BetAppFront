@@ -16,7 +16,6 @@ import { userAtom } from "../../Jotai/atoms";
 import { useAtom } from "jotai";
 import withNoAuth from "../../Providers/withNoAuth";
 import SocialIcons from "../SocialIcons/Icons";
-import { LoaderContainer } from "../../App.styles";
 import BetLoader from "../../Theme/Loader/loader";
 import { useErrorBoundary } from "react-error-boundary";
 import { ErrorHandler } from "../../Errors/ErrorHandler";
@@ -58,11 +57,7 @@ const Login = (): JSX.Element => {
   };
 
   if (isPending) {
-    return (
-      <LoaderContainer>
-        <BetLoader />
-      </LoaderContainer>
-    );
+    return <BetLoader />;
   }
 
   return (

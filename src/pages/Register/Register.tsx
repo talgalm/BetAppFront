@@ -9,7 +9,6 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../Jotai/atoms";
 import withNoAuth from "../../Providers/withNoAuth";
 import BetLoader from "../../Theme/Loader/loader";
-import { LoaderContainer } from "../../App.styles";
 import {
   FormContainer,
   HeadlineContainer,
@@ -85,11 +84,7 @@ const Register = (): JSX.Element => {
   };
 
   if (isRegistering || isLoggingIn) {
-    return (
-      <LoaderContainer>
-        <BetLoader />
-      </LoaderContainer>
-    );
+    return <BetLoader />;
   }
 
   return (
