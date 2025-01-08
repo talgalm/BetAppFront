@@ -2,13 +2,17 @@ import { useState } from "react";
 import { TypographyTypes } from "../../../Theme/Typography/typography";
 import { Typography } from "../../Topography/topography";
 import { BetInput, NumOfChars } from "./InputTextFull.styles";
+interface InputTextFullProps {
+  inputRef: React.RefObject<HTMLInputElement>; 
+}
 
-const InputTextFull = () => {
+const InputTextFull: React.FC<InputTextFullProps> = ({ inputRef }) => {
   const [descriptionInput, setDescriptionInput] = useState("");
 
   return (
     <div>
       <BetInput
+        ref={inputRef}
         placeholder="הקלד כאן את התיאור..."
         typography={TypographyTypes.H5}
         value={descriptionInput}

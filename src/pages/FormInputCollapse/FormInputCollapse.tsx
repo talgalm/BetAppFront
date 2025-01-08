@@ -5,6 +5,7 @@ import Collapse from "@mui/material/Collapse";
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
 import { TEXT_ICON_COLOR, TEXT_THIRD_COLOR } from "../../Theme/ColorTheme";
 import InputByType from "../../components/Inputs";
+import { useRef, useEffect } from "react";
 
 interface FormInputCollapseProps {
   title: string;
@@ -21,6 +22,15 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
   isOpen,
   onToggle,
 }) => {
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isOpen && type === InputTypesCollapse.Text && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen, type]); 
+  
   return (
     <InputDiv>
       <InputHeadline onClick={onToggle}>
@@ -33,7 +43,7 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
       </InputHeadline>
 
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
-        <InputByType type={type} />
+      <InputByType type={type} inputRef={inputRef} />
       </Collapse>
     </InputDiv>
   );

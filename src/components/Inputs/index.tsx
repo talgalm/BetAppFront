@@ -11,9 +11,10 @@ import InputWithTags from "./InputWithTags/InputWithTags";
 
 interface InputByTypeProps {
   type: InputTypesCollapse;
+  inputRef: React.RefObject<HTMLInputElement>; // Added the ref prop
 }
 
-const InputByType: React.FC<InputByTypeProps> = ({ type }) => {
+const InputByType: React.FC<InputByTypeProps> = ({ type, inputRef }) => {
   return (
     <div>
       <Typography
@@ -23,7 +24,7 @@ const InputByType: React.FC<InputByTypeProps> = ({ type }) => {
         variant={TypographyTypes.H6}
       />
 
-      {type === InputTypesCollapse.Text && <InputTextFull />}
+      {type === InputTypesCollapse.Text && <InputTextFull inputRef={inputRef} />}
       {type === InputTypesCollapse.AddParticipants && <InputWithTags />}
       {type === InputTypesCollapse.AddConditions && (
         <InputWithPoints type={InputWithPointsType.CONDITIONS} />
