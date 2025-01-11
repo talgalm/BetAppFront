@@ -9,9 +9,16 @@ interface TopographyProps {
 export const Typography: React.FC<TopographyProps> = ({
   value,
   variant,
-  styleProps: styleProps,
+  styleProps,
 }) => {
   const mergedStyles = styleProps ? { ...variant, ...styleProps } : variant;
 
-  return <div style={mergedStyles}>{value}</div>;
+  const transformedValue =
+    typeof value === "string" ? value.replaceAll("<br>", "\n") : value;
+
+  return (
+    <div style={{ ...mergedStyles, whiteSpace: "pre-wrap" }}>
+      {transformedValue}
+    </div>
+  );
 };

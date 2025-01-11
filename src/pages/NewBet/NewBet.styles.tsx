@@ -40,7 +40,6 @@ export const StyledButton = styled("button")({
   width: "100%",
   height: 48,
   padding: 15,
-  border: 1.5,
   borderRadius: 12,
   backgroundColor: PRIMARY_COLOR,
   cursor: "pointer",
@@ -48,5 +47,6 @@ export const StyledButton = styled("button")({
   alignItems: "center",
   justifyContent: "center",
   gap: 10,
-  marginBottom: 20
+  marginBottom: 20,
+  border: "1.5px solid #FFFFFF",
 });
