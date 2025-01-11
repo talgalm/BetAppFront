@@ -5,7 +5,14 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  -webkit-overflow-scrolling: touch; 
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on touch devices */
+  overflow-x: hidden; /* Hide horizontal scrolling */
+  overflow-y: scroll; /* Ensure vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
 }
 iframe
 {

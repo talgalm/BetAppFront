@@ -1,11 +1,14 @@
 import { atomWithStorage } from "jotai/utils";
 import { Group, User } from "../api/interfaces";
-import { HeaderStyle } from "../Theme/ThemeInterfaces";
+import { FooterStyle, HeaderStyle } from "../Theme/ThemeInterfaces";
 
-export const layoutAtom = atomWithStorage<{ headerStyle: HeaderStyle }>(
-  "userAtom",
-  { headerStyle: HeaderStyle.PRIMARY_EXPAND } 
-);
+export const layoutAtom = atomWithStorage<{
+  headerStyle: HeaderStyle;
+  footerStyle: FooterStyle;
+}>("userAtom", {
+  headerStyle: HeaderStyle.PRIMARY_EXPAND,
+  footerStyle: FooterStyle.SHOW,
+});
 
 export const userAtom = atomWithStorage<User>("userAtom", {
   username: "",

@@ -12,9 +12,12 @@ export const PageContainer = styled("div")({
   paddingRight: 24,
   paddingLeft: 24,
   paddingTop: 150,
-  height: "83vh",
+  height: "98vh",
   overflowY: "auto",
   overflowX: "hidden",
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
 });
 
 export const BetNameInput = styled("input")<{

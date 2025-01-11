@@ -1,17 +1,15 @@
 import { styled } from "@mui/material/styles";
 import { PRIMARY_COLOR, TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
+import { FooterComponentStyles, FooterStyle } from "../../Theme/ThemeInterfaces";
 
-export const FooterComponent = styled("div")({
-  width: "100%", 
-  justifyContent: "space-between",
-  alignItems: "center",
-  backgroundColor: PRIMARY_COLOR,
-  boxShadow: "0px -3px 8px 0px rgba(34, 53, 62, 0.25)",
-  padding: "5px 16px", 
-  marginTop: "auto",
-  position: "fixed",
-  bottom: 0,
-});
+interface FooterProps {
+  footerStyle?: FooterStyle;
+}
+
+export const FooterComponent = styled("div")<FooterProps>(({ footerStyle }) => ({
+  ...FooterComponentStyles[footerStyle || FooterStyle.SHOW],
+}));
+
 
 
 export const ButtonDiv = styled("div")({

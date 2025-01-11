@@ -23,7 +23,7 @@ import {
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
 import { layoutAtom } from "../../Jotai/atoms";
 import { useAtom } from "jotai";
-import { HeaderStyle } from "../../Theme/ThemeInterfaces";
+import { FooterStyle, HeaderStyle } from "../../Theme/ThemeInterfaces";
 import { useNavigate } from "react-router-dom";
 import { useIsPrimaryExpand } from "../../utils/Helpers";
 
@@ -36,11 +36,17 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleAddIconClick = () => {
-    setLayout({ headerStyle: HeaderStyle.SECONDARY_SHORT });
+    setLayout({
+      headerStyle: HeaderStyle.SECONDARY_SHORT,
+      footerStyle: FooterStyle.HIDE,
+    });
     navigate("/create-bet");
   };
   const handleBackIconClick = () => {
-    setLayout({ headerStyle: HeaderStyle.PRIMARY_EXPAND });
+    setLayout({
+      headerStyle: HeaderStyle.PRIMARY_EXPAND,
+      footerStyle: FooterStyle.SHOW,
+    });
     navigate("/");
   };
 
