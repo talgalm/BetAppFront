@@ -32,13 +32,13 @@ const MyBets = (): JSX.Element => {
       <GrayLine />
       <CollapsibleContainer>
         <BetsContainer>
-          {bets.slice(0, 3).map((bet, index) => (
+          {bets.slice(0, 3).map((bet: Bet, index: number) => (
             <SingleBet bet={bet} key={index} />
           ))}
         </BetsContainer>
         <Collapse in={isExpanded}>
           <BetsContainer>
-            {bets.slice(3).map((bet, index) => (
+            {bets.slice(3).map((bet: Bet, index: number) => (
               <SingleBet bet={bet} key={index + 3} />
             ))}
           </BetsContainer>
