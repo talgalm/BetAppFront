@@ -58,10 +58,11 @@ export const FooterComponentStyles: Record<FooterStyle, CSSObject> = {
     alignItems: "center",
     backgroundColor: PRIMARY_COLOR,
     boxShadow: "0px -3px 8px 0px rgba(34, 53, 62, 0.25)",
-    padding: "5px 16px",
+    padding: 16,
     marginTop: "auto",
     position: "fixed",
     bottom: -1,
+    height: 50
   },
   [FooterStyle.HIDE]: {
     display: "none",

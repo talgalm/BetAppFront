@@ -14,9 +14,7 @@ export const FooterComponent = styled("div")<FooterProps>(({ footerStyle }) => (
 
 export const ButtonDiv = styled("div")({
 display: 'flex',
-padding: 16,
 justifyContent:  'space-around',
 alignItems: 'center',
-gap: 8,
 flexShrink: 0,
 });
