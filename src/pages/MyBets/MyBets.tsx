@@ -14,10 +14,12 @@ import { Bet } from "../../api/interfaces";
 import SingleBet from "../SingleBet/SingleBet";
 import { talsBets } from "../../Mocks/betsmock";
 import { Collapse } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const MyBets = (): JSX.Element => {
   const [bets] = useState<Bet[]>(talsBets);
   const [isExpanded, setIsExpanded] = useState(false);
+  const { t } = useTranslation();
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
@@ -26,8 +28,8 @@ const MyBets = (): JSX.Element => {
   return (
     <MainContainer>
       <InputWrapper>
-        <Typography value={"ההתערבויות שלי"} variant={TypographyTypes.H3} />
-        <Search width="24" height="24" />
+        <Typography value={t("MyBets.title")} variant={TypographyTypes.H3} />
+        <Search  />
       </InputWrapper>
       <GrayLine />
       <CollapsibleContainer>
@@ -47,7 +49,7 @@ const MyBets = (): JSX.Element => {
       {bets.length > 4 && (
         <ShowMeMore onClick={toggleExpand}>
           <Typography
-            value={isExpanded ? "הצג פחות" : "תראה לי עוד"}
+            value={isExpanded ? t("MyBets.showMore") : t("MyBets.showless")}
             variant={TypographyTypes.H4}
           />
         </ShowMeMore>

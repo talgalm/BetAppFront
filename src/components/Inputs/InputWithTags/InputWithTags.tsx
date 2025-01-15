@@ -9,8 +9,11 @@ import {
 import { ReactComponent as AddIcon } from "../../../Theme/Icons/AddGray.svg";
 import { TEXT_ICON_COLOR_SEC } from "../../../Theme/ColorTheme";
 import { User } from "../../../api/interfaces";
+import { useTranslation } from "react-i18next";
 
 const InputWithTags = () => {
+  const { t } = useTranslation();
+
   const users: User[] = [
     {
       username: "TalG",
@@ -41,7 +44,7 @@ const InputWithTags = () => {
       <AddParticipantTag>
         <AddIcon style={{ color: TEXT_ICON_COLOR_SEC }} />
         <Typography
-          value={"הוסף"}
+          value={t("Input.TextTags.Add")}
           variant={TypographyTypes.H4}
           styleProps={{ color: TEXT_ICON_COLOR_SEC }}
         />

@@ -6,6 +6,7 @@ import { ReactComponent as AddIcon } from "../../../Theme/Icons/AddGray.svg";
 import { TEXT_ICON_COLOR_SEC } from "../../../Theme/ColorTheme";
 import { User } from "../../../api/interfaces";
 import { AddConditionsDiv, AddParticipantTag } from "./InputWithPoints.styles";
+import { useTranslation } from "react-i18next";
 
 export enum InputWithPointsType {
   FILES,
@@ -16,6 +17,7 @@ interface InputWithPointsProps {
 }
 
 const InputWithPoints: React.FC<InputWithPointsProps> = ({ type }) => {
+  const { t } = useTranslation();
   const users: User[] = [
     {
       username: "TalG",
@@ -48,7 +50,10 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({ type }) => {
         <AddConditionsDiv>
           <AddParticipantTag>
             <AddIcon />
-            <Typography value={"הוסף קובץ"} variant={TypographyTypes.H4} />
+            <Typography
+              value={t("Input.TextPoints.AddFile")}
+              variant={TypographyTypes.H4}
+            />
           </AddParticipantTag>
         </AddConditionsDiv>
       )}

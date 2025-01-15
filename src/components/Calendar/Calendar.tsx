@@ -6,9 +6,11 @@ import { Checkbox } from "@mui/material";
 import { PRIMARY_COLOR } from "../../Theme/ColorTheme";
 import { Typography } from "../Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
+import { useTranslation } from "react-i18next";
 
 const Calendar = () => {
   const [date, setDate] = useState<Date | null>(null);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -35,7 +37,10 @@ const Calendar = () => {
             },
           }}
         />
-        <Typography value={"הוסף ליומן שלי"} variant={TypographyTypes.H6} />
+        <Typography
+          value={t("Calendar.addToCalendar")}
+          variant={TypographyTypes.H6}
+        />
       </CheckboxDiv>
     </div>
   );

@@ -30,10 +30,12 @@ import { useAtom } from "jotai";
 import { layoutAtom } from "../../../Jotai/atoms";
 import { HeaderStyle, FooterStyle } from "../../../Theme/ThemeInterfaces";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SuccessfullNewBet = () => {
   const [layout, setLayout] = useAtom(layoutAtom);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleBackIconClick = () => {
     setLayout({
@@ -71,7 +73,7 @@ const SuccessfullNewBet = () => {
       </LogoDiv>
       <BetNameDiv>
         <Typography
-          value={`מזל טוב, יצרת את ההתערבות \n${betName}`}
+          value={`${t("SuccessfullNewBet.NewBetNameMsg")} \n${betName}`}
           variant={TypographyTypes.H2}
           styleProps={{
             color: TEXT_SEC_COLOR,
@@ -80,7 +82,7 @@ const SuccessfullNewBet = () => {
       </BetNameDiv>
       <ParticipantsDiv>
         <Typography
-          value={"ההזמנה נשלחה למשתתפים:"}
+          value={t("SuccessfullNewBet.ParticipantsSendToMsg")}
           variant={TypographyTypes.H3}
           styleProps={{
             color: TEXT_SEC_COLOR,
@@ -98,7 +100,7 @@ const SuccessfullNewBet = () => {
       </ParticipantsDiv>
       <LinkDiv>
         <Typography
-          value={"לינק הזמנה אישי:"}
+          value={t("SuccessfullNewBet.PersonalLink")}
           variant={TypographyTypes.H3}
           styleProps={{
             color: TEXT_SEC_COLOR,
@@ -123,7 +125,7 @@ const SuccessfullNewBet = () => {
           }}
         />
         <Typography
-          value={"לינק פתוח לכולם עם אפשרות להצטרף"}
+          value={t("SuccessfullNewBet.OpenLink")}
           variant={TypographyTypes.H6}
           styleProps={{
             color: TEXT_SEC_COLOR,
@@ -132,14 +134,14 @@ const SuccessfullNewBet = () => {
       </CheckboxDiv>
       <ParticipantsDiv>
         <Typography
-          value={"דרג את רמת הסיכון"}
+          value={t("SuccessfullNewBet.RankRisk")}
           variant={TypographyTypes.H3}
           styleProps={{
             color: TEXT_SEC_COLOR,
           }}
         />
         <Typography
-          value={"הדירוג הוא לסטטיסטיקה האישית שלך"}
+          value={t("SuccessfullNewBet.RankUsage")}
           variant={TypographyTypes.H6}
           styleProps={{
             color: TEXT_SEC_COLOR,
@@ -196,7 +198,7 @@ const SuccessfullNewBet = () => {
       <ButtonsDiv>
         <StyledButton onClick={() => handleBackIconClick()}>
           <Typography
-            value={"חזור למסך הבית"}
+            value={t("SuccessfullNewBet.Return")}
             variant={TypographyTypes.H5}
             styleProps={{ color: TEXT_SEC_COLOR }}
           />

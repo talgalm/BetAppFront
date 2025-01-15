@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { InputTypesCollapse } from "../../pages/FormInputCollapse/InputTypes";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import Calendar from "../Calendar/Calendar";
@@ -11,20 +12,18 @@ import InputWithTags from "./InputWithTags/InputWithTags";
 
 interface InputByTypeProps {
   type: InputTypesCollapse;
-  inputRef: React.RefObject<HTMLInputElement>; // Added the ref prop
+  inputRef: React.RefObject<HTMLInputElement>; 
 }
 
 const InputByType: React.FC<InputByTypeProps> = ({ type, inputRef }) => {
+  const { t } = useTranslation();
   return (
     <div>
-      <Typography
-        value={
-          "כאן יהיה טקסט תיאור עד 2 שורות אשר שמסביר במילים פשוטות מה עושים כאן"
-        }
-        variant={TypographyTypes.H6}
-      />
+      <Typography value={t("Input.Description")} variant={TypographyTypes.H6} />
 
-      {type === InputTypesCollapse.Text && <InputTextFull inputRef={inputRef} />}
+      {type === InputTypesCollapse.Text && (
+        <InputTextFull inputRef={inputRef} />
+      )}
       {type === InputTypesCollapse.AddParticipants && <InputWithTags />}
       {type === InputTypesCollapse.AddConditions && (
         <InputWithPoints type={InputWithPointsType.CONDITIONS} />

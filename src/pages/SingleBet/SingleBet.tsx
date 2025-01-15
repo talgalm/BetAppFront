@@ -5,6 +5,7 @@ import { Typography } from "../../components/Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import Circle from "../../components/Circle/CircleComponent";
 import { AvatarsDiv, BetRow, DescriptionDiv } from "./SingleBet.styles";
+import { useTranslation } from "react-i18next";
 
 interface SingleBetProp {
   bet: Bet;
@@ -12,6 +13,7 @@ interface SingleBetProp {
 
 const SingleBet = ({ bet }: SingleBetProp): JSX.Element => {
   const participantsNumber = 3;
+  const { t } = useTranslation();
 
   const renderCircles = () => {
     const circles = [];
@@ -29,7 +31,7 @@ const SingleBet = ({ bet }: SingleBetProp): JSX.Element => {
       <DescriptionDiv>
         <Typography value={bet.name} variant={TypographyTypes.H4} />
         <Typography
-          value={`נפתח ב: ${bet.createdAt}`}
+          value={`${t("MyBets.createdAT")} ${bet.createdAt}`}
           variant={TypographyTypes.H5}
         />
         <Typography
@@ -38,8 +40,8 @@ const SingleBet = ({ bet }: SingleBetProp): JSX.Element => {
               ? bet.participants
                   .map(
                     (participant: User) => participant.fullName?.split(" ")[0]
-                  ) 
-                  .join(", ") 
+                  )
+                  .join(", ")
               : bet.group?.groupName ?? ""
           }
           variant={TypographyTypes.H5}

@@ -14,10 +14,13 @@ import {
 import SingleGroup from "../SingleGroup/SingleGroup";
 import { talsGroups } from "../../Mocks/groupsMock";
 import { Collapse } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const MyGroups = (): JSX.Element => {
   const [groups] = useState<Group[]>(talsGroups);
   const [isExpanded, setIsExpanded] = useState(false);
+    const { t } = useTranslation();
+  
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
@@ -26,7 +29,7 @@ const MyGroups = (): JSX.Element => {
   return (
     <MainContainer>
       <InputWrapper>
-        <Typography value={"קבוצות"} variant={TypographyTypes.H3} />
+        <Typography value={t("MyGroups.title")} variant={TypographyTypes.H3} />
       </InputWrapper>
       <GrayLine />
       <CollapsibleContainer>
@@ -46,7 +49,7 @@ const MyGroups = (): JSX.Element => {
       {groups.length > 4 && (
         <ShowMeMore onClick={toggleExpand}>
           <Typography
-            value={isExpanded ? "הצג פחות" : "תראה לי עוד"}
+            value={isExpanded ? t("MyGroups.showMore") : t("MyGroups.showless")}
             variant={TypographyTypes.H4}
           />
         </ShowMeMore>

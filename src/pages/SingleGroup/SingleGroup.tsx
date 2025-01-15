@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Group, TagText, TagType } from "../../api/interfaces";
 import Tag from "../../components/Tag/Tag";
 import { Typography } from "../../components/Topography/topography";
@@ -9,6 +10,7 @@ interface SinglegGroupProp {
 }
 
 const SingleGroup = ({ group }: SinglegGroupProp): JSX.Element => {
+  const { t } = useTranslation();
   return (
     <BetRow>
       <RightDiv>
@@ -16,7 +18,7 @@ const SingleGroup = ({ group }: SinglegGroupProp): JSX.Element => {
         <DescriptionDiv>
           <Typography value={group.groupName} variant={TypographyTypes.H4} />
           <Typography
-            value={`נפתח ב: ${group.createdAt}`}
+            value={`${t("MyGroups.createdAT")} ${group.createdAt}`}
             variant={TypographyTypes.H5}
           />
         </DescriptionDiv>

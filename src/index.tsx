@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import GroupsManagement from "./pages/GroupsManagement/GroupsManagement";
 import GroupPage from "./pages/GroupPage/GroupPage";
 import NewBet from "./pages/NewBet/NewBet";
+import "./language/i18n";
 
 export const pagesRouter = createBrowserRouter([
   {
