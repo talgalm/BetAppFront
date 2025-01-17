@@ -12,7 +12,7 @@ import { ReactComponent as SupervisorIcon } from "../../Theme/Icons/OctagonUserI
 import { InputTypesCollapse } from "../FormInputCollapse/InputTypes";
 import { TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
-import SuccessfullNewBet from "../MyBets/SuccessfullNewBet/SuccessfullNewBet";
+import SuccessfullNewBet from "../SuccessfullNewBet/SuccessfullNewBet";
 import BetLoader from "../../Theme/Loader/loader";
 import { useTranslation } from "react-i18next";
 

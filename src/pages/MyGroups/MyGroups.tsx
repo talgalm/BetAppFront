@@ -15,6 +15,8 @@ import SingleGroup from "../SingleGroup/SingleGroup";
 import { talsGroups } from "../../Mocks/groupsMock";
 import { Collapse } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { ReactComponent as AddPeopleIcon } from "../../Theme/Icons/AddPeopleIcon.svg";
+
 
 const MyGroups = (): JSX.Element => {
   const [groups] = useState<Group[]>(talsGroups);
@@ -30,6 +32,7 @@ const MyGroups = (): JSX.Element => {
     <MainContainer>
       <InputWrapper>
         <Typography value={t("MyGroups.title")} variant={TypographyTypes.H3} />
+        <AddPeopleIcon />
       </InputWrapper>
       <GrayLine />
       <CollapsibleContainer>
