@@ -26,12 +26,14 @@ import { useAtom } from "jotai";
 import { FooterStyle, HeaderStyle } from "../../Theme/ThemeInterfaces";
 import { useNavigate } from "react-router-dom";
 import { useIsPrimaryExpand } from "../../utils/Helpers";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
 
   const [points, setPoints] = useState<number>(187);
   const [layout, setLayout] = useAtom(layoutAtom);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -52,17 +54,11 @@ const Header = () => {
 
   return (
     <HeaderComponent headerStyle={layout.headerStyle}>
-      <LogoDiv>
-        {isPrimary ? (
-          <LogoBright width={56} height={24} />
-        ) : (
-          <LogoDark width={56} height={24} />
-        )}
-      </LogoDiv>
+      <LogoDiv>{isPrimary ? <LogoBright /> : <LogoDark />}</LogoDiv>
       <TotalPointsDiv>
         <PointText>
           <Typography
-            value={"נקודות"}
+            value={t("Header.Points")}
             variant={TypographyTypes.H6}
             styleProps={{
               color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR,
@@ -75,29 +71,23 @@ const Header = () => {
         <ButtonsDiv>
           <Button
             bgColor={PRIMARY_BUTTON_COLOR}
-            icon={<Notification width={24} height={24} />}
+            icon={<Notification />}
             onClick={() => {}}
           />
           <Button
             bgColor={PRIMARY_BUTTON_COLOR}
-            icon={<AddPeople width={24} height={24} />}
+            icon={<AddPeople />}
             onClick={() => {}}
           />
           <Button
             bgColor={PRIMARY_BUTTON_COLOR}
-            icon={<AddIcon width={24} height={24} />}
+            icon={<AddIcon />}
             onClick={handleAddIconClick}
           />
         </ButtonsDiv>
       )}
       <BackArrowDiv>
-        {!isPrimary && (
-          <ArrowRightDark
-            width={24}
-            height={24}
-            onClick={handleBackIconClick}
-          />
-        )}
+        {!isPrimary && <ArrowRightDark onClick={handleBackIconClick} />}
       </BackArrowDiv>
     </HeaderComponent>
   );
