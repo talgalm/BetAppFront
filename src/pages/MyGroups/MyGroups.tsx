@@ -12,17 +12,19 @@ import {
   CollapsibleContainer,
 } from "./MyGroup.styles";
 import SingleGroup from "../SingleGroup/SingleGroup";
-import { talsGroups } from "../../Mocks/groupsMock";
 import { Collapse } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as AddPeopleIcon } from "../../Theme/Icons/AddPeopleIcon.svg";
 
+interface MyGroupsProps {
+  userGroups: Group[];
+}
 
-const MyGroups = (): JSX.Element => {
-  const [groups] = useState<Group[]>(talsGroups);
+const MyGroups = ({ userGroups }: MyGroupsProps): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
-    const { t } = useTranslation();
-  
+  const [username] = useState("TalG");
+
+  const { t } = useTranslation();
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
@@ -37,19 +39,19 @@ const MyGroups = (): JSX.Element => {
       <GrayLine />
       <CollapsibleContainer>
         <GroupsContainer>
-          {groups.slice(0, 4).map((group, index) => (
+          {userGroups && userGroups.slice(0, 4).map((group, index) => (
             <SingleGroup group={group} key={index} />
           ))}
         </GroupsContainer>
         <Collapse in={isExpanded}>
           <GroupsContainer>
-            {groups.slice(4).map((group, index) => (
+            {userGroups && userGroups.slice(4).map((group, index) => (
               <SingleGroup group={group} key={index + 4} />
             ))}
           </GroupsContainer>
         </Collapse>
       </CollapsibleContainer>
-      {groups.length > 4 && (
+      {userGroups && userGroups.length > 4 && (
         <ShowMeMore onClick={toggleExpand}>
           <Typography
             value={isExpanded ? t("MyGroups.showMore") : t("MyGroups.showless")}

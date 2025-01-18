@@ -5,13 +5,13 @@ import { FooterStyle, HeaderStyle } from "../Theme/ThemeInterfaces";
 export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;
   footerStyle: FooterStyle;
-}>("userAtom", {
+}>("layoutAtom", {
   headerStyle: HeaderStyle.PRIMARY_EXPAND,
   footerStyle: FooterStyle.SHOW,
 });
 
 export const userAtom = atomWithStorage<User>("userAtom", {
-  username: "",
+  username: "TalG",
 });
 
 export const groupAtom = atomWithStorage<Group>("groupAtom", {

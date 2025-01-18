@@ -24,6 +24,8 @@ const App = () => {
       queries: {
         refetchOnWindowFocus: false,
         retry: 1,
+        refetchOnMount: false,
+        staleTime: 60000,
       },
     },
   });

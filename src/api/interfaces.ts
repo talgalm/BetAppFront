@@ -5,8 +5,8 @@ export interface User {
   password?: string;
   email?: string;
   phoneNumber?: string;
-  userBets?: number[];
-  userGroups?: number[];
+  bets?: Bet[];
+  groups?: Group[];
 }
 
 export interface Group {
@@ -21,15 +21,15 @@ export interface Bet {
   name: string;
   createdAt: string;
   groupName?: string;
-  participants?: User[];
+  userGuesses: User[];
   group?: Group;
-  risk: TagType;
+  riskLevel: TagType;
 }
 
 export enum TagType {
-  LOW = "LOW",
-  MID = "MID",
-  HIGH = "HIGH",
+  LOW = "Low",
+  MID = "Mid",
+  HIGH = "High",
   PARTICIPANTS = "PARTICIPANTS",
   POINTS = "POINTS",
 }

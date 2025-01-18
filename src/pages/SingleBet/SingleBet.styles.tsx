@@ -11,10 +11,9 @@ export const BetRow = styled("div")({
 });
 export const AvatarsDiv = styled("div")({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "flex-end",
   alignItems: "center",
   gap: -10,
-  width: 88,
   position: "relative",
 });
 

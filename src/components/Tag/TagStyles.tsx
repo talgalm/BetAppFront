@@ -11,17 +11,17 @@ export const baseStyle = {
 };
 
 export const TagStyles = {
-  LOW: {
+  Low: {
     ...baseStyle,
     border: "1.5px solid #228B22",
     color: "#228B22",
   },
-  MID: {
+  Mid: {
     ...baseStyle,
     border: "1.5px solid #DCB414",
     color: "#DCB414",
   },
-  HIGH: {
+  High: {
     ...baseStyle,
     border: "1.5px solid #D43235",
     color: "#D43235",
