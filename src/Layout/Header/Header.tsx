@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import {
   BackArrowDiv,
   ButtonsDiv,
@@ -21,18 +21,26 @@ import {
   TEXT_THIRD_COLOR,
 } from "../../Theme/ColorTheme";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
-import { layoutAtom } from "../../Jotai/atoms";
+import { layoutAtom, userAtom } from "../../Jotai/atoms";
 import { useAtom } from "jotai";
 import { FooterStyle, HeaderStyle } from "../../Theme/ThemeInterfaces";
 import { useNavigate } from "react-router-dom";
 import { useIsPrimaryExpand } from "../../utils/Helpers";
 import { useTranslation } from "react-i18next";
+import { UseUser } from "../../Hooks/useGetUser";
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
 
-  const [points, setPoints] = useState<number>(187);
   const [layout, setLayout] = useAtom(layoutAtom);
+  const [user, setUser] = useAtom(userAtom);
+  const { data, isLoading, isError, error } = UseUser(user?.username);
+
+  useEffect(() => {
+    if (data?.user) {
+      setUser(data.user);
+    }
+  }, [data, setUser]);
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -65,7 +73,7 @@ const Header = () => {
             }}
           />
         </PointText>
-        <Typography value={points} variant={TypographyTypes.H1} />
+        <Typography value={data?.user.points || 0} variant={TypographyTypes.H1} />
       </TotalPointsDiv>
       {isPrimary && (
         <ButtonsDiv>

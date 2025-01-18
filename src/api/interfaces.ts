@@ -5,6 +5,7 @@ export interface User {
   password?: string;
   email?: string;
   phoneNumber?: string;
+  points? :number
   bets?: Bet[];
   groups?: Group[];
 }
