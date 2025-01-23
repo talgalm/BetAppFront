@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles";
-
-export const AddConditionsDiv = styled("div")({
+export const AddFilesDiv = styled("div")({
   display: "flex",
   flexDirection: "column",
   direction: "rtl",
@@ -13,6 +12,15 @@ export const AddConditionsDiv = styled("div")({
   paddingTop: 8,
   boxSizing: "border-box",
 });
+
+export const hideLongNameStyles = {
+  maxWidth: 125,
+  height: 25,
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+};
+
 export const AddParticipantTag = styled("div")({
   display: "flex",
   flexDirection: "row",

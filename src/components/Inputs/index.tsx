@@ -12,28 +12,41 @@ import InputWithTags from "./InputWithTags/InputWithTags";
 
 interface InputByTypeProps {
   type: InputTypesCollapse;
-  inputRef: React.RefObject<HTMLInputElement>; 
+  control: any;
+  inputName: string;
 }
 
-const InputByType: React.FC<InputByTypeProps> = ({ type, inputRef }) => {
+const InputByType: React.FC<InputByTypeProps> = ({
+  type,
+  control,
+  inputName,
+}) => {
   const { t } = useTranslation();
   return (
     <div>
       <Typography value={t("Input.Description")} variant={TypographyTypes.H6} />
 
       {type === InputTypesCollapse.Text && (
-        <InputTextFull inputRef={inputRef} />
+        <InputTextFull control={control} inputName={inputName} />
       )}
       {type === InputTypesCollapse.AddParticipants && <InputWithTags />}
       {type === InputTypesCollapse.AddConditions && (
-        <InputWithPoints type={InputWithPointsType.CONDITIONS} />
+        <InputWithPoints
+          control={control}
+          inputName={inputName}
+          type={InputWithPointsType.CONDITIONS}
+        />
       )}
       {type === InputTypesCollapse.Files && (
-        <InputWithPoints type={InputWithPointsType.FILES} />
+        <InputWithPoints
+          control={control}
+          inputName={inputName}
+          type={InputWithPointsType.FILES}
+        />
       )}
       {type === InputTypesCollapse.Calender && (
         <AddConditionsDiv>
-          <Calendar />
+          <Calendar control={control} inputName={inputName} />
         </AddConditionsDiv>
       )}
     </div>

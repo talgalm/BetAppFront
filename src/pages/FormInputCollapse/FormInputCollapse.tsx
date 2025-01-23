@@ -12,6 +12,8 @@ interface FormInputCollapseProps {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   type: InputTypesCollapse;
   isOpen: boolean;
+  control: any;
+  inputName: string;
   onToggle: () => void;
 }
 
@@ -20,17 +22,10 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
   icon: Icon,
   type,
   isOpen,
+  control,
+  inputName,
   onToggle,
 }) => {
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isOpen && type === InputTypesCollapse.Text && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen, type]); 
-  
   return (
     <InputDiv>
       <InputHeadline onClick={onToggle}>
@@ -43,7 +38,7 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
       </InputHeadline>
 
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
-      <InputByType type={type} inputRef={inputRef} />
+        <InputByType type={type} control={control} inputName={inputName} />
       </Collapse>
     </InputDiv>
   );

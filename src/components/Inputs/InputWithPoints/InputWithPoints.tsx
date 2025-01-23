@@ -1,22 +1,27 @@
 import { TypographyTypes } from "../../../Theme/Typography/typography";
-import Circle from "../../Circle/CircleComponent";
 import { Typography } from "../../Topography/topography";
-
 import { ReactComponent as AddIcon } from "../../../Theme/Icons/AddGray.svg";
-import { TEXT_ICON_COLOR_SEC } from "../../../Theme/ColorTheme";
 import { User } from "../../../api/interfaces";
 import { AddConditionsDiv, AddParticipantTag } from "./InputWithPoints.styles";
 import { useTranslation } from "react-i18next";
+import FileUploader from "../../FileUploader/FileUploader";
 
 export enum InputWithPointsType {
   FILES,
   CONDITIONS,
 }
+
 interface InputWithPointsProps {
   type: InputWithPointsType;
+  control: any;
+  inputName: string;
 }
 
-const InputWithPoints: React.FC<InputWithPointsProps> = ({ type }) => {
+const InputWithPoints: React.FC<InputWithPointsProps> = ({
+  type,
+  control,
+  inputName,
+}) => {
   const { t } = useTranslation();
   const users: User[] = [
     {
@@ -38,7 +43,7 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({ type }) => {
     <AddConditionsDiv>
       {type === InputWithPointsType.CONDITIONS &&
         users.map((user) => (
-          <AddParticipantTag>
+          <AddParticipantTag key={user.username}>
             <AddIcon />
             <Typography
               value={user.fullName || user.username}
@@ -46,18 +51,12 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({ type }) => {
             />
           </AddParticipantTag>
         ))}
+
       {type === InputWithPointsType.FILES && (
-        <AddConditionsDiv>
-          <AddParticipantTag>
-            <AddIcon />
-            <Typography
-              value={t("Input.TextPoints.AddFile")}
-              variant={TypographyTypes.H4}
-            />
-          </AddParticipantTag>
-        </AddConditionsDiv>
+        <FileUploader control={control} inputName={inputName} />
       )}
     </AddConditionsDiv>
   );
 };
+
 export default InputWithPoints;

@@ -7,25 +7,37 @@ import { PRIMARY_COLOR } from "../../Theme/ColorTheme";
 import { Typography } from "../Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import { useTranslation } from "react-i18next";
+import { Controller } from "react-hook-form";
 
-const Calendar = () => {
-  const [date, setDate] = useState<Date | null>(null);
+interface CalendarProps {
+  control?: any;
+  inputName: string;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ control, inputName }) => {
   const { t } = useTranslation();
 
   return (
     <div>
-      <StyledCalendar
-        onChange={(value) => setDate(value as Date)}
-        value={date}
-        nextLabel={<LeftArrow />}
-        prevLabel={<RightArrow />}
-        next2Label={null}
-        prev2Label={null}
-        formatShortWeekday={(locale, date) =>
-          date.toLocaleDateString(locale, { weekday: "narrow" })
-        }
-        locale="he"
-        showNeighboringMonth={false}
+      <Controller
+        name={inputName}
+        control={control}
+        defaultValue={null}
+        render={({ field }) => (
+          <StyledCalendar
+            onChange={(value) => field.onChange(value)}
+            value={field.value}
+            nextLabel={<LeftArrow />}
+            prevLabel={<RightArrow />}
+            next2Label={null}
+            prev2Label={null}
+            formatShortWeekday={(locale, date) =>
+              date.toLocaleDateString(locale, { weekday: "narrow" })
+            }
+            locale="he"
+            showNeighboringMonth={false}
+          />
+        )}
       />
       <CheckboxDiv>
         <Checkbox
