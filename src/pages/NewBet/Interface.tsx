@@ -59,3 +59,13 @@ export const newBetsFieldsData = [
     inputName: "Supervisor",
   },
 ];
+
+export type CreateFormInputs = {
+  Name: string;
+  Description: string;
+  Conditions: any[];
+  EndsIn: Date;
+  Files: File[];
+  Supervisor: string[];
+};
+

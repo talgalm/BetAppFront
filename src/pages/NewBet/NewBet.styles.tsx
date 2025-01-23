@@ -47,6 +47,7 @@ export const StyledButton = styled("button")({
   alignItems: "center",
   justifyContent: "center",
   gap: 10,
+  marginTop: 50,
   marginBottom: 20,
   border: "1.5px solid #FFFFFF",
 });

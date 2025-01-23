@@ -8,28 +8,20 @@ import SuccessfullNewBet from "../SuccessfullNewBet/SuccessfullNewBet";
 import BetLoader from "../../Theme/Loader/loader";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import { TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
-import { newBetsFieldsData, CollapseTitles } from "./Interface";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import {
+  newBetsFieldsData,
+  CollapseTitles,
+  CreateFormInputs,
+} from "./Interface";
+import { SubmitHandler, useFormContext } from "react-hook-form";
 
 const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
   const [currentOpen, setCurrentOpen] = useState<CollapseTitles | null>(null);
   const { t } = useTranslation();
 
-  type CreateFormInputs = {
-    Name: string;
-    Description: string;
-    Conditions: any[];
-    EndsIn: Date;
-    Files: File[];
-    Supervisor: string[];
-  };
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CreateFormInputs>();
+  const { register, control, handleSubmit } =
+    useFormContext<CreateFormInputs>();
 
   if (false) {
     return <BetLoader />;
@@ -39,7 +31,7 @@ const NewBet = () => {
     setCurrentOpen((prev) => (prev === title ? null : title));
   };
 
-  const onSubmit: SubmitHandler<CreateFormInputs> = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
     setIsSuccessfull(true);
   };
@@ -70,15 +62,15 @@ const NewBet = () => {
             control={control}
           />
         ))}
+        <StyledButton type="submit">
+          <Typography
+            value={t("NewBet.createBet")}
+            variant={TypographyTypes.H5}
+            styleProps={{ color: TEXT_SEC_COLOR }}
+          />
+          <AddIcon color={TEXT_SEC_COLOR} />
+        </StyledButton>
       </form>
-      <StyledButton onClick={handleSubmit(onSubmit)}>
-        <Typography
-          value={t("NewBet.createBet")}
-          variant={TypographyTypes.H5}
-          styleProps={{ color: TEXT_SEC_COLOR }}
-        />
-        <AddIcon color={TEXT_SEC_COLOR} />
-      </StyledButton>
       {isSuccessfull && <SuccessfullNewBet />}
     </PageContainer>
   );

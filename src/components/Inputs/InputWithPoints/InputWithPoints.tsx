@@ -53,7 +53,7 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({
         ))}
 
       {type === InputWithPointsType.FILES && (
-        <FileUploader control={control} inputName={inputName} />
+        <FileUploader inputName={inputName} />
       )}
     </AddConditionsDiv>
   );

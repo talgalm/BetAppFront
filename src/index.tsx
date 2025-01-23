@@ -10,6 +10,7 @@ import GroupsManagement from "./pages/GroupsManagement/GroupsManagement";
 import GroupPage from "./pages/GroupPage/GroupPage";
 import NewBet from "./pages/NewBet/NewBet";
 import "./language/i18n";
+import NewBetForm from "./pages/NewBet/NewBet.form";
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const pagesRouter = createBrowserRouter([
       },
       {
         path: "/create-bet",
-        element: <NewBet />,
+        element: <NewBetForm />,
       },
     ],
   },
