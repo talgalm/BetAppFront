@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BetNameInput, PageContainer, StyledButton } from "./NewBet.styles";
 import { Typography } from "../../components/Topography/topography";
@@ -13,7 +13,7 @@ import {
   CollapseTitles,
   CreateFormInputs,
 } from "./Interface";
-import { SubmitHandler, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);

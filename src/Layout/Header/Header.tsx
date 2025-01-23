@@ -4,6 +4,7 @@ import {
   ButtonsDiv,
   HeaderComponent,
   LogoDiv,
+  PointsContainer,
   PointText,
   TotalPointsDiv,
 } from "./Header.styles";
@@ -64,7 +65,11 @@ const Header = () => {
     <HeaderComponent headerStyle={layout.headerStyle}>
       <LogoDiv>{isPrimary ? <LogoBright /> : <LogoDark />}</LogoDiv>
       <TotalPointsDiv>
-        <PointText>
+        <PointsContainer>
+          <Typography
+            value={data?.user.points || 0}
+            variant={TypographyTypes.H1}
+          />
           <Typography
             value={t("Header.Points")}
             variant={TypographyTypes.H6}
@@ -72,8 +77,7 @@ const Header = () => {
               color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR,
             }}
           />
-        </PointText>
-        <Typography value={data?.user.points || 0} variant={TypographyTypes.H1} />
+        </PointsContainer>
       </TotalPointsDiv>
       {isPrimary && (
         <ButtonsDiv>

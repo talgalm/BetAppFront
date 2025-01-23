@@ -1,7 +1,10 @@
 import { styled } from "@mui/material/styles";
 import { PRIMARY_COLOR, TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
-import "@fontsource/ibm-plex-sans-hebrew"; 
-import { HeaderComponentStyles, HeaderStyle } from "../../Theme/ThemeInterfaces";
+import "@fontsource/ibm-plex-sans-hebrew";
+import {
+  HeaderComponentStyles,
+  HeaderStyle,
+} from "../../Theme/ThemeInterfaces";
 
 interface HeaderProps {
   headerStyle?: HeaderStyle;
@@ -9,7 +12,7 @@ interface HeaderProps {
 
 export const HeaderComponent = styled("div")<HeaderProps>(
   ({ headerStyle }) => ({
-    ...HeaderComponentStyles[headerStyle || HeaderStyle.PRIMARY_EXPAND], 
+    ...HeaderComponentStyles[headerStyle || HeaderStyle.PRIMARY_EXPAND],
   })
 );
 
@@ -26,13 +29,20 @@ export const TotalPointsDiv = styled("div")({
   alignItems: "center",
   justifyContent: "center",
   paddingTop: 6,
-  gap: 10,
+  gap: 5,
 });
 
 export const PointText = styled("div")({
-  position: "absolute",
-  marginRight: 150,
+  display: "flex",
   marginTop: 25,
+});
+
+export const PointsContainer = styled("div")({
+  display: "flex",
+  alignItems: "baseline",
+  flexDirection: "row-reverse",
+  gap: 5,
+  marginRight: 50,
 });
 
 export const ButtonsDiv = styled("div")({
@@ -46,7 +56,7 @@ export const BackArrowDiv = styled("div")({
   display: "flex",
   justifyContent: "flex-end",
   alignItems: "center",
-  position: "absolute", 
+  position: "absolute",
   right: 16,
   top: 85,
 });
