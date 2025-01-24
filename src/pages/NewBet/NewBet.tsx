@@ -19,6 +19,7 @@ const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
   const [currentOpen, setCurrentOpen] = useState<CollapseTitles | null>(null);
   const { t } = useTranslation();
+  const [addToCalendar, setAddToCalendar] = useState(true);
 
   const { register, control, handleSubmit } =
     useFormContext<CreateFormInputs>();
@@ -33,6 +34,7 @@ const NewBet = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    setAddToCalendar(data.AddTocalendar);
     setIsSuccessfull(true);
   };
 
@@ -71,7 +73,7 @@ const NewBet = () => {
           <AddIcon color={TEXT_SEC_COLOR} />
         </StyledButton>
       </form>
-      {isSuccessfull && <SuccessfullNewBet />}
+      {isSuccessfull && <SuccessfullNewBet isAddToCalendar={addToCalendar} />}
     </PageContainer>
   );
 };

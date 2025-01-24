@@ -30,7 +30,7 @@ export const ParticipantTag = styled("div")({
   alignItems: "center",
   padding: 10,
   gap: 10,
-  width: 121,
+  width: 150,
   height: 44,
   borderRadius: "8px",
   border: "1.5px solid black",

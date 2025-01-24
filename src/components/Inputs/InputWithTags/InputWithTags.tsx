@@ -41,14 +41,13 @@ const InputWithTags = () => {
           />
         </ParticipantTag>
       ))}
-      <AddParticipantTag>
-        <AddIcon style={{ color: TEXT_ICON_COLOR_SEC }} />
+      <ParticipantTag>
+        <AddIcon />
         <Typography
           value={t("Input.TextTags.Add")}
           variant={TypographyTypes.H4}
-          styleProps={{ color: TEXT_ICON_COLOR_SEC }}
         />
-      </AddParticipantTag>
+      </ParticipantTag>
     </AddParticipantsDiv>
   );
 };

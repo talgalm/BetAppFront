@@ -24,7 +24,11 @@ import SuccessfullNewBetLink from "../SuccessfullNewBetLink/SuccessfullNewBetLin
 import { ParticipantsDiv } from "../SuccessfullNewBetRisk/SuccessfullNewBetRisk.styles";
 import SuccessfullNewBetRisk from "../SuccessfullNewBetRisk/SuccessfullNewBetRisk";
 
-const SuccessfullNewBet = () => {
+interface SuccessfullNewBetProps {
+  isAddToCalendar: boolean;
+}
+
+const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
   const [layout, setLayout] = useAtom(layoutAtom);
   const navigate = useNavigate();
   const { t } = useTranslation();

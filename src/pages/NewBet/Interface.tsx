@@ -65,6 +65,7 @@ export type CreateFormInputs = {
   Description: string;
   Conditions: any[];
   EndsIn: Date;
+  AddTocalendar: boolean;
   Files: File[];
   Supervisor: string[];
 };
