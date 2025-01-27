@@ -63,10 +63,15 @@ export const newBetsFieldsData = [
 export type CreateFormInputs = {
   Name: string;
   Description: string;
-  Conditions: any[];
+  Conditions: Guess[];
   EndsIn: Date;
   AddTocalendar: boolean;
   Files: File[];
   Supervisor: string[];
 };
+
+export type Guess = {
+  text : string;
+  points? : number;
+}
 

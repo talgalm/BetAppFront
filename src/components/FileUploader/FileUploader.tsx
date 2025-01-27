@@ -3,10 +3,11 @@ import { Controller, useFormContext } from "react-hook-form";
 import { ReactComponent as MinusIcon } from "../../Theme/Icons/Minus.svg";
 import { Typography } from "../Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
-import { AddFilesDiv, hideLongNameStyles } from "./FileUploader.styles";
+import { AddFilesDiv, hideLongNameStyles, ParticipantTag } from "./FileUploader.styles";
 import { ReactComponent as AddIcon } from "../../Theme/Icons/AddGray.svg";
 import { AddParticipantTag } from "./FileUploader.styles";
 import { useTranslation } from "react-i18next";
+import { BORDER_COLOR_sec } from "../../Theme/ColorTheme";
 interface FileUploaderProps {
   inputName: string;
 }
@@ -35,33 +36,31 @@ const FileUploader: React.FC<FileUploaderProps> = ({ inputName }) => {
     <AddFilesDiv>
       {selectedFiles &&
         selectedFiles.map((file, index) => (
-          <AddParticipantTag key={index}>
-            <MinusIcon onClick={() => handleRemoveFileChange(file)} />
+          <ParticipantTag key={index} borderColor={BORDER_COLOR_sec}>
+            <MinusIcon onClick={() => handleRemoveFileChange(file)} width={24} height={24}/>
             <Typography
               value={file.name}
               variant={TypographyTypes.H4}
               styleProps={hideLongNameStyles}
             />
-          </AddParticipantTag>
+          </ParticipantTag>
         ))}
-
-      <label
-        htmlFor="file-upload"
-        style={{ cursor: "pointer", display: "flex", gap: 10 }}
+      <ParticipantTag
+        onClick={() => document.getElementById("file-upload")?.click()}
+        style={{ cursor: "pointer" }}
       >
         <AddIcon />
         <Typography
           value={t("Input.TextPoints.AddFile")}
           variant={TypographyTypes.H4}
         />
-
         <input
           id="file-upload"
           type="file"
           style={{ display: "none" }}
           onChange={handleFileChange}
         />
-      </label>
+      </ParticipantTag>
     </AddFilesDiv>
   );
 };

@@ -19,3 +19,17 @@ export const AddParticipantTag = styled("div")({
   direction: "rtl",
   gap: 8,
 });
+
+export const CollapseInnerDiv = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+});
+
+export const CollapseOuterDiv = styled("div")({
+  width: "100%",
+  direction: "ltr",
+  marginTop: "10px",
+  display: "flex",
+  flexDirection: "column",
+});

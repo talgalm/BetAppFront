@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { TypographyTypes } from "../../Theme/Typography/typography";
-import { PRIMARY_COLOR } from "../../Theme/ColorTheme";
+import { PRIMARY_COLOR, TEXT_THIRD_COLOR } from "../../Theme/ColorTheme";
 
 export const PageContainer = styled("div")({
   display: "flex",
@@ -28,12 +28,15 @@ export const BetNameInput = styled("input")<{
   outline: "none",
   direction: "rtl",
   backgroundColor: "transparent",
-  color: typography.color,
+  color: TEXT_THIRD_COLOR,
   fontSize: typography.fontSize,
   fontFamily: "IBM Plex Sans Hebrew",
   fontWeight: typography.fontWeight,
   padding: "0",
   borderBottom: "1px solid transparent",
+  "::placeholder": {
+    color: typography.color,
+  },
 }));
 
 export const StyledButton = styled("button")({

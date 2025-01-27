@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 export const AddFilesDiv = styled("div")({
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "row",
   direction: "rtl",
   flexWrap: "wrap",
   gap: 8,
@@ -27,3 +27,18 @@ export const AddParticipantTag = styled("div")({
   direction: "rtl",
   gap: 8,
 });
+
+export const ParticipantTag = styled("div")<{ borderColor?: string }>(
+  ({ borderColor }) => ({
+    display: "flex",
+    flexDirection: "row",
+    direction: "rtl",
+    width: "auto",
+    padding: 10,
+    gap: 10,
+    height: 44,
+    borderRadius: "8px",
+    border: `1.5px solid ${borderColor || "black"}`,
+    opacity: 1,
+  })
+);
