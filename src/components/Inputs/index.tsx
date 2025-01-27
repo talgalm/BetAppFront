@@ -25,7 +25,6 @@ const InputByType: React.FC<InputByTypeProps> = ({
   return (
     <div>
       <Typography value={t("Input.Description")} variant={TypographyTypes.H6} />
-
       {type === InputTypesCollapse.Text && (
         <InputTextFull control={control} inputName={inputName} />
       )}

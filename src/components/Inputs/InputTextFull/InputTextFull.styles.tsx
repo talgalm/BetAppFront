@@ -22,9 +22,14 @@ export const BetInput = styled("input")<{
     color: "#BDBDBD",
   },
 }));
+
 export const NumOfChars = styled("div")({
   display: "flex",
   justifyContent: "flex-start",
   paddingLeft: 16,
   marginTop: -24,
+});
+
+export const WidthDiv = styled("div")({
+  width: "100%",
 });

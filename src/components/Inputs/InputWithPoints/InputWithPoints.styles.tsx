@@ -1,4 +1,6 @@
 import { styled } from "@mui/material/styles";
+import { ReactComponent as CancelIconBase } from "../../../Theme/Icons/Close.svg";
+import { TEXT_THIRD_COLOR } from "../../../Theme/ColorTheme";
 
 export const AddConditionsDiv = styled("div")({
   display: "flex",
@@ -32,4 +34,12 @@ export const CollapseOuterDiv = styled("div")({
   marginTop: "10px",
   display: "flex",
   flexDirection: "column",
+});
+
+export const StyledCancelIcon = styled(CancelIconBase)({
+  cursor: "pointer",
+  color: TEXT_THIRD_COLOR,
+  marginTop: "32px",
+  width: 24,
+  height: 24,
 });

@@ -36,7 +36,6 @@ const FormInputCollapse: React.FC<FormInputCollapseProps> = ({
         />
         <Icon style={{ color: isOpen ? TEXT_THIRD_COLOR : TEXT_ICON_COLOR }} />
       </InputHeadline>
-
       <Collapse in={isOpen} timeout="auto" unmountOnExit>
         <InputByType type={type} control={control} inputName={inputName} />
       </Collapse>

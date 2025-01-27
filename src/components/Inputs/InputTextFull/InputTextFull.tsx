@@ -1,19 +1,22 @@
 import { useEffect } from "react";
 import { TypographyTypes } from "../../../Theme/Typography/typography";
 import { Typography } from "../../Topography/topography";
-import { BetInput, NumOfChars } from "./InputTextFull.styles";
+import { BetInput, NumOfChars, WidthDiv } from "./InputTextFull.styles";
 import { useTranslation } from "react-i18next";
-import { Controller, useFieldArray } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 interface InputTextFullProps {
   control: any;
   inputName: string;
+  isSetHeight?: boolean;
 }
 
 const InputTextFull: React.FC<InputTextFullProps> = ({
   control,
   inputName,
+  isSetHeight,
 }) => {
+  const MAX_INPUT_LENGTH = 100;
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -31,21 +34,21 @@ const InputTextFull: React.FC<InputTextFullProps> = ({
       control={control}
       defaultValue=""
       render={({ field }) => (
-        <div style={{ width: "100%" }}>
+        <WidthDiv>
           <BetInput
             placeholder={t("Input.TextFull.Placeholder")}
             typography={TypographyTypes.H5}
             isWriting={field.value.length > 0}
-            setHeight={true}
+            setHeight={isSetHeight}
             {...field}
           />
           <NumOfChars>
             <Typography
-              value={`${field.value.length} / 100`}
+              value={`${field.value.length} / ${MAX_INPUT_LENGTH}`}
               variant={TypographyTypes.H7}
             />
           </NumOfChars>
-        </div>
+        </WidthDiv>
       )}
     />
   );

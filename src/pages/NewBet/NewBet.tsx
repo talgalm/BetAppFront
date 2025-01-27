@@ -38,6 +38,13 @@ const NewBet = () => {
     setIsSuccessfull(true);
   };
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setCurrentOpen(CollapseTitles.DESCRIPTION);
+    }
+  };
+
   return (
     <PageContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,12 +52,7 @@ const NewBet = () => {
           {...register("Name")}
           placeholder={t("NewBet.BetNameInput")}
           typography={TypographyTypes.H2}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              setCurrentOpen(CollapseTitles.DESCRIPTION);
-            }
-          }}
+          onKeyDown={onKeyDown}
         />
         {newBetsFieldsData.map(({ title, label, icon, type, inputName }) => (
           <FormInputCollapse
