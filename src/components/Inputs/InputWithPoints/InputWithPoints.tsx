@@ -1,41 +1,37 @@
-import { TypographyTypes } from "../../../Theme/Typography/typography";
-import { Typography } from "../../Topography/topography";
-import { ReactComponent as AddIcon } from "../../../Theme/Icons/AddGray.svg";
-import { User } from "../../../api/interfaces";
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import { Typography } from '../../Topography/topography';
+import { ReactComponent as AddIcon } from '../../../Theme/Icons/AddGray.svg';
+import { User } from '../../../api/interfaces';
 import {
   AddConditionsDiv,
   AddParticipantTag,
   CollapseInnerDiv,
   CollapseOuterDiv,
   StyledCancelIcon,
-} from "./InputWithPoints.styles";
-import { useTranslation } from "react-i18next";
-import FileUploader from "../../FileUploader/FileUploader";
-import { useEffect, useState } from "react";
-import { Collapse } from "@mui/material";
-import InputTextFull from "../InputTextFull/InputTextFull";
-import { ReactComponent as MinusIcon } from "../../../Theme/Icons/Minus.svg";
-import { ReactComponent as CancelIcon } from "../../../Theme/Icons/Close.svg";
-import { TEXT_THIRD_COLOR } from "../../../Theme/ColorTheme";
-import { useFormContext } from "react-hook-form";
+} from './InputWithPoints.styles';
+import FileUploader from '../../FileUploader/FileUploader';
+import { useState } from 'react';
+import { Collapse } from '@mui/material';
+import InputTextFull from '../InputTextFull/InputTextFull';
+import { ReactComponent as MinusIcon } from '../../../Theme/Icons/Minus.svg';
+import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export enum InputWithPointsType {
   FILES,
   CONDITIONS,
 }
 
-interface InputWithPointsProps {
+interface InputWithPointsProps<T extends FieldValues> {
   type: InputWithPointsType;
-  control: any;
+  control: Control<T>;
   inputName: string;
 }
 
-const InputWithPoints: React.FC<InputWithPointsProps> = ({
+const InputWithPoints = <T extends FieldValues>({
   type,
   control,
   inputName,
-}) => {
-  const { t } = useTranslation();
+}: InputWithPointsProps<T>) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { setValue } = useFormContext();
 
@@ -43,17 +39,17 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
   const handleCleanInput = (index: number) => {
-    setValue(`Conditions.${index}.text`, "");
+    setValue(`Conditions.${index}.text`, '');
   };
 
   const users: User[] = [
     {
-      username: "TalG",
-      fullName: "טל גלמור",
+      username: 'TalG',
+      fullName: 'טל גלמור',
       image: undefined,
     },
     {
-      username: "Vlad",
+      username: 'Vlad',
       image: undefined,
     },
   ];
@@ -62,23 +58,17 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({
     <AddConditionsDiv>
       {type === InputWithPointsType.CONDITIONS &&
         users.map((user, index) => (
-          <CollapseOuterDiv>
-            <AddParticipantTag
-              key={user.username}
-              onClick={() => handleToggle(index)}
-            >
+          <CollapseOuterDiv key={user.username}>
+            <AddParticipantTag onClick={() => handleToggle(index)}>
               {openIndex !== index ? <AddIcon /> : <MinusIcon />}
-              <Typography
-                value={user.fullName || user.username}
-                variant={TypographyTypes.H4}
-              />
+              <Typography value={user.fullName || user.username} variant={TypographyTypes.H4} />
             </AddParticipantTag>
             <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
               <CollapseInnerDiv>
                 <StyledCancelIcon onClick={() => handleCleanInput(index)} />
-                <InputTextFull
+                <InputTextFull<T>
                   control={control}
-                  inputName={`Conditions.${index}.text` as const}
+                  inputName={`Conditions.${index}.text` as Path<T>}
                   isSetHeight={true}
                 />
               </CollapseInnerDiv>
@@ -86,9 +76,7 @@ const InputWithPoints: React.FC<InputWithPointsProps> = ({
           </CollapseOuterDiv>
         ))}
 
-      {type === InputWithPointsType.FILES && (
-        <FileUploader inputName={inputName} />
-      )}
+      {type === InputWithPointsType.FILES && <FileUploader inputName={inputName} />}
     </AddConditionsDiv>
   );
 };

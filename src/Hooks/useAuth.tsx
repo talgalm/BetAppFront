@@ -1,7 +1,6 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { User } from "../api/interfaces";
-import { ApiService, HTTPMethod } from "../api/types";
-
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { User } from '../api/interfaces';
+import { ApiService, HTTPMethod } from '../api/types';
 
 interface LoginPayload {
   username: string;
@@ -10,7 +9,7 @@ interface LoginPayload {
 
 interface RegisterPayload extends LoginPayload {
   email: string;
-  phoneNumber: any;
+  phoneNumber: string;
 }
 
 export const useLogin = (): UseMutationResult<
@@ -26,7 +25,7 @@ export const useLogin = (): UseMutationResult<
       const response = await ApiService.makeRequest<{
         user: User;
         token: string;
-      }>("/api/users/login", HTTPMethod.POST, { username, password });
+      }>('/api/users/login', HTTPMethod.POST, { username, password });
       return response;
     },
   });
@@ -34,11 +33,7 @@ export const useLogin = (): UseMutationResult<
   return mutation;
 };
 
-export const useRegister = (): UseMutationResult<
-  { user: User },
-  Error,
-  RegisterPayload
-> => {
+export const useRegister = (): UseMutationResult<{ user: User }, Error, RegisterPayload> => {
   const mutation = useMutation({
     mutationFn: async ({
       username,
@@ -49,7 +44,7 @@ export const useRegister = (): UseMutationResult<
       const response = await ApiService.makeRequest<{
         user: User;
         token: string;
-      }>("/api/users/register", HTTPMethod.POST, {
+      }>('/api/users/register', HTTPMethod.POST, {
         username,
         password,
         email,

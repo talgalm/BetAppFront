@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import Input from "../../components/Input - deprected/Input";
-import Button from "../../components/Button - deprected/Button";
-import withAuth from "../../Providers/withAuth";
-import { useGetUsers } from "../../Hooks/useGetUsers";
-import { useGroupCreation } from "../../Hooks/useCreateGroup";
-import { useAtom } from "jotai";
-import { groupAtom, userAtom } from "../../Jotai/atoms";
-import { useLogout } from "../../Providers/LogoutProvider";
-import UserAutocomplete from "../../components/UserAutocomplete/UserAutocomplete";
-import { useGetGroupsByUser } from "../../Hooks/useGetGroupsByUser";
+import Input from '../../components/Input - deprected/Input';
+import Button from '../../components/Button - deprected/Button';
+import withAuth from '../../Providers/withAuth';
+import { useGetUsers } from '../../Hooks/useGetUsers';
+import { useGroupCreation } from '../../Hooks/useCreateGroup';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
+import { useLogout } from '../../Providers/LogoutProvider';
+import UserAutocomplete from '../../components/UserAutocomplete/UserAutocomplete';
+import { useGetGroupsByUser } from '../../Hooks/useGetGroupsByUser';
 import {
   HomeDivContainer,
   InnerCustomDiv,
@@ -18,9 +17,9 @@ import {
   FormStyled,
   AutocompleteContainer,
   ButtonContainer,
-} from "./GroupsManagement.styles";
-import { useNavigate } from "react-router-dom";
-import { Group } from "../../api/interfaces";
+} from './GroupsManagement.styles';
+import { useNavigate } from 'react-router-dom';
+import { Group } from '../../api/interfaces';
 
 type GroupFormInputs = {
   groupName: string;
@@ -36,22 +35,21 @@ const GroupsManagement = () => {
     watch,
   } = useForm<GroupFormInputs>({
     defaultValues: {
-      groupName: "",
+      groupName: '',
       users: [],
     },
   });
 
   const navigate = useNavigate();
   const [user] = useAtom(userAtom);
-  const [_, setCurrentGroup] = useAtom(groupAtom);
   const { logout } = useLogout();
   const { users } = useGetUsers();
   const { mutate, isPending } = useGroupCreation();
-  const { groups, isLoading, isError } = useGetGroupsByUser(user.username);
+  const { groups } = useGetGroupsByUser(user.username);
 
-  useEffect(() => {
-    setCurrentGroup({ groupId: "", groupName: "", users: [] });
-  }, []);
+  // useEffect(() => {
+  //   setCurrentGroup({ groupId: '', groupName: '', users: [] });
+  // }, [setCurrentGroup]);
 
   const onSubmit: SubmitHandler<GroupFormInputs> = ({ groupName, users }) => {
     users = [...users, user.username];
@@ -60,22 +58,20 @@ const GroupsManagement = () => {
       { groupName, users },
       {
         onSuccess: () => {
-          alert("Group created successfully!");
-          setValue("groupName", "");
-          setValue("users", []);
+          alert('Group created successfully!');
+          setValue('groupName', '');
+          setValue('users', []);
         },
         onError: (err) => {
-          console.error("Group creation failed:", err);
-          alert(
-            "An error occurred while creating the group. Please try again later."
-          );
+          console.error('Group creation failed:', err);
+          alert('An error occurred while creating the group. Please try again later.');
         },
       }
     );
   };
 
   const onGroupClick = (group: Group) => {
-    setCurrentGroup(group);
+    // setCurrentGroup(group);
     navigate(`/groups/${group.groupId}`);
   };
 
@@ -92,10 +88,10 @@ const GroupsManagement = () => {
             key={index}
             onClick={() => onGroupClick(group)}
             style={{
-              cursor: "pointer",
-              padding: "10px",
-              border: "1px solid #ccc",
-              margin: "5px",
+              cursor: 'pointer',
+              padding: '10px',
+              border: '1px solid #ccc',
+              margin: '5px',
             }}
           >
             {group.groupName}
@@ -113,10 +109,10 @@ const GroupsManagement = () => {
               register={register}
               name="groupName"
               validation={{
-                required: "Group name is required",
+                required: 'Group name is required',
                 minLength: {
                   value: 3,
-                  message: "Group name must be at least 3 characters long",
+                  message: 'Group name must be at least 3 characters long',
                 },
               }}
               error={errors.groupName?.message}
@@ -126,13 +122,11 @@ const GroupsManagement = () => {
               <UserAutocomplete
                 options={
                   users
-                    ? users
-                        .filter((u) => u.username !== user?.username)
-                        .map((u) => u.username)
+                    ? users.filter((u) => u.username !== user?.username).map((u) => u.username)
                     : []
                 }
-                value={watch("users") || []}
-                onChange={(event, newValue) => setValue("users", newValue)}
+                value={watch('users') || []}
+                onChange={(event, newValue) => setValue('users', newValue)}
               />
               {errors.users && <p className="error">{errors.users.message}</p>}
             </AutocompleteContainer>
@@ -141,7 +135,7 @@ const GroupsManagement = () => {
             <ButtonContainer>
               <Button
                 type="submit"
-                label={isPending ? "Creating..." : "Create"}
+                label={isPending ? 'Creating...' : 'Create'}
                 disabled={isPending}
               />
             </ButtonContainer>

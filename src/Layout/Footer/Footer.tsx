@@ -1,11 +1,11 @@
-import { ButtonDiv, FooterComponent } from "./Footer.styles";
-import { ReactComponent as ProfileIcon } from "../../Theme/Icons/ProfileFooterIcon.svg";
-import { ReactComponent as HomeIcon } from "../../Theme/Icons/HomeFooterIcon.svg";
-import { useAtom } from "jotai";
-import { layoutAtom } from "../../Jotai/atoms";
+import { ButtonDiv, FooterComponent } from './Footer.styles';
+import { ReactComponent as ProfileIcon } from '../../Theme/Icons/ProfileFooterIcon.svg';
+import { ReactComponent as HomeIcon } from '../../Theme/Icons/HomeFooterIcon.svg';
+import { useAtom } from 'jotai';
+import { layoutAtom } from '../../Jotai/atoms';
 
 export const Footer = () => {
-  const [layout, setLayout] = useAtom(layoutAtom);
+  const [layout] = useAtom(layoutAtom);
   return (
     <FooterComponent footerStyle={layout.footerStyle}>
       <ButtonDiv>

@@ -1,75 +1,75 @@
-import { styled } from "@mui/material/styles";
-import { MAIN_FONT, TEXT_SEC_COLOR, TEXT_COLOR } from "../../Theme/ColorTheme";
+import { styled } from '@mui/material/styles';
+import { MAIN_FONT, TEXT_SEC_COLOR, TEXT_COLOR } from '../../Theme/ColorTheme';
 
-export const PageContainer = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "0 16px",
-  margin: "0 auto",
-  maxWidth: "480px",
-  minHeight: "100vh",
+export const PageContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '0 16px',
+  margin: '0 auto',
+  maxWidth: '480px',
+  minHeight: '100vh',
 });
 
-export const HeadlineContainer = styled("div")({
+export const HeadlineContainer = styled('div')({
   paddingTop: 75,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 
-export const HeadlineTitle = styled("div")({
+export const HeadlineTitle = styled('div')({
   fontFamily: MAIN_FONT,
   fontWeight: 700,
-  fontSize: "2.5rem",
+  fontSize: '2.5rem',
   color: TEXT_SEC_COLOR,
-  textAlign: "center",
-  margin: "20px 0",
-  letterSpacing: "1.5px",
-  lineHeight: "1.3",
-  textTransform: "uppercase",
-  textShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  transition: "color 0.3s ease",
-  "@media (max-width: 768px)": {
-    fontSize: "1.8rem",
+  textAlign: 'center',
+  margin: '20px 0',
+  letterSpacing: '1.5px',
+  lineHeight: '1.3',
+  textTransform: 'uppercase',
+  textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  transition: 'color 0.3s ease',
+  '@media (max-width: 768px)': {
+    fontSize: '1.8rem',
   },
 });
-export const HeadlineSubTitle = styled("div")({
+export const HeadlineSubTitle = styled('div')({
   fontFamily: MAIN_FONT,
   fontWeight: 750,
-  fontSize: "1.25rem",
+  fontSize: '1.25rem',
   color: TEXT_COLOR,
-  textAlign: "center",
-  margin: "10px 0",
-  letterSpacing: "1px",
-  lineHeight: "1.5",
-  textTransform: "none",
-  textShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-  transition: "color 0.3s ease, font-size 0.3s ease",
-  "@media (max-width: 768px)": {
-    fontSize: "1.25rem",
+  textAlign: 'center',
+  margin: '10px 0',
+  letterSpacing: '1px',
+  lineHeight: '1.5',
+  textTransform: 'none',
+  textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+  transition: 'color 0.3s ease, font-size 0.3s ease',
+  '@media (max-width: 768px)': {
+    fontSize: '1.25rem',
   },
 });
-export const FormContainer = styled("div")({
+export const FormContainer = styled('div')({
   paddingTop: 75,
-  width: "90%",
+  width: '90%',
 });
 
-export const SubText = styled("div")({
+export const SubText = styled('div')({
   fontFamily: MAIN_FONT,
   fontWeight: 500,
-  fontSize: "1.25rem",
+  fontSize: '1.25rem',
   color: TEXT_COLOR,
-  textAlign: "center",
-  margin: "10px 0",
-  letterSpacing: "1px",
-  lineHeight: "1.5",
-  textTransform: "none",
-  textShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-  transition: "color 0.3s ease, font-size 0.3s ease",
+  textAlign: 'center',
+  margin: '10px 0',
+  letterSpacing: '1px',
+  lineHeight: '1.5',
+  textTransform: 'none',
+  textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+  transition: 'color 0.3s ease, font-size 0.3s ease',
   paddingTop: 25,
-  "@media (max-width: 768px)": {
-    fontSize: "1rem",
+  '@media (max-width: 768px)': {
+    fontSize: '1rem',
   },
 });

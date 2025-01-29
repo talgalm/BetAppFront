@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { TagType } from "../../api/interfaces";
-import { TagStyles } from "./TagStyles";
-import { Typography } from "../Topography/topography";
-import { TypographyTypes } from "../../Theme/Typography/typography";
+import React from 'react';
+import styled from 'styled-components';
+import { TagType } from '../../api/interfaces';
+import { TagStyles } from './TagStyles';
+import { Typography } from '../Topography/topography';
+import { TypographyTypes } from '../../Theme/Typography/typography';
 
 interface TagProps {
   value: string;
@@ -17,7 +17,7 @@ const TagWrapper = styled.div<{ type: TagType }>`
 
 const Tag: React.FC<TagProps> = ({ value, type, participants }) => {
   return (
-    <div style={{ direction: "rtl", textAlign: "right" }}>
+    <div style={{ direction: 'rtl', textAlign: 'right' }}>
       <TagWrapper type={type}>
         <Typography
           value={participants ? `${participants} משתתפים` : value}

@@ -1,34 +1,33 @@
-import { TypographyTypes } from "../../../Theme/Typography/typography";
-import Circle from "../../Circle/CircleComponent";
-import { Typography } from "../../Topography/topography";
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import Circle from '../../Circle/CircleComponent';
+import { Typography } from '../../Topography/topography';
 import {
   AddParticipantsDiv,
-  AddParticipantTag,
   ParticipantTag,
   PopUpDiv,
   PopUpRow,
   TagContainer,
-} from "./InputWithTags.styles";
-import { ReactComponent as AddIcon } from "../../../Theme/Icons/AddGray.svg";
-import { User } from "../../../api/interfaces";
-import { useTranslation } from "react-i18next";
-import { useState } from "react";
+} from './InputWithTags.styles';
+import { ReactComponent as AddIcon } from '../../../Theme/Icons/AddGray.svg';
+import { User } from '../../../api/interfaces';
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 const InputWithTags = () => {
   const { t } = useTranslation();
 
   const users: User[] = [
     {
-      username: "TalG",
-      fullName: "טל גלמור",
+      username: 'TalG',
+      fullName: 'טל גלמור',
       image: undefined,
     },
     {
-      username: "Vlad",
+      username: 'Vlad',
       image: undefined,
     },
     {
-      username: "Vlad",
+      username: 'Vlad',
       image: undefined,
     },
   ];
@@ -44,20 +43,17 @@ const InputWithTags = () => {
         <TagContainer key={user.username}>
           <ParticipantTag onClick={() => handleOpenToggle(index)}>
             <Circle key={index} index={index} participantsNumber={1} />
-            <Typography
-              value={user.fullName || user.username}
-              variant={TypographyTypes.H4}
-            />
+            <Typography value={user.fullName || user.username} variant={TypographyTypes.H4} />
           </ParticipantTag>
           {currentOpen === index && (
             <PopUpDiv>
               <PopUpRow>
                 <Typography
-                  value={t("Input.TextTags.Remove")}
+                  value={t('Input.TextTags.Remove')}
                   variant={TypographyTypes.H6}
-                  styleProps={{ color: "#FF0000" }}
+                  styleProps={{ color: '#FF0000' }}
                 />
-                {"X"}
+                {'X'}
               </PopUpRow>
             </PopUpDiv>
           )}
@@ -65,10 +61,7 @@ const InputWithTags = () => {
       ))}
       <ParticipantTag>
         <AddIcon />
-        <Typography
-          value={t("Input.TextTags.Add")}
-          variant={TypographyTypes.H4}
-        />
+        <Typography value={t('Input.TextTags.Add')} variant={TypographyTypes.H4} />
       </ParticipantTag>
     </AddParticipantsDiv>
   );

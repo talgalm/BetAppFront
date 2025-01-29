@@ -1,11 +1,9 @@
-import { useAtom } from "jotai";
-import { useParams } from "react-router-dom";
-import { groupAtom } from "../../Jotai/atoms";
-import Button from "../../components/Button - deprected/Button";
+import { useAtom } from 'jotai';
+import { groupAtom } from '../../Jotai/atoms';
+import Button from '../../components/Button - deprected/Button';
 
 const GroupPage = () => {
-  const { groupId } = useParams();
-  const [group, setExitGroup] = useAtom(groupAtom);
+  const [group] = useAtom(groupAtom);
 
   return (
     <div>

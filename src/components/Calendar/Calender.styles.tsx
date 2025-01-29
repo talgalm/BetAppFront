@@ -1,9 +1,9 @@
-import { styled } from "@mui/material/styles";
-import Calendar from "react-calendar";
+import { styled } from '@mui/material/styles';
+import Calendar from 'react-calendar';
 
 export const StyledCalendar = styled(Calendar)`
   border: none;
-  font-family: "IBM Plex Sans Hebrew", sans-serif;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
   font-size: 14px;
   display: flex;
   width: 100%;
@@ -23,7 +23,7 @@ export const StyledCalendar = styled(Calendar)`
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    font-family: "IBM Plex Sans Hebrew", sans-serif;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
     position: relative;
   }
 
@@ -33,7 +33,7 @@ export const StyledCalendar = styled(Calendar)`
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    font-family: "IBM Plex Sans Hebrew", sans-serif;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
     position: relative;
   }
 
@@ -65,7 +65,7 @@ export const StyledCalendar = styled(Calendar)`
     padding: 0 0px;
     cursor: pointer;
     font-size: 16px;
-    font-family: "IBM Plex Sans Hebrew", sans-serif;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
   }
 
   .react-calendar__month-view__weekdays__weekday,
@@ -78,14 +78,14 @@ export const StyledCalendar = styled(Calendar)`
     align-items: center;
     text-decoration: none;
     font-size: 14px;
-    font-family: "IBM Plex Sans Hebrew", sans-serif;
+    font-family: 'IBM Plex Sans Hebrew', sans-serif;
     list-style: none;
   }
 `;
 
-export const CheckboxDiv = styled("div")({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "flex-start",
+export const CheckboxDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
 });

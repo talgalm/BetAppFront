@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Autocomplete, TextField, Chip, Box } from "@mui/material";
-import { ChipContainer } from "./UserAutocomplete.styles";
+import React, { useState } from 'react';
+import { Autocomplete, TextField, Chip, Box } from '@mui/material';
+import { ChipContainer } from './UserAutocomplete.styles';
 
 type UserAutocompleteProps = {
   options: string[];
@@ -8,18 +8,14 @@ type UserAutocompleteProps = {
   onChange: (event: React.SyntheticEvent, newValue: string[]) => void;
 };
 
-const UserAutocomplete: React.FC<UserAutocompleteProps> = ({
-  options,
-  value,
-  onChange,
-}) => {
-  const [error, setError] = useState(false); // State for validation error
+const UserAutocomplete: React.FC<UserAutocompleteProps> = ({ options, value, onChange }) => {
+  const [error, setError] = useState(false);
 
   const handleBlur = () => {
     if (value.length === 0) {
-      setError(true); // Set error if value is empty
+      setError(true);
     } else {
-      setError(false); // Clear error if valid
+      setError(false);
     }
   };
 
@@ -30,16 +26,16 @@ const UserAutocomplete: React.FC<UserAutocompleteProps> = ({
         options={options}
         value={value}
         onChange={(event, newValue) => {
-          setError(false); // Clear error when a value is selected
+          setError(false);
           onChange(event, newValue);
         }}
-        onBlur={handleBlur} // Validate on blur
+        onBlur={handleBlur}
         renderInput={(params) => (
           <TextField
             {...params}
             label="Select Options"
-            error={error} // Show error state
-            helperText={error ? "Please select at least one user." : ""} // Display error message
+            error={error}
+            helperText={error ? 'Please select at least one user.' : ''}
           />
         )}
         renderTags={(value, getTagProps) => (
@@ -52,8 +48,8 @@ const UserAutocomplete: React.FC<UserAutocompleteProps> = ({
         )}
         ListboxProps={{
           style: {
-            maxHeight: "150px",
-            overflow: "auto",
+            maxHeight: '150px',
+            overflow: 'auto',
           },
         }}
       />

@@ -27,7 +27,7 @@
     "TODO": {
       "foreground": "#000000",
       "background": "#FFFF00",
-      "iconColour": "#ffffff",
+      "iconColour": "#ffffff"
     },
     "REPLACE": {
       "foreground": "#ffffff",
@@ -35,5 +35,8 @@
       "iconColour": "#ffffff",
       "icon": "pencil"
     }
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   }
 }

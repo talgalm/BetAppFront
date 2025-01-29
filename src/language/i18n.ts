@@ -6,7 +6,7 @@ import en from './locales/en/translation.json';
 import he from './locales/he/translation';
 
 i18n
-  .use(LanguageDetector) 
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {

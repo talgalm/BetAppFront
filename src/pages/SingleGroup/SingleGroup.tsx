@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { Group, TagText, TagType } from "../../api/interfaces";
-import Tag from "../../components/Tag/Tag";
-import { Typography } from "../../components/Topography/topography";
-import { TypographyTypes } from "../../Theme/Typography/typography";
-import { AvatarsDiv, BetRow, DescriptionDiv, RightDiv } from "./SingleGroup.styles";
+import { useTranslation } from 'react-i18next';
+import { Group, TagText, TagType } from '../../api/interfaces';
+import Tag from '../../components/Tag/Tag';
+import { Typography } from '../../components/Topography/topography';
+import { TypographyTypes } from '../../Theme/Typography/typography';
+import { AvatarsDiv, BetRow, DescriptionDiv, RightDiv } from './SingleGroup.styles';
 
 interface SinglegGroupProp {
   group: Group;
@@ -18,16 +18,12 @@ const SingleGroup = ({ group }: SinglegGroupProp): JSX.Element => {
         <DescriptionDiv>
           <Typography value={group.groupName} variant={TypographyTypes.H4} />
           <Typography
-            value={`${t("MyGroups.createdAT")} ${group.createdAt}`}
+            value={`${t('MyGroups.createdAT')} ${group.createdAt}`}
             variant={TypographyTypes.H5}
           />
         </DescriptionDiv>
       </RightDiv>
-      <Tag
-        value={TagText[TagType.PARTICIPANTS]}
-        type={TagType.PARTICIPANTS}
-        participants={12}
-      />
+      <Tag value={TagText[TagType.PARTICIPANTS]} type={TagType.PARTICIPANTS} participants={12} />
     </BetRow>
   );
 };

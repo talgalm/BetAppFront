@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { UseFormRegister, FieldValues, Path } from "react-hook-form";
+import React, { useState } from 'react';
+import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
 import {
   ErrorDiv,
   StyledContainer,
   StyledInput,
   StyledInputWrapper,
   VisibilityButton,
-} from "./Input.styles";
+} from './Input.styles';
 
-// Import icons from react-icons
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 type InputProps<TFormValues extends FieldValues> = {
   label?: string;
@@ -42,11 +41,11 @@ const Input = <TFormValues extends FieldValues>({
       <StyledInputWrapper>
         <StyledInput
           id={name}
-          type={showPassword && type === "password" ? "text" : type} // Toggle type based on state
+          type={showPassword && type === 'password' ? 'text' : type}
           placeholder={placeholder}
           {...register(name, validation)}
         />
-        {type === "password" && (
+        {type === 'password' && (
           <VisibilityButton type="button" onClick={togglePasswordVisibility}>
             {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
           </VisibilityButton>

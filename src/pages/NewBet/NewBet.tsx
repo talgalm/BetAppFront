@@ -1,19 +1,14 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { BetNameInput, PageContainer, StyledButton } from "./NewBet.styles";
-import { Typography } from "../../components/Topography/topography";
-import FormInputCollapse from "../FormInputCollapse/FormInputCollapse";
-import { ReactComponent as AddIcon } from "../../Theme/Icons/AddIcon.svg";
-import SuccessfullNewBet from "../SuccessfullNewBet/SuccessfullNewBet";
-import BetLoader from "../../Theme/Loader/loader";
-import { TypographyTypes } from "../../Theme/Typography/typography";
-import { TEXT_SEC_COLOR } from "../../Theme/ColorTheme";
-import {
-  newBetsFieldsData,
-  CollapseTitles,
-  CreateFormInputs,
-} from "./Interface";
-import { useFormContext } from "react-hook-form";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BetNameInput, PageContainer, StyledButton } from './NewBet.styles';
+import { Typography } from '../../components/Topography/topography';
+import FormInputCollapse from '../FormInputCollapse/FormInputCollapse';
+import { ReactComponent as AddIcon } from '../../Theme/Icons/AddIcon.svg';
+import SuccessfullNewBet from '../SuccessfullNewBet/SuccessfullNewBet';
+import { TypographyTypes } from '../../Theme/Typography/typography';
+import { TEXT_SEC_COLOR } from '../../Theme/ColorTheme';
+import { newBetsFieldsData, CollapseTitles, CreateFormInputs } from './Interface';
+import { useFormContext } from 'react-hook-form';
 
 const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
@@ -21,25 +16,20 @@ const NewBet = () => {
   const { t } = useTranslation();
   const [addToCalendar, setAddToCalendar] = useState(true);
 
-  const { register, control, handleSubmit } =
-    useFormContext<CreateFormInputs>();
-
-  if (false) {
-    return <BetLoader />;
-  }
+  const { register, control, handleSubmit } = useFormContext<CreateFormInputs>();
 
   const handleCollapseToggle = (title: CollapseTitles) => {
     setCurrentOpen((prev) => (prev === title ? null : title));
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: CreateFormInputs) => {
     console.log(data);
     setAddToCalendar(data.AddTocalendar);
     setIsSuccessfull(true);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       setCurrentOpen(CollapseTitles.DESCRIPTION);
     }
@@ -49,26 +39,26 @@ const NewBet = () => {
     <PageContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <BetNameInput
-          {...register("Name")}
-          placeholder={t("NewBet.BetNameInput")}
+          {...register('Name')}
+          placeholder={t('NewBet.BetNameInput')}
           typography={TypographyTypes.H2}
           onKeyDown={onKeyDown}
         />
         {newBetsFieldsData.map(({ title, label, icon, type, inputName }) => (
-          <FormInputCollapse
+          <FormInputCollapse<CreateFormInputs>
             key={title}
             title={t(label)}
             icon={icon}
             type={type}
             isOpen={currentOpen === title}
             onToggle={() => handleCollapseToggle(title)}
-            inputName={inputName}
+            inputName={inputName as keyof CreateFormInputs}
             control={control}
           />
         ))}
         <StyledButton type="submit">
           <Typography
-            value={t("NewBet.createBet")}
+            value={t('NewBet.createBet')}
             variant={TypographyTypes.H5}
             styleProps={{ color: TEXT_SEC_COLOR }}
           />

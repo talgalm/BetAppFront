@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import Button from "../../components/Button - deprected/Button";
-import Input from "../../components/Input - deprected/Input";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import Button from '../../components/Button - deprected/Button';
+import Input from '../../components/Input - deprected/Input';
 import {
   FormContainer,
   HeadlineContainer,
@@ -9,16 +8,16 @@ import {
   HeadlineTitle,
   PageContainer,
   SubText,
-} from "./Login.styles";
-import { useNavigate } from "react-router-dom";
-import { useLogin } from "../../Hooks/useAuth";
-import { userAtom } from "../../Jotai/atoms";
-import { useAtom } from "jotai";
-import withNoAuth from "../../Providers/withNoAuth";
-import SocialIcons from "../SocialIcons/Icons";
-import BetLoader from "../../Theme/Loader/loader";
-import { useErrorBoundary } from "react-error-boundary";
-import { ErrorHandler } from "../../Errors/ErrorHandler";
+} from './Login.styles';
+import { useNavigate } from 'react-router-dom';
+import { useLogin } from '../../Hooks/useAuth';
+// import { userAtom } from '../../Jotai/atoms';
+// import { useAtom } from 'jotai';
+import withNoAuth from '../../Providers/withNoAuth';
+import SocialIcons from '../SocialIcons/Icons';
+import BetLoader from '../../Theme/Loader/loader';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorHandler } from '../../Errors/ErrorHandler';
 
 type LoginFormInputs = {
   username: string;
@@ -33,7 +32,7 @@ const Login = (): JSX.Element => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
   const { mutate, isPending } = useLogin();
-  const [_, setUser] = useAtom(userAtom);
+  // const [_, setUser] = useAtom(userAtom);
   const { showBoundary } = useErrorBoundary();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = ({ username, password }) => {
@@ -41,12 +40,12 @@ const Login = (): JSX.Element => {
       { username, password },
       {
         onSuccess: (data) => {
-          localStorage.setItem("token", data.token);
-          setUser(data.user);
-          navigate("/");
+          localStorage.setItem('token', data.token);
+          // setUser(data.user);
+          navigate('/');
         },
         onError: (error) => {
-          console.error("Login failed:", error);
+          console.error('Login failed:', error);
         },
       }
     );
@@ -65,7 +64,7 @@ const Login = (): JSX.Element => {
       <HeadlineContainer>
         <HeadlineTitle>Login Here</HeadlineTitle>
         <HeadlineSubTitle>Welcome Back</HeadlineSubTitle>
-        <HeadlineSubTitle>Youv'e been missed!</HeadlineSubTitle>
+        <HeadlineSubTitle></HeadlineSubTitle>
       </HeadlineContainer>
       <FormContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,7 +73,7 @@ const Login = (): JSX.Element => {
             placeholder="Username"
             register={register}
             name="username"
-            validation={{ required: "Username is required" }}
+            validation={{ required: 'Username is required' }}
             error={errors.username?.message}
           />
           <Input
@@ -82,10 +81,10 @@ const Login = (): JSX.Element => {
             placeholder="Password"
             register={register}
             name="password"
-            validation={{ required: "Password is required" }}
+            validation={{ required: 'Password is required' }}
             error={errors.password?.message}
           />
-          <Button type="submit" label={isPending ? "Logging in..." : "Login"} />
+          <Button type="submit" label={isPending ? 'Logging in...' : 'Login'} />
         </form>
       </FormContainer>
       <SubText onClick={createNewAccount}> Create new account</SubText>

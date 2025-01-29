@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
-import Button from "../../components/Button - deprected/Button";
-import Input from "../../components/Input - deprected/Input";
-import { useLogin, useRegister } from "../../Hooks/useAuth";
-import { validationRules } from "../../utils/Validations";
-import { useAtom } from "jotai";
-import { userAtom } from "../../Jotai/atoms";
-import withNoAuth from "../../Providers/withNoAuth";
-import BetLoader from "../../Theme/Loader/loader";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import Button from '../../components/Button - deprected/Button';
+import Input from '../../components/Input - deprected/Input';
+import { useLogin, useRegister } from '../../Hooks/useAuth';
+import { validationRules } from '../../utils/Validations';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
+import withNoAuth from '../../Providers/withNoAuth';
+import BetLoader from '../../Theme/Loader/loader';
 import {
   FormContainer,
   HeadlineContainer,
@@ -16,8 +16,8 @@ import {
   HeadlineTitle,
   PageContainer,
   SubText,
-} from "./Register.styles";
-import SocialIcons from "../SocialIcons/Icons";
+} from './Register.styles';
+import SocialIcons from '../SocialIcons/Icons';
 
 type RegisterFormInputs = {
   username: string;
@@ -34,19 +34,11 @@ const Register = (): JSX.Element => {
     formState: { errors },
   } = useForm<RegisterFormInputs>();
 
-  const {
-    mutate: register,
-    isPending: isRegistering,
-    error: registerError,
-  } = useRegister();
-  const {
-    mutate: login,
-    isPending: isLoggingIn,
-    error: loginError,
-  } = useLogin();
-  const [user, setUser] = useAtom(userAtom);
+  const { mutate: register, isPending: isRegistering } = useRegister();
+  const { mutate: login, isPending: isLoggingIn } = useLogin();
+  const [, setUser] = useAtom(userAtom);
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword] = useState(false);
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = ({
     username,
@@ -62,25 +54,25 @@ const Register = (): JSX.Element => {
             { username, password },
             {
               onSuccess: (data) => {
-                localStorage.setItem("token", data.token);
+                localStorage.setItem('token', data.token);
                 setUser(data.user);
-                navigate("/");
+                navigate('/');
               },
               onError: (error) => {
-                console.error("Login failed after registration:", error);
+                console.error('Login failed after registration:', error);
               },
             }
           );
         },
         onError: (error) => {
-          console.error("Registration failed:", error);
+          console.error('Registration failed:', error);
         },
       }
     );
   };
 
   const alreadyHaveAccount = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   if (isRegistering || isLoggingIn) {
@@ -91,9 +83,7 @@ const Register = (): JSX.Element => {
     <PageContainer>
       <HeadlineContainer>
         <HeadlineTitle>Create Account</HeadlineTitle>
-        <HeadlineSubTitle>
-          Create an account so you can start betting!
-        </HeadlineSubTitle>
+        <HeadlineSubTitle>Create an account so you can start betting!</HeadlineSubTitle>
       </HeadlineContainer>
 
       <FormContainer>
@@ -115,7 +105,7 @@ const Register = (): JSX.Element => {
             error={errors.email?.message}
           />
           <Input<RegisterFormInputs>
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             register={registerFrom}
             name="password"
@@ -130,10 +120,7 @@ const Register = (): JSX.Element => {
             validation={validationRules.phoneNumber}
             error={errors.phoneNumber?.message}
           />
-          <Button
-            type="submit"
-            label={isRegistering ? "Registering..." : "Register"}
-          />
+          <Button type="submit" label={isRegistering ? 'Registering...' : 'Register'} />
         </form>
       </FormContainer>
       <SubText onClick={alreadyHaveAccount}>Already have an account</SubText>

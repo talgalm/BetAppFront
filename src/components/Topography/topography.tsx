@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface TopographyProps {
   value: string | number;
@@ -6,19 +6,10 @@ interface TopographyProps {
   styleProps?: React.CSSProperties;
 }
 
-export const Typography: React.FC<TopographyProps> = ({
-  value,
-  variant,
-  styleProps,
-}) => {
+export const Typography: React.FC<TopographyProps> = ({ value, variant, styleProps }) => {
   const mergedStyles = styleProps ? { ...variant, ...styleProps } : variant;
 
-  const transformedValue =
-    typeof value === "string" ? value.replaceAll("<br>", "\n") : value;
+  const transformedValue = typeof value === 'string' ? value.replaceAll('<br>', '\n') : value;
 
-  return (
-    <div style={{ ...mergedStyles, whiteSpace: "pre-wrap" }}>
-      {transformedValue}
-    </div>
-  );
+  return <div style={{ ...mergedStyles, whiteSpace: 'pre-wrap' }}>{transformedValue}</div>;
 };

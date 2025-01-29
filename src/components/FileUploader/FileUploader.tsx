@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Controller, useFormContext } from "react-hook-form";
-import { ReactComponent as CloseIcon } from "../../Theme/Icons/Close.svg";
-import { Typography } from "../Topography/topography";
-import { TypographyTypes } from "../../Theme/Typography/typography";
-import { AddFilesDiv, hideLongNameStyles, ParticipantTag } from "./FileUploader.styles";
-import { ReactComponent as AddIcon } from "../../Theme/Icons/AddGray.svg";
-import { AddParticipantTag } from "./FileUploader.styles";
-import { useTranslation } from "react-i18next";
-import { BORDER_COLOR_sec } from "../../Theme/ColorTheme";
+import React, { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
+import { Typography } from '../Topography/topography';
+import { TypographyTypes } from '../../Theme/Typography/typography';
+import { AddFilesDiv, hideLongNameStyles, ParticipantTag } from './FileUploader.styles';
+import { ReactComponent as AddIcon } from '../../Theme/Icons/AddGray.svg';
+import { useTranslation } from 'react-i18next';
+import { BORDER_COLOR_sec } from '../../Theme/ColorTheme';
 interface FileUploaderProps {
   inputName: string;
 }
@@ -26,7 +25,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ inputName }) => {
 
   useEffect(() => {
     setValue(inputName, selectedFiles);
-  }, [selectedFiles]);
+  }, [inputName, selectedFiles, setValue]);
 
   const handleRemoveFileChange = (file: File) => {
     setSelectedFiles(selectedFiles.filter((f) => f !== file));
@@ -37,7 +36,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ inputName }) => {
       {selectedFiles &&
         selectedFiles.map((file, index) => (
           <ParticipantTag key={index} borderColor={BORDER_COLOR_sec}>
-            <CloseIcon onClick={() => handleRemoveFileChange(file)} width={24} height={24}/>
+            <CloseIcon onClick={() => handleRemoveFileChange(file)} width={24} height={24} />
             <Typography
               value={file.name}
               variant={TypographyTypes.H4}
@@ -46,18 +45,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({ inputName }) => {
           </ParticipantTag>
         ))}
       <ParticipantTag
-        onClick={() => document.getElementById("file-upload")?.click()}
-        style={{ cursor: "pointer" }}
+        onClick={() => document.getElementById('file-upload')?.click()}
+        style={{ cursor: 'pointer' }}
       >
         <AddIcon />
-        <Typography
-          value={t("Input.TextPoints.AddFile")}
-          variant={TypographyTypes.H4}
-        />
+        <Typography value={t('Input.TextPoints.AddFile')} variant={TypographyTypes.H4} />
         <input
           id="file-upload"
           type="file"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           onChange={handleFileChange}
         />
       </ParticipantTag>

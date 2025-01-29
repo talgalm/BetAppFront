@@ -1,33 +1,31 @@
 export const validationRules = {
   username: {
-    required: "Username is required",
+    required: 'Username is required',
     minLength: {
       value: 3,
-      message: "------",
+      message: '------',
     },
   },
   email: {
-    required: "Email is required",
+    required: 'Email is required',
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "------",
+      message: '------',
     },
   },
   password: {
-    required: "Password is required",
+    required: 'Password is required',
     minLength: {
       value: 6,
-      message: "------",
+      message: '------',
     },
   },
   phoneNumber: {
-    required: "Phone number is required",
+    required: 'Phone number is required',
     pattern: {
       value: /^\d{10,}$/,
-      message: "------",
+      message: '------',
     },
   },
-  descrition :{
-    
-  }
+  descrition: {},
 };

@@ -5,7 +5,7 @@ export interface User {
   password?: string;
   email?: string;
   phoneNumber?: string;
-  points? :number
+  points?: number;
   bets?: Bet[];
   groups?: Group[];
 }
@@ -28,17 +28,17 @@ export interface Bet {
 }
 
 export enum TagType {
-  LOW = "Low",
-  MID = "Mid",
-  HIGH = "High",
-  PARTICIPANTS = "PARTICIPANTS",
-  POINTS = "POINTS",
+  LOW = 'Low',
+  MID = 'Mid',
+  HIGH = 'High',
+  PARTICIPANTS = 'PARTICIPANTS',
+  POINTS = 'POINTS',
 }
 
 export const TagText: Record<TagType, string> = {
-  [TagType.LOW]: "סיכון נמוך",
-  [TagType.MID]: "סיכון בינוני",
-  [TagType.HIGH]: "סיכון גבוה",
-  [TagType.PARTICIPANTS]: "משתתפים",
-  [TagType.POINTS]: "נקודות",
+  [TagType.LOW]: 'סיכון נמוך',
+  [TagType.MID]: 'סיכון בינוני',
+  [TagType.HIGH]: 'סיכון גבוה',
+  [TagType.PARTICIPANTS]: 'משתתפים',
+  [TagType.POINTS]: 'נקודות',
 };

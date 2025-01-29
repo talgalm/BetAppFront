@@ -1,25 +1,17 @@
-import React from "react";
-import { StyledButton } from "./Button.styles";
+import React from 'react';
+import { StyledButton } from './Button.styles';
 
 interface ButtonProps {
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   label?: string;
   disabled?: boolean;
   bgColor?: string;
   textColor?: string;
-  icon?:  React.ReactNode;
+  icon?: React.ReactNode;
   onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  type = "button",
-  label = "",
-  icon = "",
-  disabled,
-  bgColor,
-  textColor,
-  onClick,
-}) => {
+const Button: React.FC<ButtonProps> = ({ label = '', icon = '', bgColor, textColor, onClick }) => {
   return (
     <StyledButton onClick={onClick} bgColor={bgColor} textColor={textColor}>
       {label}

@@ -1,12 +1,7 @@
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useCallback,
-} from "react";
-import { useAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
-import { userAtom } from "../Jotai/atoms";
+import React, { createContext, useContext, ReactNode, useCallback } from 'react';
+import { useAtom } from 'jotai';
+import { useNavigate } from 'react-router-dom';
+import { userAtom } from '../Jotai/atoms';
 
 // Define the shape of the context
 interface LogoutContextType {
@@ -25,24 +20,20 @@ export const LogoutProvider = ({ children }: { children: ReactNode }) => {
     // Clear local storage
     localStorage.clear();
     // Reset userAtom to its default value
-    setUser({username:""});
+    setUser({ username: '' });
     // Show alert
-    alert("You have been logged out.");
+    alert('You have been logged out.');
     // Navigate to the login page
-    navigate("/login");
+    navigate('/login');
   }, [setUser, navigate]);
 
-  return (
-    <LogoutContext.Provider value={{ logout }}>
-      {children}
-    </LogoutContext.Provider>
-  );
+  return <LogoutContext.Provider value={{ logout }}>{children}</LogoutContext.Provider>;
 };
 
 export const useLogout = (): LogoutContextType => {
   const context = useContext(LogoutContext);
   if (!context) {
-    throw new Error("useLogout must be used within a LogoutProvider");
+    throw new Error('useLogout must be used within a LogoutProvider');
   }
   return context;
 };

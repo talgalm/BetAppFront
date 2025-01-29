@@ -1,45 +1,40 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Home from "./pages/Home/Home";
-import GroupsManagement from "./pages/GroupsManagement/GroupsManagement";
-import GroupPage from "./pages/GroupPage/GroupPage";
-import NewBet from "./pages/NewBet/NewBet";
-import "./language/i18n";
-import NewBetForm from "./pages/NewBet/NewBet.form";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Home from './pages/Home/Home';
+import './language/i18n';
+import NewBetForm from './pages/NewBet/NewBet.form';
 
 export const pagesRouter = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
-        path: "/login",
+        path: '/login',
         element: <Login />,
       },
       {
-        path: "/register",
+        path: '/register',
         element: <Register />,
       },
       {
-        path: "/",
+        path: '/',
         element: <Home />,
       },
       {
-        path: "/create-bet",
+        path: '/create-bet',
         element: <NewBetForm />,
       },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
