@@ -63,8 +63,9 @@ export const newBetsFieldsData = [
 export type CreateFormInputs = {
   Name: string;
   Description: string;
+  Participants: string[];
   Conditions: Guess[];
-  EndsIn: Date;
+  EndsIn: Date | null;
   AddTocalendar: boolean;
   Files: File[];
   Supervisor: string[];
