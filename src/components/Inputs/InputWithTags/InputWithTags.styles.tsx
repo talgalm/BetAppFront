@@ -15,6 +15,10 @@ export const AddParticipantsDiv = styled("div")({
   boxSizing: "border-box",
 });
 
+export const TagContainer = styled("div")({
+  position: "relative",
+});
+
 export const AddParticipantTag = styled("div")({
   display: "flex",
   flexDirection: "row",
@@ -33,6 +37,31 @@ export const ParticipantTag = styled("div")({
   width: 150,
   height: 44,
   borderRadius: "8px",
-  border: "1.5px solid black",
+  border: "1.5px solid #7F8CB9",
   opacity: 1,
+  cursor: "pointer",
+});
+
+export const PopUpDiv = styled("div")({
+  position: "absolute",
+  top: "100%",
+  right: 0,
+  marginTop: 4,
+  width: 125,
+  height: 34,
+  padding: 7,
+  gap: 4,
+  borderRadius: "8px",
+  border: "1.5px solid #7F8CB9",
+  opacity: 1,
+  backgroundColor: "#F8F8FD",
+  zIndex: 1000,
+});
+
+export const PopUpRow = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  direction: "rtl",
+  justifyContent: "space-between",
+  paddingBottom: 4
 });

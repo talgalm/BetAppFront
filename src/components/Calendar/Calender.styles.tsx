@@ -24,20 +24,28 @@ export const StyledCalendar = styled(Calendar)`
     align-items: center;
     font-size: 14px;
     font-family: "IBM Plex Sans Hebrew", sans-serif;
+    position: relative;
   }
 
   .react-calendar__tile--active {
-    margintop: 100px;
-    background-color: #7f8cb9;
     color: white;
-    border-radius: 50%;
-    width: 40px;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
     font-family: "IBM Plex Sans Hebrew", sans-serif;
+    position: relative;
+  }
+
+  .react-calendar__tile--active abbr {
+    width: 30px;
+    height: 30px;
+    background-color: #7f8cb9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
   }
 
   .react-calendar__navigation {

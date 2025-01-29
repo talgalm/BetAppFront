@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { ReactComponent as MinusIcon } from "../../Theme/Icons/Minus.svg";
+import { ReactComponent as CloseIcon } from "../../Theme/Icons/Close.svg";
 import { Typography } from "../Topography/topography";
 import { TypographyTypes } from "../../Theme/Typography/typography";
 import { AddFilesDiv, hideLongNameStyles, ParticipantTag } from "./FileUploader.styles";
@@ -37,7 +37,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ inputName }) => {
       {selectedFiles &&
         selectedFiles.map((file, index) => (
           <ParticipantTag key={index} borderColor={BORDER_COLOR_sec}>
-            <MinusIcon onClick={() => handleRemoveFileChange(file)} width={24} height={24}/>
+            <CloseIcon onClick={() => handleRemoveFileChange(file)} width={24} height={24}/>
             <Typography
               value={file.name}
               variant={TypographyTypes.H4}

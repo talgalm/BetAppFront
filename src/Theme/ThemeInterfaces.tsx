@@ -26,7 +26,7 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.PRIMARY_EXPAND]: {
     height: 198,
     backgroundColor: PRIMARY_COLOR,
-    width: "100%",
+    width: "101%",
     boxShadow: "0px 3px 8px 0px rgba(34, 53, 62, 0.25)",
     paddingRight: 16,
     paddingLeft: 16,
@@ -34,6 +34,7 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
     color: TEXT_SEC_COLOR,
     position: "fixed",
     top: -1,
+    left:-1,
     zIndex: 1000,
   },
   [HeaderStyle.SECONDARY_SHORT]: {

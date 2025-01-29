@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { TypographyTypes } from "../../../Theme/Typography/typography";
 import { TEXT_THIRD_COLOR } from "../../../Theme/ColorTheme";
 
-export const BetInput = styled("input")<{
+export const BetInput = styled("textarea")<{
   typography: typeof TypographyTypes.H5;
   isWriting: boolean;
   setHeight?: boolean;
@@ -18,10 +18,15 @@ export const BetInput = styled("input")<{
   outline: "none",
   color: TEXT_THIRD_COLOR,
   padding: setHeight ? "8px 8px 36px" : "16px 16px 96px",
+  resize: "none", 
+  whiteSpace: "pre-wrap", 
+  wordWrap: "break-word", 
+  overflowWrap: "break-word",
   "&::placeholder": {
     color: "#BDBDBD",
   },
 }));
+
 
 export const NumOfChars = styled("div")({
   display: "flex",
