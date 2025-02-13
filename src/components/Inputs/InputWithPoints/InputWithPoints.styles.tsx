@@ -22,12 +22,6 @@ export const AddParticipantTag = styled('div')({
   gap: 8,
 });
 
-export const CollapseInnerDiv = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '10px',
-});
-
 export const CollapseOuterDiv = styled('div')({
   width: '100%',
   direction: 'ltr',
@@ -36,10 +30,14 @@ export const CollapseOuterDiv = styled('div')({
   flexDirection: 'column',
 });
 
-export const StyledCancelIcon = styled(CancelIconBase)({
-  cursor: 'pointer',
-  color: TEXT_THIRD_COLOR,
-  marginTop: '32px',
-  width: 24,
-  height: 24,
+export const IconsDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: 8,
+});
+
+export const ColumnConditionDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8,
 });

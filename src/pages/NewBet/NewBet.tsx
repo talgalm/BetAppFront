@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BetNameInput, PageContainer, StyledButton } from './NewBet.styles';
+import { BetNameInput, PageContainer } from './NewBet.styles';
 import { Typography } from '../../components/Topography/topography';
 import FormInputCollapse from '../FormInputCollapse/FormInputCollapse';
 import { ReactComponent as AddIcon } from '../../Theme/Icons/AddIcon.svg';
@@ -9,6 +9,7 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import { TEXT_SEC_COLOR } from '../../Theme/ColorTheme';
 import { newBetsFieldsData, CollapseTitles, CreateFormInputs } from './Interface';
 import { useFormContext } from 'react-hook-form';
+import StyledButton from '../../components/Button/StyledButton';
 
 const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
@@ -56,14 +57,7 @@ const NewBet = () => {
             control={control}
           />
         ))}
-        <StyledButton type="submit">
-          <Typography
-            value={t('NewBet.createBet')}
-            variant={TypographyTypes.H5}
-            styleProps={{ color: TEXT_SEC_COLOR }}
-          />
-          <AddIcon color={TEXT_SEC_COLOR} />
-        </StyledButton>
+        <StyledButton value={t('NewBet.createBet')} icon={<AddIcon color={TEXT_SEC_COLOR} />} />
       </form>
       {isSuccessfull && <SuccessfullNewBet isAddToCalendar={addToCalendar} />}
     </PageContainer>
