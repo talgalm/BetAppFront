@@ -33,12 +33,17 @@ export const ParticipantTag = styled('div')({
   alignItems: 'center',
   padding: 10,
   gap: 10,
-  width: 150,
-  height: 44,
-  borderRadius: '8px',
-  border: '1.5px solid #7F8CB9',
+  height: 28,
+  backgroundColor: '#DCE1F5',
+  borderRadius: 4,
   opacity: 1,
   cursor: 'pointer',
+});
+
+export const IconAddDiv = styled('div')({
+  padding: '2px 8px 0px 8px',
+  border: '1.5px solid #9798A2',
+  borderRadius: 4,
 });
 
 export const PopUpDiv = styled('div')({
@@ -46,7 +51,7 @@ export const PopUpDiv = styled('div')({
   top: '100%',
   right: 0,
   marginTop: 4,
-  width: 125,
+  width: '100%',
   height: 34,
   padding: 7,
   gap: 4,

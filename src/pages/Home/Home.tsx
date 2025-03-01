@@ -9,11 +9,11 @@ import { userAtom } from '../../Jotai/atoms';
 
 const Home = (): JSX.Element => {
   const [user, setUser] = useAtom(userAtom);
-  const { data, isLoading } = UseUser(user?.username);
+  const { data, isLoading } = UseUser(user?.id);
 
   useEffect(() => {
-    if (data?.user) {
-      setUser(data.user);
+    if (data) {
+      setUser(data);
     }
   }, [data, setUser]);
 
@@ -23,8 +23,8 @@ const Home = (): JSX.Element => {
 
   return (
     <HomeDivContainer>
-      <MyBets userBets={data?.user.bets || []} />
-      <MyGroups userGroups={data?.user.groups || []} />
+      <MyBets userBets={user.bets || []} />
+      <MyGroups userGroups={user.groups || []} />
     </HomeDivContainer>
   );
 };

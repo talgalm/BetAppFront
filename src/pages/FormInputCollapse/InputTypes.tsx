@@ -4,4 +4,5 @@ export enum InputTypesCollapse {
   AddConditions,
   Calender,
   Files,
+  Supervisor,
 }

@@ -8,7 +8,7 @@ const GroupPage = () => {
   return (
     <div>
       <h1>Group Page</h1>
-      <p>Group ID: {group.groupId}</p>
+      <p>Group ID: {group.id}</p>
       <p>Group Users: {group.users?.length}</p>
       <Button label="Create New Bet" />
     </div>

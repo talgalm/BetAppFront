@@ -1,7 +1,7 @@
 import { User } from '../api/interfaces';
 
 export const user1: User = {
-  username: 'TalGalmor',
+  id: 'TalGalmor',
   fullName: 'Tal Galmor',
   email: 'tal.galmor3@gmail.com',
 
@@ -14,24 +14,24 @@ export const user1: User = {
 };
 
 export const user2: User = {
-  username: 'Mayag',
+  id: 'Mayag',
   fullName: 'Maya Galmor',
 };
 
 export const user3: User = {
-  username: 'YanirL',
+  id: 'YanirL',
 };
 
 export const user4: User = {
-  username: 'TomerSurj',
+  id: 'TomerSurj',
   fullName: 'Tomer Surujon',
 };
 
 export const user5: User = {
-  username: 'VAB',
+  id: 'VAB',
   fullName: 'Vladimir Abathanov',
 };
 
 export const user6: User = {
-  username: 'OfirSwiswi',
+  id: 'OfirSwiswi',
 };

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BetNameInput, PageContainer } from './NewBet.styles';
-import { Typography } from '../../components/Topography/topography';
 import FormInputCollapse from '../FormInputCollapse/FormInputCollapse';
 import { ReactComponent as AddIcon } from '../../Theme/Icons/AddIcon.svg';
 import SuccessfullNewBet from '../SuccessfullNewBet/SuccessfullNewBet';
@@ -13,6 +12,7 @@ import StyledButton from '../../components/Button/StyledButton';
 
 const NewBet = () => {
   const [isSuccessfull, setIsSuccessfull] = useState(false);
+
   const [currentOpen, setCurrentOpen] = useState<CollapseTitles | null>(null);
   const { t } = useTranslation();
   const [addToCalendar, setAddToCalendar] = useState(true);
@@ -24,7 +24,6 @@ const NewBet = () => {
   };
 
   const onSubmit = (data: CreateFormInputs) => {
-    console.log(data);
     setAddToCalendar(data.AddTocalendar);
     setIsSuccessfull(true);
   };
@@ -38,7 +37,14 @@ const NewBet = () => {
 
   return (
     <PageContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 1,
+        }}
+      >
         <BetNameInput
           {...register('Name')}
           placeholder={t('NewBet.BetNameInput')}
@@ -57,8 +63,11 @@ const NewBet = () => {
             control={control}
           />
         ))}
-        <StyledButton value={t('NewBet.createBet')} icon={<AddIcon color={TEXT_SEC_COLOR} />} />
+        <div style={{ marginTop: 'auto', marginBottom: 0 }}>
+          <StyledButton value={t('NewBet.createBet')} icon={<AddIcon color={TEXT_SEC_COLOR} />} />
+        </div>
       </form>
+
       {isSuccessfull && <SuccessfullNewBet isAddToCalendar={addToCalendar} />}
     </PageContainer>
   );

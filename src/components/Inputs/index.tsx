@@ -23,11 +23,15 @@ const InputByType = <T extends FieldValues>({
   const { t } = useTranslation();
   return (
     <div>
-      <Typography value={t('Input.Description')} variant={TypographyTypes.H6} />
       {type === InputTypesCollapse.Text && (
         <InputTextFull control={control} inputName={inputName} />
       )}
-      {type === InputTypesCollapse.AddParticipants && <InputWithTags />}
+      {type === InputTypesCollapse.AddParticipants && (
+        <InputWithTags control={control} inputName="input" />
+      )}
+      {type === InputTypesCollapse.Supervisor && (
+        <InputWithTags control={control} inputName="input" limit={1} />
+      )}
       {type === InputTypesCollapse.AddConditions && (
         <InputWithPoints
           control={control}

@@ -38,13 +38,6 @@ export const newBetsFieldsData = [
     inputName: 'Conditions',
   },
   {
-    title: CollapseTitles.DATE,
-    label: 'NewBet.DateTitle',
-    icon: CalenderIcon,
-    type: InputTypesCollapse.Calender,
-    inputName: 'EndsIn',
-  },
-  {
     title: CollapseTitles.FILES,
     label: 'NewBet.FilesTitle',
     icon: FilesIcon,
@@ -55,7 +48,7 @@ export const newBetsFieldsData = [
     title: CollapseTitles.SUPERVISOR,
     label: 'NewBet.SupervisorTitle',
     icon: SupervisorIcon,
-    type: InputTypesCollapse.AddParticipants,
+    type: InputTypesCollapse.Supervisor,
     inputName: 'Supervisor',
   },
 ];

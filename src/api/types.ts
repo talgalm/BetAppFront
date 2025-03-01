@@ -12,14 +12,22 @@ export const ApiService = {
   ): Promise<T> => {
     const config: AxiosRequestConfig = {
       method,
-      url: `${BASE_URL}${endpoint}`,
+      url:
+        method === HTTPMethod.GET
+          ? `${BASE_URL}${endpoint}?${new URLSearchParams(data as Record<string, string>)}`
+          : `${BASE_URL}${endpoint}`,
       headers: {
         ...(isFormData
           ? { 'Content-Type': ContentType.FORM }
           : { 'Content-Type': ContentType.JSON }),
         ...headers,
       },
-      data: isFormData ? new URLSearchParams(data as Record<string, string>).toString() : data,
+      data:
+        method !== HTTPMethod.GET
+          ? isFormData
+            ? new URLSearchParams(data as Record<string, string>).toString()
+            : data
+          : undefined,
     };
 
     const response = await axios(config);

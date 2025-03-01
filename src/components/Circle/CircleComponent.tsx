@@ -4,14 +4,16 @@ import { MoreCircle, RegularCircle } from './CircleComponents.styles';
 interface CircleComponentProps {
   index: number;
   participantsNumber: number;
+  styleProps?: React.CSSProperties;
 }
 
-const Circle = ({ index, participantsNumber }: CircleComponentProps): JSX.Element => {
+const Circle = ({ index, participantsNumber, styleProps }: CircleComponentProps): JSX.Element => {
   return index === 0 && participantsNumber > 3 ? (
     <MoreCircle
       style={{
         zIndex: participantsNumber + index,
         marginLeft: -10,
+        ...styleProps,
       }}
     >
       <MoreDots width={24} height={24} />
@@ -21,6 +23,7 @@ const Circle = ({ index, participantsNumber }: CircleComponentProps): JSX.Elemen
       style={{
         zIndex: participantsNumber + index,
         marginLeft: -10,
+        ...styleProps,
       }}
     />
   );

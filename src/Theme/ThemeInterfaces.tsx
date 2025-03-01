@@ -32,10 +32,9 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
     zIndex: 1000,
   },
   [HeaderStyle.SECONDARY_SHORT]: {
-    height: 124,
     backgroundColor: PRIMARY_BACKGROUND,
+    height: 120,
     width: '100%',
-    boxShadow: '0px 3px 8px 0px rgba(34, 53, 62, 0.25)',
     paddingRight: 16,
     paddingLeft: 16,
     paddingTop: 28,

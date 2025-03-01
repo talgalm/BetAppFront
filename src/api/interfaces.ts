@@ -1,5 +1,5 @@
 export interface User {
-  username: string;
+  id: string;
   fullName?: string;
   image?: File;
   password?: string;
@@ -11,8 +11,8 @@ export interface User {
 }
 
 export interface Group {
-  groupId: string;
-  groupName: string;
+  id: string;
+  name: string;
   createdAt?: string;
   users: User[];
   image?: string;

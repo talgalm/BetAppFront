@@ -30,11 +30,11 @@ const Header = () => {
 
   const [layout, setLayout] = useAtom(layoutAtom);
   const [user, setUser] = useAtom(userAtom);
-  const { data } = UseUser(user?.username);
+  const { data } = UseUser(user?.id);
 
   useEffect(() => {
-    if (data?.user) {
-      setUser(data.user);
+    if (data) {
+      setUser(data);
     }
   }, [data, setUser]);
   const { t } = useTranslation();
@@ -58,18 +58,20 @@ const Header = () => {
 
   return (
     <HeaderComponent headerStyle={layout.headerStyle}>
-      <LogoDiv>{isPrimary ? <LogoBright /> : <LogoDark />}</LogoDiv>
+      <LogoDiv>{isPrimary && <LogoBright />}</LogoDiv>
       <TotalPointsDiv>
-        <PointsContainer>
-          <Typography value={data?.user.points || 0} variant={TypographyTypes.H1} />
-          <Typography
-            value={t('Header.Points')}
-            variant={TypographyTypes.H6}
-            styleProps={{
-              color: isPrimary ? TEXT_SEC_COLOR : TEXT_THIRD_COLOR,
-            }}
-          />
-        </PointsContainer>
+        {isPrimary && (
+          <PointsContainer>
+            <Typography value={user?.points || 0} variant={TypographyTypes.H1} />
+            <Typography
+              value={t('Header.Points')}
+              variant={TypographyTypes.H6}
+              styleProps={{
+                color: TEXT_SEC_COLOR,
+              }}
+            />
+          </PointsContainer>
+        )}
       </TotalPointsDiv>
       {isPrimary && (
         <ButtonsDiv>

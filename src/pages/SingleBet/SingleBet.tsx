@@ -37,7 +37,7 @@ const SingleBet = ({ bet }: SingleBetProp): JSX.Element => {
               ? bet.userGuesses
                   .map((participant: User) => participant.fullName?.split(' ')[0])
                   .join(', ')
-              : (bet.group?.groupName ?? '')
+              : (bet.group?.name ?? '')
           }
           variant={TypographyTypes.H5}
         />

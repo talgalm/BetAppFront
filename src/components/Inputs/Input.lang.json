@@ -5,5 +5,9 @@
   "TextPoints.AddFile": "הוסף קובץ",
   "TextTags.Info": "מידע",
   "TextTags.Edit": "עריכה",
-  "TextTags.Remove": "הסרה"
+  "TextTags.Remove": "הסרה",
+  "HowMuch":"על כמה מטבעות מתערבים",
+  "YourBalance" : "היתרה שלך",
+  "Coins":" מטבעות",
+  "AddDate": "הוסף תאריך לתנאי"
 }

@@ -22,8 +22,6 @@ interface MyGroupsProps {
 
 const MyGroups = ({ userGroups }: MyGroupsProps): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);
-  // const [username] = useState('TalG');
-
   const { t } = useTranslation();
 
   const toggleExpand = () => {

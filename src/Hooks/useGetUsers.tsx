@@ -15,3 +15,31 @@ export const useGetUsers = () => {
     ...data,
   };
 };
+
+export const useGetContacts = (page: number) => {
+  const data: UseQueryResult<User[]> = useQuery({
+    queryKey: ['contacts'],
+    queryFn: () => ApiService.makeRequest<User[]>('/users/contacts', HTTPMethod.GET, { page }),
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  return {
+    contacts: data.data,
+    ...data,
+  };
+};
+export const useGetMostActives = (id: string) => {
+  const data: UseQueryResult<User[]> = useQuery({
+    queryKey: ['mostActives'],
+    queryFn: () =>
+      ApiService.makeRequest<User[]>(`/users/${id}/mostActive`, HTTPMethod.GET, undefined),
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  return {
+    mostActives: data.data,
+    ...data,
+  };
+};

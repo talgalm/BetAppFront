@@ -52,5 +52,5 @@ export const BackArrowDiv = styled('div')({
   alignItems: 'center',
   position: 'absolute',
   right: 16,
-  top: 85,
+  top: 64,
 });

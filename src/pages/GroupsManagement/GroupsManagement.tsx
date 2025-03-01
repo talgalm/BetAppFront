@@ -45,14 +45,14 @@ const GroupsManagement = () => {
   const { logout } = useLogout();
   const { users } = useGetUsers();
   const { mutate, isPending } = useGroupCreation();
-  const { groups } = useGetGroupsByUser(user.username);
+  const { groups } = useGetGroupsByUser(user.id);
 
   // useEffect(() => {
   //   setCurrentGroup({ groupId: '', groupName: '', users: [] });
   // }, [setCurrentGroup]);
 
   const onSubmit: SubmitHandler<GroupFormInputs> = ({ groupName, users }) => {
-    users = [...users, user.username];
+    users = [...users, user.id];
 
     mutate(
       { groupName, users },
@@ -72,13 +72,13 @@ const GroupsManagement = () => {
 
   const onGroupClick = (group: Group) => {
     // setCurrentGroup(group);
-    navigate(`/groups/${group.groupId}`);
+    navigate(`/groups/${group.id}`);
   };
 
   return (
     <HomeDivContainer>
       <InnerCustomDiv>
-        {user.username}
+        {user.id}
         <Button type="submit" label="Logout" onClick={logout} />
       </InnerCustomDiv>
       <InnerCustomDiv>
@@ -94,7 +94,7 @@ const GroupsManagement = () => {
               margin: '5px',
             }}
           >
-            {group.groupName}
+            {group.name}
           </div>
         ))}
       </InnerCustomDiv>
@@ -122,7 +122,7 @@ const GroupsManagement = () => {
               <UserAutocomplete
                 options={
                   users
-                    ? users.filter((u) => u.username !== user?.username).map((u) => u.username)
+                    ? users.filter((u) => u.id !== user?.id).map((u) => u.id)
                     : []
                 }
                 value={watch('users') || []}

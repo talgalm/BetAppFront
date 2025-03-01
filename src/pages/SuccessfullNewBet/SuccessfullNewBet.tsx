@@ -42,16 +42,16 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
   const betName = 'שם ההתערבות';
   const users: User[] = [
     {
-      username: 'TalG',
+      id: 'TalG',
       fullName: 'טל גלמור',
       image: undefined,
     },
     {
-      username: 'Vlad',
+      id: 'Vlad',
       image: undefined,
     },
     {
-      username: 'Vlad',
+      id: 'Vlad',
       image: undefined,
     },
   ];
@@ -81,7 +81,7 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
         {users.map((user, index) => (
           <AddParticipantTag key={index}>
             <AddIcon />
-            <Typography value={user.fullName || user.username} variant={TypographyTypes.H4} />
+            <Typography value={user.fullName || user.id} variant={TypographyTypes.H4} />
           </AddParticipantTag>
         ))}
       </ParticipantsDiv>

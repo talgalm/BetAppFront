@@ -11,11 +11,12 @@ export const layoutAtom = atomWithStorage<{
 });
 
 export const userAtom = atomWithStorage<User>('userAtom', {
-  username: 'TalG',
+  id: '2ad7e2f6-b8f9-48d0-b7ed-c94d906bdc73',
+  phoneNumber: '',
 });
 
 export const groupAtom = atomWithStorage<Group>('groupAtom', {
-  groupId: '',
-  groupName: '',
+  id: '',
+  name: '',
   users: [],
 });

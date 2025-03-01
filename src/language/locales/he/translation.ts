@@ -5,6 +5,7 @@ import Input from '../../../components/Inputs/Input.lang.json';
 import Calendar from '../../../components/Calendar/Calendar.lang.json';
 import SuccessfullNewBet from '../../../pages/SuccessfullNewBet/SuccessfullNewBet.lang.json';
 import Header from '../../../Layout/Header/Header.lang.json';
+import ContactModal from '../../../pages/ContactModal/ContactModal.lang.json';
 
 export default {
   MyBets: MyBets,
@@ -14,4 +15,5 @@ export default {
   Calendar: Calendar,
   SuccessfullNewBet: SuccessfullNewBet,
   Header: Header,
+  ContactModal: ContactModal,
 };

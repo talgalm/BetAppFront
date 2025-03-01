@@ -9,12 +9,14 @@ interface InputTextFullProps<T extends FieldValues> {
   control: Control<T>;
   inputName: Path<T>;
   isSetHeight?: boolean;
+  displayCharLimit?: boolean;
 }
 
 const InputTextFull = <T extends FieldValues>({
   control,
   inputName,
   isSetHeight = false,
+  displayCharLimit = true,
 }: InputTextFullProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const MAX_INPUT_LENGTH = 100;
@@ -41,12 +43,14 @@ const InputTextFull = <T extends FieldValues>({
             setHeight={isSetHeight}
             {...field}
           />
-          <NumOfChars>
-            <Typography
-              value={`${field.value.length} / ${MAX_INPUT_LENGTH}`}
-              variant={TypographyTypes.H7}
-            />
-          </NumOfChars>
+          {displayCharLimit && (
+            <NumOfChars>
+              <Typography
+                value={`${field.value.length} / ${MAX_INPUT_LENGTH}`}
+                variant={TypographyTypes.H7}
+              />
+            </NumOfChars>
+          )}
         </WidthDiv>
       )}
     />

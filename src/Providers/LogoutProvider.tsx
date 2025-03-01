@@ -20,7 +20,7 @@ export const LogoutProvider = ({ children }: { children: ReactNode }) => {
     // Clear local storage
     localStorage.clear();
     // Reset userAtom to its default value
-    setUser({ username: '' });
+    setUser({ id: '' });
     // Show alert
     alert('You have been logged out.');
     // Navigate to the login page
