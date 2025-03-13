@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import {
@@ -59,10 +58,8 @@ const ContactModal = <T extends FieldValues>({
 
   const handleSelectSingleUser = (user: User) => {
     if (isSelected(user)) {
-      // Unselect user if already selected
       handleSelectUser(user);
     } else {
-      // Select user if not already selected
       if (willExceedLimit([user])) {
         alert(t('ContactModal.limitExceeded', { limit }));
         return;
@@ -77,12 +74,11 @@ const ContactModal = <T extends FieldValues>({
       return;
     }
 
-    // Toggle group selection (if all users in the group are selected, unselect them; if not, select them)
     const allSelected = items.every((item) => isSelected(item));
     if (allSelected) {
-      items.forEach((item) => handleSelectUser(item)); // Unselect all users
+      items.forEach((item) => handleSelectUser(item));
     } else {
-      items.forEach((item) => handleSelectUser(item)); // Select all users
+      items.forEach((item) => handleSelectUser(item));
     }
   };
 
@@ -93,7 +89,7 @@ const ContactModal = <T extends FieldValues>({
 
   return (
     <PopUpOverlay isOpen={open} onClick={handlePopUpClose}>
-      <PopUpDiv isOpen={open} onClick={(e) => e.stopPropagation()}>
+      <PopUpDiv isOpen={open} onClick={(e) => e.stopPropagation()} padding>
         <PopUpHeader>
           <CloseIcon
             onClick={handlePopUpClose}

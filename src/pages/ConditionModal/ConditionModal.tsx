@@ -1,18 +1,46 @@
-import { Dialog, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { PopUpDiv, PopUpOverlay } from '../ContactModal/ContactModal.styles';
+import { PopUpContent, PopUpHeader } from './ConditionModal.styles';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
-import { DialogContainer } from './ConditionModal.styles';
+import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.svg';
+import Calendar from '../../components/Calendar/Calendar';
+import { FieldValues, Control, Path } from 'react-hook-form';
+import { User } from '../../api/interfaces';
 
-interface ConditionModalProps {
+interface ConditionModalProps<T extends FieldValues> {
   open: boolean;
   handleClose: () => void;
+  control: Control<T, any>;
+  inputName: Path<T>;
+  users?: User[];
 }
 
-const ConditionModal: React.FC<ConditionModalProps> = ({ open, handleClose }) => {
+const ConditionModal = <T extends FieldValues>({
+  open,
+  handleClose,
+  control,
+  inputName,
+  users,
+}: ConditionModalProps<T>) => {
+  const { t } = useTranslation();
+
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogContainer></DialogContainer>
-    </Dialog>
+    <PopUpOverlay isOpen={open} onClick={handleClose}>
+      <PopUpDiv isOpen={open} onClick={(e) => e.stopPropagation()}>
+        <PopUpHeader>
+          <Typography
+            value={t('ConditionModal.chooseDate')}
+            variant={TypographyTypes.H2}
+            styleProps={{ color: '#48494D' }}
+          />
+          <CalendarIcon color="#48494D" />
+        </PopUpHeader>
+        <PopUpContent>
+          <Calendar control={control} inputName={inputName} users={users} />
+        </PopUpContent>
+      </PopUpDiv>
+    </PopUpOverlay>
   );
 };
 

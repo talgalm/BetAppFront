@@ -21,28 +21,30 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   pointerEvents: isOpen ? 'auto' : 'none',
   margin: 0,
   padding: 0,
+  width: '100%',
 }));
 
-export const PopUpDiv = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
-  position: 'relative',
-  width: '100%',
-  maxWidth: '100%',
-  minWidth: '100%',
-  height: '93vh',
-  backgroundColor: '#F8F8FD',
-  borderRadius: '24px 25px 0 0',
-  border: '1.5px solid #7F8CB9',
-  borderLeft: 'none',
-  borderRight: 'none',
-  borderBottom: 'none',
-  zIndex: 10000,
-  transition: 'transform 0.3s ease',
-  transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-  boxSizing: 'border-box',
-  margin: 0,
-  paddingTop: '123px',
-  overflow: 'hidden',
-}));
+export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>(
+  ({ isOpen, padding }) => ({
+    position: 'relative',
+    width: '100%',
+    maxWidth: '100%',
+    minWidth: '100%',
+    height: '93vh',
+    backgroundColor: '#F8F8FD',
+    borderRadius: '24px 25px 0 0',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderBottom: 'none',
+    zIndex: 10000,
+    transition: 'transform 0.3s ease',
+    transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+    boxSizing: 'border-box',
+    margin: 0,
+    paddingTop: padding ? '123px' : '26px',
+    overflow: 'hidden',
+  })
+);
 
 export const PopUpHeader = styled('div')({
   height: 123,

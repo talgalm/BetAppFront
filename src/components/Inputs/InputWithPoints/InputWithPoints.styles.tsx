@@ -53,8 +53,28 @@ export const PositionContainer = styled('div')({
 export const CalendarContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
-  gap: 5,
+  gap: 6,
+  width: 155,
+  height: 28,
+  borderRadius: 4,
+  padding: '2px 8px',
   alignItems: 'center',
+  boxShadow: `
+    0px 0px 1px 0px #48494D1A,
+    0px 2px 2px 0px #48494D17,
+    0px 4px 3px 0px #48494D0D,
+    0px 8px 3px 0px #48494D03,
+    0px 12px 3px 0px #48494D00
+  `,
+});
+
+export const Line = styled('div')({
+  backgroundColor: '#C8C8E1',
+  width: '100%',
+  height: 1,
+  borderRadius: 2,
+  marginTop: 10,
+  marginBottom: 10,
 });
 
 export const BetCoinsInput = styled('input')<{

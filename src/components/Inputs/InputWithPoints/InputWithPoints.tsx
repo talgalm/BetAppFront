@@ -7,6 +7,7 @@ import {
   CalendarContainer,
   CoinsContainer,
   ColumnContainer,
+  Line,
   PositionContainer,
 } from './InputWithPoints.styles';
 import FileUploader from '../../FileUploader/FileUploader';
@@ -20,19 +21,12 @@ import { useAtom } from 'jotai';
 import { UseUser } from '../../../Hooks/useGetUser';
 import { userAtom } from '../../../Jotai/atoms';
 
-export enum InputWithPointsType {
-  FILES,
-  CONDITIONS,
-}
-
 interface InputWithPointsProps<T extends FieldValues> {
-  type: InputWithPointsType;
-  control: Control<T>;
+  control: Control<T, any>;
   inputName: Path<T>;
 }
 
 const InputWithPoints = <T extends FieldValues>({
-  type,
   control,
   inputName,
 }: InputWithPointsProps<T>) => {
@@ -117,30 +111,36 @@ const InputWithPoints = <T extends FieldValues>({
           />
         </CoinsContainer>
 
-        {type === InputWithPointsType.CONDITIONS &&
-          users.map((user) => (
-            <div key={user.id}>
-              <Typography value={user.fullName || user.id} variant={TypographyTypes.H4} />
-              <InputTextFull
-                control={control}
-                inputName={inputName}
-                isSetHeight={true}
-                displayCharLimit={false}
-              />
-            </div>
-          ))}
+        {users.map((user) => (
+          <div key={user.id}>
+            <Typography value={user.fullName || user.id} variant={TypographyTypes.H4} />
+            <InputTextFull
+              control={control}
+              inputName={inputName}
+              isSetHeight={true}
+              displayCharLimit={false}
+            />
+          </div>
+        ))}
+
+        <Line />
         <CalendarContainer onClick={handleOpen}>
-          <CalendarIcon color="#3E63DD" />
+          <CalendarIcon color="#48494D" />
           <Typography
             value={t('Input.AddDate')}
             variant={TypographyTypes.H5}
-            styleProps={{ color: '#3E63DD' }}
+            styleProps={{ color: '#48494D' }}
           />
         </CalendarContainer>
       </ColumnContainer>
 
-      {type === InputWithPointsType.FILES && <FileUploader inputName={inputName} />}
-      <ConditionModal open={open} handleClose={handleClose} />
+      <ConditionModal
+        open={open}
+        handleClose={handleClose}
+        control={control}
+        inputName={inputName}
+        users={users}
+      />
     </AddConditionsDiv>
   );
 };

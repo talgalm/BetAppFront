@@ -2,7 +2,6 @@ import { InputTypesCollapse } from '../FormInputCollapse/InputTypes';
 import { ReactComponent as EditDark } from '../../Theme/Icons/EditDark.svg';
 import { ReactComponent as AddUser } from '../../Theme/Icons/AddUserIcon.svg';
 import { ReactComponent as AddPen } from '../../Theme/Icons/AddPenIcon.svg';
-import { ReactComponent as CalenderIcon } from '../../Theme/Icons/CalendarIcon.svg';
 import { ReactComponent as FilesIcon } from '../../Theme/Icons/DocumentUploadIcon.svg';
 import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/OctagonUserIcon.svg';
 

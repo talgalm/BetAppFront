@@ -89,7 +89,7 @@ const InputWithTags = <T extends FieldValues>({
       ))}
 
       <IconAddDiv onClick={handlePopUpOpen}>
-        <AddIcon width={18} height={18} />
+        <AddIcon width={25} height={24} />
       </IconAddDiv>
 
       <ContactModal

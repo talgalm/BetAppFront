@@ -4,7 +4,7 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import Calendar from '../Calendar/Calendar';
 import { Typography } from '../Topography/topography';
 import InputTextFull from './InputTextFull/InputTextFull';
-import InputWithPoints, { InputWithPointsType } from './InputWithPoints/InputWithPoints';
+import InputWithPoints from './InputWithPoints/InputWithPoints';
 import { AddConditionsDiv } from './InputWithPoints/InputWithPoints.styles';
 import InputWithTags from './InputWithTags/InputWithTags';
 import { Control, FieldValues, Path } from 'react-hook-form';
@@ -33,15 +33,9 @@ const InputByType = <T extends FieldValues>({
         <InputWithTags control={control} inputName="input" limit={1} />
       )}
       {type === InputTypesCollapse.AddConditions && (
-        <InputWithPoints
-          control={control}
-          inputName={inputName}
-          type={InputWithPointsType.CONDITIONS}
-        />
+        <InputWithPoints control={control} inputName={inputName} />
       )}
-      {type === InputTypesCollapse.Files && (
-        <InputWithPoints control={control} inputName={inputName} type={InputWithPointsType.FILES} />
-      )}
+      {type === InputTypesCollapse.Files && <div></div>}
       {type === InputTypesCollapse.Calender && (
         <AddConditionsDiv>
           <Calendar control={control} inputName={inputName} />

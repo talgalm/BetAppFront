@@ -10,8 +10,8 @@ export const BetInput = styled('textarea')<{
   width: '100%',
   direction: 'rtl',
   marginTop: 16,
-  border: isWriting ? `1.5px solid ${TEXT_THIRD_COLOR}` : '1.5px solid #9798A2',
-  backgroundColor: 'transparent',
+  border: isWriting ? `1.5px solid ${TEXT_THIRD_COLOR}` : '1.5px solid transparent',
+  backgroundColor: '#FFFFFF',
   borderRadius: 8,
   fontSize: typography.fontSize,
   fontFamily: 'IBM Plex Sans Hebrew',
@@ -23,6 +23,13 @@ export const BetInput = styled('textarea')<{
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',
   overflowWrap: 'break-word',
+  boxShadow: `
+    0px 2px 5px 0px #9798A21A,
+    0px 10px 10px 0px #9798A217,
+    0px 22px 13px 0px #9798A20D,
+    0px 40px 16px 0px #9798A203,
+    0px 62px 17px 0px #9798A200
+  `,
   '&::placeholder': {
     color: '#BDBDBD',
   },

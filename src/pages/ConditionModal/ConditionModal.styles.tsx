@@ -1,11 +1,18 @@
 import { styled } from '@mui/material/styles';
 
-export const DialogContainer = styled('div')({
+export const PopUpHeader = styled('div')({
+  width: '100%',
   display: 'flex',
-  flexDirection: 'column',
-  width: 300,
-  height: 526,
-  top: 166,
-  left: 16,
-  borderRadius: 16,
+  justifyContent: 'space-between',
+  padding: 16,
+});
+
+export const PopUpContent = styled('div')({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingTop: 12,
+  paddingLeft: 16,
+  paddingRight: 16,
 });
