@@ -1,69 +1,114 @@
-import { InputTypesCollapse } from '../FormInputCollapse/InputTypes';
-import { ReactComponent as EditDark } from '../../Theme/Icons/EditDark.svg';
-import { ReactComponent as AddUser } from '../../Theme/Icons/AddUserIcon.svg';
-import { ReactComponent as AddPen } from '../../Theme/Icons/AddPenIcon.svg';
-import { ReactComponent as FilesIcon } from '../../Theme/Icons/DocumentUploadIcon.svg';
-import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/OctagonUserIcon.svg';
+import { User } from '../../api/interfaces';
+import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.svg';
+import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 
-export enum CollapseTitles {
-  DESCRIPTION = 'Description',
-  PARTICIPANTS = 'Participants',
-  CONDITIONS = 'Conditions',
-  DATE = 'Date',
-  FILES = 'Files',
-  SUPERVISOR = 'Supervisor',
+export enum NewBetStepValueTypes {
+  Start = 'Start',
+  Name = 'Name',
+  Description = 'Description',
+  Coins = 'Coins',
+  Deadline = 'Deadline',
+  Participants = 'Participants',
+  Conditions = 'Conditions',
+  Files = 'Files',
+  Supervisor = 'Supervisor',
+  Summary = 'Summary',
 }
 
-export const newBetsFieldsData = [
-  {
-    title: CollapseTitles.DESCRIPTION,
-    label: 'NewBet.DescriptionTitle',
-    icon: EditDark,
-    type: InputTypesCollapse.Text,
-    inputName: 'Description',
+export interface NewBetStep {
+  step: NewBetStepValueTypes;
+  prevButton: NewBetStepValueTypes | null;
+  continueButton: NewBetStepValueTypes | null;
+  continuteWithout?: boolean;
+  continuteWithoutIcon?: React.ReactNode;
+  inputName?: NewBetStepValueTypes;
+  skipToEnd?: boolean;
+  progress?: number;
+}
+
+export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
+  [NewBetStepValueTypes.Start]: {
+    step: NewBetStepValueTypes.Start,
+    inputName: NewBetStepValueTypes.Start,
+    continueButton: NewBetStepValueTypes.Name,
+    prevButton: null,
   },
-  {
-    title: CollapseTitles.PARTICIPANTS,
-    label: 'NewBet.ParticipantsTitle',
-    icon: AddUser,
-    type: InputTypesCollapse.AddParticipants,
-    inputName: 'Participants',
+  [NewBetStepValueTypes.Name]: {
+    step: NewBetStepValueTypes.Name,
+    inputName: NewBetStepValueTypes.Name,
+    continueButton: NewBetStepValueTypes.Participants,
+    prevButton: NewBetStepValueTypes.Start,
   },
-  {
-    title: CollapseTitles.CONDITIONS,
-    label: 'NewBet.ConditionsTitle',
-    icon: AddPen,
-    type: InputTypesCollapse.AddConditions,
-    inputName: 'Conditions',
+  [NewBetStepValueTypes.Participants]: {
+    inputName: NewBetStepValueTypes.Participants,
+    step: NewBetStepValueTypes.Participants,
+    continueButton: NewBetStepValueTypes.Description,
+    prevButton: NewBetStepValueTypes.Name,
   },
-  {
-    title: CollapseTitles.FILES,
-    label: 'NewBet.FilesTitle',
-    icon: FilesIcon,
-    type: InputTypesCollapse.Files,
-    inputName: 'Files',
+  [NewBetStepValueTypes.Description]: {
+    step: NewBetStepValueTypes.Description,
+    inputName: NewBetStepValueTypes.Description,
+    continueButton: NewBetStepValueTypes.Coins,
+    prevButton: NewBetStepValueTypes.Participants,
   },
-  {
-    title: CollapseTitles.SUPERVISOR,
-    label: 'NewBet.SupervisorTitle',
-    icon: SupervisorIcon,
-    type: InputTypesCollapse.Supervisor,
-    inputName: 'Supervisor',
+  [NewBetStepValueTypes.Conditions]: {
+    inputName: NewBetStepValueTypes.Conditions,
+    step: NewBetStepValueTypes.Conditions,
+    continueButton: NewBetStepValueTypes.Coins,
+    continuteWithout: false,
+    prevButton: NewBetStepValueTypes.Description,
   },
-];
+  [NewBetStepValueTypes.Coins]: {
+    step: NewBetStepValueTypes.Coins,
+    inputName: NewBetStepValueTypes.Coins,
+    continueButton: NewBetStepValueTypes.Deadline,
+    continuteWithout: true,
+    continuteWithoutIcon: <BetimIcon width={24} height={24} />,
+    prevButton: NewBetStepValueTypes.Description,
+  },
+  [NewBetStepValueTypes.Deadline]: {
+    step: NewBetStepValueTypes.Deadline,
+    inputName: NewBetStepValueTypes.Deadline,
+    continueButton: NewBetStepValueTypes.Files,
+    continuteWithout: true,
+    continuteWithoutIcon: <CalendarIcon color="#15AB94" />,
+    prevButton: NewBetStepValueTypes.Coins,
+  },
+  [NewBetStepValueTypes.Files]: {
+    inputName: NewBetStepValueTypes.Files,
+    step: NewBetStepValueTypes.Files,
+    continueButton: NewBetStepValueTypes.Supervisor,
+    prevButton: NewBetStepValueTypes.Conditions,
+  },
+  [NewBetStepValueTypes.Supervisor]: {
+    inputName: NewBetStepValueTypes.Supervisor,
+    step: NewBetStepValueTypes.Supervisor,
+    continueButton: NewBetStepValueTypes.Summary,
+    prevButton: NewBetStepValueTypes.Files,
+  },
+  [NewBetStepValueTypes.Summary]: {
+    inputName: NewBetStepValueTypes.Summary,
+    step: NewBetStepValueTypes.Summary,
+    continueButton: null,
+    prevButton: NewBetStepValueTypes.Supervisor,
+  },
+};
 
 export type CreateFormInputs = {
+  Start?: string;
   Name: string;
-  Description: string;
-  Participants: string[];
-  Conditions: Guess[];
-  EndsIn: Date | null;
-  AddTocalendar: boolean;
-  Files: File[];
-  Supervisor: string[];
+  Description?: string;
+  Coins: number;
+  Deadline?: Date;
+  Participants?: User[];
+  Conditions?: Guess[];
+  Files?: File[];
+  Supervisor?: User;
+  Summary?: string;
 };
 
 export type Guess = {
-  text: string;
-  points?: number;
+  userId: string;
+  text?: string;
+  date?: Date;
 };

@@ -29,7 +29,7 @@ export const WInput = styled('textarea')<{
   backgroundColor: '#EDEDF5',
   borderRadius: 360,
   fontSize: typography.fontSize,
-  fontFamily: 'IBM Plex Sans Hebrew',
+  fontFamily: 'Fredoka',
   fontWeight: typography.fontWeight,
   outline: 'none',
   color: TEXT_THIRD_COLOR,

@@ -1,23 +1,28 @@
 import { styled } from '@mui/material/styles';
+import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
 
 interface StyledButtonProps {
   buttonColor?: string;
   textColor?: string;
 }
 
-export const ButtonStyles = styled('button')<StyledButtonProps>(({ textColor, buttonColor }) => ({
+export const ButtonStyles = styled('button')<StyledButtonProps>(({ buttonColor, disabled }) => ({
   width: '100%',
-  height: 48,
+  height: 56,
   padding: 15,
   borderRadius: 12,
-  backgroundColor: buttonColor || '#007BFF',
-  cursor: 'pointer',
+  backgroundColor: disabled ? '#A8D6CC' : buttonColor || PRIMARY_COLOR,
+  cursor: disabled ? 'not-allowed' : 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: 10,
-  marginTop: 50,
-  marginBottom: 20,
-  border: '1.5px solid #FFFFFF',
-  color: textColor || '#FFFFFF',
+  border: disabled
+    ? '0px solid #A9A9A9'
+    : buttonColor !== PRIMARY_COLOR
+      ? `1.5px solid ${PRIMARY_COLOR}`
+      : 'none',
+  color: '#FFFFFF',
+  opacity: disabled ? 0.6 : 1,
+  pointerEvents: disabled ? 'none' : 'auto',
 }));

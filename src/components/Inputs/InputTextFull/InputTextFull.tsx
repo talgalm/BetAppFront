@@ -6,10 +6,11 @@ import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { BetInput, NumOfChars, WidthDiv } from './InputTextFull.styles';
 
 interface InputTextFullProps<T extends FieldValues> {
-  control: Control<T>;
+  control?: Control<T>;
   inputName: Path<T>;
   isSetHeight?: boolean;
   displayCharLimit?: boolean;
+  placeholder?: string;
 }
 
 const InputTextFull = <T extends FieldValues>({
@@ -17,6 +18,7 @@ const InputTextFull = <T extends FieldValues>({
   inputName,
   isSetHeight = false,
   displayCharLimit = true,
+  placeholder,
 }: InputTextFullProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const MAX_INPUT_LENGTH = 100;
@@ -37,7 +39,7 @@ const InputTextFull = <T extends FieldValues>({
       render={({ field }) => (
         <WidthDiv>
           <BetInput
-            placeholder={t('Input.TextFull.Placeholder')}
+            placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
             typography={TypographyTypes.H5}
             isWriting={field.value.length > 0}
             setHeight={isSetHeight}

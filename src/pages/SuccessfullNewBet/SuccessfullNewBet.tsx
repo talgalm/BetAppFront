@@ -7,7 +7,6 @@ import { User } from '../../api/interfaces';
 import { ReactComponent as AddIcon } from '../../Theme/Icons/Minus.svg';
 
 import { AddParticipantTag } from '../../components/Inputs/InputWithPoints/InputWithPoints.styles';
-import { StyledButton } from '../NewBet/NewBet.styles';
 import { useAtom } from 'jotai';
 import { layoutAtom } from '../../Jotai/atoms';
 import { HeaderStyle, FooterStyle } from '../../Theme/ThemeInterfaces';
@@ -88,13 +87,13 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
       <SuccessfullNewBetLink />
       <SuccessfullNewBetRisk />
       <ButtonsDiv>
-        <StyledButton onClick={() => handleBackIconClick()}>
+        {/* <StyledButton onClick={() => handleBackIconClick()}>
           <Typography
             value={t('SuccessfullNewBet.Return')}
             variant={TypographyTypes.H5}
             styleProps={{ color: TEXT_SEC_COLOR }}
           />
-        </StyledButton>
+        </StyledButton> */}
       </ButtonsDiv>
     </OverlayContainer>
   );

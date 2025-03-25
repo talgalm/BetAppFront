@@ -48,9 +48,9 @@ export const ButtonsDiv = styled('div')({
 
 export const BackArrowDiv = styled('div')({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
   alignItems: 'center',
   position: 'absolute',
-  right: 16,
-  top: 64,
+  left: 16,
+  top: 60,
 });

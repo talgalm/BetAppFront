@@ -5,27 +5,30 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
 
 interface StyledButtonProps {
-  value: string;
-  buttonColor?: string;
+  value?: string;
   textColor?: string;
   onClick?: () => void;
   variant?: object;
   icon?: React.ReactNode;
-  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  styleProps?: React.CSSProperties;
 }
 
 const StyledButton: React.FC<StyledButtonProps> = ({
   value,
-  buttonColor = PRIMARY_COLOR,
-  textColor,
   onClick,
-  variant = TypographyTypes.H5,
+  variant = TypographyTypes.H10,
   icon,
-  type,
+  disabled,
+  textColor,
+  styleProps,
 }) => {
+  const handleClick = disabled ? undefined : onClick;
+  const mergedStyles = styleProps && { ...styleProps };
+
   return (
-    <ButtonStyles buttonColor={buttonColor} onClick={onClick} type={type}>
-      <Typography value={value} variant={variant} styleProps={{ color: textColor }} />
+    <ButtonStyles onClick={handleClick} disabled={disabled} style={{ ...mergedStyles }}>
+      {value && <Typography value={value} variant={variant} styleProps={{ color: textColor }} />}
       {icon}
     </ButtonStyles>
   );

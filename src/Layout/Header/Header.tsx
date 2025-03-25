@@ -10,8 +10,7 @@ import {
 import { ReactComponent as AddPeople } from '../../Theme/Icons/AddPeopleIcon.svg';
 import { ReactComponent as Notification } from '../../Theme/Icons/Notification.svg';
 import { ReactComponent as LogoBright } from '../../Theme/Icons/LogoWhite.svg';
-import { ReactComponent as LogoDark } from '../../Theme/Icons/LogoDark.svg';
-import { ReactComponent as ArrowRightDark } from '../../Theme/Icons/ArrowRightDark.svg';
+import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import Button from '../../components/Button - deprected/Button';
@@ -58,6 +57,9 @@ const Header = () => {
 
   return (
     <HeaderComponent headerStyle={layout.headerStyle}>
+      <BackArrowDiv>
+        {!isPrimary && <CloseIcon onClick={handleBackIconClick} width={24} height={24} />}
+      </BackArrowDiv>
       <LogoDiv>{isPrimary && <LogoBright />}</LogoDiv>
       <TotalPointsDiv>
         {isPrimary && (
@@ -80,7 +82,6 @@ const Header = () => {
           <Button bgColor={PRIMARY_BUTTON_COLOR} icon={<AddIcon />} onClick={handleAddIconClick} />
         </ButtonsDiv>
       )}
-      <BackArrowDiv>{!isPrimary && <ArrowRightDark onClick={handleBackIconClick} />}</BackArrowDiv>
     </HeaderComponent>
   );
 };

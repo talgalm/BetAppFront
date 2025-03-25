@@ -1,74 +1,162 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { BetNameInput, PageContainer } from './NewBet.styles';
-import FormInputCollapse from '../FormInputCollapse/FormInputCollapse';
-import { ReactComponent as AddIcon } from '../../Theme/Icons/AddIcon.svg';
-import SuccessfullNewBet from '../SuccessfullNewBet/SuccessfullNewBet';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import { TEXT_SEC_COLOR } from '../../Theme/ColorTheme';
-import { newBetsFieldsData, CollapseTitles, CreateFormInputs } from './Interface';
+import {
+  ButtonsContainer,
+  ButtonsContainerInner,
+  CheckboxContainer,
+  CheckboxTextContainer,
+  PageContainer,
+} from './NewBet.styles';
+import { CreateFormInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '../../components/Button/StyledButton';
+import { useAtom } from 'jotai';
+import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { useTranslation } from 'react-i18next';
+import { ReactComponent as ArrowRight } from '../../Theme/Icons/arrowRight.svg';
+
+import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import NewBetContent from './NewBetContent/NewBetContent';
+import { Checkbox } from '@mui/material';
+import { TypographyTypes } from '../../Theme/Typography/typography';
+import { Typography } from '../../components/Topography/topography';
 
 const NewBet = () => {
-  const [isSuccessfull, setIsSuccessfull] = useState(false);
-
-  const [currentOpen, setCurrentOpen] = useState<CollapseTitles | null>(null);
+  const [step, setActiveStep] = useAtom(ActiveStep);
   const { t } = useTranslation();
-  const [addToCalendar, setAddToCalendar] = useState(true);
+  const { control, handleSubmit, watch, setValue } = useFormContext<CreateFormInputs>();
+  const [targetProgress, setTargetProgress] = useState(0);
+  const disableButton =
+    step.inputName && watch(step.inputName) === '' && step.inputName !== NewBetStepValueTypes.Start;
 
-  const { register, control, handleSubmit } = useFormContext<CreateFormInputs>();
+  const formValues = watch();
 
-  const handleCollapseToggle = (title: CollapseTitles) => {
-    setCurrentOpen((prev) => (prev === title ? null : title));
+  useEffect(() => {
+    const savedData = localStorage.getItem('betForm');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      Object.keys(parsedData).forEach((key) => {
+        setValue(key as keyof CreateFormInputs, parsedData[key]);
+      });
+    }
+  }, [setValue]);
+
+  const handleStep = (nextStep: NewBetStepValueTypes | null, back?: boolean) => {
+    if (formValues) {
+      localStorage.setItem('betForm', JSON.stringify(formValues));
+    }
+    if (step.skipToEnd) {
+      setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
+    } else {
+      if (nextStep) {
+        setActiveStep(newBetSteps[nextStep]);
+
+        const incrementValue = nextStep === NewBetStepValueTypes.Summary ? 20 : 10;
+        if (
+          nextStep === NewBetStepValueTypes.Coins &&
+          step.step === NewBetStepValueTypes.Description
+        ) {
+          setTargetProgress((prev) => Math.min(prev + incrementValue, 100));
+        }
+
+        if (
+          step.step === NewBetStepValueTypes.Coins &&
+          step.prevButton === NewBetStepValueTypes.Description
+        ) {
+          setTargetProgress((prev) => Math.max(prev - incrementValue, 0));
+        }
+        if (!back) {
+          setTargetProgress((prev) => Math.min(prev + incrementValue, 100));
+        } else {
+          setTargetProgress((prev) => Math.max(prev - incrementValue, 0));
+        }
+      }
+    }
   };
 
   const onSubmit = (data: CreateFormInputs) => {
-    setAddToCalendar(data.AddTocalendar);
-    setIsSuccessfull(true);
+    console.log(data);
   };
 
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      setCurrentOpen(CollapseTitles.DESCRIPTION);
+  const changeNextStep = (checked: boolean) => {
+    if (step.step === NewBetStepValueTypes.Description) {
+      if (checked) {
+        step.continueButton = NewBetStepValueTypes.Conditions;
+        newBetSteps[NewBetStepValueTypes.Coins].prevButton = NewBetStepValueTypes.Conditions;
+      } else {
+        step.continueButton = NewBetStepValueTypes.Coins;
+        newBetSteps[NewBetStepValueTypes.Coins].prevButton = NewBetStepValueTypes.Description;
+      }
     }
   };
 
   return (
     <PageContainer>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexGrow: 1,
-        }}
-      >
-        <BetNameInput
-          {...register('Name')}
-          placeholder={t('NewBet.BetNameInput')}
-          typography={TypographyTypes.H2}
-          onKeyDown={onKeyDown}
-        />
-        {newBetsFieldsData.map(({ title, label, icon, type, inputName }) => (
-          <FormInputCollapse<CreateFormInputs>
-            key={title}
-            title={t(label)}
-            icon={icon}
-            type={type}
-            isOpen={currentOpen === title}
-            onToggle={() => handleCollapseToggle(title)}
-            inputName={inputName as keyof CreateFormInputs}
-            control={control}
-          />
-        ))}
-        <div style={{ marginTop: 'auto', marginBottom: 0 }}>
-          <StyledButton value={t('NewBet.createBet')} icon={<AddIcon color={TEXT_SEC_COLOR} />} />
-        </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {step.prevButton && <ProgressBar targetProgress={targetProgress} />}
+        {step.step && (
+          <NewBetContent control={control} inputName={step.inputName} type={step.step} />
+        )}
+        {step.step === NewBetStepValueTypes.Description && (
+          <CheckboxContainer>
+            <Checkbox
+              onChange={(e) => changeNextStep(e.target.checked)}
+              defaultChecked={false}
+              sx={{
+                color: PRIMARY_COLOR,
+                '&.Mui-checked': {
+                  color: PRIMARY_COLOR,
+                },
+              }}
+            />
+            <CheckboxTextContainer>
+              <Typography
+                value={t(`NewBet.DescriptionCheckboxTitle`)}
+                variant={TypographyTypes.H7}
+                styleProps={{ color: 'black' }}
+              />
+              <Typography
+                value={t(`NewBet.DescriptionCheckboxSubTitle`)}
+                variant={TypographyTypes.H9}
+                styleProps={{ color: 'black' }}
+              />
+            </CheckboxTextContainer>
+          </CheckboxContainer>
+        )}
       </form>
-
-      {isSuccessfull && <SuccessfullNewBet isAddToCalendar={addToCalendar} />}
+      <ButtonsContainer>
+        {step.continuteWithout && (
+          <StyledButton
+            value={t(`NewBet.${step.step}ContinueWithout`)}
+            onClick={() => handleStep(step.continueButton)}
+            styleProps={{
+              width: '100%',
+              backgroundColor: 'white',
+              color: '#15AB94',
+              border: '0px solid #15AB94',
+            }}
+            icon={step.continuteWithoutIcon}
+          />
+        )}
+        <ButtonsContainerInner>
+          {step.inputName && (
+            <StyledButton
+              value={step.continueButton ? t('NewBet.Continue') : t('NewBet.createBet')}
+              onClick={() => handleStep(step.continueButton)}
+              styleProps={{ width: '70%' }}
+              disabled={disableButton}
+            />
+          )}
+          {step.prevButton && (
+            <StyledButton
+              onClick={() => handleStep(step.prevButton, true)}
+              icon={<ArrowRight color={PRIMARY_COLOR} />}
+              styleProps={{ width: '30%', backgroundColor: 'white', border: '2px solid #15AB94' }}
+            />
+          )}
+        </ButtonsContainerInner>
+      </ButtonsContainer>
     </PageContainer>
   );
 };

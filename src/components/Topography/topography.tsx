@@ -12,7 +12,14 @@ export const Typography: React.FC<TopographyProps> = ({ value, variant, stylePro
   const transformedValue = typeof value === 'string' ? value.replaceAll('<br>', '\n') : value;
 
   return (
-    <div style={{ ...mergedStyles, whiteSpace: 'pre-wrap', display: 'flex', alignItems: 'center' }}>
+    <div
+      style={{
+        ...mergedStyles,
+        whiteSpace: 'pre-wrap',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       {transformedValue}
     </div>
   );

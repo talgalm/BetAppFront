@@ -1,35 +1,32 @@
 import { styled } from '@mui/material/styles';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { TEXT_THIRD_COLOR } from '../../../Theme/ColorTheme';
+import { TextField } from '@mui/material';
 
 export const BetInput = styled('textarea')<{
-  typography: typeof TypographyTypes.H5;
+  typography: typeof TypographyTypes.H7;
   isWriting: boolean;
   setHeight?: boolean;
 }>(({ typography, isWriting, setHeight }) => ({
   width: '100%',
   direction: 'rtl',
   marginTop: 16,
-  border: isWriting ? `1.5px solid ${TEXT_THIRD_COLOR}` : '1.5px solid transparent',
+  height: 48,
+  border: isWriting ? `1.5px solid ${TEXT_THIRD_COLOR}` : '1px solid #DADADA',
   backgroundColor: '#FFFFFF',
   borderRadius: 8,
   fontSize: typography.fontSize,
-  fontFamily: 'IBM Plex Sans Hebrew',
+  fontFamily: 'Fredoka, sans-serif',
   fontWeight: typography.fontWeight,
   outline: 'none',
   color: TEXT_THIRD_COLOR,
-  padding: setHeight ? '8px 8px 0px 0px' : '16px 16px 96px',
+  padding: setHeight ? '16px 16px 0px 0px' : '16px 16px 96px',
   resize: 'none',
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',
   overflowWrap: 'break-word',
-  boxShadow: `
-    0px 2px 5px 0px #9798A21A,
-    0px 10px 10px 0px #9798A217,
-    0px 22px 13px 0px #9798A20D,
-    0px 40px 16px 0px #9798A203,
-    0px 62px 17px 0px #9798A200
-  `,
+  boxShadow:
+    '0px 1.5px 2px 0px var(--ColorsNeutralNeutralAlpha2) inset, 0px 1.5px 2px 0px var(--OverlaysBlackAlpha2) inset',
   '&::placeholder': {
     color: '#BDBDBD',
   },

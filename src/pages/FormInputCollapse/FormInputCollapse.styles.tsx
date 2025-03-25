@@ -11,7 +11,7 @@ export const BetNameInput = styled('input')<{
   backgroundColor: 'transparent',
   color: typography.color,
   fontSize: typography.fontSize,
-  fontFamily: 'IBM Plex Sans Hebrew',
+  fontFamily: 'Fredoka',
   fontWeight: typography.fontWeight,
   padding: '0',
   borderBottom: '1px solid transparent',

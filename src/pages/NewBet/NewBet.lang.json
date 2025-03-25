@@ -1,10 +1,56 @@
 {
   "BetNameInput": "הקלד כאן שם התערבות...",
-  "DescriptionTitle": "תיאור",
-  "ParticipantsTitle": "משתתפים",
-  "ConditionsTitle": "תנאים",
-  "DateTitle": "תאריך",
+  "DeadlineTitle": "יש דדליין?",
+  "DeadlineSubtitle": "רוצה לקבוע תאריך סיום להתערבות? ",
+  "DeadlineSubtitle2": "",
+
+  "DeadlineContinueWithout": "המשך ללא תאריך",
   "FilesTitle": "קבצים",
+  "FilesSubtitle": "יש מסמכים או הוכחות שתרצה להוסיף להתערבות?",
+  "FilesSubtitle2": "",
+  "uploadFilesTitle": "גרור קובץ או חפש ידנית",
+  "uploadFilesSubtitle": "תומך ב- jpeg, png | עד 25MB",
+  "uploadFilesbutton": "חפש קבצים",
+
+  "createBet": "צור התערבות",
+  "Continue": "המשך",
+  "StartTitle": "פתיחת התערבות חדשה",
+  "StartSubtitle": "בכמה שלבים פשוטים תוכל להגדיר את ההתערבות, להזמין חברים ולהמר על הבטים שלך!",
+  "StartSubtitle2": "",
+
+  "NameTitle": "שם התערבות ",
+  "NameSubtitle": "איך נקרא להתערבות שלך? ",
+  "NameSubtitle2": "תן שם קצר וקליט",
+
+  "ParticipantsTitle": "משתתפים",
+  "ParticipantsSubtitle": "מי משתתף בהתערבות?",
+  "ParticipantsSubtitle2": "תוכל לבחור חברים מהרשימה או להוסיף ידנית",
+  "mostActives": "הכי פעילים אצלך:",
+  "contacts": "אנשי קשר",
+
   "SupervisorTitle": "מפקח ההתערבות",
-  "createBet": "צור התערבות"
+  "SupervisorSubtitle": "רוצה להוסיף אחראי ניטרלי שיעקוב אחרי ההתערבות? ",
+  "SupervisorSubtitle2": "האחראי לא יכול להיות משתתף בהתערבות ",
+
+  "DescriptionTitle": "תיאור התערבות ",
+  "DescriptionSubtitle": "תאר בקצרה על מה אתם מתערבים",
+  "DescriptionSubtitle2": "",
+  "DescriptionCheckboxTitle": "לכל משתתף יש תנאי משלו",
+  "DescriptionCheckboxSubTitle": "תוכלו לכתוב תיאור תנאי אישי לכל משתתף ולהוסיף תאריך כתנאי",
+
+  "ConditionsTitle": "תנאים אישיים",
+  "ConditionsSubtitle": "כאן תוכל להזין תנאים אישיים לכל משתתף",
+  "ConditionsSubtitle2": "",
+
+  "SummaryTitle": "סיכום",
+  "SummarySubtitle": "ההתערבות שלך מוכנה!",
+  "SummarySubtitle2": "תבדוק שהכל נראה טוב",
+
+  "CoinsTitle": "כמה בטים במשחק",
+  "CoinsSubtitle": "כמה בטים כל משתתף שם? הזוכה לוקח הכל!",
+  "CoinsSubtitle2": "",
+  "CoinsContinueWithout": "קניית בטים",
+  "other": "אחר",
+  "ModalCoinsTitle": "מספר בטים",
+  "ModalCoinsSubtitle": "כאן תוכל להזין מספר בטים להתערבות"
 }
