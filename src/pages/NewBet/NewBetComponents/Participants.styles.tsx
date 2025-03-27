@@ -1,93 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import { ReactComponent as CloseIcon } from '../../Theme/Icons/FullClose.svg';
-
-export const PageContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  textAlign: 'right',
-  gap: 16,
-  paddingRight: 24,
-  paddingLeft: 24,
-  paddingTop: 80,
-  marginTop: 10,
-  height: '92vh',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-  '&::-webkit-scrollbar': {
-    display: 'none',
-  },
-});
-
-export const ContentContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 16,
-  width: '100%',
-  height: '100%',
-  direction: 'rtl',
-});
-
-export const CheckboxContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  gap: 4,
-  width: '100%',
-  direction: 'rtl',
-  marginLeft: 12,
-  marginTop: -24,
-});
-
-export const CheckboxTextContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  marginTop: 8,
-  gap: 4,
-});
-
-export const RowContentContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  direction: 'rtl',
-  width: '100%',
-  textAlign: 'start',
-});
-
-export const CoinsGridContainer = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  gap: 8,
-  width: '100%',
-});
-
-export const RowCoinContentContainer = styled('div')({
-  width: 'calc(50% - 4px)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'start',
-});
-
-export const CoinContainer = styled('div')<{
-  isSelected?: boolean;
-}>(({ isSelected }) => ({
-  display: 'flex',
-  width: '96%',
-  height: '15vh',
-  backgroundColor: '#EEF9F8',
-  borderRadius: 12,
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 4,
-  border: isSelected ? '4px solid #15AB94' : 'none',
-  cursor: 'pointer',
-}));
+import { ReactComponent as CloseIcon } from '../../../Theme/Icons/FullClose.svg';
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',
@@ -97,23 +10,6 @@ export const RowCenterContentContainer = styled('div')({
   width: '100%',
   gap: 5,
   textAlign: 'center',
-});
-
-export const ButtonsContainer = styled('div')({
-  marginTop: 'auto',
-  marginBottom: 0,
-  display: 'flex',
-  justifyContent: 'space-between',
-  flexDirection: 'column',
-  gap: 15,
-});
-
-export const ButtonsContainerInner = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  gap: 10,
-  alignItems: 'center',
-  width: '100%',
 });
 
 export const SelectedContainer = styled('div')({
@@ -212,4 +108,62 @@ export const FilesRow = styled('div')({
   gap: 4,
   marginTop: 10,
   marginBottom: 20,
+});
+
+export const AvatarWrapper = styled('div')({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+});
+
+export const StyledAvatar = styled(Avatar)({
+  backgroundColor: 'black',
+  width: 36,
+  height: 36,
+  fontSize: 18,
+});
+
+export const SmallAvatar = styled(Avatar)({
+  backgroundColor: 'grey',
+  width: 24,
+  height: 24,
+  fontSize: 11,
+});
+
+export const Initials = styled('div')({
+  marginTop: -15,
+  marginBottom: 5,
+  fontSize: 12,
+});
+
+export const CloseButton = styled('div')({
+  position: 'absolute',
+  top: -5,
+  right: -5,
+});
+
+export const CloseIconStyled = styled(CloseIcon)({
+  width: 16,
+  height: 16,
+});
+
+export const NameText = styled('div')({
+  marginTop: 5,
+  marginBottom: 5,
+  fontSize: 12,
+  color: 'black',
+  textAlign: 'center',
+});
+
+export const ParticipantsCollapseContainer = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+export const ParticipantsCollapseRow = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 });

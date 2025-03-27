@@ -6,10 +6,6 @@ import {
   ContentContainer,
   FilesContainer,
   FilesRow,
-  ParticipantsContent,
-  ParticipantsContentRow,
-  ParticipantsContentUser,
-  RowCenterContentContainer,
   RowCoinContentContainer,
   RowContentContainer,
 } from '../NewBet.styles';
@@ -25,16 +21,15 @@ import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
-import { useGetMostActives } from '../../../Hooks/useGetUsers';
 import { User } from '../../../api/interfaces';
 import { Avatar } from '@mui/material';
-import { ReactComponent as ContactIcon } from '../../../Theme/Icons/Contacts.svg';
 import { ReactComponent as BetimIcon } from '../../../Theme/Icons/Betim.svg';
 import { ReactComponent as UploadFileIcon } from '../../../Theme/Icons/UploadIcon.svg';
 import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
 import BetimModal from '../BetimModal/BetimModal';
 import StyledButton from '../../../components/Button/StyledButton';
 import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
+import NewBetParticipants from '../NewBetComponents/Participants';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -301,43 +296,12 @@ const NewBetContent = <T extends FieldValues>({
           />
         </FilesContainer>
       )}
-      {inputName &&
-        (type === NewBetStepValueTypes.Participants ||
-          type === NewBetStepValueTypes.Supervisor) && (
-          <>
-            <ParticipantsContent>
-              <Typography
-                value={t(`NewBet.mostActives`)}
-                variant={TypographyTypes.H4}
-                styleProps={{ color: 'black', marginBottom: 10 }}
-              />
-              {mostActives.length > 0 &&
-                mostActives.map((item, index) => (
-                  <ParticipantsContentRow key={index}>
-                    <ParticipantsContentUser>
-                      <Avatar sx={{ bgcolor: 'grey', width: 24, height: 24, fontSize: 11 }}>
-                        {item.fullName?.charAt(0)}{' '}
-                      </Avatar>
-                      <Typography
-                        value={item.fullName || ''}
-                        variant={TypographyTypes.H7}
-                        styleProps={{ color: 'black' }}
-                      />
-                    </ParticipantsContentUser>
-                    <Typography
-                      value={item.phoneNumber || ''}
-                      variant={TypographyTypes.H7}
-                      styleProps={{ color: 'black' }}
-                    />
-                  </ParticipantsContentRow>
-                ))}
-            </ParticipantsContent>
-            <RowCenterContentContainer>
-              <ContactIcon />
-              <Typography value={t(`NewBet.contacts`)} variant={TypographyTypes.H10} />
-            </RowCenterContentContainer>
-          </>
-        )}
+      {inputName && type === NewBetStepValueTypes.Participants && (
+        <NewBetParticipants inputName={inputName} control={control} />
+      )}
+      {inputName && type === NewBetStepValueTypes.Supervisor && (
+        <NewBetParticipants limit={1} inputName={inputName} control={control} />
+      )}
     </ContentContainer>
   );
 };
