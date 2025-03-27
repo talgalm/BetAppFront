@@ -42,6 +42,12 @@ const NewBet = () => {
     }
   }, [setValue]);
 
+  useEffect(() => {
+    if (step.progress) {
+      setTargetProgress(step.progress);
+    }
+  }, [step.progress]);
+
   const handleStep = (nextStep: NewBetStepValueTypes | null, back?: boolean) => {
     if (formValues) {
       localStorage.setItem('betForm', JSON.stringify(formValues));
@@ -50,26 +56,18 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep) {
+        const progressValue = !back
+          ? Math.min(targetProgress + 10, 100)
+          : Math.max(targetProgress - 10, 0);
+        newBetSteps[nextStep].progress = progressValue;
         setActiveStep(newBetSteps[nextStep]);
 
-        const incrementValue = nextStep === NewBetStepValueTypes.Summary ? 20 : 10;
-        if (
-          nextStep === NewBetStepValueTypes.Coins &&
-          step.step === NewBetStepValueTypes.Description
-        ) {
-          setTargetProgress((prev) => Math.min(prev + incrementValue, 100));
-        }
-
-        if (
-          step.step === NewBetStepValueTypes.Coins &&
-          step.prevButton === NewBetStepValueTypes.Description
-        ) {
-          setTargetProgress((prev) => Math.max(prev - incrementValue, 0));
-        }
-        if (!back) {
-          setTargetProgress((prev) => Math.min(prev + incrementValue, 100));
+        if (nextStep === NewBetStepValueTypes.Summary) {
+          newBetSteps[nextStep].progress = 100;
+          setActiveStep(newBetSteps[nextStep]);
+          setTargetProgress(100);
         } else {
-          setTargetProgress((prev) => Math.max(prev - incrementValue, 0));
+          setTargetProgress(progressValue);
         }
       }
     }
@@ -134,7 +132,7 @@ const NewBet = () => {
               width: '100%',
               backgroundColor: 'white',
               color: '#15AB94',
-              border: '0px solid #15AB94',
+              border: '0px',
             }}
             icon={step.continuteWithoutIcon}
           />
@@ -144,7 +142,7 @@ const NewBet = () => {
             <StyledButton
               value={step.continueButton ? t('NewBet.Continue') : t('NewBet.createBet')}
               onClick={() => handleStep(step.continueButton)}
-              styleProps={{ width: '70%' }}
+              styleProps={{ width: '100%' }}
               disabled={disableButton}
             />
           )}
@@ -152,7 +150,7 @@ const NewBet = () => {
             <StyledButton
               onClick={() => handleStep(step.prevButton, true)}
               icon={<ArrowRight color={PRIMARY_COLOR} />}
-              styleProps={{ width: '30%', backgroundColor: 'white', border: '2px solid #15AB94' }}
+              styleProps={{ width: '32%', backgroundColor: 'white', border: '2px solid #15AB94' }}
             />
           )}
         </ButtonsContainerInner>

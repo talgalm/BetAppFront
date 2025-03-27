@@ -126,6 +126,26 @@ export const ParticipantsContent = styled('div')({
   borderBottom: '1px solid #C8C8E1',
 });
 
+export const ConditionsContent = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  gap: 25,
+  // overflowY: 'auto',
+  // height: '40vh',
+  alignItems: 'flex-start',
+  flexDirection: 'column',
+  width: '100%',
+});
+
+export const ConditionsRowContent = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  flexDirection: 'column',
+  width: '100%',
+  gap: 0,
+});
+
 export const ParticipantsContentRow = styled('div')({
   width: '100%',
   flexDirection: 'row',

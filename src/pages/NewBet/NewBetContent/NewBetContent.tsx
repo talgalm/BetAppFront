@@ -1,6 +1,8 @@
 import {
   CoinContainer,
   CoinsGridContainer,
+  ConditionsContent,
+  ConditionsRowContent,
   ContentContainer,
   FilesContainer,
   FilesRow,
@@ -32,6 +34,7 @@ import { ReactComponent as UploadFileIcon } from '../../../Theme/Icons/UploadIco
 import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
 import BetimModal from '../BetimModal/BetimModal';
 import StyledButton from '../../../components/Button/StyledButton';
+import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -56,6 +59,12 @@ const NewBetContent = <T extends FieldValues>({
   const mostActives: User[] = [
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
+    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
+    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
+    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
+  ];
+
+  const users: User[] = [
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
@@ -230,6 +239,40 @@ const NewBetContent = <T extends FieldValues>({
       )}
       {inputName && control && type === NewBetStepValueTypes.Deadline && (
         <Calendar control={control} inputName={inputName} />
+      )}
+      {inputName && control && type === NewBetStepValueTypes.Conditions && (
+        <ConditionsContent>
+          {users.map((item, index) => (
+            <ConditionsRowContent key={index}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: -5 }}>
+                <Avatar sx={{ bgcolor: 'grey', width: 24, height: 24, fontSize: 11 }}>
+                  {item.fullName?.charAt(0)}{' '}
+                </Avatar>
+                <Typography
+                  value={item.fullName || ''}
+                  variant={TypographyTypes.H7}
+                  styleProps={{ color: 'black' }}
+                />
+              </div>
+              <InputTextFull
+                control={control}
+                inputName={inputName}
+                isSetHeight={true}
+                displayCharLimit={false}
+                placeholder={t(`NewBet.EnterCondition`)}
+              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <CalendarIcon color="#15AB94" />
+
+                <Typography
+                  value={'הוסף תאריך'}
+                  variant={TypographyTypes.H7}
+                  styleProps={{ color: '#15AB94' }}
+                />
+              </div>
+            </ConditionsRowContent>
+          ))}
+        </ConditionsContent>
       )}
       {inputName && type === NewBetStepValueTypes.Files && (
         <FilesContainer>
