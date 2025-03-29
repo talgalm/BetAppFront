@@ -1,8 +1,6 @@
 import {
   CoinContainer,
   CoinsGridContainer,
-  ConditionsContent,
-  ConditionsRowContent,
   ContentContainer,
   FilesContainer,
   FilesRow,
@@ -22,14 +20,13 @@ import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
 import { User } from '../../../api/interfaces';
-import { Avatar } from '@mui/material';
 import { ReactComponent as BetimIcon } from '../../../Theme/Icons/Betim.svg';
 import { ReactComponent as UploadFileIcon } from '../../../Theme/Icons/UploadIcon.svg';
 import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
 import BetimModal from '../BetimModal/BetimModal';
 import StyledButton from '../../../components/Button/StyledButton';
-import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
 import NewBetParticipants from '../NewBetComponents/Participants';
+import NewBetConditions from '../NewBetComponents/Conditions';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -233,41 +230,10 @@ const NewBetContent = <T extends FieldValues>({
         </>
       )}
       {inputName && control && type === NewBetStepValueTypes.Deadline && (
-        <Calendar control={control} inputName={inputName} />
+        <Calendar control={control} inputName={inputName} displayAddToCalendar />
       )}
       {inputName && control && type === NewBetStepValueTypes.Conditions && (
-        <ConditionsContent>
-          {users.map((item, index) => (
-            <ConditionsRowContent key={index}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: -5 }}>
-                <Avatar sx={{ bgcolor: 'grey', width: 24, height: 24, fontSize: 11 }}>
-                  {item.fullName?.charAt(0)}{' '}
-                </Avatar>
-                <Typography
-                  value={item.fullName || ''}
-                  variant={TypographyTypes.H7}
-                  styleProps={{ color: 'black' }}
-                />
-              </div>
-              <InputTextFull
-                control={control}
-                inputName={inputName}
-                isSetHeight={true}
-                displayCharLimit={false}
-                placeholder={t(`NewBet.EnterCondition`)}
-              />
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <CalendarIcon color="#15AB94" />
-
-                <Typography
-                  value={'הוסף תאריך'}
-                  variant={TypographyTypes.H7}
-                  styleProps={{ color: '#15AB94' }}
-                />
-              </div>
-            </ConditionsRowContent>
-          ))}
-        </ConditionsContent>
+        <NewBetConditions control={control} inputName={inputName} />
       )}
       {inputName && type === NewBetStepValueTypes.Files && (
         <FilesContainer>

@@ -1,6 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { Avatar } from '@mui/material';
-import { ReactComponent as CloseIcon } from '../../Theme/Icons/FullClose.svg';
 
 export const PageContainer = styled('div')({
   display: 'flex',

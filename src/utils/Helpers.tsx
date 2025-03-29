@@ -7,7 +7,11 @@ export const useIsPrimaryExpand = (): boolean => {
   return layout.headerStyle === HeaderStyle.PRIMARY_EXPAND;
 };
 
-export const useDateFormat = (dateString: string): string => {
+export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
 };

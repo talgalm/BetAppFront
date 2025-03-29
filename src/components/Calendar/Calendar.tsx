@@ -273,10 +273,15 @@ import { Control, Controller, FieldValues, Path, useFormContext } from 'react-ho
 
 interface CalendarProps<T extends FieldValues> {
   control: Control<T>;
-  inputName: Path<T>;
+  inputName: Path<T> | undefined;
+  displayAddToCalendar?: boolean;
 }
 
-const Calendar = <T extends FieldValues>({ control, inputName }: CalendarProps<T>) => {
+const Calendar = <T extends FieldValues>({
+  control,
+  inputName,
+  displayAddToCalendar,
+}: CalendarProps<T>) => {
   const { t } = useTranslation();
   const { setValue } = useFormContext();
 
@@ -288,38 +293,42 @@ const Calendar = <T extends FieldValues>({ control, inputName }: CalendarProps<T
 
   return (
     <div>
-      <Controller
-        name={inputName}
-        control={control}
-        render={({ field }) => (
-          <StyledCalendar
-            onChange={(value) => field.onChange(value)}
-            value={field.value}
-            nextLabel={<LeftArrow />}
-            prevLabel={<RightArrow />}
-            next2Label={null}
-            prev2Label={null}
-            formatShortWeekday={(locale, date) =>
-              date.toLocaleDateString(locale, { weekday: 'narrow' })
-            }
-            locale="he"
-            showNeighboringMonth={false}
-          />
-        )}
-      />
-      <CheckboxDiv>
-        <Checkbox
-          defaultChecked
-          onChange={(e) => setIsChecked(e.target.checked)}
-          sx={{
-            color: PRIMARY_COLOR,
-            '&.Mui-checked': {
-              color: PRIMARY_COLOR,
-            },
-          }}
+      {inputName && (
+        <Controller
+          name={inputName}
+          control={control}
+          render={({ field }) => (
+            <StyledCalendar
+              onChange={(value) => field.onChange(value)}
+              value={field.value}
+              nextLabel={<LeftArrow width={12} height={12} />}
+              prevLabel={<RightArrow width={12} height={12} />}
+              next2Label={null}
+              prev2Label={null}
+              formatShortWeekday={(locale, date) =>
+                date.toLocaleDateString(locale, { weekday: 'narrow' })
+              }
+              locale="he"
+              showNeighboringMonth={false}
+            />
+          )}
         />
-        <Typography value={t('Calendar.addToCalendar')} variant={TypographyTypes.H6} />
-      </CheckboxDiv>
+      )}
+      {displayAddToCalendar && (
+        <CheckboxDiv>
+          <Checkbox
+            defaultChecked
+            onChange={(e) => setIsChecked(e.target.checked)}
+            sx={{
+              color: PRIMARY_COLOR,
+              '&.Mui-checked': {
+                color: PRIMARY_COLOR,
+              },
+            }}
+          />
+          <Typography value={t('Calendar.addToCalendar')} variant={TypographyTypes.H6} />
+        </CheckboxDiv>
+      )}
     </div>
   );
 };

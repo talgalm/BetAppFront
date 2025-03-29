@@ -3,7 +3,7 @@ import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { TEXT_THIRD_COLOR } from '../../../Theme/ColorTheme';
 import { TextField } from '@mui/material';
 
-export const BetInput = styled('textarea')<{
+export const BetInput = styled('input')<{
   typography: typeof TypographyTypes.H7;
   isWriting: boolean;
   setHeight?: boolean;
@@ -20,7 +20,7 @@ export const BetInput = styled('textarea')<{
   fontWeight: typography.fontWeight,
   outline: 'none',
   color: TEXT_THIRD_COLOR,
-  padding: setHeight ? '16px 16px 0px 0px' : '16px 16px 96px',
+  padding: setHeight ? '0px 16px 0px 0px' : '24px 16px 96px',
   resize: 'none',
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',

@@ -67,7 +67,6 @@ const BetimModal: React.FC<BetimModalProps> = ({ isOpen, closeModal, setCoins })
   }, []);
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    // Prevent closing if clicking inside the modal content
     if (e.target === e.currentTarget) {
       setCoins(counter);
       closeModal();

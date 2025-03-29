@@ -298,12 +298,12 @@ export const StyledCalendar = styled(Calendar)`
   .react-calendar__tile--active abbr {
     width: 30px;
     height: 30px;
-    background-color: #15c092;
+    background-color: #ceefea;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #15ab94;
   }
 
   .react-calendar__navigation {
@@ -328,14 +328,14 @@ export const StyledCalendar = styled(Calendar)`
 
   .react-calendar__month-view__weekdays__weekday,
   .react-calendar__month-view__weekdays__weekday abbr {
-    color: #15c092;
-    font-weight: bold;
+    color: #7f8cb9;
+    font-weight: 400;
     text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Fredoka', sans-serif;
     list-style: none;
   }

@@ -5,7 +5,7 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import Circle from '../../components/Circle/CircleComponent';
 import { AvatarsDiv, BetRow, DescriptionDiv } from './SingleBet.styles';
 import { useTranslation } from 'react-i18next';
-import { useDateFormat } from '../../utils/Helpers';
+import { formatDate } from '../../utils/Helpers';
 
 interface SingleBetProp {
   bet: Bet;
@@ -28,7 +28,7 @@ const SingleBet = ({ bet }: SingleBetProp): JSX.Element => {
       <DescriptionDiv>
         <Typography value={bet.name} variant={TypographyTypes.H4} />
         <Typography
-          value={`${t('MyBets.createdAT')} ${useDateFormat(bet.createdAt)}`}
+          value={`${t('MyBets.createdAT')} ${formatDate(bet.createdAt)}`}
           variant={TypographyTypes.H5}
         />
         <Typography
