@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import { PopUpContainer, PopUpOverlay } from './DateModal.styles';
+import { PopUpContainer, PopUpContentContainer, PopUpOverlay } from './DateModal.styles';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Calendar from '../Calendar/Calendar';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
-import { Typography } from '../Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
 import { useTranslation } from 'react-i18next';
 import StyledButton from '../Button/StyledButton';
 
@@ -48,10 +45,10 @@ const DateModal = <T extends FieldValues>({
   return (
     <PopUpOverlay isOpen={isOpen} onClick={handleOverlayClick}>
       <PopUpContainer>
-        <div style={{ borderBottom: '1px solid #c8c8e1' }}>
+        <PopUpContentContainer>
           <CloseIcon onClick={handleOverlayClick} />
           <Calendar control={control} inputName={inputName} />
-        </div>
+        </PopUpContentContainer>
         <StyledButton
           value={t(`NewBet.Approve`)}
           onClick={() => closeModal()}

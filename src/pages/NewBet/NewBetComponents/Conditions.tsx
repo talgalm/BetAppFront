@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import InputTextFull from '../../../components/Inputs/InputTextFull/InputTextFull';
-import { ConditionsContent, ConditionsRowContent } from './Conditions.styles';
+import {
+  ConditionsContent,
+  ConditionsRowContent,
+  ConditionsRowContentCenter,
+  StyledAvatar,
+} from './Conditions.styles';
 import { Avatar } from '@mui/material';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
@@ -62,16 +67,14 @@ const NewBetConditions = <T extends FieldValues>({
 
           return (
             <ConditionsRowContent key={userIndex}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: -5 }}>
-                <Avatar sx={{ bgcolor: 'grey', width: 24, height: 24, fontSize: 11 }}>
-                  {user.fullName?.charAt(0)}
-                </Avatar>
+              <ConditionsRowContentCenter>
+                <StyledAvatar> {user.fullName?.charAt(0)} </StyledAvatar>
                 <Typography
                   value={user.fullName || ''}
                   variant={TypographyTypes.H7}
                   styleProps={{ color: 'black' }}
                 />
-              </div>
+              </ConditionsRowContentCenter>
 
               <InputTextFull
                 control={control}
@@ -81,17 +84,14 @@ const NewBetConditions = <T extends FieldValues>({
                 placeholder={t(`NewBet.EnterCondition`)}
               />
 
-              <div
-                style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}
-                onClick={() => handleOpenModal(userIndex)}
-              >
+              <ConditionsRowContentCenter onClick={() => handleOpenModal(userIndex)}>
                 {!userDate && <CalendarIcon color="#15AB94" />}
                 <Typography
-                  value={userDate ? formatDate(userDate) : 'הוסף תאריך'}
+                  value={userDate ? formatDate(userDate) : t(`NewBet.ConditionAddDate`)}
                   variant={TypographyTypes.H7}
                   styleProps={{ color: '#15AB94' }}
                 />
-              </div>
+              </ConditionsRowContentCenter>
             </ConditionsRowContent>
           );
         })}

@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import StyledButton from '../Button/StyledButton';
 
 export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   position: 'fixed',
@@ -21,7 +22,7 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   width: '100%',
 }));
 
-export const PopUpContainer = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
+export const PopUpContainer = styled('div')({
   width: '90%',
   height: '55%',
   backgroundColor: '#FFFFFF',
@@ -33,4 +34,8 @@ export const PopUpContainer = styled('div')<{ isOpen?: boolean }>(({ isOpen }) =
   alignItems: 'center',
   flexDirection: 'column',
   textAlign: 'right',
-}));
+});
+
+export const PopUpContentContainer = styled('div')({
+  borderBottom: '1px solid #c8c8e1',
+});
