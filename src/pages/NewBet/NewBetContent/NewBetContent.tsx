@@ -1,32 +1,22 @@
-import {
-  CoinContainer,
-  CoinsGridContainer,
-  ContentContainer,
-  FilesContainer,
-  FilesRow,
-  RowCoinContentContainer,
-  RowContentContainer,
-} from '../NewBet.styles';
+import { ContentContainer, FilesContainer, FilesRow, RowContentContainer } from '../NewBet.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import InputTextFull from '../../../components/Inputs/InputTextFull/InputTextFull';
 import { NewBetStepValueTypes } from '../Interface';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { UseUser } from '../../../Hooks/useGetUser';
 import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
-import { User } from '../../../api/interfaces';
-import { ReactComponent as BetimIcon } from '../../../Theme/Icons/Betim.svg';
+
 import { ReactComponent as UploadFileIcon } from '../../../Theme/Icons/UploadIcon.svg';
-import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
-import BetimModal from '../BetimModal/BetimModal';
 import StyledButton from '../../../components/Button/StyledButton';
 import NewBetParticipants from '../NewBetComponents/Participants';
 import NewBetConditions from '../NewBetComponents/Conditions';
+import Betim from '../NewBetComponents/Betim';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -40,95 +30,15 @@ const NewBetContent = <T extends FieldValues>({
   control,
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
-  const [coins, setCoins] = useState<number>(0);
-  const [userCurrentCoints, setUserCurrentCoins] = useState<number>(0);
   const [user, setUser] = useAtom(userAtom);
   const { data } = UseUser(user?.id);
-  const BetimArray = [20, 30, 40, -1];
-  const [openModal, setOpenModal] = useState(false);
   // const { mostActives = [] } = useGetMostActives(user?.id);
-
-  const mostActives: User[] = [
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-  ];
-
-  const users: User[] = [
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-  ];
 
   useEffect(() => {
     if (data) {
       setUser(data);
     }
   }, [data, setUser]);
-
-  useEffect(() => {
-    if (user?.points !== undefined) {
-      setUserCurrentCoins(user.points);
-    }
-  }, [user]);
-
-  const handleCoinsChange = (value: number) => {
-    if (value === -1) {
-      setOpenModal(true);
-      return;
-    }
-    const numericValue = Number(value);
-
-    if (user?.points !== undefined) {
-      if (numericValue <= user.points) {
-        setCoins(numericValue);
-        setUserCurrentCoins(user.points - numericValue);
-      } else {
-        /* empty */
-      }
-    }
-  };
-
-  const renderCoin = (item: number, index: number) => {
-    const isSelected =
-      coins === item || (coins !== 0 && !BetimArray.includes(coins) && index === 3);
-
-    if (item === -1) {
-      return (
-        <CoinContainer key={index} onClick={() => handleCoinsChange(item)} isSelected={isSelected}>
-          {coins !== 0 && !BetimArray.includes(coins) ? (
-            <>
-              <BetimIcon color={PRIMARY_COLOR} />
-              <Typography
-                value={coins}
-                variant={TypographyTypes.H3}
-                styleProps={{ color: PRIMARY_COLOR }}
-              />
-            </>
-          ) : (
-            <Typography
-              value={t('NewBet.other')}
-              variant={TypographyTypes.H3}
-              styleProps={{ color: PRIMARY_COLOR }}
-            />
-          )}
-        </CoinContainer>
-      );
-    }
-
-    return (
-      <CoinContainer key={index} onClick={() => handleCoinsChange(item)} isSelected={isSelected}>
-        <BetimIcon color={PRIMARY_COLOR} />
-        <Typography
-          value={item}
-          variant={TypographyTypes.H3}
-          styleProps={{ color: PRIMARY_COLOR }}
-        />
-      </CoinContainer>
-    );
-  };
 
   return (
     <ContentContainer>
@@ -175,59 +85,7 @@ const NewBetContent = <T extends FieldValues>({
         </>
       )}
       {inputName && type === NewBetStepValueTypes.Coins && (
-        <>
-          <RowContentContainer>
-            <Typography
-              value={`${t('Input.YourBalance')} ${userCurrentCoints} ${t('Input.Coins')}`}
-              variant={TypographyTypes.H10}
-            />
-          </RowContentContainer>
-          <CoinsGridContainer>
-            {BetimArray.map((item, index) => (
-              <RowCoinContentContainer key={index}>
-                <CoinContainer
-                  onClick={() => handleCoinsChange(item)}
-                  isSelected={
-                    coins === item || (coins !== 0 && !BetimArray.includes(coins) && index === 3)
-                  }
-                >
-                  {item === -1 ? (
-                    coins !== 0 && !BetimArray.includes(coins) ? (
-                      <>
-                        <BetimIcon color={PRIMARY_COLOR} />
-                        <Typography
-                          value={coins}
-                          variant={TypographyTypes.H3}
-                          styleProps={{ color: PRIMARY_COLOR }}
-                        />
-                      </>
-                    ) : (
-                      <Typography
-                        value={t(`NewBet.other`)}
-                        variant={TypographyTypes.H3}
-                        styleProps={{ color: PRIMARY_COLOR }}
-                      />
-                    )
-                  ) : (
-                    <>
-                      <BetimIcon color={PRIMARY_COLOR} />
-                      <Typography
-                        value={item}
-                        variant={TypographyTypes.H3}
-                        styleProps={{ color: PRIMARY_COLOR }}
-                      />
-                    </>
-                  )}
-                </CoinContainer>
-              </RowCoinContentContainer>
-            ))}
-          </CoinsGridContainer>
-          <BetimModal
-            isOpen={openModal}
-            closeModal={() => setOpenModal(false)}
-            setCoins={handleCoinsChange}
-          />
-        </>
+        <Betim control={control} inputName={inputName} />
       )}
       {inputName && control && type === NewBetStepValueTypes.Deadline && (
         <Calendar control={control} inputName={inputName} displayAddToCalendar />

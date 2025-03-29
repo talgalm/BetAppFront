@@ -56,14 +56,6 @@ export const RowContentContainer = styled('div')({
   textAlign: 'start',
 });
 
-export const CoinsGridContainer = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  gap: 8,
-  width: '100%',
-});
-
 export const RowCoinContentContainer = styled('div')({
   width: 'calc(50% - 4px)',
   display: 'flex',
@@ -71,21 +63,6 @@ export const RowCoinContentContainer = styled('div')({
   alignItems: 'center',
   textAlign: 'start',
 });
-
-export const CoinContainer = styled('div')<{
-  isSelected?: boolean;
-}>(({ isSelected }) => ({
-  display: 'flex',
-  width: '96%',
-  height: '15vh',
-  backgroundColor: '#EEF9F8',
-  borderRadius: 12,
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 4,
-  border: isSelected ? '4px solid #15AB94' : 'none',
-  cursor: 'pointer',
-}));
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',
