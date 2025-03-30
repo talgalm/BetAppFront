@@ -78,7 +78,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     inputName: NewBetStepValueTypes.Files,
     step: NewBetStepValueTypes.Files,
     continueButton: NewBetStepValueTypes.Supervisor,
-    prevButton: NewBetStepValueTypes.Conditions,
+    prevButton: NewBetStepValueTypes.Deadline,
   },
   [NewBetStepValueTypes.Supervisor]: {
     inputName: NewBetStepValueTypes.Supervisor,
@@ -103,7 +103,7 @@ export type CreateFormInputs = {
   Participants?: User[];
   Conditions?: Guess[];
   Files?: File[];
-  Supervisor?: User;
+  Supervisor?: User[];
   Summary?: string;
 };
 

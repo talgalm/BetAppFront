@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import { ReactComponent as CloseIcon } from '../../../Theme/Icons/FullClose.svg';
+import { ReactComponent as CloseIcon } from '../../../../Theme/Icons/FullClose.svg';
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',
@@ -47,24 +47,6 @@ export const ParticipantsContent = styled('div')({
   backgroundColor: '#FFFFFF',
 });
 
-export const ConditionsContent = styled('div')({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  gap: 25,
-  alignItems: 'flex-start',
-  flexDirection: 'column',
-  width: '100%',
-});
-
-export const ConditionsRowContent = styled('div')({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
-  flexDirection: 'column',
-  width: '100%',
-  gap: 0,
-});
-
 export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
   ({ background = 'trasnperent' }) => ({
     width: '100%',
@@ -88,26 +70,6 @@ export const ParticipantsContentUser = styled('div')({
   gap: 10,
   alignItems: 'center',
   fontSize: 10,
-});
-
-export const FilesContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  height: '23vh',
-  backgroundColor: '#EEF9F8',
-  borderRadius: 8,
-  border: `1px dashed #15AB94`,
-  flexDirection: 'column',
-  gap: 8,
-});
-export const FilesRow = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 4,
-  marginTop: 10,
-  marginBottom: 20,
 });
 
 export const AvatarWrapper = styled('div')({

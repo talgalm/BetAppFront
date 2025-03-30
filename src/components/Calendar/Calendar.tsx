@@ -285,10 +285,10 @@ const Calendar = <T extends FieldValues>({
   const { t } = useTranslation();
   const { setValue } = useFormContext();
 
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setValue('AddTocalendar', isChecked);
+    if (isChecked) setValue('AddTocalendar', isChecked);
   }, [isChecked, setValue]);
 
   return (
@@ -317,7 +317,6 @@ const Calendar = <T extends FieldValues>({
       {displayAddToCalendar && (
         <CheckboxDiv>
           <Checkbox
-            defaultChecked
             onChange={(e) => setIsChecked(e.target.checked)}
             sx={{
               color: PRIMARY_COLOR,

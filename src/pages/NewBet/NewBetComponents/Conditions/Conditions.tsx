@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import InputTextFull from '../../../components/Inputs/InputTextFull/InputTextFull';
+import InputTextFull from '../../../../components/Inputs/InputTextFull/InputTextFull';
 import {
   ConditionsContent,
   ConditionsRowContent,
   ConditionsRowContentCenter,
   StyledAvatar,
-} from './Conditions.styles';
+} from '../Conditions/Conditions.styles';
 import { Avatar } from '@mui/material';
-import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
-import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
-import { User } from '../../../api/interfaces';
+import { Typography } from '../../../../components/Topography/topography';
+import { TypographyTypes } from '../../../../Theme/Typography/typography';
+import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
+import { User } from '../../../../api/interfaces';
 import { useTranslation } from 'react-i18next';
-import DateModal from '../../../components/DateModal/DateModal';
-import { formatDate } from '../../../utils/Helpers';
+import DateModal from '../../../../components/DateModal/DateModal';
+import { formatDate } from '../../../../utils/Helpers';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;

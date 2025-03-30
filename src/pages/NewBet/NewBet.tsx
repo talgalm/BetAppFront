@@ -25,7 +25,7 @@ import { Typography } from '../../components/Topography/topography';
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
   const { t } = useTranslation();
-  const { control, handleSubmit, watch, setValue } = useFormContext<CreateFormInputs>();
+  const { control, handleSubmit, watch, setValue, unregister } = useFormContext<CreateFormInputs>();
   const [targetProgress, setTargetProgress] = useState(0);
   const disableButton =
     step.inputName && watch(step.inputName) === '' && step.inputName !== NewBetStepValueTypes.Start;
@@ -48,8 +48,14 @@ const NewBet = () => {
     }
   }, [step.progress]);
 
-  const handleStep = (nextStep: NewBetStepValueTypes | null, back?: boolean) => {
-    if (formValues) {
+  const handleStep = (
+    nextStep: NewBetStepValueTypes | null,
+    back?: boolean,
+    continueWithout?: NewBetStepValueTypes
+  ) => {
+    if (continueWithout) {
+      unregister(continueWithout);
+    } else if (formValues) {
       localStorage.setItem('betForm', JSON.stringify(formValues));
     }
     if (step.skipToEnd) {
@@ -127,7 +133,7 @@ const NewBet = () => {
         {step.continuteWithout && (
           <StyledButton
             value={t(`NewBet.${step.step}ContinueWithout`)}
-            onClick={() => handleStep(step.continueButton)}
+            onClick={() => handleStep(step.continueButton, false, step.inputName)}
             styleProps={{
               width: '100%',
               backgroundColor: 'white',

@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { Typography } from '../../../components/Topography/topography';
-import { Avatar } from '@mui/material';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
+import { Typography } from '../../../../components/Topography/topography';
+import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ContactIcon } from '../../../Theme/Icons/Contacts.svg';
-import { User } from '../../../api/interfaces';
+import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
+import { User } from '../../../../api/interfaces';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
-import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
+import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
 import {
   AvatarWrapper,
   CloseButton,
@@ -23,7 +22,7 @@ import {
   SelectedContainer,
   SmallAvatar,
   StyledAvatar,
-} from './Participants.styles';
+} from '../Participants/Participants.styles';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -81,24 +80,26 @@ const NewBetParticipants = <T extends FieldValues>({
 
   return (
     <>
-      <Collapse in={Array.isArray(value) && value.length > 0} timeout="auto" unmountOnExit>
-        <SelectedContainer>
-          {Array.isArray(value) &&
-            value.map((item: User, index: number) => (
-              <ParticipantsCollapseContainer key={index}>
-                <ParticipantsCollapseRow key={index}>
-                  <AvatarWrapper>
-                    <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
-                    <CloseButton onClick={() => removeUser(item)}>
-                      <CloseIconStyled />
-                    </CloseButton>
-                  </AvatarWrapper>
-                  <NameText>{item.fullName}</NameText>
-                </ParticipantsCollapseRow>
-              </ParticipantsCollapseContainer>
-            ))}
-        </SelectedContainer>
-      </Collapse>
+      {!limit && (
+        <Collapse in={Array.isArray(value) && value.length > 0} timeout="auto" unmountOnExit>
+          <SelectedContainer>
+            {Array.isArray(value) &&
+              value.map((item: User, index: number) => (
+                <ParticipantsCollapseContainer key={index}>
+                  <ParticipantsCollapseRow key={index}>
+                    <AvatarWrapper>
+                      <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
+                      <CloseButton onClick={() => removeUser(item)}>
+                        <CloseIconStyled />
+                      </CloseButton>
+                    </AvatarWrapper>
+                    <NameText>{item.fullName}</NameText>
+                  </ParticipantsCollapseRow>
+                </ParticipantsCollapseContainer>
+              ))}
+          </SelectedContainer>
+        </Collapse>
+      )}
       <ParticipantsContent>
         <Typography
           value={t(`NewBet.mostActives`)}

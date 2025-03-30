@@ -6,16 +6,16 @@ import {
   CoinsGridContainer,
   RowContentContainer,
   StyledDivider,
-} from './Betim.styles';
-import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
-import { PRIMARY_COLOR } from '../../../Theme/ColorTheme';
-import { ReactComponent as PlusIcon } from '../../../Theme/Icons/AddIcon.svg';
-import { ReactComponent as MinusIcon } from '../../../Theme/Icons/Minus.svg';
+} from '../Betim/Betim.styles';
+import { Typography } from '../../../../components/Topography/topography';
+import { TypographyTypes } from '../../../../Theme/Typography/typography';
+import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
+import { ReactComponent as PlusIcon } from '../../../../Theme/Icons/AddIcon.svg';
+import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
-import { userAtom } from '../../../Jotai/atoms';
-import { UseUser } from '../../../Hooks/useGetUser';
+import { userAtom } from '../../../../Jotai/atoms';
+import { UseUser } from '../../../../Hooks/useGetUser';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;

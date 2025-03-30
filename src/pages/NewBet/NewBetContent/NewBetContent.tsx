@@ -1,4 +1,4 @@
-import { ContentContainer, FilesContainer, FilesRow, RowContentContainer } from '../NewBet.styles';
+import { ContentContainer, RowContentContainer } from '../NewBet.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
@@ -11,12 +11,11 @@ import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
-
-import { ReactComponent as UploadFileIcon } from '../../../Theme/Icons/UploadIcon.svg';
-import StyledButton from '../../../components/Button/StyledButton';
-import NewBetParticipants from '../NewBetComponents/Participants';
-import NewBetConditions from '../NewBetComponents/Conditions';
-import Betim from '../NewBetComponents/Betim';
+import NewBetParticipants from '../NewBetComponents/Participants/Participants';
+import NewBetConditions from '../NewBetComponents/Conditions/Conditions';
+import Betim from '../NewBetComponents/Betim/Betim';
+import NewBetFiles from '../NewBetComponents/Files/Files';
+import NewBetSummary from '../NewBetComponents/Summary/Summary';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -32,7 +31,6 @@ const NewBetContent = <T extends FieldValues>({
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
   const { data } = UseUser(user?.id);
-  // const { mostActives = [] } = useGetMostActives(user?.id);
 
   useEffect(() => {
     if (data) {
@@ -93,39 +91,14 @@ const NewBetContent = <T extends FieldValues>({
       {inputName && control && type === NewBetStepValueTypes.Conditions && (
         <NewBetConditions control={control} inputName={inputName} />
       )}
-      {inputName && type === NewBetStepValueTypes.Files && (
-        <FilesContainer>
-          <UploadFileIcon />
-          <FilesRow>
-            <Typography
-              value={t(`NewBet.uploadFilesTitle`)}
-              variant={TypographyTypes.H5}
-              styleProps={{ color: '#001845', fontWeight: 500 }}
-            />
-            <Typography
-              value={t(`NewBet.uploadFilesSubtitle`)}
-              variant={TypographyTypes.H6}
-              styleProps={{ color: '#7F8CB9', fontWeight: 400 }}
-            />
-          </FilesRow>
-          <StyledButton
-            value={t(`NewBet.uploadFilesbutton`)}
-            styleProps={{
-              width: '50%',
-              backgroundColor: 'white',
-              height: 40,
-              color: '#15AB94',
-              border: '2px solid #15AB94',
-            }}
-          />
-        </FilesContainer>
-      )}
+      {inputName && type === NewBetStepValueTypes.Files && <NewBetFiles inputName={inputName} />}
       {inputName && type === NewBetStepValueTypes.Participants && (
         <NewBetParticipants inputName={inputName} control={control} />
       )}
       {inputName && type === NewBetStepValueTypes.Supervisor && (
         <NewBetParticipants limit={1} inputName={inputName} control={control} />
       )}
+      {type === NewBetStepValueTypes.Summary && <NewBetSummary />}
     </ContentContainer>
   );
 };
