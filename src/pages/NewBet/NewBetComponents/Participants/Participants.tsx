@@ -54,8 +54,12 @@ const NewBetParticipants = <T extends FieldValues>({
       ? currentUsers.filter((selectedUser: User) => selectedUser.id !== user.id)
       : [...currentUsers, user];
 
-    const finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
+    let finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
 
+    if (limit && finalUsers[0].id !== user.id) {
+      removeUser(user);
+      finalUsers = [user];
+    }
     onChange(finalUsers);
   };
 
