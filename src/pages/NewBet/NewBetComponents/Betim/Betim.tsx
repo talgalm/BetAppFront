@@ -80,7 +80,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
             >
               {isSelected && index === 3 ? (
                 <ChangeableCoinContainer>
-                  <PlusIcon onClick={handlePlusClick} />
+                  <MinusIcon onClick={handleMinusClick} />
                   <StyledDivider flexItem />
                   <Typography
                     value={field.value ?? 0}
@@ -88,7 +88,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
                     styleProps={{ color: PRIMARY_COLOR }}
                   />
                   <StyledDivider flexItem />
-                  <MinusIcon onClick={handleMinusClick} />
+                  <PlusIcon onClick={handlePlusClick} />
                 </ChangeableCoinContainer>
               ) : (
                 <Typography

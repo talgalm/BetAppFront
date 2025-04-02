@@ -19,6 +19,7 @@ export interface NewBetStep {
   step: NewBetStepValueTypes;
   prevButton: NewBetStepValueTypes | null;
   continueButton: NewBetStepValueTypes | null;
+  continueButtonText?: string;
   continuteWithout?: boolean;
   continuteWithoutIcon?: React.ReactNode;
   inputName?: NewBetStepValueTypes;
@@ -31,6 +32,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     step: NewBetStepValueTypes.Start,
     inputName: NewBetStepValueTypes.Start,
     continueButton: NewBetStepValueTypes.Name,
+    continueButtonText: 'NewBet.startNewBet',
     prevButton: null,
   },
   [NewBetStepValueTypes.Name]: {
@@ -90,6 +92,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     inputName: NewBetStepValueTypes.Summary,
     step: NewBetStepValueTypes.Summary,
     continueButton: null,
+    continueButtonText: 'NewBet.createBet',
     prevButton: NewBetStepValueTypes.Supervisor,
   },
 };

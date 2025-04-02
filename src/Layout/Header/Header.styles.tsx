@@ -12,10 +12,8 @@ export const HeaderComponent = styled('div')<HeaderProps>(({ headerStyle }) => (
 
 export const LogoDiv = styled('div')({
   display: 'flex',
-  height: 24,
   justifyContent: 'center',
   alignItems: 'center',
-  marginTop: -5,
 });
 
 export const TotalPointsDiv = styled('div')({
@@ -52,5 +50,4 @@ export const BackArrowDiv = styled('div')({
   alignItems: 'center',
   position: 'absolute',
   left: 16,
-  top: 60,
 });

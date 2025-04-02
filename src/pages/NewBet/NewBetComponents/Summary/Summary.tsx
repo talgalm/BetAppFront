@@ -6,6 +6,7 @@ import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
 import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';
+import { ReactComponent as MultiPeopleIcon } from '../../../../Theme/Icons/MultiPeople.svg';
 import { ReactComponent as BetimIcon } from '../../../../Theme/Icons/Betim.svg';
 
 import {
@@ -24,7 +25,7 @@ import { ActiveStep } from '../../../../Jotai/newBetAtoms';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateFormInputs>();
-  const [step, setActiveStep] = useAtom(ActiveStep);
+  const [, setActiveStep] = useAtom(ActiveStep);
 
   const { t } = useTranslation();
 
@@ -73,11 +74,16 @@ const NewBetSummary: React.FC = () => {
               variant={TypographyTypes.H5}
               styleProps={{ color: 'black' }}
             />
-
             <Typography
               value={watch().Description || ''}
               variant={TypographyTypes.H4}
-              styleProps={{ color: 'black' }}
+              styleProps={{
+                color: 'black',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                width: '300px',
+              }}
             />
           </SummaryColumn>
         )}
@@ -123,8 +129,9 @@ const NewBetSummary: React.FC = () => {
                 />
                 <BetimIcon width={18} height={18} />
               </SummaryRow>
+              {'X'}
               <SummaryRow background={'#CEEFEA'}>
-                <SinglePeopleIcon />
+                <MultiPeopleIcon />
                 <Typography
                   value={watch().Coins * (watch().Participants?.length ?? 1)}
                   variant={TypographyTypes.H7}

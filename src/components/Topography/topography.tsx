@@ -15,9 +15,10 @@ export const Typography: React.FC<TopographyProps> = ({ value, variant, stylePro
     <div
       style={{
         ...mergedStyles,
-        whiteSpace: 'pre-wrap',
-        display: 'flex',
-        alignItems: 'center',
+        whiteSpace: mergedStyles?.whiteSpace || 'pre-wrap',
+        overflow: mergedStyles?.overflow || 'hidden',
+        textOverflow: mergedStyles?.textOverflow || 'ellipsis',
+        display: 'block',
       }}
     >
       {transformedValue}

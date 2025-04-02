@@ -33,7 +33,7 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   },
   [HeaderStyle.SECONDARY_SHORT]: {
     backgroundColor: PRIMARY_BACKGROUND,
-    height: 90,
+    height: 50,
     width: '100%',
     paddingRight: 16,
     paddingLeft: 16,

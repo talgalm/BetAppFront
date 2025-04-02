@@ -22,6 +22,7 @@ import {
   SelectedContainer,
   SmallAvatar,
   StyledAvatar,
+  StyledDivider,
 } from '../Participants/Participants.styles';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
@@ -125,6 +126,7 @@ const NewBetParticipants = <T extends FieldValues>({
             </ParticipantsContentRow>
           ))}
       </ParticipantsContent>
+      <StyledDivider />
       <RowCenterContentContainer>
         <ContactIcon />
         <Typography

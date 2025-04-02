@@ -14,8 +14,10 @@ import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import Button from '../../components/Button - deprected/Button';
-import { PRIMARY_BUTTON_COLOR, TEXT_SEC_COLOR, TEXT_THIRD_COLOR } from '../../Theme/ColorTheme';
+import { PRIMARY_BUTTON_COLOR, TEXT_SEC_COLOR } from '../../Theme/ColorTheme';
 import { ReactComponent as AddIcon } from '../../Theme/Icons/AddIcon.svg';
+import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
+
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { FooterStyle, HeaderStyle } from '../../Theme/ThemeInterfaces';
@@ -61,6 +63,8 @@ const Header = () => {
         {!isPrimary && <CloseIcon onClick={handleBackIconClick} width={24} height={24} />}
       </BackArrowDiv>
       <LogoDiv>{isPrimary && <LogoBright />}</LogoDiv>
+      <LogoDiv>{!isPrimary && <Logo />}</LogoDiv>
+
       <TotalPointsDiv>
         {isPrimary && (
           <PointsContainer>

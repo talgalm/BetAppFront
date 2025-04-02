@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Avatar } from '@mui/material';
+import { Avatar, Divider } from '@mui/material';
 import { ReactComponent as CloseIcon } from '../../../../Theme/Icons/FullClose.svg';
 
 export const RowCenterContentContainer = styled('div')({
@@ -37,13 +37,11 @@ export const SelectedContainer = styled('div')({
 export const ParticipantsContent = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
-  gap: 10,
+  gap: 12.5,
+  marginTop: 10,
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: '100%',
-  height: '30vh',
-  marginTop: 10,
-  borderBottom: '1px solid #C8C8E1',
   backgroundColor: '#FFFFFF',
 });
 
@@ -55,10 +53,6 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     justifyContent: 'space-between',
     gap: 10,
     alignItems: 'center',
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 8,
-    paddingRight: 8,
     backgroundColor: background ? '#CEEFEA' : 'transparent',
   })
 );
@@ -128,4 +122,10 @@ export const ParticipantsCollapseRow = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+});
+
+export const StyledDivider = styled(Divider)({
+  width: '100%',
+  borderBottomWidth: 1,
+  borderColor: '#DADADA',
 });

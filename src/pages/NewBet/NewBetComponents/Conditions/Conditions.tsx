@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import InputTextFull from '../../../../components/Inputs/InputTextFull/InputTextFull';
 import {
   ConditionsContent,
@@ -7,14 +7,13 @@ import {
   ConditionsRowContentCenter,
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
-import { Avatar } from '@mui/material';
 import { Typography } from '../../../../components/Topography/topography';
 import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
-import { User } from '../../../../api/interfaces';
 import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
+import { CreateFormInputs } from '../../Interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -25,6 +24,7 @@ const NewBetConditions = <T extends FieldValues>({
   inputName,
   control,
 }: NewBetParticipantsProps<T>): JSX.Element => {
+  const { watch } = useFormContext<CreateFormInputs>();
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -34,12 +34,6 @@ const NewBetConditions = <T extends FieldValues>({
     control,
     name: inputName || ('' as Path<T>),
   });
-
-  const users: User[] = [
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'User2', fullName: 'User Two', phoneNumber: '054-0000000' },
-    { id: 'User3', fullName: 'User Three', phoneNumber: '054-1111111' },
-  ];
 
   const handleCloseModal = (discard?: boolean) => {
     setCurrentIndex(null);
@@ -62,9 +56,8 @@ const NewBetConditions = <T extends FieldValues>({
     <ConditionsContent>
       {inputName &&
         control &&
-        users.map((user, userIndex) => {
+        watch().Participants?.map((user, userIndex) => {
           const userDate = value?.[userIndex]?.date || '';
-
           return (
             <ConditionsRowContent key={userIndex}>
               <ConditionsRowContentCenter>

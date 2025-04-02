@@ -27,10 +27,28 @@ const NewBet = () => {
   const { t } = useTranslation();
   const { control, handleSubmit, watch, setValue, unregister } = useFormContext<CreateFormInputs>();
   const [targetProgress, setTargetProgress] = useState(0);
-  const disableButton =
-    step.inputName && watch(step.inputName) === '' && step.inputName !== NewBetStepValueTypes.Start;
-
+  const [disableButton, setDisableButton] = useState<boolean>(false);
   const formValues = watch();
+
+  useEffect(() => {
+    if (step.step === NewBetStepValueTypes.Start) {
+      setDisableButton(false);
+      return;
+    }
+    const currentInputName = step.inputName;
+    if (!currentInputName) return;
+
+    const currentValue = watch(currentInputName);
+    if (currentValue && Array.isArray(currentValue) && currentValue.length === 0) {
+      setDisableButton(true);
+      return;
+    }
+    if (currentValue === undefined || currentValue === null || currentValue === '') {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
+  }, [step, formValues, watch]);
 
   useEffect(() => {
     const savedData = localStorage.getItem('betForm');
@@ -146,7 +164,7 @@ const NewBet = () => {
         <ButtonsContainerInner>
           {step.inputName && (
             <StyledButton
-              value={step.continueButton ? t('NewBet.Continue') : t('NewBet.createBet')}
+              value={t(step.continueButtonText ?? t('NewBet.Continue'))}
               onClick={() => handleStep(step.continueButton)}
               styleProps={{ width: '100%' }}
               disabled={disableButton}

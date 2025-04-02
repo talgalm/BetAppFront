@@ -17,16 +17,17 @@ export const TypographyTypes = {
   H4: {
     fontWeight: 400,
     fontSize: 20,
+    color: 'black',
   },
   H5: {
     fontWeight: 500,
     fontSize: 16,
-    color: '#9798A2',
+    // color: '#9798A2',
   },
   H6: {
     fontWeight: 400,
     fontSize: 14,
-    color: '#48494D',
+    // color: '#48494D',
   },
   H7: {
     fontWeight: 400,
