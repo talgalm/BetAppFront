@@ -9,7 +9,7 @@ export const BetNameInput = styled('input')<{
   outline: 'none',
   direction: 'rtl',
   backgroundColor: 'transparent',
-  color: typography.color,
+  color: 'white',
   fontSize: typography.fontSize,
   fontFamily: 'Fredoka',
   fontWeight: typography.fontWeight,

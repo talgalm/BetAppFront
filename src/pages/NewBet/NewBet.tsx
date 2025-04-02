@@ -135,12 +135,12 @@ const NewBet = () => {
             <CheckboxTextContainer>
               <Typography
                 value={t(`NewBet.DescriptionCheckboxTitle`)}
-                variant={TypographyTypes.H7}
+                variant={TypographyTypes.Button}
                 styleProps={{ color: 'black' }}
               />
               <Typography
                 value={t(`NewBet.DescriptionCheckboxSubTitle`)}
-                variant={TypographyTypes.H9}
+                variant={TypographyTypes.Button}
                 styleProps={{ color: 'black' }}
               />
             </CheckboxTextContainer>

@@ -44,21 +44,21 @@ const NewBetContent = <T extends FieldValues>({
       <RowContentContainer>
         <Typography
           value={t(`NewBet.${type}Title`)}
-          variant={TypographyTypes.H3}
+          variant={TypographyTypes.H1}
           styleProps={{ color: 'black' }}
         />
       </RowContentContainer>
       <RowContentContainer>
         <Typography
           value={t(`NewBet.${type}Subtitle`)}
-          variant={TypographyTypes.H4}
+          variant={TypographyTypes.H2}
           styleProps={{ color: 'black' }}
         />
       </RowContentContainer>
       <RowContentContainer>
         <Typography
           value={t(`NewBet.${type}Subtitle2`)}
-          variant={TypographyTypes.H5}
+          variant={TypographyTypes.H3}
           styleProps={{ color: 'black' }}
         />
       </RowContentContainer>

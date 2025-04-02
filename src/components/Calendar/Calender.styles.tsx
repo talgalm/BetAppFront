@@ -276,7 +276,7 @@ export const StyledCalendar = styled(Calendar)`
     border-radius: 0;
     padding: 0;
     width: 40px;
-    height: 50px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;

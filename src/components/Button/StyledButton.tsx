@@ -17,7 +17,7 @@ interface StyledButtonProps {
 const StyledButton: React.FC<StyledButtonProps> = ({
   value,
   onClick,
-  variant = TypographyTypes.H10,
+  variant = TypographyTypes.Button,
   icon,
   disabled,
   textColor,

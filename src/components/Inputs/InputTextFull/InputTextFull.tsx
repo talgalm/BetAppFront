@@ -40,7 +40,7 @@ const InputTextFull = <T extends FieldValues>({
         <WidthDiv>
           <BetInput
             placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
-            typography={TypographyTypes.H5}
+            typography={TypographyTypes.TextMedium}
             isWriting={field.value.length > 0}
             setHeight={isSetHeight}
             {...field}
