@@ -5,9 +5,10 @@ import { TextField } from '@mui/material';
 
 export const BetInput = styled('input')<{
   typography: typeof TypographyTypes.H7;
-  isWriting: boolean;
+  isWriting?: boolean;
   setHeight?: boolean;
-}>(({ typography, isWriting, setHeight }) => ({
+  isIcon?: boolean;
+}>(({ typography, isWriting, setHeight, isIcon = false }) => ({
   width: '100%',
   direction: 'rtl',
   marginTop: 16,
@@ -20,7 +21,7 @@ export const BetInput = styled('input')<{
   fontWeight: typography.fontWeight,
   outline: 'none',
   color: TEXT_THIRD_COLOR,
-  padding: setHeight ? '0px 16px 0px 0px' : '24px 16px 96px',
+  padding: setHeight ? `0px ${isIcon ? 32 : 16}px 0px 0px` : '24px 16px 96px',
   resize: 'none',
   whiteSpace: 'pre-wrap',
   wordWrap: 'break-word',
@@ -41,4 +42,16 @@ export const NumOfChars = styled('div')({
 
 export const WidthDiv = styled('div')({
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+});
+
+export const IconWrapper = styled('div')({
+  position: 'absolute',
+  right: 12,
+  bottom: 15,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });

@@ -24,43 +24,28 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   width: '100%',
 }));
 
-export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>(
-  ({ isOpen, padding }) => ({
-    position: 'relative',
-    width: '100%',
-    maxWidth: '100%',
-    minWidth: '100%',
-    height: '93vh',
-    backgroundColor: '#F8F8FD',
-    borderRadius: '24px 25px 0 0',
-    borderLeft: 'none',
-    borderRight: 'none',
-    borderBottom: 'none',
-    zIndex: 10000,
-    transition: 'transform 0.3s ease',
-    transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-    boxSizing: 'border-box',
-    margin: 0,
-    paddingTop: padding ? '123px' : '26px',
-    overflow: 'hidden',
-  })
-);
+export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>(({ isOpen }) => ({
+  position: 'relative',
+  width: '100%',
+  maxWidth: '100%',
+  minWidth: '100%',
+  height: '100vh',
+  backgroundColor: 'White',
+  borderBottom: 'none',
+  zIndex: 10000,
+  transition: 'transform 0.3s ease',
+  transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
+  boxSizing: 'border-box',
+  margin: 0,
+  padding: '24px 16px 24px 16px',
+  overflow: 'hidden',
+}));
 
 export const PopUpHeader = styled('div')({
-  height: 123,
-  background: '#22353E',
-  borderRadius: '24px 25px 0 0',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  padding: '20px 20px 0',
-  textAlign: 'center',
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  zIndex: 10001,
+  width: '100%',
+  justifyContent: 'space-between',
+  zIndex: 1000,
 });
 
 export const PopUpScroll = styled('div')({
@@ -75,12 +60,11 @@ export const CloseIcon = styled('span')({
 });
 
 export const PopUpNotInContact = styled('div')({
-  backgroundColor: '#EDEDF5',
   width: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  padding: 16,
+  paddingTop: 16,
   gap: 8,
 });
 
@@ -96,10 +80,8 @@ export const ItemsHeaderContent = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  paddingRight: 16,
   paddingBottom: 8,
   paddingTop: 8,
-  backgroundColor: '#EDEDF5',
 });
 
 export const ItemsBodyContent = styled('div')<ItemsBodyContentProps>(({ selected }) => ({
@@ -107,7 +89,7 @@ export const ItemsBodyContent = styled('div')<ItemsBodyContentProps>(({ selected
   width: '100%',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  padding: 12,
+  paddingTo: 12,
   paddingBottom: 8,
   cursor: 'pointer',
   transition: 'background-color 0.3s',

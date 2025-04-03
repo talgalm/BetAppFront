@@ -19,7 +19,7 @@ export const TypographyTypes = {
     fontWeight: 400,
     fontSize: 16,
   },
-  TextSmaill: {
+  TextSmall: {
     fontWeight: 500,
     fontSize: 14,
   },

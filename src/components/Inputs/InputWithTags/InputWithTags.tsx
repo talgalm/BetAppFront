@@ -92,7 +92,7 @@ const InputWithTags = <T extends FieldValues>({
         <AddIcon width={25} height={24} />
       </IconAddDiv>
 
-      <ContactModal
+      {/* <ContactModal
         open={isPopUpOpen}
         handlePopUpClose={handlePopUpClose}
         control={control}
@@ -101,7 +101,7 @@ const InputWithTags = <T extends FieldValues>({
         selectedUsers={selectedUsers}
         handleSelectUser={handleSelectUser}
         limit={limit}
-      />
+      /> */}
     </AddParticipantsDiv>
   );
 };

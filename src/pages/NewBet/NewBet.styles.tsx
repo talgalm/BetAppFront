@@ -10,7 +10,7 @@ export const PageContainer = styled('div')({
   paddingLeft: 24,
   paddingTop: 60,
   marginTop: 10,
-  height: '96vh',
+  height: '97vh',
   overflowY: 'auto',
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {

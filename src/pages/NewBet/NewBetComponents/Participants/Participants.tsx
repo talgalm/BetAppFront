@@ -24,6 +24,7 @@ import {
   StyledAvatar,
   StyledDivider,
 } from '../Participants/Participants.styles';
+import ContactModal from '../../../ContactModal/ContactModal';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -108,7 +109,7 @@ const NewBetParticipants = <T extends FieldValues>({
       <ParticipantsContent>
         <Typography
           value={t(`NewBet.mostActives`)}
-          variant={TypographyTypes.H4}
+          variant={TypographyTypes.H2}
           styleProps={{ marginBottom: 10 }}
         />
         {mostActives.length > 0 &&
@@ -120,9 +121,9 @@ const NewBetParticipants = <T extends FieldValues>({
             >
               <ParticipantsContentUser>
                 <SmallAvatar>{item.fullName?.charAt(0)} </SmallAvatar>
-                <Typography value={item.fullName || ''} variant={TypographyTypes.H7} />
+                <Typography value={item.fullName || ''} variant={TypographyTypes.TextMedium} />
               </ParticipantsContentUser>
-              <Typography value={item.phoneNumber || ''} variant={TypographyTypes.H7} />
+              <Typography value={item.phoneNumber || ''} variant={TypographyTypes.TextMedium} />
             </ParticipantsContentRow>
           ))}
       </ParticipantsContent>
@@ -135,6 +136,20 @@ const NewBetParticipants = <T extends FieldValues>({
           styleProps={{ color: PRIMARY_COLOR }}
         />
       </RowCenterContentContainer>
+      {control && inputName && (
+        <ContactModal
+          open={true}
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          handlePopUpClose={() => {}}
+          control={control}
+          inputName={inputName}
+          groups={[]}
+          selectedUsers={[]}
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          handleSelectUser={() => {}}
+          limit={limit}
+        />
+      )}
     </>
   );
 };
