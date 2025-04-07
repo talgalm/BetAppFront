@@ -22,6 +22,7 @@ export const TypographyTypes = {
   TextSmall: {
     fontWeight: 500,
     fontSize: 14,
+    color: '#9798A2',
   },
   Button: {
     fontWeight: 600,

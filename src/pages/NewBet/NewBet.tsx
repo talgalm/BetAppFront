@@ -31,10 +31,16 @@ const NewBet = () => {
   const formValues = watch();
 
   useEffect(() => {
-    if (step.step === NewBetStepValueTypes.Start) {
+    if (step.step === NewBetStepValueTypes.Start || step.step === NewBetStepValueTypes.Summary) {
       setDisableButton(false);
       return;
     }
+
+    if (step.step === NewBetStepValueTypes.Description) {
+      setDisableButton(false);
+      return;
+    }
+
     const currentInputName = step.inputName;
     if (!currentInputName) return;
 
@@ -47,6 +53,14 @@ const NewBet = () => {
       setDisableButton(true);
     } else {
       setDisableButton(false);
+    }
+
+    if (step.step === NewBetStepValueTypes.Coins) {
+      if (currentValue === 0 || currentValue === undefined) {
+        setDisableButton(true);
+      } else {
+        setDisableButton(false);
+      }
     }
   }, [step, formValues, watch]);
 
@@ -95,6 +109,10 @@ const NewBet = () => {
         }
       }
     }
+
+    if (step.step === NewBetStepValueTypes.Summary) {
+      onSubmit(formValues);
+    }
   };
 
   const onSubmit = (data: CreateFormInputs) => {
@@ -135,12 +153,12 @@ const NewBet = () => {
             <CheckboxTextContainer>
               <Typography
                 value={t(`NewBet.DescriptionCheckboxTitle`)}
-                variant={TypographyTypes.Button}
+                variant={TypographyTypes.TextMedium}
                 styleProps={{ color: 'black' }}
               />
               <Typography
                 value={t(`NewBet.DescriptionCheckboxSubTitle`)}
-                variant={TypographyTypes.Button}
+                variant={TypographyTypes.TextSmall}
                 styleProps={{ color: 'black' }}
               />
             </CheckboxTextContainer>

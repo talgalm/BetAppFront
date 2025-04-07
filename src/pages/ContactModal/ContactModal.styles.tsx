@@ -1,3 +1,4 @@
+import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface ItemsBodyContentProps {
@@ -49,10 +50,13 @@ export const PopUpHeader = styled('div')({
 });
 
 export const PopUpScroll = styled('div')({
-  overflowY: 'auto',
-  paddingBottom: '20px',
-  height: '80vh',
-  maxHeight: 700,
+  overflowY: 'scroll',
+  paddingRight: 3,
+  height: '100%',
+  minHeight: '100px',
+  direction: 'ltr',
+  flexGrow: 1,
+  paddingBottom: 100,
 });
 
 export const CloseIcon = styled('span')({
@@ -73,6 +77,9 @@ export const ItemsContant = styled('div')({
   top: 0,
   zIndex: 1,
   backgroundColor: 'white',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8,
 });
 
 export const ItemsHeaderContent = styled('div')({
@@ -87,10 +94,11 @@ export const ItemsHeaderContent = styled('div')({
 export const ItemsBodyContent = styled('div')<ItemsBodyContentProps>(({ selected }) => ({
   display: 'flex',
   width: '100%',
-  flexDirection: 'row',
+  flexDirection: 'row-reverse',
   justifyContent: 'space-between',
-  paddingTo: 12,
-  paddingBottom: 8,
+  alignItems: 'center',
+  padding: 4,
+  borderRadius: 6,
   cursor: 'pointer',
   transition: 'background-color 0.3s',
   backgroundColor: selected ? 'lightblue' : 'transparent',
@@ -99,30 +107,17 @@ export const ItemsBodyContent = styled('div')<ItemsBodyContentProps>(({ selected
   },
 }));
 
-export const ItemsNameImageContent = styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 8,
-});
-
 export const ItemsNameImageCircleContent = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'row-reverse',
   alignItems: 'center',
   gap: 12,
   paddingRight: 4,
 });
 
-export const AvatarsDiv = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
+export const SmallAvatar = styled(Avatar)({
+  backgroundColor: 'grey',
   width: 24,
   height: 24,
-  flexShrink: 0,
-  borderRadius: 8,
-  border: '1.5px solid var(--Background-Lavender-Mist, #EDEDF5)',
-  background: 'var(--Status-Wild-Blue-Yonder, #7F8CB9)',
+  fontSize: 11,
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { Typography } from '../../../../components/Topography/topography';
 import { TypographyTypes } from '../../../../Theme/Typography/typography';
@@ -38,6 +38,7 @@ const NewBetParticipants = <T extends FieldValues>({
   control,
 }: NewBetParticipantsProps<T>): JSX.Element => {
   const { t } = useTranslation();
+  const [openModal, setOpenModal] = useState(false);
   // const { mostActives = [] } = useGetMostActives(user?.id);
 
   const {
@@ -62,7 +63,20 @@ const NewBetParticipants = <T extends FieldValues>({
       removeUser(user);
       finalUsers = [user];
     }
+
     onChange(finalUsers);
+  };
+
+  const addUsers = (users: User[]) => {
+    const currentUsers = Array.isArray(value) ? value : [];
+
+    const newUsers = users.filter(
+      (newUser) => !currentUsers.some((existingUser: User) => existingUser.id === newUser.id)
+    );
+
+    const updatedUsers = [...currentUsers, ...newUsers];
+
+    onChange(limit ? updatedUsers.slice(0, limit) : updatedUsers);
   };
 
   const removeUser = (user: User) => {
@@ -110,7 +124,7 @@ const NewBetParticipants = <T extends FieldValues>({
         <Typography
           value={t(`NewBet.mostActives`)}
           variant={TypographyTypes.H2}
-          styleProps={{ marginBottom: 10 }}
+          styleProps={{ marginBottom: 10, paddingRight: 12 }}
         />
         {mostActives.length > 0 &&
           mostActives.map((item, index) => (
@@ -128,7 +142,7 @@ const NewBetParticipants = <T extends FieldValues>({
           ))}
       </ParticipantsContent>
       <StyledDivider />
-      <RowCenterContentContainer>
+      <RowCenterContentContainer onClick={() => setOpenModal(true)}>
         <ContactIcon />
         <Typography
           value={t(`NewBet.contacts`)}
@@ -138,16 +152,11 @@ const NewBetParticipants = <T extends FieldValues>({
       </RowCenterContentContainer>
       {control && inputName && (
         <ContactModal
-          open={true}
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          handlePopUpClose={() => {}}
+          open={openModal}
+          handleClose={() => setOpenModal(false)}
+          handleSave={addUsers}
           control={control}
           inputName={inputName}
-          groups={[]}
-          selectedUsers={[]}
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          handleSelectUser={() => {}}
-          limit={limit}
         />
       )}
     </>

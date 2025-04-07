@@ -99,11 +99,14 @@ export const SelectedContainer = styled('div')({
   width: 343,
   height: '100%',
   borderRadius: 16,
-  paddingTop: 20,
+  paddingTop: 10,
   paddingRight: 16,
   paddingLeft: 16,
   gap: 8,
-
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  scrollBehavior: 'smooth',
+  whiteSpace: 'nowrap',
   boxShadow: `
     0px 2px 5px 0px #ADADAD33,
     0px 10px 10px 0px #ADADAD2E,
@@ -111,6 +114,14 @@ export const SelectedContainer = styled('div')({
     0px 39px 16px 0px #ADADAD08,
     0px 61px 17px 0px #ADADAD00
   `,
+  '&::-webkit-scrollbar': {
+    height: 6,
+    display: 'none',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#C8C8E1',
+    borderRadius: 10,
+  },
 });
 
 export const ParticipantsContent = styled('div')({

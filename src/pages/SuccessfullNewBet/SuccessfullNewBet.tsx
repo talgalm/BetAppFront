@@ -30,7 +30,6 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
       headerStyle: HeaderStyle.PRIMARY_EXPAND,
       footerStyle: FooterStyle.SHOW,
     });
-    console.log(isAddToCalendar);
     navigate('/');
   };
 

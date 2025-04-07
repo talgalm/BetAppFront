@@ -20,7 +20,6 @@ export const BetInput = styled('input')<{
   fontFamily: 'Fredoka, sans-serif',
   fontWeight: typography.fontWeight,
   outline: 'none',
-  color: TEXT_THIRD_COLOR,
   padding: setHeight ? `0px ${isIcon ? 32 : 16}px 0px 0px` : '24px 16px 96px',
   resize: 'none',
   whiteSpace: 'pre-wrap',

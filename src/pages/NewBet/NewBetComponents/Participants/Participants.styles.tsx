@@ -24,7 +24,10 @@ export const SelectedContainer = styled('div')({
   paddingRight: 16,
   paddingLeft: 16,
   gap: 8,
-
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  scrollBehavior: 'smooth',
+  whiteSpace: 'nowrap',
   boxShadow: `
     0px 2px 5px 0px #ADADAD33,
     0px 10px 10px 0px #ADADAD2E,
@@ -32,16 +35,26 @@ export const SelectedContainer = styled('div')({
     0px 39px 16px 0px #ADADAD08,
     0px 61px 17px 0px #ADADAD00
   `,
+  '&::-webkit-scrollbar': {
+    height: 6,
+    display: 'none',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#C8C8E1',
+    borderRadius: 10,
+  },
 });
 
 export const ParticipantsContent = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
-  gap: 12.5,
+  gap: 3,
   marginTop: 0,
+  marginLeft: -16,
+  marginRight: -16,
   alignItems: 'flex-start',
   flexDirection: 'column',
-  width: '100%',
+  width: 'calc(100% + 32px)',
   backgroundColor: '#FFFFFF',
 });
 
@@ -51,7 +64,9 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     flexDirection: 'row',
     display: 'flex',
     justifyContent: 'space-between',
-    gap: 10,
+    padding: 4,
+    paddingRight: 12,
+    paddingLeft: 12,
     alignItems: 'center',
     backgroundColor: background ? '#CEEFEA' : 'transparent',
   })
@@ -77,6 +92,7 @@ export const StyledAvatar = styled(Avatar)({
   width: 36,
   height: 36,
   fontSize: 18,
+  flexShrink: 0,
 });
 
 export const SmallAvatar = styled(Avatar)({

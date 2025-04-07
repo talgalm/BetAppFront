@@ -8,6 +8,8 @@ export const ConditionsContent = styled('div')({
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: '100%',
+  height: 'calc(75vh - 162px)',
+  overflowY: 'scroll',
 });
 
 export const ConditionsRowContent = styled('div')({

@@ -29,8 +29,8 @@ export const ParticipantsRow = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   gap: 8,
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'flex-start',
+  alignItems: 'felx',
 });
 
 export const StyledDivider = styled(Divider)({
