@@ -18,7 +18,7 @@ export const ConditionsRowContent = styled('div')({
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: '100%',
-  gap: 0,
+  gap: 10,
 });
 
 export const ConditionsRowContentCenter = styled('div')({

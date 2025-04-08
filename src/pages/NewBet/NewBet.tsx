@@ -36,7 +36,7 @@ const NewBet = () => {
       return;
     }
 
-    if (step.step === NewBetStepValueTypes.Description) {
+    if (step.step === NewBetStepValueTypes.Files) {
       setDisableButton(false);
       return;
     }
@@ -132,39 +132,41 @@ const NewBet = () => {
   };
 
   return (
-    <PageContainer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {step.prevButton && <ProgressBar targetProgress={targetProgress} />}
-        {step.step && (
-          <NewBetContent control={control} inputName={step.inputName} type={step.step} />
-        )}
-        {step.step === NewBetStepValueTypes.Description && (
-          <CheckboxContainer>
-            <Checkbox
-              onChange={(e) => changeNextStep(e.target.checked)}
-              defaultChecked={false}
-              sx={{
-                color: PRIMARY_COLOR,
-                '&.Mui-checked': {
+    <>
+      <PageContainer>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {step.prevButton && <ProgressBar targetProgress={targetProgress} />}
+          {step.step && (
+            <NewBetContent control={control} inputName={step.inputName} type={step.step} />
+          )}
+          {step.step === NewBetStepValueTypes.Description && (
+            <CheckboxContainer>
+              <Checkbox
+                onChange={(e) => changeNextStep(e.target.checked)}
+                defaultChecked={false}
+                sx={{
                   color: PRIMARY_COLOR,
-                },
-              }}
-            />
-            <CheckboxTextContainer>
-              <Typography
-                value={t(`NewBet.DescriptionCheckboxTitle`)}
-                variant={TypographyTypes.TextMedium}
-                styleProps={{ color: 'black' }}
+                  '&.Mui-checked': {
+                    color: PRIMARY_COLOR,
+                  },
+                }}
               />
-              <Typography
-                value={t(`NewBet.DescriptionCheckboxSubTitle`)}
-                variant={TypographyTypes.TextSmall}
-                styleProps={{ color: 'black' }}
-              />
-            </CheckboxTextContainer>
-          </CheckboxContainer>
-        )}
-      </form>
+              <CheckboxTextContainer>
+                <Typography
+                  value={t(`NewBet.DescriptionCheckboxTitle`)}
+                  variant={TypographyTypes.TextMedium}
+                  styleProps={{ color: 'black' }}
+                />
+                <Typography
+                  value={t(`NewBet.DescriptionCheckboxSubTitle`)}
+                  variant={TypographyTypes.TextSmall}
+                  styleProps={{ color: 'black' }}
+                />
+              </CheckboxTextContainer>
+            </CheckboxContainer>
+          )}
+        </form>
+      </PageContainer>
       <ButtonsContainer>
         {step.continuteWithout && (
           <StyledButton
@@ -197,7 +199,7 @@ const NewBet = () => {
           )}
         </ButtonsContainerInner>
       </ButtonsContainer>
-    </PageContainer>
+    </>
   );
 };
 

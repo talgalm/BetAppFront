@@ -1,0 +1,12 @@
+{
+  "NotEnoughBetimTitle": "חסר בטים בארנק",
+  "NotEnoughBetimSubtitle": "אין לך מספיק בטים, נא להטעין את החשבון.",
+  "FileNotSupportedTitle": "עדיין לא תומכים בפורמט הזה",
+  "FileNotSupportedSubtitle": "פורמט הקובץ אינו נתמך, נא לבחור קובץ בפורמט מתאים.",
+  "FileTooBigTitle": "הקובץ יותר מידי גדול",
+  "FileTooBigSubtitle": "הקובץ חורג מהגודל המותר (25MB) נא לבחור קובץ אחר.",
+  "OverlappingParticipantsTitle": "יש לבחור בן אדם אחר",
+  "OverlappingParticipantsSubtitle": "האחראי לא יכול להיות משתתף, בהתערבות, נא לבחור אדם אחר.",
+  "ConnectionErrorTitle": "איו חיבור לאינטרנט ",
+  "ConnectionErrorSubtitle": "בעיה בחיבור האינטרנט, הנתונים נשמרו, נא לנסות שוב לאחר חידוש החיבור."
+}

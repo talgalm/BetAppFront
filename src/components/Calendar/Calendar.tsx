@@ -291,6 +291,12 @@ const Calendar = <T extends FieldValues>({
     if (isChecked) setValue('AddTocalendar', isChecked);
   }, [isChecked, setValue]);
 
+  const hebrewWeekdayFormatter = (locale: string | undefined, date: Date) => {
+    // Get just the Hebrew letter without any apostrophe
+    const weekdays = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
+    return weekdays[date.getDay()];
+  };
+
   return (
     <div>
       {inputName && (
@@ -305,9 +311,7 @@ const Calendar = <T extends FieldValues>({
               prevLabel={<RightArrow width={12} height={12} />}
               next2Label={null}
               prev2Label={null}
-              formatShortWeekday={(locale, date) =>
-                date.toLocaleDateString(locale, { weekday: 'narrow' })
-              }
+              formatShortWeekday={hebrewWeekdayFormatter}
               locale="he"
               showNeighboringMonth={false}
             />
@@ -325,7 +329,7 @@ const Calendar = <T extends FieldValues>({
               },
             }}
           />
-          <Typography value={t('Calendar.addToCalendar')} variant={TypographyTypes.H6} />
+          <Typography value={t('Calendar.addToCalendar')} variant={TypographyTypes.TextMedium} />
         </CheckboxDiv>
       )}
     </div>

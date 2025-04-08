@@ -7,17 +7,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import Header from './Layout/Header/Header';
 import { Footer } from './Layout/Footer/Footer';
 
-import { FallbackProps } from 'react-error-boundary';
-
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  return (
-    <div role="alert" style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>Something went wrong</h2>
-      <p style={{ color: 'red' }}>{error.message}</p>
-      <button onClick={resetErrorBoundary}>Try Again</button>
-    </div>
-  );
-};
+import ErrorFallback from './Errors/ErrorHandler';
 
 const App = () => {
   const queryClient = new QueryClient({

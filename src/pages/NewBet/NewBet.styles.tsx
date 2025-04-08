@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 export const PageContainer = styled('div')({
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
@@ -10,7 +11,6 @@ export const PageContainer = styled('div')({
   paddingLeft: 24,
   paddingTop: 60,
   marginTop: 10,
-  height: '97vh',
   overflowY: 'auto',
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {
@@ -37,7 +37,6 @@ export const CheckboxContainer = styled('div')({
   width: '100%',
   direction: 'rtl',
   marginLeft: 12,
-  marginTop: -24,
 });
 
 export const CheckboxTextContainer = styled('div')({
@@ -75,12 +74,18 @@ export const RowCenterContentContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')({
-  marginTop: 'auto',
-  marginBottom: 0,
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  right: 0,
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
   flexDirection: 'column',
   gap: 15,
+  padding: 16,
+  zIndex: 10,
 });
 
 export const ButtonsContainerInner = styled('div')({

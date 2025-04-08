@@ -62,31 +62,35 @@ const NewBetContent = <T extends FieldValues>({
           styleProps={{ color: 'black' }}
         />
       </RowContentContainer>
-      {inputName && type === NewBetStepValueTypes.Name && (
-        <InputTextFull
-          control={control}
-          inputName={inputName}
-          isSetHeight={true}
-          displayCharLimit={false}
-          placeholder={t(`NewBet.${type}Title`)}
-        />
-      )}
-      {inputName && type === NewBetStepValueTypes.Description && (
-        <>
-          <InputTextFull
-            control={control}
-            inputName={inputName}
-            isSetHeight={false}
-            displayCharLimit={false}
-            placeholder={t(`NewBet.${type}Title`)}
-          />
-        </>
+      {(type === NewBetStepValueTypes.Description || type === NewBetStepValueTypes.Name) && (
+        <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
+          {inputName && type === NewBetStepValueTypes.Name && (
+            <InputTextFull
+              control={control}
+              inputName={inputName}
+              extended={false}
+              displayCharLimit={false}
+              placeholder={t(`NewBet.${type}Title`)}
+            />
+          )}
+          {inputName && type === NewBetStepValueTypes.Description && (
+            <InputTextFull
+              control={control}
+              inputName={inputName}
+              extended={true}
+              displayCharLimit={false}
+              placeholder={t(`NewBet.${type}Title`)}
+            />
+          )}
+        </div>
       )}
       {inputName && type === NewBetStepValueTypes.Coins && (
         <Betim control={control} inputName={inputName} />
       )}
       {inputName && control && type === NewBetStepValueTypes.Deadline && (
-        <Calendar control={control} inputName={inputName} displayAddToCalendar />
+        <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
+          <Calendar control={control} inputName={inputName} displayAddToCalendar />
+        </div>
       )}
       {inputName && control && type === NewBetStepValueTypes.Conditions && (
         <NewBetConditions control={control} inputName={inputName} />

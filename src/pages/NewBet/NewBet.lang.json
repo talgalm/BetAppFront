@@ -2,7 +2,7 @@
   "BetNameInput": "הקלד כאן שם התערבות...",
   "DeadlineTitle": "יש דדליין?",
   "DeadlineSubtitle": "רוצה לקבוע תאריך סיום להתערבות? ",
-  "DeadlineSubtitle2": "",
+  "DeadlineSubtitle2": "אתה יכול לשנות את התאריך בכל עת",
 
   "DeadlineContinueWithout": "המשך ללא תאריך",
   "FilesTitle": "קבצים",
@@ -55,12 +55,14 @@
   "SummaryConditionsaTag": "תנאים אישיים",
   "SummaryBetimTitle": "בטים",
   "SummaryDeadlineTitle": "דדליין",
+  "SummaryFilesTitle": "קבצים",
   "SummarySupervisorTitle": "אחראי",
 
   "CoinsTitle": "כמה בטים במשחק",
   "CoinsSubtitle": "כמה בטים כל משתתף שם? הזוכה לוקח הכל!",
   "CoinsSubtitle2": "",
   "CoinsContinueWithout": "קניית בטים",
+  "CoinsDisclaimer": "רק משתתפים עם יתרת בטים מספקת יוכלו להשתתף בהתערבות",
   "other": "אחר",
   "ModalCoinsTitle": "מספר בטים",
   "ModalCoinsSubtitle": "כאן תוכל להזין מספר בטים להתערבות"

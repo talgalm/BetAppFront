@@ -64,7 +64,7 @@ const NewBetConditions = <T extends FieldValues>({
                 <StyledAvatar> {user.fullName?.charAt(0)} </StyledAvatar>
                 <Typography
                   value={user.fullName || ''}
-                  variant={TypographyTypes.H7}
+                  variant={TypographyTypes.TextBig}
                   styleProps={{ color: 'black' }}
                 />
               </ConditionsRowContentCenter>
@@ -72,8 +72,6 @@ const NewBetConditions = <T extends FieldValues>({
               <InputTextFull
                 control={control}
                 inputName={`${inputName}.${userIndex}.text` as Path<T>}
-                isSetHeight={true}
-                displayCharLimit={false}
                 placeholder={t(`NewBet.EnterCondition`)}
               />
 
@@ -81,7 +79,7 @@ const NewBetConditions = <T extends FieldValues>({
                 {!userDate && <CalendarIcon color="#15AB94" />}
                 <Typography
                   value={userDate ? formatDate(userDate) : t(`NewBet.ConditionAddDate`)}
-                  variant={TypographyTypes.H7}
+                  variant={TypographyTypes.Button}
                   styleProps={{ color: '#15AB94' }}
                 />
               </ConditionsRowContentCenter>

@@ -49,7 +49,7 @@ export const ParticipantsContent = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
   gap: 3,
-  marginTop: 0,
+  marginTop: 16,
   marginLeft: -16,
   marginRight: -16,
   alignItems: 'flex-start',
@@ -144,4 +144,5 @@ export const StyledDivider = styled(Divider)({
   width: '100%',
   borderBottomWidth: 1,
   borderColor: '#DADADA',
+  marginBottom: 16,
 });

@@ -117,7 +117,7 @@ const InputWithPoints = <T extends FieldValues>({
             <InputTextFull
               control={control}
               inputName={inputName}
-              isSetHeight={true}
+              extended={true}
               displayCharLimit={false}
             />
           </div>

@@ -54,3 +54,42 @@ export const IconWrapper = styled('div')({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+export const StyledTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiOutlinedInput-root': {
+    borderRadius: '8px',
+    backgroundColor: '#fff',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.05)',
+    '& fieldset': {
+      borderColor: '#E0E0E0',
+    },
+    '&:hover fieldset': {
+      borderColor: '#BDBDBD',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#9E9E9E',
+    },
+  },
+  '& .MuiOutlinedInput-input': {
+    direction: 'rtl',
+    textAlign: 'right',
+    fontFamily: '"Heebo", "Roboto", "Arial", sans-serif',
+    overflowY: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '4px',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'transparent',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: '#E0E0E0',
+      borderRadius: '4px',
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: '#BDBDBD',
+    },
+  },
+  '& .MuiInputAdornment-root': {
+    margin: '0px',
+  },
+}));

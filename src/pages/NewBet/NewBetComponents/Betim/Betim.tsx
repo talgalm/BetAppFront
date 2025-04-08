@@ -65,7 +65,8 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
       <RowContentContainer>
         <Typography
           value={`${t('Input.YourBalance')} ${userCurrentCoins} ${t('Input.Coins')}`}
-          variant={TypographyTypes.H10}
+          variant={TypographyTypes.H3}
+          styleProps={{ color: '#15AB94' }}
         />
       </RowContentContainer>
       <CoinsGridContainer>
@@ -84,7 +85,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
                   <StyledDivider flexItem />
                   <Typography
                     value={field.value ?? 0}
-                    variant={TypographyTypes.H3}
+                    variant={TypographyTypes.H1}
                     styleProps={{ color: PRIMARY_COLOR }}
                   />
                   <StyledDivider flexItem />
@@ -93,7 +94,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
               ) : (
                 <Typography
                   value={index === 3 ? t('NewBet.other') : item}
-                  variant={TypographyTypes.H3}
+                  variant={TypographyTypes.H1}
                   styleProps={{ color: PRIMARY_COLOR }}
                 />
               )}
@@ -101,6 +102,18 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
           );
         })}
       </CoinsGridContainer>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%', gap: 5 }}>
+        <Typography
+          value={`*`}
+          variant={TypographyTypes.TextSmall}
+          styleProps={{ color: '#15AB94' }}
+        />
+        <Typography
+          value={`${t('NewBet.CoinsDisclaimer')}`}
+          variant={TypographyTypes.TextSmall}
+          styleProps={{ color: '#9798A2' }}
+        />
+      </div>
     </>
   );
 };

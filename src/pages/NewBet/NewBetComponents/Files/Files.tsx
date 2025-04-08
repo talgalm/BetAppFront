@@ -20,7 +20,9 @@ import {
 } from '../Files/Files.styles';
 import { useTranslation } from 'react-i18next';
 import { Collapse } from '@mui/material';
-import { User } from '../../../../api/interfaces';
+import { ErrorHandler } from '../../../../Errors/ErrorHandler';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorTypes } from '../../../../Errors/interface';
 
 interface NewBetFilesProps<T extends FieldValues> {
   control?: Control<T>;
@@ -32,14 +34,19 @@ const NewBetFiles = <T extends FieldValues>({
   control,
 }: NewBetFilesProps<T>): JSX.Element => {
   const { t } = useTranslation();
+  const { showBoundary } = useErrorBoundary();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { setValue, getValues } = useFormContext<T>();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
+      const file = files[0];
+      if (file.size > 25 * 1024 * 1024) {
+        ErrorHandler(showBoundary, ErrorTypes.FileTooBig);
+      }
       const currentFiles = getValues(inputName) || [];
-      setValue(inputName, [...currentFiles, files[0]] as unknown as T[Path<T>]);
+      setValue(inputName, [...currentFiles, file] as unknown as T[Path<T>]);
     }
   };
 

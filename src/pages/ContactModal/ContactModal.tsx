@@ -41,6 +41,7 @@ interface ContactModalProps<T extends FieldValues> {
   handleSave: (users: User[]) => void;
   control: Control<T>;
   inputName: Path<T>;
+  limit?: number;
 }
 
 const ContactModal = <T extends FieldValues>({
@@ -48,12 +49,16 @@ const ContactModal = <T extends FieldValues>({
   handleClose,
   handleSave,
   inputName,
+  limit,
 }: ContactModalProps<T>) => {
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
 
   const handleUserClick = (user: User) => {
+    if (limit && selectedUsers.length === limit) {
+      return;
+    }
     setSelectedUsers((prevSelected) =>
       prevSelected.some((selectedUser) => selectedUser.id === user.id)
         ? prevSelected.filter((selectedUser) => selectedUser.id !== user.id)
@@ -117,7 +122,7 @@ const ContactModal = <T extends FieldValues>({
         </PopUpHeader>
         {inputName && (
           <InputTextFull
-            isSetHeight={true}
+            extended={true}
             displayCharLimit={false}
             placeholder={t(`ContactModal.notInContact`)}
             icon={Search}

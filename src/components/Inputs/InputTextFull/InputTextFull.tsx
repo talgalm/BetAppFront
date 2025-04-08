@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { Control, Controller, FieldValues, Path, PathValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
-import { BetInput, IconWrapper, NumOfChars, WidthDiv } from './InputTextFull.styles';
+import { BetInput, StyledTextField, IconWrapper, WidthDiv } from './InputTextFull.styles';
 
 interface InputTextFullProps<T extends FieldValues> {
   control?: Control<T>;
   inputName?: Path<T>;
-  isSetHeight?: boolean;
+  extended?: boolean;
   displayCharLimit?: boolean;
   placeholder?: string;
   typography?: keyof typeof TypographyTypes;
@@ -18,14 +17,12 @@ interface InputTextFullProps<T extends FieldValues> {
 const InputTextFull = <T extends FieldValues>({
   control,
   inputName,
-  isSetHeight = false,
-  displayCharLimit = true,
+  extended,
   placeholder,
   typography,
   icon: Icon,
 }: InputTextFullProps<T>): JSX.Element => {
   const { t } = useTranslation();
-  const MAX_INPUT_LENGTH = 100;
   useEffect(() => {
     const inputElement = document.querySelector(
       `[name="${String(inputName)}"]`
@@ -45,21 +42,14 @@ const InputTextFull = <T extends FieldValues>({
           render={({ field }) => (
             <WidthDiv>
               {<IconWrapper>{Icon && <Icon />}</IconWrapper>}
-              <BetInput
+              <StyledTextField
+                fullWidth
                 placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
-                typography={TypographyTypes.TextMedium}
-                isWriting={field.value.length > 0}
-                setHeight={isSetHeight}
+                variant="outlined"
+                multiline={extended}
+                rows={extended ? 4 : undefined}
                 {...field}
               />
-              {displayCharLimit && (
-                <NumOfChars>
-                  <Typography
-                    value={`${field.value.length} / ${MAX_INPUT_LENGTH}`}
-                    variant={TypographyTypes.TextSmall}
-                  />
-                </NumOfChars>
-              )}
             </WidthDiv>
           )}
         />

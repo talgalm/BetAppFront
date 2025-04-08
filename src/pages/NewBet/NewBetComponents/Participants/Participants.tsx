@@ -5,7 +5,7 @@ import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
 import { User } from '../../../../api/interfaces';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
 import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
 import {
@@ -25,6 +25,10 @@ import {
   StyledDivider,
 } from '../Participants/Participants.styles';
 import ContactModal from '../../../ContactModal/ContactModal';
+import { CreateFormInputs } from '../../Interface';
+import { ErrorHandler } from '../../../../Errors/ErrorHandler';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorTypes } from '../../../../Errors/interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -39,6 +43,8 @@ const NewBetParticipants = <T extends FieldValues>({
 }: NewBetParticipantsProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
+  const { watch } = useFormContext<CreateFormInputs>();
+  const { showBoundary } = useErrorBoundary();
   // const { mostActives = [] } = useGetMostActives(user?.id);
 
   const {
@@ -60,8 +66,12 @@ const NewBetParticipants = <T extends FieldValues>({
     let finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
 
     if (limit && finalUsers[0].id !== user.id) {
-      removeUser(user);
-      finalUsers = [user];
+      const userExists = watch().Participants?.some((participant) => participant.id === user.id);
+      if (userExists) {
+        ErrorHandler(showBoundary, ErrorTypes.OverlappingParticipants);
+      } else {
+        finalUsers = [user];
+      }
     }
 
     onChange(finalUsers);
@@ -157,6 +167,7 @@ const NewBetParticipants = <T extends FieldValues>({
           handleSave={addUsers}
           control={control}
           inputName={inputName}
+          limit={limit}
         />
       )}
     </>

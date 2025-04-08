@@ -6,7 +6,8 @@ import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
 import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';
-import { ReactComponent as MultiPeopleIcon } from '../../../../Theme/Icons/MultiPeople.svg';
+import { ReactComponent as FileIcon } from '../../../../Theme/Icons/FilesIcon.svg';
+
 import { ReactComponent as BetimIcon } from '../../../../Theme/Icons/Betim.svg';
 
 import {
@@ -22,6 +23,7 @@ import { User } from '../../../../api/interfaces';
 import { formatDate } from '../../../../utils/Helpers';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../../Jotai/newBetAtoms';
+import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateFormInputs>();
@@ -66,51 +68,57 @@ const NewBetSummary: React.FC = () => {
         <LeftArrow color="black" />
       </SummaryRow>
       <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Description)}>
-        {watch().Description && (
-          <SummaryColumn>
-            <Typography
-              value={t('NewBet.SummaryDescriptionTitle')}
-              variant={TypographyTypes.H5}
-              styleProps={{ color: 'black' }}
-            />
-            <Typography
-              value={watch().Description || ''}
-              variant={TypographyTypes.H4}
-              styleProps={{
-                color: 'black',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                width: '300px',
-              }}
-            />
-          </SummaryColumn>
-        )}
-        <LeftArrow color="black" />
-      </SummaryRow>
-      <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Conditions)}>
-        {watch().Conditions && (
-          <SummaryColumn>
-            <Typography
-              value={t('NewBet.SummaryConditionsTitle')}
-              variant={TypographyTypes.H5}
-              styleProps={{ color: 'black' }}
-            />
-            <SummaryRow background={'#CED0EF'}>
-              <SinglePeopleIcon />
+      {watch().Description && (
+        <>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Description)}>
+            <SummaryColumn>
               <Typography
-                value={t('NewBet.SummaryConditionsaTag')}
-                variant={TypographyTypes.H7}
+                value={t('NewBet.SummaryDescriptionTitle')}
+                variant={TypographyTypes.H5}
                 styleProps={{ color: 'black' }}
               />
-            </SummaryRow>
-          </SummaryColumn>
-        )}
-        <LeftArrow color="black" />
-      </SummaryRow>
-      <StyledDivider />
+              <Typography
+                value={watch().Description || ''}
+                variant={TypographyTypes.H4}
+                styleProps={{
+                  color: 'black',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  width: '300px',
+                }}
+              />
+            </SummaryColumn>
+
+            <LeftArrow color="black" />
+          </SummaryRow>
+          <StyledDivider />
+        </>
+      )}
+      {watch().Conditions && (
+        <>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Conditions)}>
+            <SummaryColumn>
+              <Typography
+                value={t('NewBet.SummaryConditionsTitle')}
+                variant={TypographyTypes.H5}
+                styleProps={{ color: 'black' }}
+              />
+              <SummaryRow background={'#CED0EF'}>
+                <SinglePeopleIcon />
+                <Typography
+                  value={t('NewBet.SummaryConditionsaTag')}
+                  variant={TypographyTypes.H7}
+                  styleProps={{ color: 'black' }}
+                />
+              </SummaryRow>
+            </SummaryColumn>
+
+            <LeftArrow color="black" />
+          </SummaryRow>
+          <StyledDivider />
+        </>
+      )}
       <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Coins)}>
         {watch().Coins !== undefined && (
           <SummaryColumn>
@@ -129,64 +137,90 @@ const NewBetSummary: React.FC = () => {
                 />
                 <BetimIcon width={18} height={18} />
               </SummaryRow>
-              {'X'}
-              <SummaryRow background={'#CEEFEA'}>
-                <MultiPeopleIcon />
-                <Typography
-                  value={watch().Coins * (watch().Participants?.length ?? 1)}
-                  variant={TypographyTypes.H7}
-                  styleProps={{ color: 'black' }}
-                />
-                <BetimIcon width={18} height={18} />
-              </SummaryRow>
             </SummaryRow>
           </SummaryColumn>
         )}
         <LeftArrow color="black" />
       </SummaryRow>
       <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Deadline)}>
-        {watch().Deadline && (
-          <SummaryColumn>
-            <Typography
-              value={t('NewBet.SummaryDeadlineTitle')}
-              variant={TypographyTypes.H5}
-              styleProps={{ color: 'black' }}
-            />
-            <SummaryRow background={'#CEEFEA'}>
+      {watch().Deadline && (
+        <>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Deadline)}>
+            <SummaryColumn>
               <Typography
-                value={formatDate(watch().Deadline)}
-                variant={TypographyTypes.H7}
-                styleProps={{ color: 'black' }}
-              />
-            </SummaryRow>
-          </SummaryColumn>
-        )}
-        <LeftArrow color="black" />
-      </SummaryRow>
-      <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Supervisor)}>
-        {watch().Supervisor && (
-          <SummaryColumn>
-            <Typography
-              value={t('NewBet.SummarySupervisorTitle')}
-              variant={TypographyTypes.H5}
-              styleProps={{ color: 'black' }}
-            />
-
-            <ParticipantsRow>
-              <SmallAvatar>{watch().Supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
-              <Typography
-                value={watch().Supervisor?.[0]?.fullName || ''}
+                value={t('NewBet.SummaryDeadlineTitle')}
                 variant={TypographyTypes.H5}
                 styleProps={{ color: 'black' }}
               />
-            </ParticipantsRow>
-          </SummaryColumn>
-        )}
-        <LeftArrow color="black" />
-      </SummaryRow>
-      <StyledDivider />
+              <SummaryRow background={'#CEEFEA'}>
+                <Typography
+                  value={formatDate(watch().Deadline)}
+                  variant={TypographyTypes.H7}
+                  styleProps={{ color: 'black' }}
+                />
+              </SummaryRow>
+            </SummaryColumn>
+
+            <LeftArrow color="black" />
+          </SummaryRow>
+          <StyledDivider />
+        </>
+      )}
+      {watch().Files && (
+        <>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Files)}>
+            <SummaryColumn>
+              <Typography
+                value={t('NewBet.SummaryFilesTitle')}
+                variant={TypographyTypes.H5}
+                styleProps={{ color: 'black' }}
+              />
+              <SummaryRow gap={4}>
+                {watch().Files?.map((file: File, index: number) => (
+                  <AvatarWrapper key={index}>
+                    {file.type.includes('image') ? (
+                      <StyledImage src={URL.createObjectURL(file)} />
+                    ) : (
+                      <StyledPDF>
+                        <FileIcon />
+                        {file.name}
+                      </StyledPDF>
+                    )}
+                  </AvatarWrapper>
+                ))}
+              </SummaryRow>
+            </SummaryColumn>
+
+            <LeftArrow color="black" />
+          </SummaryRow>
+          <StyledDivider />
+        </>
+      )}
+      {watch().Supervisor && (
+        <>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Supervisor)}>
+            <SummaryColumn>
+              <Typography
+                value={t('NewBet.SummarySupervisorTitle')}
+                variant={TypographyTypes.H5}
+                styleProps={{ color: 'black' }}
+              />
+
+              <ParticipantsRow>
+                <SmallAvatar>{watch().Supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
+                <Typography
+                  value={watch().Supervisor?.[0]?.fullName || ''}
+                  variant={TypographyTypes.H5}
+                  styleProps={{ color: 'black' }}
+                />
+              </ParticipantsRow>
+            </SummaryColumn>
+
+            <LeftArrow color="black" />
+          </SummaryRow>
+          <StyledDivider />
+        </>
+      )}
     </SummaryContainer>
   );
 };
