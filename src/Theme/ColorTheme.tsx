@@ -12,3 +12,7 @@ export const MAIN_FONT = "'Fredoka', sans-serif";
 
 export const PRIMARY_BUTTON_COLOR = '#EDEDF5';
 export const SECONDERY_BUTTON_COLOR = '#C8C8E1';
+
+/// --------- //
+export const PRIMARY_GREEN = '#15AB94';
+export const SECONDARY_GREEN = '#A8D6CC';

@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 export const HeaderComponent = styled('div')<HeaderProps>(({ headerStyle }) => ({
-  ...HeaderComponentStyles[headerStyle || HeaderStyle.PRIMARY_EXPAND],
+  ...HeaderComponentStyles[headerStyle || HeaderStyle.PRIMARY],
 }));
 
 export const LogoDiv = styled('div')({
@@ -16,38 +16,7 @@ export const LogoDiv = styled('div')({
   alignItems: 'center',
 });
 
-export const TotalPointsDiv = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  paddingTop: 6,
-  gap: 5,
-});
-
-export const PointText = styled('div')({
-  display: 'flex',
-  marginTop: 25,
-});
-
-export const PointsContainer = styled('div')({
-  display: 'flex',
-  alignItems: 'baseline',
-  flexDirection: 'row-reverse',
-  gap: 5,
-  marginRight: 50,
-});
-
-export const ButtonsDiv = styled('div')({
-  paddingTop: 12,
-  gap: 16,
-  display: 'flex',
-  justifyContent: 'center',
-});
-
-export const BackArrowDiv = styled('div')({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
+export const ReturnArrowDiv = styled('div')({
   position: 'absolute',
-  left: 16,
+  right: 16,
 });

@@ -1,7 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import Input from '../../components/Input - deprected/Input';
-import Button from '../../components/Button - deprected/Button';
 import withAuth from '../../Providers/withAuth';
 import { useGetUsers } from '../../Hooks/useGetUsers';
 import { useGroupCreation } from '../../Hooks/useCreateGroup';
@@ -79,7 +78,7 @@ const GroupsManagement = () => {
     <HomeDivContainer>
       <InnerCustomDiv>
         {user.id}
-        <Button type="submit" label="Logout" onClick={logout} />
+        {/* <Button type="submit" label="Logout" onClick={logout} /> */}
       </InnerCustomDiv>
       <InnerCustomDiv>
         <div>Here are all the users group</div>
@@ -118,7 +117,7 @@ const GroupsManagement = () => {
               error={errors.groupName?.message}
             />
 
-            <AutocompleteContainer>
+            {/* <AutocompleteContainer>
               <UserAutocomplete
                 options={
                   users
@@ -129,16 +128,16 @@ const GroupsManagement = () => {
                 onChange={(event, newValue) => setValue('users', newValue)}
               />
               {errors.users && <p className="error">{errors.users.message}</p>}
-            </AutocompleteContainer>
+            </AutocompleteContainer> */}
 
             {/* Submit Button */}
-            <ButtonContainer>
+            {/* <ButtonContainer>
               <Button
                 type="submit"
                 label={isPending ? 'Creating...' : 'Create'}
                 disabled={isPending}
               />
-            </ButtonContainer>
+            </ButtonContainer> */}
           </FormStyled>
         </FormContainer>
       </InnerCustomDiv>

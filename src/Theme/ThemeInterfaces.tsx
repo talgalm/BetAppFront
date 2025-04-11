@@ -7,8 +7,7 @@ export interface Layout {
 }
 
 export enum HeaderStyle {
-  PRIMARY_EXPAND = 'primary-expand',
-  SECONDARY_SHORT = 'secondary-short',
+  PRIMARY = 'primary',
 }
 
 export enum FooterStyle {
@@ -17,31 +16,15 @@ export enum FooterStyle {
 }
 
 export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
-  [HeaderStyle.PRIMARY_EXPAND]: {
-    height: 198,
-    backgroundColor: PRIMARY_COLOR,
-    width: '101%',
-    boxShadow: '0px 3px 8px 0px rgba(34, 53, 62, 0.25)',
-    paddingRight: 16,
-    paddingLeft: 16,
-    paddingTop: 28,
-    color: TEXT_SEC_COLOR,
-    position: 'fixed',
-    top: -1,
-    left: -1,
-    zIndex: 1000,
-  },
-  [HeaderStyle.SECONDARY_SHORT]: {
+  [HeaderStyle.PRIMARY]: {
+    height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
-    height: 50,
     width: '100%',
-    paddingRight: 16,
-    paddingLeft: 16,
-    paddingTop: 28,
-    color: TEXT_THIRD_COLOR,
-    position: 'fixed',
-    top: 0,
-    zIndex: 1000,
+    padding: 16,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 100,
   },
 };
 

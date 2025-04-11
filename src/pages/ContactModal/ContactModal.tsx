@@ -21,7 +21,7 @@ import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
 import { User } from '../../api/interfaces';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
-import InputTextFull from '../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../components/Inputs/InputTextFull/InputTextFull';
 import { useState } from 'react';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
@@ -121,11 +121,11 @@ const ContactModal = <T extends FieldValues>({
           <CloseIcon onClick={handleClose} />
         </PopUpHeader>
         {inputName && (
-          <InputTextFull
+          <StyledInput
             extended={true}
             displayCharLimit={false}
             placeholder={t(`ContactModal.notInContact`)}
-            icon={Search}
+            startIcon={Search}
             typography="TextSmall"
           />
         )}

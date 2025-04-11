@@ -2,7 +2,8 @@ import React from 'react';
 import { ButtonStyles } from './StyledButton.styles';
 import { Typography } from '../Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
-import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
+import { useTheme } from '@mui/material/styles';
+import { ThemeType } from '../../Theme/theme';
 
 interface StyledButtonProps {
   value?: string;
@@ -12,6 +13,7 @@ interface StyledButtonProps {
   icon?: React.ReactNode;
   disabled?: boolean;
   styleProps?: React.CSSProperties;
+  colorVariant?: 'primary' | 'secondary' | 'error' | 'success' | ThemeType; // Theme-based colors
 }
 
 const StyledButton: React.FC<StyledButtonProps> = ({
@@ -20,15 +22,32 @@ const StyledButton: React.FC<StyledButtonProps> = ({
   variant = TypographyTypes.Button,
   icon,
   disabled,
-  textColor,
   styleProps,
+  colorVariant = 'primary',
 }) => {
+  const theme = useTheme();
+
   const handleClick = disabled ? undefined : onClick;
   const mergedStyles = styleProps && { ...styleProps };
 
+  // Get color from theme palette
+  const buttonColor = disabled
+    ? theme.palette.action.disabledBackground
+    : theme.palette[colorVariant]?.main || theme.palette.primary.main;
+
   return (
-    <ButtonStyles onClick={handleClick} disabled={disabled} style={{ ...mergedStyles }}>
-      {value && <Typography value={value} variant={variant} styleProps={{ color: textColor }} />}
+    <ButtonStyles
+      onClick={handleClick}
+      disabled={disabled}
+      style={{ backgroundColor: buttonColor, ...mergedStyles }}
+    >
+      {value && (
+        <Typography
+          value={value}
+          variant={TypographyTypes.Button}
+          styleProps={{ color: theme.palette[colorVariant].contrastText }}
+        />
+      )}
       {icon}
     </ButtonStyles>
   );

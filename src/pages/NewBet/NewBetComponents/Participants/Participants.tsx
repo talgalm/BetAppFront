@@ -25,7 +25,7 @@ import {
   StyledDivider,
 } from '../Participants/Participants.styles';
 import ContactModal from '../../../ContactModal/ContactModal';
-import { CreateFormInputs } from '../../Interface';
+import { CreateBetInputs } from '../../Interface';
 import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
@@ -43,7 +43,7 @@ const NewBetParticipants = <T extends FieldValues>({
 }: NewBetParticipantsProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
-  const { watch } = useFormContext<CreateFormInputs>();
+  const { watch } = useFormContext<CreateBetInputs>();
   const { showBoundary } = useErrorBoundary();
   // const { mostActives = [] } = useGetMostActives(user?.id);
 

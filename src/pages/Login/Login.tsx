@@ -1,96 +1,115 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Button from '../../components/Button - deprected/Button';
-import Input from '../../components/Input - deprected/Input';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '../../components/Topography/topography';
+import { TypographyTypes } from '../../Theme/Typography/typography';
 import {
-  FormContainer,
-  HeadlineContainer,
-  HeadlineSubTitle,
-  HeadlineTitle,
-  PageContainer,
-  SubText,
+  AppleIcon,
+  BottomContainer,
+  ConnectionOptions,
+  ConnectionOptionsContainer,
+  DividerWithText,
+  DontHaveAccountContainer,
+  FacebookIcon,
+  GoogleIcon,
+  HeaderContainer,
+  SignInContainer,
 } from './Login.styles';
-import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../../Hooks/useAuth';
-// import { userAtom } from '../../Jotai/atoms';
-// import { useAtom } from 'jotai';
-import withNoAuth from '../../Providers/withNoAuth';
-import SocialIcons from '../SocialIcons/Icons';
-import BetLoader from '../../Theme/Loader/loader';
-import { useErrorBoundary } from 'react-error-boundary';
-import { ErrorHandler } from '../../Errors/ErrorHandler';
-
-type LoginFormInputs = {
-  username: string;
-  password: string;
-};
+import StyledInput from '../../components/Inputs/InputTextFull/InputTextFull';
+import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
+import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
+import { useForm } from 'react-hook-form';
+import { LoginFormInput } from './interface';
+import { ThemeType } from '../../Theme/theme';
+import StyledButton from '../../components/Button/StyledButton';
+import { useTheme } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
+import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 
 const Login = (): JSX.Element => {
-  const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInputs>();
-  const { mutate, isPending } = useLogin();
-  // const [_, setUser] = useAtom(userAtom);
-  const { showBoundary } = useErrorBoundary();
+  const theme = useTheme();
+  const { t } = useTranslation();
+  const { control, handleSubmit, watch } = useForm<LoginFormInput>();
+  const [step, setActiveStep] = useAtom(UserActiveStep);
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = ({ username, password }) => {
-    mutate(
-      { username, password },
-      {
-        onSuccess: (data) => {
-          localStorage.setItem('token', data.token);
-          // setUser(data.user);
-          navigate('/');
-        },
-        onError: (error) => {
-          console.error('Login failed:', error);
-        },
-      }
-    );
+  const formValues = watch();
+
+  const [isFormEmpty, setIsFormEmpty] = useState(true);
+
+  useEffect(() => {
+    setIsFormEmpty(Object.values(formValues).some((value) => !value));
+  }, [formValues]);
+
+  const onSubmit = (data: LoginFormInput) => {
+    console.log('Form submitted with data:', data);
   };
-
-  const createNewAccount = () => {
-    ErrorHandler(showBoundary);
-  };
-
-  if (isPending) {
-    return <BetLoader />;
-  }
 
   return (
-    <PageContainer>
-      <HeadlineContainer>
-        <HeadlineTitle>Login Here</HeadlineTitle>
-        <HeadlineSubTitle>Welcome Back</HeadlineSubTitle>
-        <HeadlineSubTitle></HeadlineSubTitle>
-      </HeadlineContainer>
-      <FormContainer>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="text"
-            placeholder="Username"
-            register={register}
-            name="username"
-            validation={{ required: 'Username is required' }}
-            error={errors.username?.message}
+    <>
+      <HeaderContainer>
+        <Typography value={t('WelcomePage.LoginPageTitle')} variant={TypographyTypes.H1} />
+        <Typography value={t('WelcomePage.LoginPageSubtitle')} variant={TypographyTypes.H3} />
+      </HeaderContainer>
+      <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
+        <SignInContainer>
+          <StyledInput
+            inputName="Email"
+            control={control}
+            placeholder={t(`WelcomePage.LoginEmailPlaceholder`)}
           />
-          <Input
-            type="password"
-            placeholder="Password"
-            register={register}
-            name="password"
-            validation={{ required: 'Password is required' }}
-            error={errors.password?.message}
+          <StyledInput
+            inputName="Password"
+            control={control}
+            placeholder={t(`WelcomePage.LoginPasswordPlaceholder`)}
+            endIcon={
+              formValues.Password === '' || formValues.Password === undefined
+                ? NotVisiblaeIcon
+                : VisableIcon
+            }
           />
-          <Button type="submit" label={isPending ? 'Logging in...' : 'Login'} />
-        </form>
-      </FormContainer>
-      <SubText onClick={createNewAccount}> Create new account</SubText>
-      <SocialIcons></SocialIcons>
-    </PageContainer>
+          <Typography
+            value={t('WelcomePage.ForgetPassword')}
+            variant={TypographyTypes.TextSmall}
+            styleProps={{ paddingRight: 16 }}
+            onClick={() => setActiveStep(authSteps[AuthStepValueTypes.ForgetPassword])}
+          />
+          <StyledButton
+            value={t('WelcomePage.Login')}
+            colorVariant={ThemeType.Primary}
+            onClick={handleSubmit((data) => console.log(data))}
+            disabled={isFormEmpty}
+          />
+        </SignInContainer>
+      </form>
+      <BottomContainer>
+        <ConnectionOptionsContainer>
+          <DividerWithText textAlign="center">
+            <Typography
+              value={t('WelcomePage.ConnectWith')}
+              variant={TypographyTypes.TextSmall}
+              styleProps={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+            />
+          </DividerWithText>
+          <ConnectionOptions>
+            <FacebookIcon></FacebookIcon>
+            <GoogleIcon></GoogleIcon>
+            <AppleIcon></AppleIcon>
+          </ConnectionOptions>
+        </ConnectionOptionsContainer>
+        <DontHaveAccountContainer>
+          <Typography
+            value={t('WelcomePage.DontHaveAccount')}
+            variant={TypographyTypes.TextMedium}
+          />
+          <Typography
+            value={t('WelcomePage.RegisterNow')}
+            variant={TypographyTypes.TextMedium}
+            styleProps={{ color: theme.palette.primary.main }}
+          />
+        </DontHaveAccountContainer>
+      </BottomContainer>
+    </>
   );
 };
 
-export default withNoAuth(Login);
+export default Login;

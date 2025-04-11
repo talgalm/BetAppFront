@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
-import InputTextFull from '../../../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../../../components/Inputs/InputTextFull/InputTextFull';
 import {
   ConditionsContent,
   ConditionsRowContent,
@@ -13,7 +13,7 @@ import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/Calendar
 import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
-import { CreateFormInputs } from '../../Interface';
+import { CreateBetInputs } from '../../Interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -24,7 +24,7 @@ const NewBetConditions = <T extends FieldValues>({
   inputName,
   control,
 }: NewBetParticipantsProps<T>): JSX.Element => {
-  const { watch } = useFormContext<CreateFormInputs>();
+  const { watch } = useFormContext<CreateBetInputs>();
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -69,7 +69,7 @@ const NewBetConditions = <T extends FieldValues>({
                 />
               </ConditionsRowContentCenter>
 
-              <InputTextFull
+              <StyledInput
                 control={control}
                 inputName={`${inputName}.${userIndex}.text` as Path<T>}
                 placeholder={t(`NewBet.EnterCondition`)}

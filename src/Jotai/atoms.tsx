@@ -6,7 +6,7 @@ export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;
   footerStyle: FooterStyle;
 }>('layoutAtom', {
-  headerStyle: HeaderStyle.PRIMARY_EXPAND,
+  headerStyle: HeaderStyle.PRIMARY,
   footerStyle: FooterStyle.SHOW,
 });
 

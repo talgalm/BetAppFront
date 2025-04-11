@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { TEXT_THIRD_COLOR } from '../../../Theme/ColorTheme';
 import { TextField } from '@mui/material';
+import { padding } from 'polished';
 
 export const BetInput = styled('input')<{
   typography: typeof TypographyTypes.H7;
@@ -46,10 +47,19 @@ export const WidthDiv = styled('div')({
   position: 'relative',
 });
 
-export const IconWrapper = styled('div')({
+export const IconWrapperEnd = styled('div')({
+  position: 'absolute',
+  left: 12,
+  bottom: 12,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+export const IconWrapperStart = styled('div')({
   position: 'absolute',
   right: 12,
-  bottom: 15,
+  bottom: 12,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -73,8 +83,12 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-input': {
     direction: 'rtl',
     textAlign: 'right',
-    fontFamily: '"Heebo", "Roboto", "Arial", sans-serif',
     overflowY: 'auto',
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingRight: 16,
+    paddingLeft: 16,
+
     '&::-webkit-scrollbar': {
       width: '4px',
     },

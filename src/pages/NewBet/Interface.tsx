@@ -97,7 +97,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
   },
 };
 
-export type CreateFormInputs = {
+export type CreateBetInputs = {
   Start?: string;
   Name: string;
   Description?: string;

@@ -15,7 +15,7 @@ import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
 import ConditionModal from '../../../pages/ConditionModal/ConditionModal';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import InputTextFull from '../InputTextFull/InputTextFull';
+import StyledInput from '../InputTextFull/InputTextFull';
 import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
 import { useAtom } from 'jotai';
 import { UseUser } from '../../../Hooks/useGetUser';
@@ -114,7 +114,7 @@ const InputWithPoints = <T extends FieldValues>({
         {users.map((user) => (
           <div key={user.id}>
             <Typography value={user.fullName || user.id} variant={TypographyTypes.H4} />
-            <InputTextFull
+            <StyledInput
               control={control}
               inputName={inputName}
               extended={true}

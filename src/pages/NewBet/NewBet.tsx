@@ -5,7 +5,7 @@ import {
   CheckboxTextContainer,
   PageContainer,
 } from './NewBet.styles';
-import { CreateFormInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '../../components/Button/StyledButton';
 import { useAtom } from 'jotai';
@@ -25,7 +25,7 @@ import { Typography } from '../../components/Topography/topography';
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
   const { t } = useTranslation();
-  const { control, handleSubmit, watch, setValue, unregister } = useFormContext<CreateFormInputs>();
+  const { control, handleSubmit, watch, setValue, unregister } = useFormContext<CreateBetInputs>();
   const [targetProgress, setTargetProgress] = useState(0);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const formValues = watch();
@@ -69,7 +69,7 @@ const NewBet = () => {
     if (savedData) {
       const parsedData = JSON.parse(savedData);
       Object.keys(parsedData).forEach((key) => {
-        setValue(key as keyof CreateFormInputs, parsedData[key]);
+        setValue(key as keyof CreateBetInputs, parsedData[key]);
       });
     }
   }, [setValue]);
@@ -115,7 +115,7 @@ const NewBet = () => {
     }
   };
 
-  const onSubmit = (data: CreateFormInputs) => {
+  const onSubmit = (data: CreateBetInputs) => {
     console.log(data);
   };
 

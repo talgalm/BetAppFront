@@ -23,8 +23,7 @@ const Home = (): JSX.Element => {
 
   return (
     <HomeDivContainer>
-      <MyBets userBets={user.bets || []} />
-      <MyGroups userGroups={user.groups || []} />
+      <input></input>
     </HomeDivContainer>
   );
 };

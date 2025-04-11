@@ -8,6 +8,8 @@ import Header from './Layout/Header/Header';
 import { Footer } from './Layout/Footer/Footer';
 
 import ErrorFallback from './Errors/ErrorHandler';
+import { ThemeProvider } from '@mui/material';
+import theme from './Theme/theme';
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -25,21 +27,15 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <LogoutProvider>
-          <PrimaryBackground>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-              }}
-            >
+          <ThemeProvider theme={theme}>
+            <PrimaryBackground>
               <Header />
               <main style={{ flexGrow: 1 }}>
                 <Outlet />
               </main>
-              <Footer />
-            </div>
-          </PrimaryBackground>
+              {/* <Footer /> */}
+            </PrimaryBackground>
+          </ThemeProvider>
         </LogoutProvider>
       </ErrorBoundary>
       <ReactQueryDevtools initialIsOpen={false} />

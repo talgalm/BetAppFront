@@ -5,7 +5,6 @@ export const HomeDivContainer = styled('div')({
   width: '100%',
   alignContent: 'center',
   flexDirection: 'column',
-  height: '110vh',
   overflowY: 'auto',
   flex: 1,
   paddingTop: 198,

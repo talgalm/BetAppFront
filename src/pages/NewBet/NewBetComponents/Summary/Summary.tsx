@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { CreateFormInputs, newBetSteps, NewBetStepValueTypes } from '../../Interface';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../Interface';
 import { Typography } from '../../../../components/Topography/topography';
 import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
@@ -26,7 +26,7 @@ import { ActiveStep } from '../../../../Jotai/newBetAtoms';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';
 
 const NewBetSummary: React.FC = () => {
-  const { watch } = useFormContext<CreateFormInputs>();
+  const { watch } = useFormContext<CreateBetInputs>();
   const [, setActiveStep] = useAtom(ActiveStep);
 
   const { t } = useTranslation();

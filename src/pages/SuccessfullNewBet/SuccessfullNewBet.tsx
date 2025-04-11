@@ -27,7 +27,7 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
 
   const handleBackIconClick = () => {
     setLayout({
-      headerStyle: HeaderStyle.PRIMARY_EXPAND,
+      headerStyle: HeaderStyle.PRIMARY,
       footerStyle: FooterStyle.SHOW,
     });
     navigate('/');

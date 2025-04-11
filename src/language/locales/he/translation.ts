@@ -8,7 +8,10 @@ import Header from '../../../Layout/Header/Header.lang.json';
 import ContactModal from '../../../pages/ContactModal/ContactModal.lang.json';
 import ConditionModal from '../../../pages/ConditionModal/ConditionModal.lang.json';
 
+import WelcomePage from '../../../pages/WelcomePage/WelcomePage.lang.json';
+
 export default {
+  WelcomePage: WelcomePage,
   MyBets: MyBets,
   MyGroups: MyGroups,
   NewBet: NewBet,

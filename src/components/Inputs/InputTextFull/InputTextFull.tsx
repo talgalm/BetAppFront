@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
 import { Control, Controller, FieldValues, Path, PathValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
-import { BetInput, StyledTextField, IconWrapper, WidthDiv } from './InputTextFull.styles';
+import {
+  StyledTextField,
+  WidthDiv,
+  IconWrapperEnd,
+  IconWrapperStart,
+} from './InputTextFull.styles';
 
 interface InputTextFullProps<T extends FieldValues> {
   control?: Control<T>;
@@ -11,26 +15,25 @@ interface InputTextFullProps<T extends FieldValues> {
   displayCharLimit?: boolean;
   placeholder?: string;
   typography?: keyof typeof TypographyTypes;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  startIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  endIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  startIconOnClick?: (param?: any) => void;
+  endIconOnClick?: (param?: any) => void;
+  maskValue?: boolean;
 }
 
-const InputTextFull = <T extends FieldValues>({
+const StyledInput = <T extends FieldValues>({
   control,
   inputName,
   extended,
   placeholder,
-  typography,
-  icon: Icon,
+  startIcon: StartIcon,
+  endIcon: EndIcon,
+  startIconOnClick,
+  endIconOnClick,
+  maskValue,
 }: InputTextFullProps<T>): JSX.Element => {
   const { t } = useTranslation();
-  useEffect(() => {
-    const inputElement = document.querySelector(
-      `[name="${String(inputName)}"]`
-    ) as HTMLInputElement | null;
-    if (inputElement) {
-      inputElement.focus();
-    }
-  }, [inputName]);
 
   return (
     <>
@@ -41,39 +44,38 @@ const InputTextFull = <T extends FieldValues>({
           defaultValue={'' as PathValue<T, Path<T>>}
           render={({ field }) => (
             <WidthDiv>
-              {<IconWrapper>{Icon && <Icon />}</IconWrapper>}
+              {
+                <IconWrapperStart>
+                  {StartIcon && <StartIcon onClick={startIconOnClick} />}
+                </IconWrapperStart>
+              }
               <StyledTextField
                 fullWidth
                 placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
                 variant="outlined"
                 multiline={extended}
+                type={maskValue ? 'password' : 'text'}
                 rows={extended ? 4 : undefined}
                 {...field}
               />
+              {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
             </WidthDiv>
           )}
         />
       ) : (
         <WidthDiv>
-          {Icon && (
-            <IconWrapper>
-              <Icon />
-            </IconWrapper>
-          )}
-          <BetInput
+          <StyledTextField
+            fullWidth
             placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
-            typography={
-              typeof typography === 'string'
-                ? TypographyTypes[typography]
-                : TypographyTypes.TextMedium
-            }
-            setHeight={true}
-            isIcon={Icon !== null}
+            variant="outlined"
+            multiline={extended}
+            rows={extended ? 4 : undefined}
           />
+          {<IconWrapperEnd>{EndIcon && <EndIcon />}</IconWrapperEnd>}
         </WidthDiv>
       )}
     </>
   );
 };
 
-export default InputTextFull;
+export default StyledInput;

@@ -1,84 +1,92 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_BACKGROUND, TEXT_SEC_COLOR, TEXT_COLOR, MAIN_FONT } from '../../Theme/ColorTheme';
+import { Divider } from '@mui/material';
+import { ReactComponent as Facebook } from '../../Theme/Icons/AuthIcons/FacebookIcon.svg';
+import { ReactComponent as Google } from '../../Theme/Icons/AuthIcons/GoogleIcon.svg';
+import { ReactComponent as Apple } from '../../Theme/Icons/AuthIcons/AppleIcon.svg';
 
-export const StyledContainer = styled('div')({
-  display: 'flex',
-  backgroundColor: PRIMARY_BACKGROUND,
-  height: '100%',
+export const HeaderContainer = styled('div')({
   width: '100%',
-  flexDirection: 'column',
-});
-
-export const PageContainer = styled('div')({
+  padding: 16,
   display: 'flex',
   flexDirection: 'column',
+  gap: 12,
+  textAlign: 'start',
+  direction: 'rtl',
+});
+
+export const SignInContainer = styled('div')({
+  width: '100%',
+  padding: 16,
+  display: 'flex',
+  direction: 'rtl',
+  justifyContent: 'flex-start',
+  flexDirection: 'column',
+  gap: 11,
+});
+
+export const BottomContainer = styled('div')({
+  width: '100%',
+  justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 16px',
-  margin: '0 auto',
-  maxWidth: '480px',
-  minHeight: '100vh',
+  padding: 16,
+  marginTop: 'auto',
+  position: 'fixed',
+  bottom: -1,
 });
 
-export const HeadlineContainer = styled('div')({
-  paddingTop: 75,
+export const ConnectionOptionsContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
+  width: '100%',
+  padding: 16,
+  gap: 24,
+});
+
+export const DividerWithText = styled(Divider)({
+  width: '100%',
+});
+
+export const ConnectionOptions = styled('div')({
+  width: '100%',
+  gap: 8,
+  display: 'flex',
+  flexDirection: 'row',
+});
+
+export const FacebookIcon = styled(Facebook)({
+  backgroundColor: 'white',
+  width: '100%',
+  height: 56,
+  borderRadius: 8,
+  padding: 15,
+  border: '1px solid #DADADA',
+});
+
+export const GoogleIcon = styled(Google)({
+  backgroundColor: 'white',
+  width: '100%',
+  height: 56,
+  borderRadius: 8,
+  padding: 15,
+  border: '1px solid #DADADA',
+});
+
+export const AppleIcon = styled(Apple)({
+  backgroundColor: 'white',
+  width: '100%',
+  height: 56,
+  borderRadius: 8,
+  padding: 15,
+  border: '1px solid #DADADA',
+});
+
+export const DontHaveAccountContainer = styled('div')({
+  display: 'flex',
+  direction: 'rtl',
+  flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'center',
-});
-
-export const HeadlineTitle = styled('div')({
-  fontFamily: MAIN_FONT,
-  fontWeight: 700,
-  fontSize: '2.5rem',
-  color: TEXT_SEC_COLOR,
-  textAlign: 'center',
-  margin: '20px 0',
-  letterSpacing: '1.5px',
-  lineHeight: '1.3',
-  textTransform: 'uppercase',
-  textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  transition: 'color 0.3s ease',
-  '@media (max-width: 768px)': {
-    fontSize: '1.8rem',
-  },
-});
-export const HeadlineSubTitle = styled('div')({
-  fontFamily: MAIN_FONT,
-  fontWeight: 500,
-  fontSize: '1.25rem',
-  color: TEXT_COLOR,
-  textAlign: 'center',
-  margin: '10px 0',
-  letterSpacing: '1px',
-  lineHeight: '1.5',
-  textTransform: 'none',
-  textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
-  transition: 'color 0.3s ease, font-size 0.3s ease',
-  '@media (max-width: 768px)': {
-    fontSize: '1rem',
-  },
-});
-
-export const SubText = styled('div')({
-  fontFamily: MAIN_FONT,
-  fontWeight: 500,
-  fontSize: '1.25rem',
-  color: TEXT_COLOR,
-  textAlign: 'center',
-  margin: '10px 0',
-  letterSpacing: '1px',
-  lineHeight: '1.5',
-  textTransform: 'none',
-  textShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
-  transition: 'color 0.3s ease, font-size 0.3s ease',
-  paddingTop: 25,
-  '@media (max-width: 768px)': {
-    fontSize: '1rem',
-  },
-});
-
-export const FormContainer = styled('div')({
-  paddingTop: 75,
-  width: '90%',
+  alignContent: 'center',
+  width: '100%',
+  padding: 16,
+  gap: 3,
 });

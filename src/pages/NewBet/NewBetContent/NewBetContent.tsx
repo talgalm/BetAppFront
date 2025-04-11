@@ -3,7 +3,7 @@ import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
-import InputTextFull from '../../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../../components/Inputs/InputTextFull/InputTextFull';
 import { NewBetStepValueTypes } from '../Interface';
 import { useEffect } from 'react';
 import { UseUser } from '../../../Hooks/useGetUser';
@@ -65,7 +65,7 @@ const NewBetContent = <T extends FieldValues>({
       {(type === NewBetStepValueTypes.Description || type === NewBetStepValueTypes.Name) && (
         <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
           {inputName && type === NewBetStepValueTypes.Name && (
-            <InputTextFull
+            <StyledInput
               control={control}
               inputName={inputName}
               extended={false}
@@ -74,7 +74,7 @@ const NewBetContent = <T extends FieldValues>({
             />
           )}
           {inputName && type === NewBetStepValueTypes.Description && (
-            <InputTextFull
+            <StyledInput
               control={control}
               inputName={inputName}
               extended={true}

@@ -8,7 +8,7 @@ export const TypographyTypes = {
     fontSize: 20,
   },
   H3: {
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: 18,
   },
   TextBig: {
@@ -27,6 +27,7 @@ export const TypographyTypes = {
   Button: {
     fontWeight: 600,
     fontSize: 18,
+    fontFamily: 'Fredoka',
   },
   H4: {
     fontWeight: 400,

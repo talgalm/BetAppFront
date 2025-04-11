@@ -3,7 +3,7 @@ import { InputTypesCollapse } from '../../pages/FormInputCollapse/InputTypes';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import Calendar from '../Calendar/Calendar';
 import { Typography } from '../Topography/topography';
-import InputTextFull from './InputTextFull/InputTextFull';
+import StyledInput from './InputTextFull/InputTextFull';
 import InputWithPoints from './InputWithPoints/InputWithPoints';
 import { AddConditionsDiv } from './InputWithPoints/InputWithPoints.styles';
 import InputWithTags from './InputWithTags/InputWithTags';
@@ -24,7 +24,7 @@ const InputByType = <T extends FieldValues>({
   return (
     <div>
       {type === InputTypesCollapse.Text && (
-        <InputTextFull control={control} inputName={inputName} />
+        <StyledInput control={control} inputName={inputName} />
       )}
       {type === InputTypesCollapse.AddParticipants && (
         <InputWithTags control={control} inputName="input" />

@@ -8,6 +8,7 @@ import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
 import './language/i18n';
 import NewBetForm from './pages/NewBet/NewBet.form';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const pagesRouter = createBrowserRouter([
       },
       {
         path: '/',
-        element: <Home />,
+        element: <WelcomePage />,
       },
       {
         path: '/create-bet',

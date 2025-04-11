@@ -1,0 +1,32 @@
+{
+    "LoginTitle": "כניסה עם משתמש קיים",
+    "RegisterTitle": "יצירת משתמש חדש",
+
+    "LoginPageTitle" : "היי! טוב לראות אותך כאן",
+    "LoginPageSubtitle" : "כדי להמשיך, התחבר לחשבון שלך.",
+    "LoginEmailPlaceholder" : "אימייל או מספר טלפון",
+    "LoginPasswordPlaceholder" : "סיסמא",
+    "ForgetPassword" : "שכחתי סיסמא?",
+    "Login" : "התחבר",
+    "ConnectWith" : "או התחבר עם",
+    "DontHaveAccount" : "אין לך חשבון?",
+    "RegisterNow" : "הירשם עכשיו",
+
+    "CreateNewAccount" : "יצירת חשבון חדש",
+    "CreateNewAccountSubtitle" : "הצטרפו לקהילת המשתתפים שלנו והתחילו להתערב עם חברים!",
+    "RegisterEmailPlaceholder" : "אימייל",
+    "RegisterFullNamePlaceholder" : "שם + שם משפחה",
+    "RegisterPhoneNumberPlaceholder" : "מספר טלפון",
+    "RegisterPasswordPlaceholder" : "סיסמא",
+    "RegisterPasswordVerificationPlaceholder" : "אימות סיסמא",
+    "Continue": "המשך",
+    "CreateAccount" : "יצירת חשבון",
+    "ForgotPasswordTitle" : "שכחת סיסמה?",
+    "ForgotPasswordSubtitle" : "לא נורא, זה קורה. הזינו את כתובת האימייל שקשורה לחשבון שלכם.",
+    "SendCode": "שלח קוד",
+    "EnterEmail": "הזן את כתובת האימייל שלך"
+
+
+
+}
+  
