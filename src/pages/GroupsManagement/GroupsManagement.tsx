@@ -1,6 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import Input from '../../components/Input - deprected/Input';
 import withAuth from '../../Providers/withAuth';
 import { useGetUsers } from '../../Hooks/useGetUsers';
 import { useGroupCreation } from '../../Hooks/useCreateGroup';
@@ -102,20 +101,6 @@ const GroupsManagement = () => {
         <FormContainer>
           <FormStyled onSubmit={handleSubmit(onSubmit)}>
             {/* Group Name Field */}
-            <Input
-              type="text"
-              placeholder="Group Name"
-              register={register}
-              name="groupName"
-              validation={{
-                required: 'Group name is required',
-                minLength: {
-                  value: 3,
-                  message: 'Group name must be at least 3 characters long',
-                },
-              }}
-              error={errors.groupName?.message}
-            />
 
             {/* <AutocompleteContainer>
               <UserAutocomplete

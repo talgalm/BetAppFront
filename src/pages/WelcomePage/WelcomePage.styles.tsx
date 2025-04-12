@@ -18,3 +18,14 @@ export const ButtonsContainer = styled('div')({
   padding: 16,
   gap: 16,
 });
+
+export const TextConatiner = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  textAlign: 'center',
+  direction: 'rtl',
+  padding: 16,
+  gap: 12,
+});

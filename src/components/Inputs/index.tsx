@@ -3,7 +3,7 @@ import { InputTypesCollapse } from '../../pages/FormInputCollapse/InputTypes';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import Calendar from '../Calendar/Calendar';
 import { Typography } from '../Topography/topography';
-import StyledInput from './InputTextFull/InputTextFull';
+import StyledInput from './StyledInput/StyledInput';
 import InputWithPoints from './InputWithPoints/InputWithPoints';
 import { AddConditionsDiv } from './InputWithPoints/InputWithPoints.styles';
 import InputWithTags from './InputWithTags/InputWithTags';

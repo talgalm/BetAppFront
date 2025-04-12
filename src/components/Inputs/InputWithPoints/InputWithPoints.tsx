@@ -15,7 +15,7 @@ import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
 import ConditionModal from '../../../pages/ConditionModal/ConditionModal';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import StyledInput from '../InputTextFull/InputTextFull';
+import StyledInput from '../StyledInput/StyledInput';
 import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
 import { useAtom } from 'jotai';
 import { UseUser } from '../../../Hooks/useGetUser';

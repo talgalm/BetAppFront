@@ -1,6 +1,4 @@
 import { HomeDivContainer } from './Home.styles';
-import MyBets from '../MyBets/MyBets';
-import MyGroups from '../MyGroups/MyGroups';
 import BetLoader from '../../Theme/Loader/loader';
 import { useEffect } from 'react';
 import { UseUser } from '../../Hooks/useGetUser';

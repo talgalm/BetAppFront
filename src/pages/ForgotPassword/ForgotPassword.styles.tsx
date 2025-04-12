@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const HeaderContainer = styled('div')({
@@ -19,3 +20,51 @@ export const SignInContainer = styled('div')({
   flexDirection: 'column',
   gap: 11,
 });
+
+export const CubesContainer = styled('div')({
+  width: '100%',
+  padding: 0,
+  display: 'flex',
+  direction: 'ltr',
+  justifyContent: 'flex-start',
+  flexDirection: 'row',
+  gap: 8,
+});
+
+export const DontHaveAccountContainer = styled('div')({
+  display: 'flex',
+  direction: 'rtl',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignContent: 'center',
+  width: '100%',
+  padding: 16,
+  gap: 3,
+});
+
+interface CubeInputProps {
+  hasValue?: boolean;
+}
+
+export const CubeInput = styled(TextField, {
+  shouldForwardProp: (prop) => prop !== 'hasValue',
+})<CubeInputProps>(({ hasValue }) => ({
+  borderRadius: 8,
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      border: hasValue ? '1px solid #15AB94' : '1px solid #9798A2',
+    },
+    '&:hover fieldset': {
+      border: hasValue ? '1px solid #15AB94' : '1px solid #9798A2',
+    },
+    '&.Mui-focused fieldset': {
+      border: '1px solid #15AB94',
+    },
+  },
+  '& .MuiInputBase-input': {
+    textAlign: 'center',
+    fontFamily: 'Fredoka',
+    fontSize: 28,
+    fontWeight: 500,
+  },
+}));

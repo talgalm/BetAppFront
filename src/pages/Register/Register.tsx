@@ -11,7 +11,7 @@ import {
   HeaderContainer,
   SignInContainer,
 } from './Register.styles';
-import StyledInput from '../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { useForm } from 'react-hook-form';
@@ -42,10 +42,10 @@ const Register = (): JSX.Element => {
 
   const onSubmit = (data: RegisterFormInput) => {
     console.log('Form submitted with data:', data);
+    handleNextStep();
   };
 
   const handleNextStep = () => {
-    console.log(step);
     if (step.next) {
       setActiveStep(authSteps[step.next]);
     }
@@ -107,7 +107,7 @@ const Register = (): JSX.Element => {
             <StyledButton
               value={t('WelcomePage.CreateAccount')}
               colorVariant={ThemeType.Primary}
-              onClick={handleSubmit((data) => console.log(data))}
+              onClick={handleSubmit(onSubmit)}
               disabled={!password || !passwordVerification}
             />
           </SignInContainer>

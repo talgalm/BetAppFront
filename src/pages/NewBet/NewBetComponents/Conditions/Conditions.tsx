@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
-import StyledInput from '../../../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../../../components/Inputs/StyledInput/StyledInput';
 import {
   ConditionsContent,
   ConditionsRowContent,

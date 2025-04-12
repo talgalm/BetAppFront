@@ -13,7 +13,7 @@ import {
   HeaderContainer,
   SignInContainer,
 } from './Login.styles';
-import StyledInput from '../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { useForm } from 'react-hook-form';
@@ -35,6 +35,10 @@ const Login = (): JSX.Element => {
   const formValues = watch();
 
   const [isFormEmpty, setIsFormEmpty] = useState(true);
+
+  const handleRegister = () => {
+    setActiveStep(authSteps[AuthStepValueTypes.RegisterInfo]);
+  };
 
   useEffect(() => {
     setIsFormEmpty(Object.values(formValues).some((value) => !value));
@@ -96,7 +100,7 @@ const Login = (): JSX.Element => {
             <AppleIcon></AppleIcon>
           </ConnectionOptions>
         </ConnectionOptionsContainer>
-        <DontHaveAccountContainer>
+        <DontHaveAccountContainer onClick={handleRegister}>
           <Typography
             value={t('WelcomePage.DontHaveAccount')}
             variant={TypographyTypes.TextMedium}

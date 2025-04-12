@@ -14,3 +14,8 @@ export type RegisterFormInput = {
 export type ForgotPasswordFormInput = {
   Email: string;
 };
+
+export type NewPasswordFormInput = {
+  Password: string;
+  PasswordVerification: string;
+};

@@ -21,7 +21,7 @@ import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
 import { User } from '../../api/interfaces';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
-import StyledInput from '../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { useState } from 'react';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';

@@ -6,7 +6,8 @@ export enum AuthStepValueTypes {
   ForgetPassword = 'ForgetPassword',
   VerificationCode = 'VerificationCode',
   NewPassword = 'NewPassword',
-  Successful = 'Successful',
+  SuccessfulChangePassword = 'SuccessfulChangePassword',
+  SuccessfulRegister = 'SuccessfulRegister',
 }
 
 export interface AuthStep {
@@ -31,22 +32,30 @@ export const authSteps: Record<AuthStepValueTypes, AuthStep> = {
   },
   [AuthStepValueTypes.RegisterPassword]: {
     step: AuthStepValueTypes.RegisterPassword,
-    next: AuthStepValueTypes.Successful,
+    next: AuthStepValueTypes.SuccessfulRegister,
     prev: AuthStepValueTypes.RegisterInfo,
   },
   [AuthStepValueTypes.ForgetPassword]: {
     step: AuthStepValueTypes.ForgetPassword,
     next: AuthStepValueTypes.VerificationCode,
+    prev: AuthStepValueTypes.Login,
   },
   [AuthStepValueTypes.VerificationCode]: {
     step: AuthStepValueTypes.VerificationCode,
     next: AuthStepValueTypes.NewPassword,
+    prev: AuthStepValueTypes.ForgetPassword,
   },
   [AuthStepValueTypes.NewPassword]: {
     step: AuthStepValueTypes.NewPassword,
-    next: AuthStepValueTypes.Successful,
+    next: AuthStepValueTypes.SuccessfulChangePassword,
+    prev: AuthStepValueTypes.VerificationCode,
   },
-  [AuthStepValueTypes.Successful]: {
-    step: AuthStepValueTypes.Successful,
+  [AuthStepValueTypes.SuccessfulChangePassword]: {
+    step: AuthStepValueTypes.SuccessfulChangePassword,
+    next: AuthStepValueTypes.Login,
+  },
+  [AuthStepValueTypes.SuccessfulRegister]: {
+    step: AuthStepValueTypes.SuccessfulRegister,
+    next: AuthStepValueTypes.Login,
   },
 };

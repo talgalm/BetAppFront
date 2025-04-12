@@ -3,7 +3,7 @@ import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
-import StyledInput from '../../../components/Inputs/InputTextFull/InputTextFull';
+import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
 import { useEffect } from 'react';
 import { UseUser } from '../../../Hooks/useGetUser';

@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import Home from './pages/Home/Home';
 import './language/i18n';
+import Home from './pages/Home/Home';
 import NewBetForm from './pages/NewBet/NewBet.form';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 
@@ -16,19 +14,15 @@ export const pagesRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/register',
-        element: <Register />,
-      },
-      {
         path: '/',
         element: <WelcomePage />,
       },
       {
-        path: '/create-bet',
+        path: '/HOME',
+        element: <Home />,
+      },
+      {
+        path: '/NEW-BET',
         element: <NewBetForm />,
       },
     ],

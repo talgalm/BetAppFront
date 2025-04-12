@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <HeaderComponent headerStyle={layout.headerStyle}>
-      {step.step !== AuthStepValueTypes.Welcome && (
+      {step.prev && (
         <ReturnArrowDiv onClick={handleNextStep}>
           <ReturnArrow />
         </ReturnArrowDiv>

@@ -9,6 +9,7 @@
     "ForgetPassword" : "שכחתי סיסמא?",
     "Login" : "התחבר",
     "ConnectWith" : "או התחבר עם",
+    "ConnectWithNo" : "התחבר עם",
     "DontHaveAccount" : "אין לך חשבון?",
     "RegisterNow" : "הירשם עכשיו",
 
@@ -21,10 +22,29 @@
     "RegisterPasswordVerificationPlaceholder" : "אימות סיסמא",
     "Continue": "המשך",
     "CreateAccount" : "יצירת חשבון",
-    "ForgotPasswordTitle" : "שכחת סיסמה?",
-    "ForgotPasswordSubtitle" : "לא נורא, זה קורה. הזינו את כתובת האימייל שקשורה לחשבון שלכם.",
-    "SendCode": "שלח קוד",
-    "EnterEmail": "הזן את כתובת האימייל שלך"
+    "ForgetPasswordTitle" : "שכחת סיסמה?",
+    "ForgetPasswordSubtitle" : "לא נורא, זה קורה. הזינו את כתובת האימייל שקשורה לחשבון שלכם.",
+    "ForgetPasswordButton": "שלח קוד",
+    "EnterEmail": "הזן את כתובת האימייל שלך",
+
+    "VerificationCodeTitle" : "אימות קוד",
+    "VerificationCodeSubtitle" : "הזינו את קוד האימות ששלחנו אל כתובת האימייל שלכם.",
+    "VerificationCodeButton" : "אמת",
+    "DidntGetCode" : "לא קיבלת את הקוד?",
+    "SendNewCode" : "שלח מחדש",
+
+    "NewPasswordTitle": "יצירת סיסמה חדשה",
+    "NewPasswordSubtitle": "הסיסמה החדשה צריכה להיות שונה מסיסמאות קודמות.",
+    "NewPasswordButton" : "עדכן סיסמא",
+
+    "SuccessfulChangePasswordTitle": "הסיסמה שונתה בהצלחה!",
+    "SuccessfulChangePasswordSubtitle": "הסיסמה החדשה שלך נשמרה בהצלחה.",
+    "SuccessfulRegisterTitle": "החשבון נוצר בהצלחה",
+    "SuccessfulRegisterSubtitle": "עכשיו אפשר להתחבר ולהתחיל להשתמש באפליקציה",
+    "BackToLogin": "חזרה להתחברות"
+
+
+
 
 
 
