@@ -3,7 +3,9 @@ import {
   ButtonsContainerInner,
   CheckboxContainer,
   CheckboxTextContainer,
+  HomeDivContainer,
   PageContainer,
+  ProgressBarContainer,
 } from './NewBet.styles';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
@@ -16,11 +18,11 @@ import { ReactComponent as ArrowRight } from '../../Theme/Icons/arrowRight.svg';
 import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
-import React from 'react';
 import NewBetContent from './NewBetContent/NewBetContent';
+import { KeyboardAwareBottomBar } from '../../components/KeyboardAwareBottomBar/KeyboardAwareBottomBar.tsx';
 import { Checkbox } from '@mui/material';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import { Typography } from '../../components/Topography/topography';
+import { TypographyTypes } from '../../Theme/Typography/typography';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -133,12 +135,18 @@ const NewBet = () => {
 
   return (
     <>
-      <PageContainer>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {step.prevButton && <ProgressBar targetProgress={targetProgress} />}
-          {step.step && (
-            <NewBetContent control={control} inputName={step.inputName} type={step.step} />
-          )}
+      <ProgressBarContainer marginTop={step.step !== NewBetStepValueTypes.Start ? 50 : 0}>
+        {step.step !== NewBetStepValueTypes.Start && (
+          <ProgressBar targetProgress={targetProgress} />
+        )}
+      </ProgressBarContainer>
+      <HomeDivContainer marginTop={step.step !== NewBetStepValueTypes.Start ? 100 : 50}>
+        <PageContainer>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {step.step && (
+              <NewBetContent control={control} inputName={step.inputName} type={step.step} />
+            )}
+          </form>
           {step.step === NewBetStepValueTypes.Description && (
             <CheckboxContainer>
               <Checkbox
@@ -165,40 +173,27 @@ const NewBet = () => {
               </CheckboxTextContainer>
             </CheckboxContainer>
           )}
-        </form>
-      </PageContainer>
-      <ButtonsContainer>
-        {step.continuteWithout && (
-          <StyledButton
-            value={t(`NewBet.${step.step}ContinueWithout`)}
-            onClick={() => handleStep(step.continueButton, false, step.inputName)}
-            styleProps={{
-              width: '100%',
-              backgroundColor: 'white',
-              color: '#15AB94',
-              border: '0px',
-            }}
-            icon={step.continuteWithoutIcon}
-          />
-        )}
-        <ButtonsContainerInner>
-          {step.inputName && (
-            <StyledButton
-              value={t(step.continueButtonText ?? t('NewBet.Continue'))}
-              onClick={() => handleStep(step.continueButton)}
-              styleProps={{ width: '100%' }}
-              disabled={disableButton}
-            />
-          )}
-          {step.prevButton && (
-            <StyledButton
-              onClick={() => handleStep(step.prevButton, true)}
-              icon={<ArrowRight color={PRIMARY_COLOR} />}
-              styleProps={{ width: '32%', backgroundColor: 'white', border: '2px solid #15AB94' }}
-            />
-          )}
-        </ButtonsContainerInner>
-      </ButtonsContainer>
+        </PageContainer>
+        <ButtonsContainer>
+          <ButtonsContainerInner>
+            {step.inputName && (
+              <StyledButton
+                value={t(step.continueButtonText ?? t('NewBet.Continue'))}
+                onClick={() => handleStep(step.continueButton)}
+                styleProps={{ width: '100%' }}
+                disabled={disableButton}
+              />
+            )}
+            {step.prevButton && (
+              <StyledButton
+                onClick={() => handleStep(step.prevButton, true)}
+                icon={<ArrowRight color={PRIMARY_COLOR} />}
+                styleProps={{ width: '32%', backgroundColor: 'white', border: '2px solid #15AB94' }}
+              />
+            )}
+          </ButtonsContainerInner>
+        </ButtonsContainer>
+      </HomeDivContainer>
     </>
   );
 };

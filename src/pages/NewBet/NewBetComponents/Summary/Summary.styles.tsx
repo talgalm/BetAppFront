@@ -1,5 +1,4 @@
-import { Avatar, Divider } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Avatar, Divider, styled } from '@mui/material';
 
 export const SummaryContainer = styled('div')({
   display: 'flex',
@@ -13,7 +12,7 @@ export const SummaryContainer = styled('div')({
 });
 
 export const SummaryRow = styled('div')<{ background?: string; gap?: number }>(
-  ({ background, gap }) => ({
+  ({ background, gap }: { background?: string; gap?: number }) => ({
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',

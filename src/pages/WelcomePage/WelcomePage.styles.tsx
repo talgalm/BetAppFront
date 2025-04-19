@@ -5,6 +5,7 @@ export const MainContainer = styled('div')({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  marginTop: 54,
 });
 
 export const ButtonsContainer = styled('div')({

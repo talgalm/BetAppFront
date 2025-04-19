@@ -13,7 +13,7 @@ export const CoinContainer = styled('div')<{
   isSelected?: boolean;
 }>(({ isSelected }) => ({
   display: 'flex',
-  width: '96%',
+  width: '100%',
   height: '7vh',
   backgroundColor: '#EEF9F8',
   borderRadius: 12,

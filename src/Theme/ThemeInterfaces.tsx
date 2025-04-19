@@ -8,6 +8,7 @@ export interface Layout {
 
 export enum HeaderStyle {
   PRIMARY = 'primary',
+  SECONDARY = 'secondary',
 }
 
 export enum FooterStyle {
@@ -19,12 +20,24 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.PRIMARY]: {
     height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
+    position: 'absolute',
+    width: '100%',
+    padding: 16,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 999,
+  },
+  [HeaderStyle.SECONDARY]: {
+    height: 56,
+    backgroundColor: PRIMARY_BACKGROUND,
     width: '100%',
     padding: 16,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 100,
+    boxShadow: '0px 2px 5px 0px #CBC6E31A',
   },
 };
 

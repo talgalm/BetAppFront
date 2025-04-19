@@ -25,6 +25,7 @@ import {
   AppleIcon,
 } from '../Login/Login.styles';
 import Home from '../Home/Home';
+import { useEffect } from 'react';
 
 const WelcomePage = (): JSX.Element => {
   const theme = useTheme();
@@ -34,6 +35,10 @@ const WelcomePage = (): JSX.Element => {
   const handleNextStep = (nextStep: AuthStepValueTypes) => {
     setActiveStep(authSteps[nextStep]);
   };
+
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
   const renderConnectionOptions = () => (
     <BottomContainer>

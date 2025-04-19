@@ -4,12 +4,13 @@ import { styled } from '@mui/material/styles';
 export const ConditionsContent = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
-  gap: 25,
+  gap: 24,
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: '100%',
   height: 'calc(75vh - 162px)',
   overflowY: 'scroll',
+  paddingTop: 16,
 });
 
 export const ConditionsRowContent = styled('div')({

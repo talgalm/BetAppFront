@@ -55,13 +55,15 @@ const NewBetContent = <T extends FieldValues>({
           styleProps={{ color: 'black' }}
         />
       </RowContentContainer>
-      <RowContentContainer>
-        <Typography
-          value={t(`NewBet.${type}Subtitle2`)}
-          variant={TypographyTypes.H3}
-          styleProps={{ color: 'black' }}
-        />
-      </RowContentContainer>
+      {t(`NewBet.${type}Subtitle2`) !== '' && (
+        <RowContentContainer>
+          <Typography
+            value={t(`NewBet.${type}Subtitle2`)}
+            variant={TypographyTypes.H3}
+            styleProps={{ color: 'black' }}
+          />
+        </RowContentContainer>
+      )}
       {(type === NewBetStepValueTypes.Description || type === NewBetStepValueTypes.Name) && (
         <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
           {inputName && type === NewBetStepValueTypes.Name && (

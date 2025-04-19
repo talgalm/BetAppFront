@@ -18,17 +18,15 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   visibility: isOpen ? 'visible' : 'hidden',
   pointerEvents: isOpen ? 'auto' : 'none',
   margin: 0,
-  padding: 0,
+  padding: 16,
   width: '100%',
 }));
 
 export const PopUpContainer = styled('div')({
-  width: '90%',
-  height: '55%',
+  width: '100%',
   backgroundColor: '#FFFFFF',
   borderRadius: 16,
   padding: 16,
-  gap: 15,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

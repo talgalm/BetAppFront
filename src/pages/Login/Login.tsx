@@ -25,12 +25,16 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { GoogleLogin } from '@react-oauth/google';
+import { useRegisterProvider } from '../../Hooks/useAuth';
+import GoogleLoginButton from '../../components/Providers/GoogleLogin';
 
 const Login = (): JSX.Element => {
   const theme = useTheme();
   const { t } = useTranslation();
   const { control, handleSubmit, watch } = useForm<LoginFormInput>();
   const [step, setActiveStep] = useAtom(UserActiveStep);
+  const { mutate: registerProvider, isPending: isRegisteringProvider } = useRegisterProvider();
 
   const formValues = watch();
 
@@ -70,6 +74,7 @@ const Login = (): JSX.Element => {
                 ? NotVisiblaeIcon
                 : VisableIcon
             }
+            maskValue
           />
           <Typography
             value={t('WelcomePage.ForgetPassword')}
@@ -96,7 +101,28 @@ const Login = (): JSX.Element => {
           </DividerWithText>
           <ConnectionOptions>
             <FacebookIcon></FacebookIcon>
-            <GoogleIcon></GoogleIcon>
+            {/* <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log('Token:', credentialResponse.credential);
+                // Send credentialResponse.credential to your backend for verification
+                registerProvider(
+                  { Token: credentialResponse.credential || '', Provider: 'Google' },
+                  {
+                    onSuccess: () => {
+                      console.log('!');
+                    },
+                    onError: (error: any) => {
+                      console.error('Registration failed:', error);
+                      alert(t('WelcomePage.RegistrationFailed'));
+                    },
+                  }
+                );
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            /> */}
+            <GoogleLoginButton />
             <AppleIcon></AppleIcon>
           </ConnectionOptions>
         </ConnectionOptionsContainer>

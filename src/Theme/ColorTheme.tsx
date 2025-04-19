@@ -1,4 +1,4 @@
-export const PRIMARY_BACKGROUND = '#FFFFFFE5';
+export const PRIMARY_BACKGROUND = '#FFFFFFE6';
 export const PRIMARY_COLOR = '#15AB94';
 export const SECONDERY_COLOR = '#f7a400';
 export const TEXT_COLOR = '#000000';

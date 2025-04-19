@@ -5,6 +5,7 @@ import Calendar from '../Calendar/Calendar';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import StyledButton from '../Button/StyledButton';
+import { ThemeType } from '../../Theme/theme';
 
 interface DateModalProps<T extends FieldValues> {
   isOpen: boolean;
@@ -52,12 +53,7 @@ const DateModal = <T extends FieldValues>({
         <StyledButton
           value={t(`NewBet.Approve`)}
           onClick={() => closeModal()}
-          styleProps={{
-            width: '100%',
-            backgroundColor: 'white',
-            color: value ? '#15AB94' : '#A8D6CC',
-            border: '0px',
-          }}
+          colorVariant={ThemeType.Secondary}
         />
       </PopUpContainer>
     </PopUpOverlay>

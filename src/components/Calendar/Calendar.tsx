@@ -307,7 +307,9 @@ const Calendar = <T extends FieldValues>({
             <StyledCalendar
               onChange={(value) => field.onChange(value)}
               value={field.value}
-              nextLabel={<LeftArrow width={12} height={12} />}
+              nextLabel={
+                <LeftArrow width={12} height={12} style={{ transform: 'rotate(180deg)' }} />
+              }
               prevLabel={<RightArrow width={12} height={12} />}
               next2Label={null}
               prev2Label={null}

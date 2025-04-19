@@ -18,11 +18,11 @@ export const pagesRouter = createBrowserRouter([
         element: <WelcomePage />,
       },
       {
-        path: '/HOME',
+        path: '/home/:userId',
         element: <Home />,
       },
       {
-        path: '/NEW-BET',
+        path: '/new-bet',
         element: <NewBetForm />,
       },
     ],

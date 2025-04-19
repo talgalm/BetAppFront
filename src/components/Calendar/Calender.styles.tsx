@@ -69,6 +69,7 @@ export const StyledCalendar = styled(Calendar)`
     font-size: 18px;
     font-weight: 500;
     font-family: 'Fredoka', sans-serif;
+    color: black;
   }
 
   .react-calendar__month-view__weekdays__weekday,

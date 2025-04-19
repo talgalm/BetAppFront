@@ -8,7 +8,7 @@ export const TypographyTypes = {
     fontSize: 20,
   },
   H3: {
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: 18,
   },
   TextBig: {
@@ -23,6 +23,11 @@ export const TypographyTypes = {
     fontWeight: 500,
     fontSize: 14,
     color: '#9798A2',
+  },
+  VerySmall: {
+    fontWeight: 500,
+    fontSize: 8,
+    color: '#ffffff',
   },
   Button: {
     fontWeight: 600,

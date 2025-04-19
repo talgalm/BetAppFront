@@ -104,14 +104,19 @@ const NewBetParticipants = <T extends FieldValues>({
     { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
     { id: 'JohnDoe', fullName: 'John Doe', phoneNumber: '054-1234567' },
     { id: 'JaneSmith', fullName: 'Jane Smith', phoneNumber: '054-7654321' },
-    { id: 'MikeBrown', fullName: 'Mike Brown', phoneNumber: '054-9876543' },
-    { id: 'EmilyWhite', fullName: 'Emily White', phoneNumber: '054-5432109' },
+    { id: 'Jane2Smith', fullName: 'Jan22e Smith', phoneNumber: '054-557654321' },
+    { id: 'Jan2Smi4h', fullName: 'Jase Smith', phoneNumber: '056-7654321' },
   ];
 
   return (
     <>
       {!limit && (
-        <Collapse in={Array.isArray(value) && value.length > 0} timeout="auto" unmountOnExit>
+        <Collapse
+          in={Array.isArray(value) && value.length > 0}
+          timeout="auto"
+          unmountOnExit
+          style={{ width: '100%' }} // Ensure Collapse fills the container
+        >
           <SelectedContainer>
             {Array.isArray(value) &&
               value.map((item: User, index: number) => (
@@ -123,7 +128,7 @@ const NewBetParticipants = <T extends FieldValues>({
                         <CloseIconStyled />
                       </CloseButton>
                     </AvatarWrapper>
-                    <NameText>{item.fullName}</NameText>
+                    <NameText>{item.fullName?.slice(4)}</NameText>
                   </ParticipantsCollapseRow>
                 </ParticipantsCollapseContainer>
               ))}
@@ -134,7 +139,7 @@ const NewBetParticipants = <T extends FieldValues>({
         <Typography
           value={t(`NewBet.mostActives`)}
           variant={TypographyTypes.H2}
-          styleProps={{ marginBottom: 10, paddingRight: 12 }}
+          styleProps={{ marginBottom: 10, paddingRight: 6 }}
         />
         {mostActives.length > 0 &&
           mostActives.map((item, index) => (

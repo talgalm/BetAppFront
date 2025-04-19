@@ -1,5 +1,42 @@
 import { styled } from '@mui/material/styles';
 
+export const HomeDivContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 50 }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop,
+  backgroundColor: '#ffffff', // or your theme background
+}));
+
+export const ProgressBarContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 0 }) => ({
+  position: 'absolute',
+  width: '100%',
+  padding: 16,
+  paddingRight: 16,
+  paddingLeft: 24,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  zIndex: 10,
+  backgroundColor: 'transparent',
+  marginTop: marginTop,
+}));
+
+export const BottomContainer = styled('div')({
+  width: '100%',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: 16,
+  marginTop: 'auto',
+  position: 'fixed',
+  bottom: -1,
+  left: 0,
+  right: 0,
+  transition: 'all 0.2s ease-out',
+  zIndex: 9999,
+  backgroundColor: 'white',
+});
 export const PageContainer = styled('div')({
   position: 'relative',
   display: 'flex',
@@ -7,11 +44,10 @@ export const PageContainer = styled('div')({
   width: '100%',
   textAlign: 'right',
   gap: 16,
-  paddingRight: 24,
-  paddingLeft: 24,
-  paddingTop: 60,
+  paddingRight: 16,
+  paddingLeft: 16,
   marginTop: 10,
-  overflowY: 'auto',
+  overflowY: 'scroll',
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {
     display: 'none',
@@ -37,6 +73,7 @@ export const CheckboxContainer = styled('div')({
   width: '100%',
   direction: 'rtl',
   marginLeft: 12,
+  marginTop: -24,
 });
 
 export const CheckboxTextContainer = styled('div')({
@@ -74,7 +111,6 @@ export const RowCenterContentContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')({
-  position: 'fixed',
   bottom: 0,
   left: 0,
   right: 0,

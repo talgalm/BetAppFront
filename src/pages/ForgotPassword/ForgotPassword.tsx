@@ -39,7 +39,6 @@ const ForgetPassword = (): JSX.Element => {
 
   const handleNextStep = () => {
     if (step.next) {
-      console.log(authSteps[step.next]);
       setActiveStep(authSteps[step.next]);
     }
   };
@@ -50,8 +49,6 @@ const ForgetPassword = (): JSX.Element => {
     } else if (step.step === AuthStepValueTypes.VerificationCode) {
       return value.length < 4;
     } else if (step.step === AuthStepValueTypes.NewPassword) {
-      console.log(passwordNew);
-      console.log(passwordValidationNew);
       return !passwordNew || !passwordValidationNew;
     }
     return false;

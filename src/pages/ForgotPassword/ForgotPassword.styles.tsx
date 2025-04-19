@@ -47,7 +47,7 @@ interface CubeInputProps {
 }
 
 export const CubeInput = styled(TextField, {
-  shouldForwardProp: (prop) => prop !== 'hasValue',
+  shouldForwardProp: (prop: string) => prop !== 'hasValue',
 })<CubeInputProps>(({ hasValue }) => ({
   borderRadius: 8,
   '& .MuiOutlinedInput-root': {

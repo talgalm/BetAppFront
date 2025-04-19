@@ -3,13 +3,18 @@ import { User } from '../api/interfaces';
 import { ApiService, HTTPMethod } from '../api/types';
 
 interface LoginPayload {
-  username: string;
-  password: string;
+  FullName: string;
+  Password: string;
 }
 
 interface RegisterPayload extends LoginPayload {
-  email: string;
-  phoneNumber: string;
+  Email: string;
+  PhoneNumber: string;
+}
+
+interface TokenPayload {
+  Provider: string;
+  Token: string;
 }
 
 export const useLogin = (): UseMutationResult<
@@ -19,13 +24,13 @@ export const useLogin = (): UseMutationResult<
 > => {
   const mutation = useMutation({
     mutationFn: async ({
-      username,
-      password,
+      FullName,
+      Password,
     }: LoginPayload): Promise<{ user: User; token: string }> => {
       const response = await ApiService.makeRequest<{
         user: User;
         token: string;
-      }>('/api/users/login', HTTPMethod.POST, { username, password });
+      }>('/api/users/login', HTTPMethod.POST, { FullName, Password });
       return response;
     },
   });
@@ -36,19 +41,34 @@ export const useLogin = (): UseMutationResult<
 export const useRegister = (): UseMutationResult<{ user: User }, Error, RegisterPayload> => {
   const mutation = useMutation({
     mutationFn: async ({
-      username,
-      password,
-      email,
-      phoneNumber,
-    }: RegisterPayload): Promise<{ user: User; token: string }> => {
+      FullName,
+      Password,
+      Email,
+      PhoneNumber,
+    }: RegisterPayload): Promise<{ user: User }> => {
       const response = await ApiService.makeRequest<{
         user: User;
-        token: string;
-      }>('/api/users/register', HTTPMethod.POST, {
-        username,
-        password,
-        email,
-        phoneNumber,
+      }>('/users', HTTPMethod.POST, {
+        FullName,
+        Password,
+        Email,
+        PhoneNumber,
+      });
+      return response;
+    },
+  });
+
+  return mutation;
+};
+
+export const useRegisterProvider = (): UseMutationResult<{ user: User }, Error, TokenPayload> => {
+  const mutation = useMutation({
+    mutationFn: async ({ Token, Provider }: TokenPayload): Promise<{ user: User }> => {
+      const response = await ApiService.makeRequest<{
+        user: User;
+      }>('/users/auth', HTTPMethod.POST, {
+        Token,
+        Provider,
       });
       return response;
     },

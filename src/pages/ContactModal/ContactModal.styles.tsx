@@ -30,7 +30,7 @@ export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>((
   width: '100%',
   maxWidth: '100%',
   minWidth: '100%',
-  height: '100vh',
+  height: '90vh',
   backgroundColor: 'White',
   borderBottom: 'none',
   zIndex: 10000,

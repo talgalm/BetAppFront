@@ -2,7 +2,7 @@ import { atomWithStorage } from 'jotai/utils';
 import { NewBetStep, newBetSteps, NewBetStepValueTypes } from '../pages/NewBet/Interface';
 
 export const ActiveStep = atomWithStorage<NewBetStep>(
-  'activeStep',
+  'NewBetStep',
   newBetSteps[NewBetStepValueTypes.Start],
   {
     getItem: (key) => {

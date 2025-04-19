@@ -9,9 +9,11 @@ import ContactModal from '../../../pages/ContactModal/ContactModal.lang.json';
 import ConditionModal from '../../../pages/ConditionModal/ConditionModal.lang.json';
 
 import WelcomePage from '../../../pages/WelcomePage/WelcomePage.lang.json';
+import Home from '../../../pages/Home/Home.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
+  Home: Home,
   MyBets: MyBets,
   MyGroups: MyGroups,
   NewBet: NewBet,

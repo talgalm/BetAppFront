@@ -50,8 +50,9 @@ const StyledInput = <T extends FieldValues>({
                 variant="outlined"
                 multiline={extended}
                 type={maskValue ? 'password' : 'text'}
-                rows={extended ? 4 : undefined}
+                rows={extended ? 2 : undefined}
                 {...field}
+                marginExtand={extended}
               />
               {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
             </WidthDiv>

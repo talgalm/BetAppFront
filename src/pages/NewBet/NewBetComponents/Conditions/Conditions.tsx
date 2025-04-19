@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
 import { CreateBetInputs } from '../../Interface';
+import { Tag } from '../../../Home/SingleBetRow.styles';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -52,6 +53,7 @@ const NewBetConditions = <T extends FieldValues>({
     onChange(updatedValues);
   };
 
+  // add myself to the list conditions
   return (
     <ConditionsContent>
       {inputName &&
@@ -77,11 +79,18 @@ const NewBetConditions = <T extends FieldValues>({
 
               <ConditionsRowContentCenter onClick={() => handleOpenModal(userIndex)}>
                 {!userDate && <CalendarIcon color="#15AB94" />}
-                <Typography
-                  value={userDate ? formatDate(userDate) : t(`NewBet.ConditionAddDate`)}
-                  variant={TypographyTypes.Button}
-                  styleProps={{ color: '#15AB94' }}
-                />
+                {!userDate && (
+                  <Typography
+                    value={t(`NewBet.ConditionAddDate`)}
+                    variant={TypographyTypes.TextMedium}
+                    styleProps={{ color: '#15AB94' }}
+                  />
+                )}
+                {userDate && (
+                  <Tag background="#CEEFEA">
+                    <Typography value={formatDate(userDate)} variant={TypographyTypes.TextMedium} />
+                  </Tag>
+                )}
               </ConditionsRowContentCenter>
             </ConditionsRowContent>
           );

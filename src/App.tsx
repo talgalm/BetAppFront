@@ -5,7 +5,7 @@ import { LogoutProvider } from './Providers/LogoutProvider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorBoundary } from 'react-error-boundary';
 import Header from './Layout/Header/Header';
-import { Footer } from './Layout/Footer/Footer';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import ErrorFallback from './Errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
@@ -28,13 +28,15 @@ const App = () => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <LogoutProvider>
           <ThemeProvider theme={theme}>
-            <PrimaryBackground>
-              <Header />
-              <main style={{ flexGrow: 1 }}>
-                <Outlet />
-              </main>
-              {/* <Footer /> */}
-            </PrimaryBackground>
+            <GoogleOAuthProvider clientId="754492313540-4kl64as5d01muqmgaudat470uaq41hv3.apps.googleusercontent.com">
+              <PrimaryBackground>
+                <Header />
+                <main style={{ flexGrow: 1 }}>
+                  <Outlet />
+                </main>
+                {/* <Footer /> */}
+              </PrimaryBackground>
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </LogoutProvider>
       </ErrorBoundary>

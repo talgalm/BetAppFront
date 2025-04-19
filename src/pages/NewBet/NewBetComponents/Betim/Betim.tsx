@@ -41,12 +41,14 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
   }, [user]);
 
   const handleCoinsChange = (value: number, isCustom = false) => {
-    if (user?.points !== undefined && value <= user.points) {
+    // eslint-disable-next-line no-constant-condition
+    if (true) {
       field.onChange(value);
-      setUserCurrentCoins(user.points - value);
+      setUserCurrentCoins(200 - value);
       setIsCustomValue(isCustom);
     }
   };
+  /////// !!!!!!!!!!!
 
   const handlePlusClick = (event: React.MouseEvent) => {
     event.stopPropagation();

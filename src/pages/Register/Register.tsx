@@ -6,6 +6,7 @@ import {
   ConnectionOptions,
   ConnectionOptionsContainer,
   DividerWithText,
+  DontHaveAccountContainer,
   FacebookIcon,
   GoogleIcon,
   HeaderContainer,
@@ -14,7 +15,7 @@ import {
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { ThemeType } from '../../Theme/theme';
 import StyledButton from '../../components/Button/StyledButton';
 import { useTheme } from '@mui/material/styles';
@@ -24,6 +25,8 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useState } from 'react';
+import { useRegister } from '../../Hooks/useAuth';
+import BetLoader from '../../Theme/Loader/loader';
 
 const Register = (): JSX.Element => {
   const theme = useTheme();
@@ -31,7 +34,7 @@ const Register = (): JSX.Element => {
   const [step, setActiveStep] = useAtom(UserActiveStep);
   const [maskPassword, setMaskPassword] = useState(true);
   const [maskPasswordVerification, setMaskPasswordVerification] = useState(true);
-
+  const { mutate: register, isPending: isRegistering } = useRegister();
   const { control, handleSubmit, watch } = useForm<RegisterFormInput>();
 
   const email = watch('Email');
@@ -40,9 +43,23 @@ const Register = (): JSX.Element => {
   const password = watch('Password');
   const passwordVerification = watch('PasswordVerification');
 
-  const onSubmit = (data: RegisterFormInput) => {
-    console.log('Form submitted with data:', data);
-    handleNextStep();
+  const onSubmit: SubmitHandler<RegisterFormInput> = (data) => {
+    const { Password, PasswordVerification } = data;
+
+    if (Password !== PasswordVerification) {
+      alert(t('WelcomePage.PasswordsDontMatch'));
+      return;
+    }
+
+    register(data, {
+      onSuccess: () => {
+        handleNextStep();
+      },
+      onError: (error: any) => {
+        console.error('Registration failed:', error);
+        alert(t('WelcomePage.RegistrationFailed'));
+      },
+    });
   };
 
   const handleNextStep = () => {
@@ -50,6 +67,14 @@ const Register = (): JSX.Element => {
       setActiveStep(authSteps[step.next]);
     }
   };
+
+  const handleLogin = () => {
+    setActiveStep(authSteps[AuthStepValueTypes.Login]);
+  };
+
+  if (isRegistering) {
+    return <BetLoader />;
+  }
 
   return (
     <>
@@ -128,6 +153,14 @@ const Register = (): JSX.Element => {
             <AppleIcon></AppleIcon>
           </ConnectionOptions>
         </ConnectionOptionsContainer>
+        <DontHaveAccountContainer onClick={handleLogin}>
+          <Typography value={t('WelcomePage.HaveAccount')} variant={TypographyTypes.TextMedium} />
+          <Typography
+            value={t('WelcomePage.LoginNow')}
+            variant={TypographyTypes.TextMedium}
+            styleProps={{ color: theme.palette.primary.main }}
+          />
+        </DontHaveAccountContainer>
       </BottomContainer>
     </>
   );

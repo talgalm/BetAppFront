@@ -28,7 +28,6 @@ export const BottomContainer = styled('div')({
   width: '100%',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: 16,
   marginTop: 'auto',
   position: 'fixed',
   bottom: -1,

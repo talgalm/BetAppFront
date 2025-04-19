@@ -120,7 +120,7 @@ const ContactModal = <T extends FieldValues>({
           />
           <CloseIcon onClick={handleClose} />
         </PopUpHeader>
-        {inputName && (
+        {/* {inputName && (
           <StyledInput
             extended={true}
             displayCharLimit={false}
@@ -128,7 +128,7 @@ const ContactModal = <T extends FieldValues>({
             startIcon={Search}
             typography="TextSmall"
           />
-        )}
+        )} */}
         <Collapse
           in={Array.isArray(selectedUsers) && selectedUsers.length > 0}
           timeout="auto"
