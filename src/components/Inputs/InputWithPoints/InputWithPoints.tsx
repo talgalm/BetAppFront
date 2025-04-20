@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import StyledInput from '../StyledInput/StyledInput';
 import { ReactComponent as CalendarIcon } from '../../../Theme/Icons/CalendarIcon.svg';
 import { useAtom } from 'jotai';
-import { UseUser } from '../../../Hooks/useGetUser';
+import { useUser } from '../../../Hooks/useGetUser';
 import { userAtom } from '../../../Jotai/atoms';
 
 interface InputWithPointsProps<T extends FieldValues> {
@@ -61,7 +61,7 @@ const InputWithPoints = <T extends FieldValues>({
   };
 
   const [user, setUser] = useAtom(userAtom);
-  const { data } = UseUser(user?.id);
+  const { data } = useUser(user?.id);
 
   useEffect(() => {
     if (data) {

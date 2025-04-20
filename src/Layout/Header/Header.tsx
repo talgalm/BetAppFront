@@ -15,7 +15,7 @@ import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
-import { UseUser } from '../../Hooks/useGetUser';
+import { useUser } from '../../Hooks/useGetUser';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -33,7 +33,7 @@ const Header = () => {
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user, setUser] = useAtom(userAtom);
-  const { data } = UseUser(user?.id);
+  const { data } = useUser(user?.id);
   const path = useLocation();
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ const Header = () => {
           <ReturnArrow />
         </RightIconDiv>
       )}
-      {newBetStep && (
+      {newBetStep !== null && (
         <LeftIconNoBack onClick={routeToHome}>
           <CloseIcon />
         </LeftIconNoBack>

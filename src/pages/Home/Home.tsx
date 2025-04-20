@@ -8,7 +8,7 @@ import {
 } from './Home.styles';
 import BetLoader from '../../Theme/Loader/loader';
 import { useEffect } from 'react';
-import { UseUser } from '../../Hooks/useGetUser';
+import { useUser } from '../../Hooks/useGetUser';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = (): JSX.Element => {
   const [user, setUser] = useAtom(userAtom);
-  const { data, isLoading } = UseUser(user?.id);
+  const { data, isLoading } = useUser(user?.id);
   const { t } = useTranslation();
   const navigate = useNavigate();
 

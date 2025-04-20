@@ -1,0 +1,57 @@
+import React from 'react';
+import { FacebookIcon } from './ConnectionOptions.styles';
+import { useRegisterProvider } from '../../Hooks/useAuth';
+import { useAtom } from 'jotai';
+import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+
+interface facebookUser {
+  name: string;
+  email: string;
+  id: string;
+}
+
+const FacebookLoginButton = () => {
+  const { mutate: registerProvider } = useRegisterProvider();
+  const [_, setActiveStep] = useAtom(UserActiveStep);
+
+  const handleFacebookLogin = () => {
+    FB.login(
+      (response) => {
+        if (response.authResponse) {
+          console.log('Welcome! Fetching your information...');
+          FB.api('/me', { fields: 'name,email' }, (user: facebookUser) => {
+            registerProvider(
+              {
+                UserData: { id: '-1', email: user.email, fullName: user.name },
+                Provider: 'Facebook',
+              },
+              {
+                onSuccess: (res) => {
+                  if (res.accses_toekn !== '') {
+                    //login
+                  } else {
+                    //register
+                    localStorage.setItem('tempId', res.user.id);
+                    setActiveStep(authSteps[AuthStepValueTypes.RegisterProvider]);
+                  }
+                },
+                onError: (error: any) => {
+                  console.error('Registration failed:', error);
+                  alert('');
+                },
+              }
+            );
+          });
+        } else {
+          console.log('User cancelled login or did not authorize.');
+        }
+      },
+      { scope: 'public_profile,email' }
+    );
+  };
+
+  return <FacebookIcon onClick={handleFacebookLogin} />;
+};
+
+export default FacebookLoginButton;

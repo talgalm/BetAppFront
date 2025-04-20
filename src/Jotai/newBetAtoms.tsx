@@ -7,7 +7,7 @@ export const ActiveStep = atomWithStorage<NewBetStep>(
   {
     getItem: (key) => {
       const storedValue = localStorage.getItem(key);
-      return storedValue ? JSON.parse(storedValue) : newBetSteps[NewBetStepValueTypes.Start];
+      return storedValue ? JSON.parse(storedValue) : null;
     },
     setItem: (key, value) => {
       localStorage.setItem(key, JSON.stringify(value));

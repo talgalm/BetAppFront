@@ -3,6 +3,7 @@ export enum AuthStepValueTypes {
   Login = 'Login',
   RegisterInfo = 'RegisterInfo',
   RegisterPassword = 'RegisterPassword',
+  RegisterProvider = 'RegisterProvider',
   ForgetPassword = 'ForgetPassword',
   VerificationCode = 'VerificationCode',
   NewPassword = 'NewPassword',
@@ -34,6 +35,11 @@ export const authSteps: Record<AuthStepValueTypes, AuthStep> = {
     step: AuthStepValueTypes.RegisterPassword,
     next: AuthStepValueTypes.SuccessfulRegister,
     prev: AuthStepValueTypes.RegisterInfo,
+  },
+  [AuthStepValueTypes.RegisterProvider]: {
+    step: AuthStepValueTypes.RegisterProvider,
+    next: AuthStepValueTypes.SuccessfulRegister,
+    prev: AuthStepValueTypes.Login,
   },
   [AuthStepValueTypes.ForgetPassword]: {
     step: AuthStepValueTypes.ForgetPassword,

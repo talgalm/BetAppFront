@@ -6,7 +6,7 @@ import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
 import { useEffect } from 'react';
-import { UseUser } from '../../../Hooks/useGetUser';
+import { useUser } from '../../../Hooks/useGetUser';
 import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
@@ -30,7 +30,7 @@ const NewBetContent = <T extends FieldValues>({
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
-  const { data } = UseUser(user?.id);
+  const { data } = useUser(user?.id);
 
   useEffect(() => {
     if (data) {

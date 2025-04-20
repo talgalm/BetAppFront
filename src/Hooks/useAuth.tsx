@@ -14,7 +14,17 @@ interface RegisterPayload extends LoginPayload {
 
 interface TokenPayload {
   Provider: string;
-  Token: string;
+  Token?: string;
+  UserData?: User;
+}
+
+interface PartialUserPayload {
+  id: string;
+  FullName?: string;
+  Password?: string;
+  Email?: string;
+  PhoneNumber?: string;
+  Image?: File;
 }
 
 export const useLogin = (): UseMutationResult<
@@ -61,15 +71,41 @@ export const useRegister = (): UseMutationResult<{ user: User }, Error, Register
   return mutation;
 };
 
-export const useRegisterProvider = (): UseMutationResult<{ user: User }, Error, TokenPayload> => {
+export const useRegisterProvider = (): UseMutationResult<
+  { user: User; accses_toekn: string },
+  Error,
+  TokenPayload
+> => {
   const mutation = useMutation({
-    mutationFn: async ({ Token, Provider }: TokenPayload): Promise<{ user: User }> => {
+    mutationFn: async ({
+      Token,
+      Provider,
+    }: TokenPayload): Promise<{ user: User; accses_toekn: string }> => {
       const response = await ApiService.makeRequest<{
         user: User;
+        accses_toekn: string;
       }>('/users/auth', HTTPMethod.POST, {
         Token,
         Provider,
       });
+      return response;
+    },
+  });
+
+  return mutation;
+};
+
+export const useUpdateUser = (): UseMutationResult<{ user: User }, Error, PartialUserPayload> => {
+  const mutation = useMutation({
+    mutationFn: async (data: PartialUserPayload): Promise<{ user: User }> => {
+      const { id, ...fieldsToUpdate } = data;
+
+      const response = await ApiService.makeRequest<{ user: User }>(
+        `/users/${id}`,
+        HTTPMethod.PATCH,
+        fieldsToUpdate
+      );
+
       return response;
     },
   });

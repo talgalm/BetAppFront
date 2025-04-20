@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { User } from '../api/interfaces';
 import { ApiService, HTTPMethod } from '../api/types';
 
-export const UseUser = (id: string) => {
+export const useUser = (id: string) => {
   return useQuery<User, Error>({
     queryKey: ['user', id],
     queryFn: async () => {

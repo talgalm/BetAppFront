@@ -1,23 +1,23 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#22353E",
-    "activityBar.background": "#22353E",
-    "activityBar.foreground": "#ffffff",
-    "activityBar.inactiveForeground": "#ffffff99",
-    "activityBarBadge.background": "#0e940b",
-    "activityBarBadge.foreground": "#e7e7e7",
-    "commandCenter.border": "#ffffff",
-    "sash.hoverBorder": "#22353E",
-    "statusBar.background": "#22353E",
-    "statusBar.foreground": "#ffffff",
+    "activityBar.activeBackground": "#15AB94",
+    "activityBar.background": "#15AB94",
+    "activityBar.foreground": "#000000",
+    "activityBar.inactiveForeground": "#00000099",
+    "activityBarBadge.background": "#000000",
+    "activityBarBadge.foreground": "#ffffff",
+    "commandCenter.border": "#000000",
+    "sash.hoverBorder": "#15AB94",
+    "statusBar.background": "#15AB94",
+    "statusBar.foreground": "#000000",
     "statusBarItem.hoverBackground": "#f04246",
-    "statusBarItem.remoteBackground": "#22353E",
-    "statusBarItem.remoteForeground": "#ffffff",
-    "titleBar.activeBackground": "#22353E",
-    "titleBar.activeForeground": "#ffffff",
-    "titleBar.inactiveBackground": "#22353E",
-    "titleBar.inactiveForeground": "#ffffff"
+    "statusBarItem.remoteBackground": "#15AB94",
+    "statusBarItem.remoteForeground": "#000000",
+    "titleBar.activeBackground": "#15AB94",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveBackground": "#15AB94",
+    "titleBar.inactiveForeground": "#000000",
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -27,12 +27,12 @@
     "TODO": {
       "foreground": "#000000",
       "background": "#FFFF00",
-      "iconColour": "#ffffff"
+      "iconColour": "#000000"
     },
     "REPLACE": {
-      "foreground": "#ffffff",
+      "foreground": "#000000",
       "background": "#648843",
-      "iconColour": "#ffffff",
+      "iconColour": "#000000",
       "icon": "pencil"
     }
   },

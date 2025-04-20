@@ -1,9 +1,13 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import { useRegisterProvider } from '../../Hooks/useAuth';
-import { GoogleIcon } from '../../pages/Login/Login.styles';
+import { GoogleIcon } from './ConnectionOptions.styles';
+import { useAtom } from 'jotai';
+import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 
 function GoogleLoginButton() {
   const { mutate: registerProvider } = useRegisterProvider();
+  const [_, setActiveStep] = useAtom(UserActiveStep);
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
@@ -12,7 +16,15 @@ function GoogleLoginButton() {
       registerProvider(
         { Token: tokenResponse.access_token, Provider: 'Google' },
         {
-          onSuccess: () => console.log('!'),
+          onSuccess: (res) => {
+            if (res.accses_toekn !== '') {
+              //login
+            } else {
+              //register
+              localStorage.setItem('tempId', res.user.id);
+              setActiveStep(authSteps[AuthStepValueTypes.RegisterProvider]);
+            }
+          },
           onError: (error: any) => {
             console.error('Registration failed:', error);
             alert('');

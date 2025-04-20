@@ -15,17 +15,9 @@ import Register from '../Register/Register';
 import ForgetPassword from '../ForgotPassword/ForgotPassword';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
-import {
-  BottomContainer,
-  ConnectionOptionsContainer,
-  DividerWithText,
-  ConnectionOptions,
-  FacebookIcon,
-  GoogleIcon,
-  AppleIcon,
-} from '../Login/Login.styles';
 import Home from '../Home/Home';
 import { useEffect } from 'react';
+import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 
 const WelcomePage = (): JSX.Element => {
   const theme = useTheme();
@@ -39,29 +31,6 @@ const WelcomePage = (): JSX.Element => {
   // useEffect(() => {
   //   localStorage.clear();
   // }, []);
-
-  const renderConnectionOptions = () => (
-    <BottomContainer>
-      <ConnectionOptionsContainer>
-        <DividerWithText textAlign="center">
-          <Typography
-            value={t('WelcomePage.ConnectWithNo')}
-            variant={TypographyTypes.TextSmall}
-            styleProps={{
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          />
-        </DividerWithText>
-        <ConnectionOptions>
-          <FacebookIcon />
-          <GoogleIcon />
-          <AppleIcon />
-        </ConnectionOptions>
-      </ConnectionOptionsContainer>
-    </BottomContainer>
-  );
 
   const renderSuccessPage = (
     image: JSX.Element,
@@ -81,7 +50,7 @@ const WelcomePage = (): JSX.Element => {
           styleProps={{ marginTop: 16 }}
         />
       </TextConatiner>
-      {renderConnectionOptions()}
+      <ConnectionOptions />
     </>
   );
 
@@ -109,7 +78,8 @@ const WelcomePage = (): JSX.Element => {
 
       {step.step === AuthStepValueTypes.Login && <Login />}
       {(step.step === AuthStepValueTypes.RegisterInfo ||
-        step.step === AuthStepValueTypes.RegisterPassword) && <Register />}
+        step.step === AuthStepValueTypes.RegisterPassword ||
+        step.step === AuthStepValueTypes.RegisterProvider) && <Register />}
       {(step.step === AuthStepValueTypes.ForgetPassword ||
         step.step === AuthStepValueTypes.VerificationCode ||
         step.step === AuthStepValueTypes.NewPassword) && <ForgetPassword />}
