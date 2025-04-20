@@ -28,6 +28,13 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { GoogleLogin } from '@react-oauth/google';
 import { useRegisterProvider } from '../../Hooks/useAuth';
 import GoogleLoginButton from '../../components/Providers/GoogleLogin';
+import FacebookLoginButton from '../../components/Providers/FacebookLogin';
+
+declare global {
+  interface Window {
+    AppleID: any;
+  }
+}
 
 const Login = (): JSX.Element => {
   const theme = useTheme();
@@ -50,6 +57,36 @@ const Login = (): JSX.Element => {
 
   const onSubmit = (data: LoginFormInput) => {
     console.log('Form submitted with data:', data);
+  };
+
+  useEffect(() => {
+    window.AppleID.auth.init({
+      clientId: 'com.your.bundle.id', // Needs real value if you go live
+      scope: 'name email',
+      redirectURI: 'https://your-app.com/callback', // Needs to be HTTPS and match Apple's config
+      usePopup: true,
+    });
+  }, []);
+
+  const handleAppleLogin = () => {
+    try {
+      window.AppleID.auth.signIn(); // This opens the Apple login popup (will error without real config)
+    } catch (e) {
+      console.error('Mocking Apple Login (no real credentials)');
+      // MOCK fallback: simulate a successful login response for UI/dev testing
+      const mockAppleUser = {
+        id_token: 'mock-id-token',
+        user: {
+          email: 'test@apple.com',
+          name: {
+            firstName: 'Test',
+            lastName: 'User',
+          },
+        },
+      };
+      console.log('Mock Apple login success:', mockAppleUser);
+      // Call your backend endpoint with mockAppleUser if needed
+    }
   };
 
   return (
@@ -100,30 +137,9 @@ const Login = (): JSX.Element => {
             />
           </DividerWithText>
           <ConnectionOptions>
-            <FacebookIcon></FacebookIcon>
-            {/* <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log('Token:', credentialResponse.credential);
-                // Send credentialResponse.credential to your backend for verification
-                registerProvider(
-                  { Token: credentialResponse.credential || '', Provider: 'Google' },
-                  {
-                    onSuccess: () => {
-                      console.log('!');
-                    },
-                    onError: (error: any) => {
-                      console.error('Registration failed:', error);
-                      alert(t('WelcomePage.RegistrationFailed'));
-                    },
-                  }
-                );
-              }}
-              onError={() => {
-                console.log('Login Failed');
-              }}
-            /> */}
+            <FacebookLoginButton />
             <GoogleLoginButton />
-            <AppleIcon></AppleIcon>
+            <AppleIcon onClick={handleAppleLogin}></AppleIcon>
           </ConnectionOptions>
         </ConnectionOptionsContainer>
         <DontHaveAccountContainer onClick={handleRegister}>
@@ -143,3 +159,12 @@ const Login = (): JSX.Element => {
 };
 
 export default Login;
+
+declare global {
+  interface Window {
+    fbAsyncInit: () => void;
+    FB: any;
+  }
+}
+
+export {};

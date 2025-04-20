@@ -27,6 +27,13 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 999,
+    //   boxShadow: `
+    //   0px 2px 5px 0px #CBC6E31A,
+    //   0px 9px 9px 0px #CBC6E317,
+    //   0px 21px 13px 0px #CBC6E30D,
+    //   0px 38px 15px 0px #CBC6E303,
+    //   0px 59px 17px 0px #CBC6E300
+    // `,
   },
   [HeaderStyle.SECONDARY]: {
     height: 56,

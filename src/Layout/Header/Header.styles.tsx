@@ -24,7 +24,7 @@ export const RightIconDiv = styled('div')({
 
 export const LeftIconDiv = styled('div')({
   position: 'absolute',
-  left: 6,
+  left: 16,
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
