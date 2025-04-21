@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './language/i18n';
 import Home from './pages/Home/Home';
 import NewBetForm from './pages/NewBet/NewBet.form';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
+import WelcomePage from './pages/AuthPage/WelcomePage/WelcomePage';
 
 export const pagesRouter = createBrowserRouter([
   {

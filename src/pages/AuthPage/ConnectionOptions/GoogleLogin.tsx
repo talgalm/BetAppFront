@@ -1,15 +1,15 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import { useRegisterProvider } from '../../Hooks/useAuth';
+import { useRegisterProvider } from '../../../Hooks/useAuth';
+import { GoogleIcon } from './ConnectionOptions.styles';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
-import { userAtom } from '../../Jotai/atoms';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import { GoogleIcon } from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
 
 function GoogleLoginButton() {
   const { mutate: registerProvider } = useRegisterProvider();
-  const [, setActiveStep] = useAtom(UserActiveStep);
+  const [_, setActiveStep] = useAtom(UserActiveStep);
   const [, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ function GoogleLoginButton() {
               navigate(`/home`);
             }
           },
-          onError: (error: Error) => {
+          onError: (error: any) => {
             console.error('Registration failed:', error);
             alert('');
           },

@@ -1,27 +1,23 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/topography';
-
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { useFormContext } from 'react-hook-form';
-import StyledButton from '../../components/Button/StyledButton';
-import { ThemeType } from '../../Theme/theme';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import StyledButton from '../../../components/Button/StyledButton';
+import { ThemeType } from '../../../Theme/theme';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { HeaderContainer, SignInContainer, DontHaveAccountContainer } from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
-import { CubesContainer, CubeInput } from '../AuthPage/ForgotPassword/ForgotPassword.styles';
-import { ForgotPasswordFormInput } from '../AuthPage/Login/interface';
+import {
+  DontHaveAccountContainer,
+  HeaderContainer,
+  SignInContainer,
+} from '../ConnectionOptions/ConnectionOptions.styles';
+import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styles';
 
-const ForgetPassword = (): JSX.Element => {
+const CodeVerification = (): JSX.Element => {
   const theme = useTheme();
   const { t } = useTranslation();
-  const { control: forgetPasswordControl, watch: watchForgetPassword } =
-    useFormContext<ForgotPasswordFormInput>();
-
-  const emailValidation = watchForgetPassword('Email');
 
   const [step, setActiveStep] = useAtom(UserActiveStep);
   const [value, setValue] = useState('');
@@ -33,9 +29,7 @@ const ForgetPassword = (): JSX.Element => {
   };
 
   const isDisable = () => {
-    if (step.step === AuthStepValueTypes.ForgetPassword) {
-      return !emailValidation || emailValidation === '';
-    } else if (step.step === AuthStepValueTypes.VerificationCode) {
+    if (step.step === AuthStepValueTypes.VerificationCode) {
       return value.length < 4;
     }
     return false;
@@ -66,13 +60,6 @@ const ForgetPassword = (): JSX.Element => {
         <Typography value={t(`WelcomePage.${step.step}Subtitle`)} variant={TypographyTypes.H3} />
       </HeaderContainer>
       <SignInContainer>
-        {step.step === AuthStepValueTypes.ForgetPassword && (
-          <StyledInput
-            inputName="Email"
-            control={forgetPasswordControl}
-            placeholder={t(`WelcomePage.EnterEmail`)}
-          />
-        )}
         {step.step === AuthStepValueTypes.VerificationCode && (
           <CubesContainer>
             <CubesContainer>
@@ -96,22 +83,17 @@ const ForgetPassword = (): JSX.Element => {
           onClick={handleNextStep}
           disabled={isDisable()}
         />
-        {step.step === AuthStepValueTypes.VerificationCode && (
-          <DontHaveAccountContainer>
-            <Typography
-              value={t('WelcomePage.DidntGetCode')}
-              variant={TypographyTypes.TextMedium}
-            />
-            <Typography
-              value={t('WelcomePage.SendNewCode')}
-              variant={TypographyTypes.TextMedium}
-              styleProps={{ color: theme.palette.primary.main }}
-            />
-          </DontHaveAccountContainer>
-        )}
+        <DontHaveAccountContainer>
+          <Typography value={t('WelcomePage.DidntGetCode')} variant={TypographyTypes.TextMedium} />
+          <Typography
+            value={t('WelcomePage.SendNewCode')}
+            variant={TypographyTypes.TextMedium}
+            styleProps={{ color: theme.palette.primary.main }}
+          />
+        </DontHaveAccountContainer>
       </SignInContainer>
     </>
   );
 };
 
-export default ForgetPassword;
+export default CodeVerification;

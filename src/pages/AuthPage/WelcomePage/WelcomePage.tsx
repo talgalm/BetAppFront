@@ -1,24 +1,23 @@
-import BetLoader from '../../Theme/Loader/loader';
 import { ButtonsContainer, MainContainer, TextConatiner } from './WelcomePage.styles';
-import { ReactComponent as WelcomePageImage } from '../../Theme/Icons/AuthIcons/WelcomePageImage.svg';
-import { ReactComponent as SuccessfulRegisterImage } from '../../Theme/Icons/AuthIcons/WelcomePageImage2.svg';
-import { ReactComponent as SuccessfulChangePasswordImage } from '../../Theme/Icons/AuthIcons/WelcomePageImage3.svg';
-import StyledButton from '../../components/Button/StyledButton';
+import { ReactComponent as WelcomePageImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage.svg';
+import { ReactComponent as SuccessfulRegisterImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage2.svg';
+import { ReactComponent as SuccessfulChangePasswordImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage3.svg';
+import StyledButton from '../../../components/Button/StyledButton';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import { ThemeType } from '../../Theme/theme';
+import { ThemeType } from '../../../Theme/theme';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from './interface';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
-import ForgetPassword from '../ForgotPassword/ForgotPassword';
-import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import Home from '../Home/Home';
-import { useEffect } from 'react';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import RegisterForm from '../Register/RegisterForm';
+import RegisterProviderForm from '../Register/RegisterProviderForm';
+import LoginForm from '../Login/LoginForm';
+import ForgotPasswordForm from '../ForgotPassword/ForgotPasswordForm';
+import NewPasswordForm from '../NewPassword/NewPasswordForm';
+import CodeVerification from '../CodeVerification/CodeVerification';
 
 const WelcomePage = (): JSX.Element => {
   const theme = useTheme();
@@ -77,14 +76,13 @@ const WelcomePage = (): JSX.Element => {
         </>
       )}
 
-      {step.step === AuthStepValueTypes.Login && <Login />}
+      {step.step === AuthStepValueTypes.Login && <LoginForm />}
       {(step.step === AuthStepValueTypes.RegisterInfo ||
-        step.step === AuthStepValueTypes.RegisterPassword ||
-        step.step === AuthStepValueTypes.RegisterProvider) && <RegisterForm />}
-      {(step.step === AuthStepValueTypes.ForgetPassword ||
-        step.step === AuthStepValueTypes.VerificationCode ||
-        step.step === AuthStepValueTypes.NewPassword) && <ForgetPassword />}
-
+        step.step === AuthStepValueTypes.RegisterPassword) && <RegisterForm />}
+      {step.step === AuthStepValueTypes.NewPassword && <NewPasswordForm />}
+      {step.step === AuthStepValueTypes.VerificationCode && <CodeVerification />}
+      {step.step === AuthStepValueTypes.ForgetPassword && <ForgotPasswordForm />}
+      {step.step === AuthStepValueTypes.RegisterProvider && <RegisterProviderForm />}
       {step.step === AuthStepValueTypes.SuccessfulChangePassword &&
         renderSuccessPage(
           <SuccessfulChangePasswordImage />,

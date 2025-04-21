@@ -1,23 +1,23 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
-import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import { HeaderContainer, SignInContainer } from './Login.styles';
+import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
+import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { useFormContext } from 'react-hook-form';
-import { ThemeType } from '../../Theme/theme';
-import StyledButton from '../../components/Button/StyledButton';
+import { LoginFormInput } from './interface';
+import { ThemeType } from '../../../Theme/theme';
+import StyledButton from '../../../components/Button/StyledButton';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { useLogin } from '../../Hooks/useAuth';
-import { userAtom } from '../../Jotai/atoms';
+import { useLogin } from '../../../Hooks/useAuth';
+import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
-import BetLoader from '../../Theme/Loader/loader';
-import { HeaderContainer, SignInContainer } from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
-import { LoginFormInput } from '../AuthPage/Login/interface';
+import BetLoader from '../../../Theme/Loader/loader';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();

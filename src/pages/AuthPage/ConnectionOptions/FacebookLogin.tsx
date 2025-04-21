@@ -1,10 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
-import { useRegisterProvider } from '../../Hooks/useAuth';
+import React from 'react';
+import { FacebookIcon } from './ConnectionOptions.styles';
+import { useRegisterProvider } from '../../../Hooks/useAuth';
 import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import { FacebookIcon } from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { userAtom } from '../../../Jotai/atoms';
+import { useNavigate } from 'react-router-dom';
 
 interface facebookUser {
   name: string;
@@ -14,7 +15,7 @@ interface facebookUser {
 
 const FacebookLoginButton = () => {
   const { mutate: registerProvider } = useRegisterProvider();
-  const [, setActiveStep] = useAtom(UserActiveStep);
+  const [_, setActiveStep] = useAtom(UserActiveStep);
   const [, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ const FacebookLoginButton = () => {
                     navigate(`/home`);
                   }
                 },
-                onError: (error: Error) => {
+                onError: (error: any) => {
                   console.error('Registration failed:', error);
                   alert('');
                 },

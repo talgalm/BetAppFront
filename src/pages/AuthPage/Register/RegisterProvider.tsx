@@ -1,22 +1,22 @@
-import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { SubmitHandler, useForm, useFormContext } from 'react-hook-form';
-import { ThemeType } from '../../Theme/theme';
-import StyledButton from '../../components/Button/StyledButton';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import { HeaderContainer, SignInContainer } from './Register.styles';
+import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { ThemeType } from '../../../Theme/theme';
+import StyledButton from '../../../components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
+import { RegisterProviderFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
-import { useUpdateUser } from '../../Hooks/useAuth';
-import BetLoader from '../../Theme/Loader/loader';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { useUpdateUser } from '../../../Hooks/useAuth';
+import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { RegisterProviderFormInput } from '../AuthPage/Login/interface';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import { HeaderContainer, SignInContainer } from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();
-  const [step, setActiveStep] = useAtom(UserActiveStep);
+  const [, setActiveStep] = useAtom(UserActiveStep);
   const { mutate: updatePhone, isPending: isUpdatePhone } = useUpdateUser();
   const { control, watch, handleSubmit } = useFormContext<RegisterProviderFormInput>();
 

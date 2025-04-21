@@ -1,21 +1,21 @@
 import { useTranslation } from 'react-i18next';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
-import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import GoogleLoginButton from './GoogleLogin';
+import FacebookLoginButton from './FacebookLogin';
 import {
-  ConnectionOptionsContainer,
-  DividerWithText,
-  ConnectionOptionsTab,
   AppleIcon,
+  BottomContainer,
+  ConnectionOptionsContainer,
+  ConnectionOptionsTab,
+  DividerWithText,
   DontHaveAccountContainer,
-} from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
-import { BottomContainer } from '../NewBet/NewBet.styles';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import FacebookLoginButton from '../AuthPage/ConnectionOptions/FacebookLogin';
-import GoogleLoginButton from '../AuthPage/ConnectionOptions/GoogleLogin';
+} from './ConnectionOptions.styles';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 
 interface ConnectionOptionsProps {
   current?: string;
@@ -24,7 +24,7 @@ interface ConnectionOptionsProps {
 const ConnectionOptions = ({ current }: ConnectionOptionsProps): JSX.Element => {
   const theme = useTheme();
   const { t } = useTranslation();
-  const [, setActiveStep] = useAtom(UserActiveStep);
+  const [step, setActiveStep] = useAtom(UserActiveStep);
 
   const handleNextStep = () => {
     if (current === 'Register') {

@@ -19,7 +19,7 @@ import { useUser } from '../../Hooks/useGetUser';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
-import { authSteps } from '../../pages/WelcomePage/interface';
+import { authSteps } from '../../pages/AuthPage/WelcomePage/interface';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import { Typography } from '../../components/Topography/topography';
 import { useTranslation } from 'react-i18next';

@@ -3,10 +3,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useTranslation } from 'react-i18next';
 import Register from './Register';
+import { AuthStepValueTypes } from '../WelcomePage/interface';
 import { useAtom } from 'jotai';
-import React from 'react';
-import { AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
 
 export type RegisterFormInput = {
   Email: string;

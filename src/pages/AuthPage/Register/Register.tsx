@@ -1,24 +1,21 @@
-import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
-import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
-import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../Theme/Typography/typography';
+import { HeaderContainer, SignInContainer } from './Register.styles';
+import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
+import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { ThemeType } from '../../Theme/theme';
-import StyledButton from '../../components/Button/StyledButton';
+import { ThemeType } from '../../../Theme/theme';
+import StyledButton from '../../../components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
+import { RegisterFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../Jotai/UserAtoms';
+import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useState } from 'react';
-import { useRegister } from '../../Hooks/useAuth';
-import BetLoader from '../../Theme/Loader/loader';
+import { useRegister } from '../../../Hooks/useAuth';
+import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { RegisterFormInput } from '../AuthPage/Login/interface';
-import { authSteps, AuthStepValueTypes } from '../AuthPage/WelcomePage/interface';
-import {
-  HeaderContainer,
-  SignInContainer,
-} from '../AuthPage/ConnectionOptions/ConnectionOptions.styles';
 
 const Register = (): JSX.Element => {
   const { t } = useTranslation();
@@ -26,7 +23,13 @@ const Register = (): JSX.Element => {
   const [maskPassword, setMaskPassword] = useState(true);
   const [maskPasswordVerification, setMaskPasswordVerification] = useState(true);
   const { mutate: register, isPending: isRegistering } = useRegister();
-  const { control, handleSubmit, watch, trigger } = useFormContext<RegisterFormInput>();
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+  } = useFormContext<RegisterFormInput>();
 
   const email = watch('Email');
   const phoneNumber = watch('PhoneNumber');
@@ -39,7 +42,7 @@ const Register = (): JSX.Element => {
       onSuccess: () => {
         handleNextStep();
       },
-      onError: (error: Error) => {
+      onError: (error: any) => {
         console.error('Registration failed:', error);
         alert(t('WelcomePage.RegistrationFailed'));
       },
