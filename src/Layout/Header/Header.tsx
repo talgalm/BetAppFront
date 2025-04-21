@@ -51,7 +51,12 @@ const Header = () => {
 
   const routeToHome = () => {
     localStorage.clear();
-    navigate(`/home/1`);
+    navigate(`/home`);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    navigate(`/`);
   };
 
   return (
@@ -68,7 +73,7 @@ const Header = () => {
       )}
       {path.pathname.includes('home') && (
         <>
-          <RightIconDiv>
+          <RightIconDiv onClick={logout}>
             <HamburgerIcon />
           </RightIconDiv>
           <LeftIconDiv>

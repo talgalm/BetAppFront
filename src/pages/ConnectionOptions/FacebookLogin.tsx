@@ -4,6 +4,8 @@ import { useRegisterProvider } from '../../Hooks/useAuth';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { userAtom } from '../../Jotai/atoms';
+import { useNavigate } from 'react-router-dom';
 
 interface facebookUser {
   name: string;
@@ -14,6 +16,8 @@ interface facebookUser {
 const FacebookLoginButton = () => {
   const { mutate: registerProvider } = useRegisterProvider();
   const [_, setActiveStep] = useAtom(UserActiveStep);
+  const [, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
 
   const handleFacebookLogin = () => {
     FB.login(
@@ -28,12 +32,16 @@ const FacebookLoginButton = () => {
               },
               {
                 onSuccess: (res) => {
-                  if (res.accses_toekn !== '') {
-                    //login
-                  } else {
+                  if (res.initial) {
                     //register
                     localStorage.setItem('tempId', res.user.id);
                     setActiveStep(authSteps[AuthStepValueTypes.RegisterProvider]);
+                  } else {
+                    //login
+                    localStorage.removeItem('AuthStep');
+                    localStorage.setItem('token', res.accessToken);
+                    setUser(res.user);
+                    navigate(`/home`);
                   }
                 },
                 onError: (error: any) => {

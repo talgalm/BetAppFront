@@ -10,10 +10,12 @@ import ConditionModal from '../../../pages/ConditionModal/ConditionModal.lang.js
 
 import WelcomePage from '../../../pages/WelcomePage/WelcomePage.lang.json';
 import Home from '../../../pages/Home/Home.lang.json';
+import Register from '../../../pages/Register/Register.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
   Home: Home,
+  Register: Register,
   MyBets: MyBets,
   MyGroups: MyGroups,
   NewBet: NewBet,

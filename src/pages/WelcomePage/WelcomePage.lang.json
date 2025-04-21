@@ -14,7 +14,8 @@
     "RegisterNow" : "הירשם עכשיו",
     "LoginDontHave" : "יש לך חשבון?",
     "LoginNow": "התחבר עכשיו",
-
+    "SuccessfulRegisterDontHave": "יש לך חשבון?",
+    "SuccessfulRegisterNow": "התחבר עכשיו",
     "CreateNewAccount" : "יצירת חשבון חדש",
     "CreateNewAccountSubtitle" : "הצטרפו לקהילת המשתתפים שלנו והתחילו להתערב עם חברים!",
 

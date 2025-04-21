@@ -18,6 +18,8 @@
     "titleBar.activeForeground": "#000000",
     "titleBar.inactiveBackground": "#15AB94",
     "titleBar.inactiveForeground": "#000000",
+    "activityBar.activeBorder": "#000000"
+
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,

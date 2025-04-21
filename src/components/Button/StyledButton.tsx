@@ -14,6 +14,7 @@ interface StyledButtonProps {
   disabled?: boolean;
   styleProps?: React.CSSProperties;
   colorVariant?: 'primary' | 'secondary' | 'error' | 'success' | ThemeType; // Theme-based colors
+  type?: 'button' | 'reset' | 'submit' | undefined;
 }
 
 const StyledButton: React.FC<StyledButtonProps> = ({
@@ -24,6 +25,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
   disabled,
   styleProps,
   colorVariant = 'primary',
+  type,
 }) => {
   const theme = useTheme();
 
@@ -37,6 +39,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
 
   return (
     <ButtonStyles
+      type={type}
       onClick={handleClick}
       disabled={disabled}
       style={{ backgroundColor: buttonColor, ...mergedStyles }}

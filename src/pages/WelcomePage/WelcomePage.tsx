@@ -18,6 +18,7 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import Home from '../Home/Home';
 import { useEffect } from 'react';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
+import RegisterForm from '../Register/RegisterForm';
 
 const WelcomePage = (): JSX.Element => {
   const theme = useTheme();
@@ -79,7 +80,7 @@ const WelcomePage = (): JSX.Element => {
       {step.step === AuthStepValueTypes.Login && <Login />}
       {(step.step === AuthStepValueTypes.RegisterInfo ||
         step.step === AuthStepValueTypes.RegisterPassword ||
-        step.step === AuthStepValueTypes.RegisterProvider) && <Register />}
+        step.step === AuthStepValueTypes.RegisterProvider) && <RegisterForm />}
       {(step.step === AuthStepValueTypes.ForgetPassword ||
         step.step === AuthStepValueTypes.VerificationCode ||
         step.step === AuthStepValueTypes.NewPassword) && <ForgetPassword />}

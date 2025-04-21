@@ -18,7 +18,7 @@ export const pagesRouter = createBrowserRouter([
         element: <WelcomePage />,
       },
       {
-        path: '/home/:userId',
+        path: '/home',
         element: <Home />,
       },
       {

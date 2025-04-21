@@ -14,11 +14,17 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
+import { useLogin } from '../../Hooks/useAuth';
+import { userAtom } from '../../Jotai/atoms';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();
   const { control, handleSubmit, watch } = useForm<LoginFormInput>();
   const [step, setActiveStep] = useAtom(UserActiveStep);
+  const { mutate, isPending } = useLogin();
+  const [, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
 
   const formValues = watch();
 
@@ -29,7 +35,18 @@ const Login = (): JSX.Element => {
   }, [formValues]);
 
   const onSubmit = (data: LoginFormInput) => {
-    console.log('Form submitted with data:', data);
+    mutate(data, {
+      onSuccess: (res) => {
+        localStorage.removeItem('AuthStep');
+        localStorage.setItem('token', res.token);
+        setUser(res.user);
+        navigate(`/home`);
+      },
+      onError: (error: any) => {
+        console.error('Registration failed:', error);
+        alert(t('WelcomePage.RegistrationFailed'));
+      },
+    });
   };
 
   return (
@@ -38,7 +55,7 @@ const Login = (): JSX.Element => {
         <Typography value={t('WelcomePage.LoginPageTitle')} variant={TypographyTypes.H1} />
         <Typography value={t('WelcomePage.LoginPageSubtitle')} variant={TypographyTypes.H3} />
       </HeaderContainer>
-      <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
+      <form style={{ width: '100%' }}>
         <SignInContainer>
           <StyledInput
             inputName="Email"
@@ -65,7 +82,7 @@ const Login = (): JSX.Element => {
           <StyledButton
             value={t('WelcomePage.Login')}
             colorVariant={ThemeType.Primary}
-            onClick={handleSubmit((data) => console.log(data))}
+            onClick={handleSubmit(onSubmit)}
             disabled={isFormEmpty}
           />
         </SignInContainer>

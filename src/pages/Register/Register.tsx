@@ -4,46 +4,40 @@ import { HeaderContainer, SignInContainer } from './Register.styles';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FieldErrors, SubmitHandler, useFormContext } from 'react-hook-form';
 import { ThemeType } from '../../Theme/theme';
 import StyledButton from '../../components/Button/StyledButton';
-import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import { RegisterFormInput, RegisterProviderFormInput } from '../Login/interface';
+import { RegisterFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useState } from 'react';
-import { useRegister, useUpdateUser } from '../../Hooks/useAuth';
+import { useRegister } from '../../Hooks/useAuth';
 import BetLoader from '../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 
 const Register = (): JSX.Element => {
-  const theme = useTheme();
   const { t } = useTranslation();
   const [step, setActiveStep] = useAtom(UserActiveStep);
   const [maskPassword, setMaskPassword] = useState(true);
   const [maskPasswordVerification, setMaskPasswordVerification] = useState(true);
   const { mutate: register, isPending: isRegistering } = useRegister();
-  const { mutate: updatePhone, isPending: isUpdatePhone } = useUpdateUser();
-  const { control, handleSubmit, watch } = useForm<RegisterFormInput>();
-  const { control: providerControl, watch: providerWatch } = useForm<RegisterProviderFormInput>();
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+  } = useFormContext<RegisterFormInput>();
 
   const email = watch('Email');
   const phoneNumber = watch('PhoneNumber');
   const fullName = watch('FullName');
   const password = watch('Password');
   const passwordVerification = watch('PasswordVerification');
-  const providerPhoneNumber = providerWatch('PhoneNumber');
 
   const onSubmit: SubmitHandler<RegisterFormInput> = (data) => {
-    const { Password, PasswordVerification } = data;
-
-    if (Password !== PasswordVerification) {
-      alert(t('WelcomePage.PasswordsDontMatch'));
-      return;
-    }
-
     register(data, {
       onSuccess: () => {
         handleNextStep();
@@ -61,42 +55,24 @@ const Register = (): JSX.Element => {
     }
   };
 
-  const handleUpdatePhoneProvider: SubmitHandler<RegisterProviderFormInput> = (data) => {
-    const tempId = localStorage.getItem('tempId');
-    updatePhone(
-      {
-        id: tempId || '-1',
-        PhoneNumber: data.PhoneNumber,
-      },
-      {
-        onSuccess: () => {
-          localStorage.removeItem('tempId');
-          setActiveStep(authSteps[AuthStepValueTypes.SuccessfulRegister]);
-        },
-        onError: (error: any) => {
-          console.error('Registration failed:', error);
-          alert(t('WelcomePage.RegistrationFailed'));
-        },
-      }
-    );
+  const handleInfoStepContinue = async () => {
+    const valid = await trigger(['Email', 'FullName', 'PhoneNumber']);
+    if (valid) {
+      handleNextStep();
+    }
+    return;
   };
-  if (isRegistering || isUpdatePhone) {
+
+  if (isRegistering) {
     return <BetLoader />;
   }
 
   return (
     <>
       <HeaderContainer>
+        <Typography value={t(`WelcomePage.CreateNewAccount`)} variant={TypographyTypes.H1} />
         <Typography
-          value={t(
-            `WelcomePage.${step.step === AuthStepValueTypes.RegisterProvider ? 'Provider' : ''}CreateNewAccount`
-          )}
-          variant={TypographyTypes.H1}
-        />
-        <Typography
-          value={t(
-            `WelcomePage.${step.step === AuthStepValueTypes.RegisterProvider ? 'Provider' : ''}CreateNewAccountSubtitle`
-          )}
+          value={t(`WelcomePage.CreateNewAccountSubtitle`)}
           variant={TypographyTypes.H3}
         />
       </HeaderContainer>
@@ -119,9 +95,10 @@ const Register = (): JSX.Element => {
               placeholder={t(`WelcomePage.RegisterPhoneNumberPlaceholder`)}
             />
             <StyledButton
+              type="button"
               value={t('WelcomePage.Continue')}
               colorVariant={ThemeType.Primary}
-              onClick={handleNextStep}
+              onClick={handleInfoStepContinue}
               disabled={!email || !phoneNumber || !fullName}
             />
           </SignInContainer>
@@ -153,21 +130,6 @@ const Register = (): JSX.Element => {
           </SignInContainer>
         )}
       </form>
-      {step.step === AuthStepValueTypes.RegisterProvider && (
-        <SignInContainer>
-          <StyledInput
-            inputName="PhoneNumber"
-            control={providerControl}
-            placeholder={t(`WelcomePage.RegisterPhoneNumberPlaceholder`)}
-          />
-          <StyledButton
-            value={t('WelcomePage.UpdateNumber')}
-            colorVariant={ThemeType.Primary}
-            onClick={handleSubmit(handleUpdatePhoneProvider)}
-            disabled={!providerPhoneNumber}
-          />
-        </SignInContainer>
-      )}
       <ConnectionOptions current="Login" />
     </>
   );

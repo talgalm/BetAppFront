@@ -37,26 +37,30 @@ const StyledInput = <T extends FieldValues>({
           name={inputName}
           control={control}
           defaultValue={'' as PathValue<T, Path<T>>}
-          render={({ field }) => (
-            <WidthDiv>
-              {
-                <IconWrapperStart>
-                  {StartIcon && <StartIcon onClick={startIconOnClick} />}
-                </IconWrapperStart>
-              }
-              <StyledTextField
-                fullWidth
-                placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
-                variant="outlined"
-                multiline={extended}
-                type={maskValue ? 'password' : 'text'}
-                rows={extended ? 2 : undefined}
-                {...field}
-                marginExtand={extended}
-              />
-              {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
-            </WidthDiv>
-          )}
+          render={({ field, fieldState }) => {
+            return (
+              <WidthDiv>
+                {
+                  <IconWrapperStart>
+                    {StartIcon && <StartIcon onClick={startIconOnClick} />}
+                  </IconWrapperStart>
+                }
+                <StyledTextField
+                  fullWidth
+                  placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
+                  variant="outlined"
+                  multiline={extended}
+                  type={maskValue ? 'password' : 'text'}
+                  rows={extended ? 2 : undefined}
+                  {...field}
+                  marginExtand={extended}
+                  error={!!fieldState.error}
+                  helperText={fieldState.error?.message}
+                />
+                {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
+              </WidthDiv>
+            );
+          }}
         />
       ) : (
         <WidthDiv>

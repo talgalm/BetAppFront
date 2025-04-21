@@ -3,12 +3,12 @@ import { User } from '../api/interfaces';
 import { ApiService, HTTPMethod } from '../api/types';
 
 interface LoginPayload {
-  FullName: string;
+  Email: string;
   Password: string;
 }
 
 interface RegisterPayload extends LoginPayload {
-  Email: string;
+  FullName: string;
   PhoneNumber: string;
 }
 
@@ -34,13 +34,13 @@ export const useLogin = (): UseMutationResult<
 > => {
   const mutation = useMutation({
     mutationFn: async ({
-      FullName,
+      Email,
       Password,
     }: LoginPayload): Promise<{ user: User; token: string }> => {
       const response = await ApiService.makeRequest<{
         user: User;
         token: string;
-      }>('/api/users/login', HTTPMethod.POST, { FullName, Password });
+      }>('/auth/login', HTTPMethod.POST, { Email, Password });
       return response;
     },
   });
@@ -72,7 +72,7 @@ export const useRegister = (): UseMutationResult<{ user: User }, Error, Register
 };
 
 export const useRegisterProvider = (): UseMutationResult<
-  { user: User; accses_toekn: string },
+  { user: User; accessToken: string; initial?: boolean },
   Error,
   TokenPayload
 > => {
@@ -80,10 +80,11 @@ export const useRegisterProvider = (): UseMutationResult<
     mutationFn: async ({
       Token,
       Provider,
-    }: TokenPayload): Promise<{ user: User; accses_toekn: string }> => {
+    }: TokenPayload): Promise<{ user: User; accessToken: string; initial?: boolean }> => {
       const response = await ApiService.makeRequest<{
         user: User;
-        accses_toekn: string;
+        accessToken: string;
+        initial?: boolean;
       }>('/users/auth', HTTPMethod.POST, {
         Token,
         Provider,
@@ -99,7 +100,6 @@ export const useUpdateUser = (): UseMutationResult<{ user: User }, Error, Partia
   const mutation = useMutation({
     mutationFn: async (data: PartialUserPayload): Promise<{ user: User }> => {
       const { id, ...fieldsToUpdate } = data;
-
       const response = await ApiService.makeRequest<{ user: User }>(
         `/users/${id}`,
         HTTPMethod.PATCH,

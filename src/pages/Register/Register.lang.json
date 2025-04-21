@@ -1,0 +1,11 @@
+{
+    "Validation": {
+      "Required": "שדה זה הינו חובה",
+      "EmailInvalid": "כתובת האימייל אינה תקינה",
+      "FullNameRequired": "יש להזין שם מלא",
+      "PhoneInvalid": "מספר הטלפון אינו תקין",
+      "PasswordTooShort": "הסיסמה חייבת להכיל לפחות 6 תווים",
+      "PasswordVerificationTooShort": "אימות הסיסמה חייב להכיל לפחות 6 תווים",
+      "PasswordsDontMatch": "הסיסמאות אינן תואמות"
+    }
+  }

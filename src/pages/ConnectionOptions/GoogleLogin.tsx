@@ -4,25 +4,32 @@ import { GoogleIcon } from './ConnectionOptions.styles';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { userAtom } from '../../Jotai/atoms';
+import { useNavigate } from 'react-router-dom';
 
 function GoogleLoginButton() {
   const { mutate: registerProvider } = useRegisterProvider();
   const [_, setActiveStep] = useAtom(UserActiveStep);
+  const [, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
 
   const login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      console.log('Access Token:', tokenResponse.access_token);
-
       registerProvider(
         { Token: tokenResponse.access_token, Provider: 'Google' },
         {
           onSuccess: (res) => {
-            if (res.accses_toekn !== '') {
-              //login
-            } else {
+            console.log(res);
+            if (res.initial) {
               //register
               localStorage.setItem('tempId', res.user.id);
               setActiveStep(authSteps[AuthStepValueTypes.RegisterProvider]);
+            } else {
+              //login
+              localStorage.removeItem('AuthStep');
+              localStorage.setItem('token', res.accessToken);
+              setUser(res.user);
+              navigate(`/home`);
             }
           },
           onError: (error: any) => {
