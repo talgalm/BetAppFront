@@ -18,11 +18,11 @@ import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
-import { useUser } from '../../Hooks/useGetUser';
+import { useUser } from '../../Hooks/hookQuery/useGetUser';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
-import { authSteps } from '../../pages/AuthPage/WelcomePage/interface';
+import { authSteps } from '../../pages/Auth/WelcomePage/interface';
 import { TypographyTypes } from '../../Theme/Typography/typography';
 import { Typography } from '../../components/Topography/topography';
 import { useTranslation } from 'react-i18next';

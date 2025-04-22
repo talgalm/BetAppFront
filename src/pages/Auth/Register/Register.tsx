@@ -13,11 +13,11 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useEffect, useState } from 'react';
-import { useRegister } from '../../../Hooks/useAuth';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useDebouncedValue } from '../../../Hooks/useDebouncedEmailCheck';
-import { useCheckEmail } from '../../../Hooks/useGetUser';
+import { useRegister } from '../Hooks/useRegister';
+import { useCheckEmail } from '../Hooks/useCheckEmail';
 
 const Register = (): JSX.Element => {
   const { t } = useTranslation();

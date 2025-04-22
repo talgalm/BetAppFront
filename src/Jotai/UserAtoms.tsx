@@ -1,5 +1,5 @@
 import { atomWithStorage } from 'jotai/utils';
-import { AuthStep, authSteps, AuthStepValueTypes } from '../pages/AuthPage/WelcomePage/interface';
+import { AuthStep, authSteps, AuthStepValueTypes } from '../pages/Auth/WelcomePage/interface';
 
 export const UserActiveStep = atomWithStorage<AuthStep>(
   'AuthStep',

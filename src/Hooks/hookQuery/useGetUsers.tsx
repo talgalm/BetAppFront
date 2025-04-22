@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../api/types';
-import { User } from '../api/interfaces';
+import { ApiService, HTTPMethod } from '../../api/types';
+import { User } from '../../api/interfaces';
 
 export const useGetUsers = () => {
   const data: UseQueryResult<User[]> = useQuery({

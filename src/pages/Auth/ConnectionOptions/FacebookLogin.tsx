@@ -1,11 +1,11 @@
 import React from 'react';
 import { FacebookIcon } from './ConnectionOptions.styles';
-import { useRegisterProvider } from '../../../Hooks/useAuth';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
+import { useRegisterProvider } from '../Hooks/useRegisterProvider';
 
 interface facebookUser {
   name: string;

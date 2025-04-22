@@ -8,7 +8,7 @@ import {
 } from './Home.styles';
 import BetLoader from '../../Theme/Loader/loader';
 import { useEffect } from 'react';
-import { useUser } from '../../Hooks/useGetUser';
+import { useUser } from '../../Hooks/hookQuery/useGetUser';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
 import { useTranslation } from 'react-i18next';

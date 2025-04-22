@@ -15,7 +15,7 @@ import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../../../Jotai/atoms';
-import { useUser } from '../../../../Hooks/useGetUser';
+import { useUser } from '../../../../Hooks/hookQuery/useGetUser';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;

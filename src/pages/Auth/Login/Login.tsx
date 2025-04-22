@@ -14,10 +14,10 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { useLogin } from '../../../Hooks/useAuth';
 import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
 import BetLoader from '../../../Theme/Loader/loader';
+import { useLogin } from '../Hooks/useLogin';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();

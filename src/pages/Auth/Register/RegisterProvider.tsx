@@ -10,10 +10,9 @@ import { RegisterProviderFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
-import { useUpdateUser } from '../../../Hooks/useAuth';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { border } from 'polished';
+import { useUpdateUser } from '../Hooks/useUpdateUser';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();

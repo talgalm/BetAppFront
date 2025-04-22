@@ -1,11 +1,11 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import { useRegisterProvider } from '../../../Hooks/useAuth';
 import { GoogleIcon } from './ConnectionOptions.styles';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
+import { useRegisterProvider } from '../Hooks/useRegisterProvider';
 
 function GoogleLoginButton() {
   const { mutate: registerProvider } = useRegisterProvider();
