@@ -12,10 +12,12 @@ import { RegisterFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRegister } from '../../../Hooks/useAuth';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
+import { useDebouncedValue } from '../../../Hooks/useDebouncedEmailCheck';
+import { useCheckEmail } from '../../../Hooks/useGetUser';
 
 const Register = (): JSX.Element => {
   const { t } = useTranslation();
@@ -29,13 +31,35 @@ const Register = (): JSX.Element => {
     watch,
     formState: { errors },
     trigger,
+    setError,
+    clearErrors,
   } = useFormContext<RegisterFormInput>();
 
   const email = watch('Email');
+  const debouncedEmail = useDebouncedValue(email, 500);
+  const { data: data, isSuccess } = useCheckEmail(debouncedEmail);
   const phoneNumber = watch('PhoneNumber');
   const fullName = watch('FullName');
   const password = watch('Password');
   const passwordVerification = watch('PasswordVerification');
+
+  useEffect(() => {
+    if (!debouncedEmail || !debouncedEmail.includes('@')) {
+      clearErrors('Email');
+      return;
+    }
+
+    if (isSuccess) {
+      if (data.exists) {
+        setError('Email', {
+          type: 'manual',
+          message: t('Register.Validation.EmailAlreadyExists'),
+        });
+      } else {
+        clearErrors('Email');
+      }
+    }
+  }, [debouncedEmail, data, isSuccess]);
 
   const onSubmit: SubmitHandler<RegisterFormInput> = (data) => {
     register(data, {

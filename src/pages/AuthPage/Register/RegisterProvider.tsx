@@ -13,6 +13,7 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useUpdateUser } from '../../../Hooks/useAuth';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
+import { border } from 'polished';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();
@@ -41,6 +42,11 @@ const RegisterProvider = (): JSX.Element => {
       }
     );
   };
+
+  const handleSkip = () => {
+    setActiveStep(authSteps[AuthStepValueTypes.SuccessfulRegister]);
+  };
+
   if (isUpdatePhone) {
     return <BetLoader />;
   }
@@ -69,6 +75,13 @@ const RegisterProvider = (): JSX.Element => {
             colorVariant={ThemeType.Primary}
             onClick={handleSubmit(handleUpdatePhoneProvider)}
             disabled={!providerPhoneNumber}
+          />
+          <StyledButton
+            value={t('WelcomePage.UpdateNumberSkip')}
+            colorVariant={ThemeType.Secondary}
+            onClick={handleSkip}
+            disabled={!providerPhoneNumber}
+            styleProps={{ border: '2px solid #15AB94' }}
           />
         </SignInContainer>
       </form>

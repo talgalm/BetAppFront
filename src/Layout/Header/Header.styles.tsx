@@ -47,3 +47,15 @@ export const LeftIconNoBack = styled('div')({
   borderRadius: 4,
 });
 export const BetimIconDiv = styled('div')({});
+
+export const VerificationContainer = styled('div')({
+  position: 'absolute',
+  marginTop: 56,
+  backgroundColor: '#DA3E3E4D',
+  padding: '8px 16px 8px 16px',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  width: '100%',
+  gap: 8,
+  zIndex: 999,
+});

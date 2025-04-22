@@ -19,8 +19,8 @@
     "CreateNewAccount" : "יצירת חשבון חדש",
     "CreateNewAccountSubtitle" : "הצטרפו לקהילת המשתתפים שלנו והתחילו להתערב עם חברים!",
 
-    "ProviderCreateNewAccount" : "הכנס מס׳ טלפון",
-    "ProviderCreateNewAccountSubtitle" : "על מנת להשלים את תהליך ההרשמה , נא להכניס מס׳ טלפון",
+    "ProviderCreateNewAccount" : "אימות מספר טלפון",
+    "ProviderCreateNewAccountSubtitle" : "כדי שחברים יצרפו אותך להתערבות, נצטרך את מספר הטלפון שלך",
 
     "RegisterEmailPlaceholder" : "אימייל",
     "RegisterFullNamePlaceholder" : "שם + שם משפחה",
@@ -29,7 +29,8 @@
     "RegisterPasswordVerificationPlaceholder" : "אימות סיסמא",
     "Continue": "המשך",
     "CreateAccount" : "יצירת חשבון",
-    "UpdateNumber" : "עדכן מספר",
+    "UpdateNumber" : "אמת",
+    "UpdateNumberSkip" : "אמת",
     "ForgetPasswordTitle" : "שכחת סיסמה?",
     "ForgetPasswordSubtitle" : "לא נורא, זה קורה. הזינו את כתובת האימייל שקשורה לחשבון שלכם.",
     "ForgetPasswordButton": "שלח קוד",

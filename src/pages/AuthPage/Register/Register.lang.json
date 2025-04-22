@@ -6,6 +6,7 @@
       "PhoneInvalid": "מספר הטלפון אינו תקין",
       "PasswordTooShort": "הסיסמה חייבת להכיל לפחות 6 תווים",
       "PasswordVerificationTooShort": "אימות הסיסמה חייב להכיל לפחות 6 תווים",
-      "PasswordsDontMatch": "הסיסמאות אינן תואמות"
+      "PasswordsDontMatch": "הסיסמאות אינן תואמות",
+      "EmailAlreadyExists": "המייל כבר קיים במערכת"
     }
   }

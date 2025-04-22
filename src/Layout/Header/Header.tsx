@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   HeaderComponent,
   LeftIconDiv,
   LeftIconNoBack,
   LogoDiv,
   RightIconDiv,
+  VerificationContainer,
 } from './Header.styles';
 import { ReactComponent as ReturnArrow } from '../../Theme/Icons/LayoutIcons/ReturnArrow.svg';
 import { ReactComponent as HamburgerIcon } from '../../Theme/Icons/LayoutIcons/HamburgerIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/BetimHeaderIcon.svg';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
+import { ReactComponent as RedCloseIcon } from '../../Theme/Icons/LayoutIcons/RedClose.svg';
+
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
@@ -28,7 +31,8 @@ import { ActiveStep } from '../../Jotai/newBetAtoms';
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
   const [authStep, setActiveStepAuth] = useAtom(UserActiveStep);
-  const [newBetStep, setActiveStepBet] = useAtom(ActiveStep);
+  const [newBetStep] = useAtom(ActiveStep);
+  const [verify, setVerify] = useState(true); // fix here
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
@@ -60,34 +64,46 @@ const Header = () => {
   };
 
   return (
-    <HeaderComponent headerStyle={layout.headerStyle}>
-      {authStep.prev && (
-        <RightIconDiv onClick={handleNextStep}>
-          <ReturnArrow />
-        </RightIconDiv>
-      )}
-      {newBetStep !== null && (
-        <LeftIconNoBack onClick={routeToHome}>
-          <CloseIcon />
-        </LeftIconNoBack>
-      )}
-      {path.pathname.includes('home') && (
-        <>
-          <RightIconDiv onClick={logout}>
-            <HamburgerIcon />
+    <>
+      <HeaderComponent headerStyle={layout.headerStyle}>
+        {authStep.prev && (
+          <RightIconDiv onClick={handleNextStep}>
+            <ReturnArrow />
           </RightIconDiv>
-          <LeftIconDiv>
-            <BetimIcon />
-            <Typography
-              value={user.points ?? '00'}
-              variant={TypographyTypes.TextSmall}
-              styleProps={{ color: '#2A69C6' }}
-            />
-          </LeftIconDiv>
-        </>
+        )}
+        {newBetStep !== null && (
+          <LeftIconNoBack onClick={routeToHome}>
+            <CloseIcon />
+          </LeftIconNoBack>
+        )}
+        {path.pathname.includes('home') && (
+          <>
+            <RightIconDiv onClick={logout}>
+              <HamburgerIcon />
+            </RightIconDiv>
+            <LeftIconDiv>
+              <BetimIcon />
+              <Typography
+                value={user.points ?? '00'}
+                variant={TypographyTypes.TextSmall}
+                styleProps={{ color: '#2A69C6' }}
+              />
+            </LeftIconDiv>
+          </>
+        )}
+        <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
+      </HeaderComponent>
+      {!verify && (
+        <VerificationContainer>
+          <Typography
+            value={'שלחנו לך קוד אימות למייל morgaltal@gmail.com'}
+            variant={TypographyTypes.TextSmall}
+            styleProps={{ color: '#DA3E3E' }}
+          />
+          <RedCloseIcon onClick={() => setVerify(true)} />
+        </VerificationContainer>
       )}
-      <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
-    </HeaderComponent>
+    </>
   );
 };
 
