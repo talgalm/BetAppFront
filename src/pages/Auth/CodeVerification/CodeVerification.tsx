@@ -6,7 +6,7 @@ import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   DontHaveAccountContainer,
@@ -14,10 +14,15 @@ import {
   SignInContainer,
 } from '../ConnectionOptions/ConnectionOptions.styles';
 import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styles';
+import { useVerifyCode } from '../Hooks/useVerifyCode';
+import { VerifiedUserAtom } from '../Store/atoms';
+import BetLoader from '../../../Theme/Loader/loader';
 
 const CodeVerification = (): JSX.Element => {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { mutate, isPending } = useVerifyCode();
+  const [, setVerifiedUser] = useAtom(VerifiedUserAtom);
 
   const [step, setActiveStep] = useAtom(UserActiveStep);
   const [value, setValue] = useState('');
@@ -27,6 +32,12 @@ const CodeVerification = (): JSX.Element => {
       setActiveStep(authSteps[step.next]);
     }
   };
+
+  useEffect(() => {
+    if (value.length === 4) {
+      handleCodeCheck();
+    }
+  }, [value]);
 
   const isDisable = () => {
     if (step.step === AuthStepValueTypes.VerificationCode) {
@@ -51,6 +62,28 @@ const CodeVerification = (): JSX.Element => {
     }
 
     setValue(newValue.join(''));
+  };
+
+  if (isPending) {
+    <BetLoader />;
+  }
+
+  const handleCodeCheck = () => {
+    mutate(value, {
+      onSuccess: (data) => {
+        if (!data) {
+          alert('code dont match');
+        } else {
+          if (step.next) {
+            setVerifiedUser(data.userId);
+            setActiveStep(authSteps[step.next]);
+          }
+        }
+      },
+      onError: () => {
+        alert('server error');
+      },
+    });
   };
 
   return (

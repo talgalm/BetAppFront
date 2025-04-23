@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BET_BASE_URL;
+const BASE_URL = window.location.href.includes('localhost')
+  ? process.env.REACT_APP_BET_BASE_URL
+  : process.env.REACT_APP_BET_BASE_URL_MOBILE;
 
 export const ApiService = {
   makeRequest: async <T>(

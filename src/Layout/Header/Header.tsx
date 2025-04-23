@@ -42,6 +42,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    localStorage.clear();
     if (data) {
       setUser(data);
     }

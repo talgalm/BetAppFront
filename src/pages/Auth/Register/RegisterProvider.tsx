@@ -13,28 +13,30 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
+import { VerifiedUserAtom } from '../Store/atoms';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();
   const [, setActiveStep] = useAtom(UserActiveStep);
-  const { mutate: updatePhone, isPending: isUpdatePhone } = useUpdateUser();
+  const { mutate, isPending } = useUpdateUser();
+  const [verifiedUserId, setVerifiedUser] = useAtom(VerifiedUserAtom);
+
   const { control, watch, handleSubmit } = useFormContext<RegisterProviderFormInput>();
 
   const providerPhoneNumber = watch('PhoneNumber');
 
-  const handleUpdatePhoneProvider: SubmitHandler<RegisterProviderFormInput> = (data) => {
-    const tempId = localStorage.getItem('tempId');
-    updatePhone(
+  const onSubmit: SubmitHandler<RegisterProviderFormInput> = (data) => {
+    mutate(
       {
-        id: tempId || '-1',
+        id: verifiedUserId || '-1',
         PhoneNumber: data.PhoneNumber,
       },
       {
         onSuccess: () => {
-          localStorage.removeItem('tempId');
+          setVerifiedUser(null);
           setActiveStep(authSteps[AuthStepValueTypes.SuccessfulRegister]);
         },
-        onError: (error: any) => {
+        onError: (error: Error) => {
           console.error('Registration failed:', error);
           alert(t('WelcomePage.RegistrationFailed'));
         },
@@ -46,7 +48,7 @@ const RegisterProvider = (): JSX.Element => {
     setActiveStep(authSteps[AuthStepValueTypes.SuccessfulRegister]);
   };
 
-  if (isUpdatePhone) {
+  if (isPending) {
     return <BetLoader />;
   }
 
@@ -72,7 +74,7 @@ const RegisterProvider = (): JSX.Element => {
           <StyledButton
             value={t('WelcomePage.UpdateNumber')}
             colorVariant={ThemeType.Primary}
-            onClick={handleSubmit(handleUpdatePhoneProvider)}
+            onClick={handleSubmit(onSubmit)}
             disabled={!providerPhoneNumber}
           />
           <StyledButton

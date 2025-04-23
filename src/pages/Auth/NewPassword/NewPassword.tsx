@@ -3,7 +3,7 @@ import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../Theme/Typography/typography';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewPasswordFormInput } from '../Login/interface';
-import { useFormContext } from 'react-hook-form';
+import { SubmitHandler, useFormContext } from 'react-hook-form';
 import StyledButton from '../../../components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
@@ -13,23 +13,43 @@ import { useState } from 'react';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { HeaderContainer, SignInContainer } from './NewPassword.styles';
+import { VerifiedUserAtom } from '../Store/atoms';
+import { useUpdateUser } from '../Hooks/useUpdateUser';
+import BetLoader from '../../../Theme/Loader/loader';
 
 const NewPassword = (): JSX.Element => {
   const { t } = useTranslation();
-  const { control, watch } = useFormContext<NewPasswordFormInput>();
+  const { control, watch, handleSubmit } = useFormContext<NewPasswordFormInput>();
 
   const passwordNew = watch('Password');
   const passwordValidationNew = watch('PasswordVerification');
 
   const [step, setActiveStep] = useAtom(UserActiveStep);
+  const [verifiedUserId, setVerifiedUser] = useAtom(VerifiedUserAtom);
+  const { mutate, isPending } = useUpdateUser();
   const [value] = useState('');
   const [maskPassword, setMaskPassword] = useState(true);
   const [maskPasswordVerification, setMaskPasswordVerification] = useState(true);
 
-  const handleNextStep = () => {
-    if (step.next) {
-      setActiveStep(authSteps[step.next]);
-    }
+  const onSubmit: SubmitHandler<NewPasswordFormInput> = (data) => {
+    mutate(
+      {
+        id: verifiedUserId || '-1',
+        Password: data.Password,
+      },
+      {
+        onSuccess: () => {
+          setVerifiedUser(null);
+          if (step.next) {
+            setActiveStep(authSteps[step.next]);
+          }
+        },
+        onError: (error: Error) => {
+          console.error('Password failed:', error);
+          alert(t('WelcomePage.PasswordFailed'));
+        },
+      }
+    );
   };
 
   const isDisable = () => {
@@ -41,6 +61,10 @@ const NewPassword = (): JSX.Element => {
     return false;
   };
 
+  if (isPending) {
+    return <BetLoader />;
+  }
+
   return (
     <>
       <HeaderContainer>
@@ -48,32 +72,34 @@ const NewPassword = (): JSX.Element => {
         <Typography value={t(`WelcomePage.${step.step}Subtitle`)} variant={TypographyTypes.H3} />
       </HeaderContainer>
       <SignInContainer>
-        {step.step === AuthStepValueTypes.NewPassword && (
-          <>
-            <StyledInput
-              inputName="Password"
-              control={control}
-              placeholder={t(`WelcomePage.RegisterPasswordPlaceholder`)}
-              endIcon={maskPassword ? NotVisiblaeIcon : VisableIcon}
-              endIconOnClick={() => setMaskPassword((prev) => !prev)}
-              maskValue={maskPassword}
-            />
-            <StyledInput
-              inputName="PasswordVerification"
-              control={control}
-              placeholder={t(`WelcomePage.RegisterPasswordVerificationPlaceholder`)}
-              endIcon={maskPasswordVerification ? NotVisiblaeIcon : VisableIcon}
-              endIconOnClick={() => setMaskPasswordVerification((prev) => !prev)}
-              maskValue={maskPasswordVerification}
-            />
-          </>
-        )}
-        <StyledButton
-          value={t(`WelcomePage.${step.step}Button`)}
-          colorVariant={ThemeType.Primary}
-          onClick={handleNextStep}
-          disabled={isDisable()}
-        />
+        <form style={{ width: '100%' }}>
+          {step.step === AuthStepValueTypes.NewPassword && (
+            <>
+              <StyledInput
+                inputName="Password"
+                control={control}
+                placeholder={t(`WelcomePage.RegisterPasswordPlaceholder`)}
+                endIcon={maskPassword ? NotVisiblaeIcon : VisableIcon}
+                endIconOnClick={() => setMaskPassword((prev) => !prev)}
+                maskValue={maskPassword}
+              />
+              <StyledInput
+                inputName="PasswordVerification"
+                control={control}
+                placeholder={t(`WelcomePage.RegisterPasswordVerificationPlaceholder`)}
+                endIcon={maskPasswordVerification ? NotVisiblaeIcon : VisableIcon}
+                endIconOnClick={() => setMaskPasswordVerification((prev) => !prev)}
+                maskValue={maskPasswordVerification}
+              />
+            </>
+          )}
+          <StyledButton
+            value={t(`WelcomePage.${step.step}Button`)}
+            colorVariant={ThemeType.Primary}
+            onClick={handleSubmit(onSubmit)}
+            disabled={isDisable()}
+          />
+        </form>
       </SignInContainer>
     </>
   );

@@ -20,7 +20,8 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.PRIMARY]: {
     height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
-    position: 'absolute',
+    position: 'fixed',
+    top: -1,
     width: '100%',
     padding: 16,
     display: 'flex',

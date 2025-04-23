@@ -10,20 +10,40 @@ import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { useForgetPassword } from '../Hooks/useForgetPassword';
+import BetLoader from '../../../Theme/Loader/loader';
 
 const ForgetPassword = (): JSX.Element => {
   const { t } = useTranslation();
-  const { control: forgetPasswordControl, watch: watchForgetPassword } =
-    useFormContext<ForgotPasswordFormInput>();
+  const { control, watch, setError, clearErrors } = useFormContext<ForgotPasswordFormInput>();
 
-  const emailValidation = watchForgetPassword('Email');
+  const emailValidation = watch('Email');
+  const { mutate, isPending } = useForgetPassword();
 
   const [step, setActiveStep] = useAtom(UserActiveStep);
 
   const handleNextStep = () => {
-    if (step.next) {
-      setActiveStep(authSteps[step.next]);
-    }
+    mutate(emailValidation, {
+      onSuccess: (data) => {
+        if (!data.send) {
+          setError('Email', {
+            type: 'manual',
+            message: t('Register.Validation.EmailAlreadyExists'),
+          });
+        } else {
+          clearErrors('Email');
+          if (step.next) {
+            setActiveStep(authSteps[step.next]);
+          }
+        }
+      },
+      onError: () => {
+        setError('Email', {
+          type: 'manual',
+          message: t('Register.Validation.ServerError'),
+        });
+      },
+    });
   };
 
   const isDisable = () => {
@@ -32,6 +52,10 @@ const ForgetPassword = (): JSX.Element => {
     }
     return false;
   };
+
+  if (isPending) {
+    return <BetLoader />;
+  }
 
   return (
     <>
@@ -43,7 +67,7 @@ const ForgetPassword = (): JSX.Element => {
         {step.step === AuthStepValueTypes.ForgetPassword && (
           <StyledInput
             inputName="Email"
-            control={forgetPasswordControl}
+            control={control}
             placeholder={t(`WelcomePage.EnterEmail`)}
           />
         )}

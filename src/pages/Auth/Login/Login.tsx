@@ -21,12 +21,12 @@ import { useLogin } from '../Hooks/useLogin';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();
-  const { control, handleSubmit, watch } = useFormContext<LoginFormInput>();
+  const { control, handleSubmit, watch, getValues } = useFormContext<LoginFormInput>();
   const [, setActiveStep] = useAtom(UserActiveStep);
   const { mutate, isPending } = useLogin();
   const [, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
-
+  const [maskPassword, setMaskPassword] = useState(true);
   const formValues = watch();
 
   const [isFormEmpty, setIsFormEmpty] = useState(true);
@@ -36,7 +36,7 @@ const Login = (): JSX.Element => {
   }, [formValues]);
 
   const onSubmit = (data: LoginFormInput) => {
-    mutate(data, {
+    mutate(getValues(), {
       onSuccess: (res) => {
         localStorage.removeItem('AuthStep');
         localStorage.setItem('token', res.token);
@@ -70,13 +70,10 @@ const Login = (): JSX.Element => {
           <StyledInput
             inputName="Password"
             control={control}
-            placeholder={t(`WelcomePage.LoginPasswordPlaceholder`)}
-            endIcon={
-              formValues.Password === '' || formValues.Password === undefined
-                ? NotVisiblaeIcon
-                : VisableIcon
-            }
-            maskValue
+            placeholder={t(`WelcomePage.RegisterPasswordPlaceholder`)}
+            endIcon={maskPassword ? NotVisiblaeIcon : VisableIcon}
+            endIconOnClick={() => setMaskPassword((prev) => !prev)}
+            maskValue={maskPassword}
           />
           <Typography
             value={t('WelcomePage.ForgetPassword')}

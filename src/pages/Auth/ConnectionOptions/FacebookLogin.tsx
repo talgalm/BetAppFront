@@ -6,6 +6,7 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterProvider } from '../Hooks/useRegisterProvider';
+import { VerifiedUserAtom } from '../Store/atoms';
 
 interface facebookUser {
   name: string;
@@ -14,10 +15,11 @@ interface facebookUser {
 }
 
 const FacebookLoginButton = () => {
-  const { mutate: registerProvider } = useRegisterProvider();
+  const { mutate } = useRegisterProvider();
   const [_, setActiveStep] = useAtom(UserActiveStep);
   const [, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
+  const [, setVerifiedUser] = useAtom(VerifiedUserAtom);
 
   const handleFacebookLogin = () => {
     FB.login(
@@ -25,7 +27,7 @@ const FacebookLoginButton = () => {
         if (response.authResponse) {
           console.log('Welcome! Fetching your information...');
           FB.api('/me', { fields: 'name,email' }, (user: facebookUser) => {
-            registerProvider(
+            mutate(
               {
                 UserData: { id: '-1', email: user.email, fullName: user.name },
                 Provider: 'Facebook',
@@ -34,7 +36,7 @@ const FacebookLoginButton = () => {
                 onSuccess: (res) => {
                   if (res.initial) {
                     //register
-                    localStorage.setItem('tempId', res.user.id);
+                    setVerifiedUser(res.user.id);
                     setActiveStep(authSteps[AuthStepValueTypes.RegisterProvider]);
                   } else {
                     //login

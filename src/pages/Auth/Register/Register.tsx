@@ -24,20 +24,13 @@ const Register = (): JSX.Element => {
   const [step, setActiveStep] = useAtom(UserActiveStep);
   const [maskPassword, setMaskPassword] = useState(true);
   const [maskPasswordVerification, setMaskPasswordVerification] = useState(true);
-  const { mutate: register, isPending: isRegistering } = useRegister();
-  const {
-    control,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    trigger,
-    setError,
-    clearErrors,
-  } = useFormContext<RegisterFormInput>();
+  const { mutate, isPending } = useRegister();
+  const { control, handleSubmit, watch, trigger, setError, clearErrors, getValues } =
+    useFormContext<RegisterFormInput>();
 
   const email = watch('Email');
   const debouncedEmail = useDebouncedValue(email, 500);
-  const { data: data, isSuccess } = useCheckEmail(debouncedEmail);
+  const { data, isSuccess } = useCheckEmail(debouncedEmail);
   const phoneNumber = watch('PhoneNumber');
   const fullName = watch('FullName');
   const password = watch('Password');
@@ -61,12 +54,12 @@ const Register = (): JSX.Element => {
     }
   }, [debouncedEmail, data, isSuccess]);
 
-  const onSubmit: SubmitHandler<RegisterFormInput> = (data) => {
-    register(data, {
+  const onSubmit: SubmitHandler<RegisterFormInput> = () => {
+    mutate(getValues(), {
       onSuccess: () => {
         handleNextStep();
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         console.error('Registration failed:', error);
         alert(t('WelcomePage.RegistrationFailed'));
       },
@@ -87,7 +80,7 @@ const Register = (): JSX.Element => {
     return;
   };
 
-  if (isRegistering) {
+  if (isPending) {
     return <BetLoader />;
   }
 

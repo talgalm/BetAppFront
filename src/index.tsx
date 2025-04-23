@@ -7,6 +7,7 @@ import './language/i18n';
 import Home from './pages/Home/Home';
 import NewBetForm from './pages/NewBet/NewBet.form';
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
+import VerifyEmail from './pages/Auth/VerifyEmail/VerifyEmail';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const pagesRouter = createBrowserRouter([
       {
         path: '/new-bet',
         element: <NewBetForm />,
+      },
+      {
+        path: '/verify-email',
+        element: <VerifyEmail />,
       },
     ],
   },
