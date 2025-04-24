@@ -10,6 +10,11 @@ export interface User {
   groups?: Group[];
 }
 
+export interface Tokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface Group {
   id: string;
   name: string;

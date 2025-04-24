@@ -1,26 +1,18 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../api/types';
-import { User } from '../../../api/interfaces';
+import { Tokens } from '../../../api/interfaces';
 
 interface LoginPayload {
-  Email: string;
-  Password: string;
+  email: string;
+  password: string;
 }
 
-export const useLogin = (): UseMutationResult<
-  { user: User; token: string },
-  Error,
-  LoginPayload
-> => {
+export const useLogin = (): UseMutationResult<{ tokens: Tokens }, Error, LoginPayload> => {
   const mutation = useMutation({
-    mutationFn: async ({
-      Email,
-      Password,
-    }: LoginPayload): Promise<{ user: User; token: string }> => {
+    mutationFn: async ({ email, password }: LoginPayload): Promise<{ tokens: Tokens }> => {
       const response = await ApiService.makeRequest<{
-        user: User;
-        token: string;
-      }>('/auth/login', HTTPMethod.POST, { Email, Password });
+        tokens: Tokens;
+      }>('/auth/login', HTTPMethod.POST, { email, password });
       return response;
     },
   });

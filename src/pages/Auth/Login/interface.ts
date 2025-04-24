@@ -1,6 +1,6 @@
 export type LoginFormInput = {
-  Email: string;
-  Password: string;
+  email: string;
+  password: string;
 };
 
 export type RegisterFormInput = {

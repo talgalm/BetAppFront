@@ -39,7 +39,7 @@ const Login = (): JSX.Element => {
     mutate(getValues(), {
       onSuccess: (res) => {
         localStorage.removeItem('AuthStep');
-        setToken(res.token);
+        // setToken(res.token);
         navigate(`/home`);
       },
       onError: (error: any) => {
@@ -62,12 +62,12 @@ const Login = (): JSX.Element => {
       <form style={{ width: '100%' }}>
         <SignInContainer>
           <StyledInput
-            inputName="Email"
+            inputName="email"
             control={control}
             placeholder={t(`WelcomePage.LoginEmailPlaceholder`)}
           />
           <StyledInput
-            inputName="Password"
+            inputName="password"
             control={control}
             placeholder={t(`WelcomePage.RegisterPasswordPlaceholder`)}
             endIcon={maskPassword ? NotVisiblaeIcon : VisableIcon}

@@ -9,15 +9,15 @@ const LoginForm = (): JSX.Element => {
   const { t } = useTranslation();
 
   const schema = z.object({
-    Email: z
+    email: z
       .string({ required_error: t('Register.Validation.Required') })
       .email(t('Register.Validation.EmailInvalid')),
   });
 
   const methods = useForm<LoginFormInput>({
     defaultValues: {
-      Password: '',
-      Email: '',
+      password: '',
+      email: '',
     },
     resolver: zodResolver(schema),
   });

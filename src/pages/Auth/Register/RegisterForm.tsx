@@ -8,11 +8,11 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 
 export type RegisterFormInput = {
-  Email: string;
-  FullName: string;
-  PhoneNumber: string;
-  Password: string;
-  PasswordVerification: string;
+  email: string;
+  fullName: string;
+  phoneNumber: string;
+  password: string;
+  passwordVerification: string;
 };
 
 const RegisterForm = (): JSX.Element => {
@@ -21,26 +21,26 @@ const RegisterForm = (): JSX.Element => {
 
   const stepSchemas = {
     [AuthStepValueTypes.RegisterInfo]: z.object({
-      Email: z
+      email: z
         .string({ required_error: t('Register.Validation.Required') })
         .email(t('Register.Validation.EmailInvalid')),
-      FullName: z
+      fullName: z
         .string({ required_error: t('Register.Validation.Required') })
         .min(1, t('Register.Validation.FullNameRequired')),
-      PhoneNumber: z
+      phoneNumber: z
         .string({ required_error: t('Register.Validation.Required') })
         .min(10, t('Register.Validation.PhoneInvalid')),
     }),
     [AuthStepValueTypes.RegisterPassword]: z
       .object({
-        Password: z
+        password: z
           .string({ required_error: t('Register.Validation.Required') })
           .min(6, t('Register.Validation.PasswordTooShort')),
-        PasswordVerification: z
+        passwordVerification: z
           .string({ required_error: t('Register.Validation.Required') })
           .min(6, t('Register.Validation.PasswordVerificationTooShort')),
       })
-      .refine((data) => data.Password === data.PasswordVerification, {
+      .refine((data) => data.password === data.passwordVerification, {
         message: t('Register.Validation.PasswordsDontMatch'),
         path: ['PasswordVerification'],
       }),
@@ -50,11 +50,11 @@ const RegisterForm = (): JSX.Element => {
 
   const methods = useForm<RegisterFormInput>({
     defaultValues: {
-      Email: '',
-      FullName: '',
-      PhoneNumber: '',
-      Password: '',
-      PasswordVerification: '',
+      email: '',
+      fullName: '',
+      phoneNumber: '',
+      password: '',
+      passwordVerification: '',
     },
     resolver: zodResolver(schema),
   });
