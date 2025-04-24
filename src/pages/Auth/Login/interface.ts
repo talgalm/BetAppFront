@@ -4,11 +4,11 @@ export type LoginFormInput = {
 };
 
 export type RegisterFormInput = {
-  Email: string;
-  FullName: string;
-  PhoneNumber: string;
-  Password: string;
-  PasswordVerification: string;
+  email: string;
+  fullName: string;
+  phoneNumber: string;
+  password: string;
+  passwordVerification: string;
 };
 
 export type ForgotPasswordFormInput = {

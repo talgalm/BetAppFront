@@ -28,28 +28,28 @@ const Register = (): JSX.Element => {
   const { control, handleSubmit, watch, trigger, setError, clearErrors, getValues } =
     useFormContext<RegisterFormInput>();
 
-  const email = watch('Email');
+  const email = watch('email');
   const debouncedEmail = useDebouncedValue(email, 500);
   const { data, isSuccess } = useCheckEmail(debouncedEmail);
-  const phoneNumber = watch('PhoneNumber');
-  const fullName = watch('FullName');
-  const password = watch('Password');
-  const passwordVerification = watch('PasswordVerification');
+  const phoneNumber = watch('phoneNumber');
+  const fullName = watch('fullName');
+  const password = watch('password');
+  const passwordVerification = watch('passwordVerification');
 
   useEffect(() => {
     if (!debouncedEmail || !debouncedEmail.includes('@')) {
-      clearErrors('Email');
+      clearErrors('email');
       return;
     }
 
     if (isSuccess) {
       if (data.exists) {
-        setError('Email', {
+        setError('email', {
           type: 'manual',
           message: t('Register.Validation.EmailAlreadyExists'),
         });
       } else {
-        clearErrors('Email');
+        clearErrors('email');
       }
     }
   }, [debouncedEmail, data, isSuccess]);
@@ -73,7 +73,7 @@ const Register = (): JSX.Element => {
   };
 
   const handleInfoStepContinue = async () => {
-    const valid = await trigger(['Email', 'FullName', 'PhoneNumber']);
+    const valid = await trigger(['email', 'fullName', 'phoneNumber']);
     if (valid) {
       handleNextStep();
     }
@@ -97,17 +97,17 @@ const Register = (): JSX.Element => {
         {step.step === AuthStepValueTypes.RegisterInfo && (
           <SignInContainer>
             <StyledInput
-              inputName="Email"
+              inputName="email"
               control={control}
               placeholder={t(`WelcomePage.RegisterEmailPlaceholder`)}
             />
             <StyledInput
-              inputName="FullName"
+              inputName="fullName"
               control={control}
               placeholder={t(`WelcomePage.RegisterFullNamePlaceholder`)}
             />
             <StyledInput
-              inputName="PhoneNumber"
+              inputName="phoneNumber"
               control={control}
               placeholder={t(`WelcomePage.RegisterPhoneNumberPlaceholder`)}
             />
@@ -123,7 +123,7 @@ const Register = (): JSX.Element => {
         {step.step === AuthStepValueTypes.RegisterPassword && (
           <SignInContainer>
             <StyledInput
-              inputName="Password"
+              inputName="password"
               control={control}
               placeholder={t(`WelcomePage.RegisterPasswordPlaceholder`)}
               endIcon={maskPassword ? NotVisiblaeIcon : VisableIcon}
@@ -131,7 +131,7 @@ const Register = (): JSX.Element => {
               maskValue={maskPassword}
             />
             <StyledInput
-              inputName="PasswordVerification"
+              inputName="passwordVerification"
               control={control}
               placeholder={t(`WelcomePage.RegisterPasswordVerificationPlaceholder`)}
               endIcon={maskPasswordVerification ? NotVisiblaeIcon : VisableIcon}
