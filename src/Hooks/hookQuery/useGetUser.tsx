@@ -7,7 +7,17 @@ export const useUser = (id: string) => {
   return useQuery<User, Error>({
     queryKey: ['user', id],
     queryFn: async () => {
-      return ApiService.makeRequest<User>(`/users/${id}`, HTTPMethod.GET, undefined, true, 'token');
+      return ApiService.makeRequest<User>(`/users/${id}`, HTTPMethod.GET, undefined, true, true);
+    },
+    enabled: !!id,
+  });
+};
+
+export const useProfile = (id: string) => {
+  return useQuery<User, Error>({
+    queryKey: ['user', id],
+    queryFn: async () => {
+      return ApiService.makeRequest<User>(`/auth/profile`, HTTPMethod.GET, undefined, true, true);
     },
     enabled: !!id,
   });

@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import Cookies from 'js-cookie';
 
 const BASE_URL = window.location.href.includes('localhost')
   ? process.env.REACT_APP_BET_BASE_URL
@@ -10,9 +11,15 @@ export const ApiService = {
     method: HTTPMethod,
     data?: Record<string, unknown>,
     isFormData?: boolean,
-    token?: string,
+    withAuth?: boolean,
     headers?: Record<string, string>
   ): Promise<T> => {
+    let token: string | undefined;
+
+    if (withAuth) {
+      token = Cookies.get('accessToken');
+    }
+
     const config: AxiosRequestConfig = {
       method,
       url:
