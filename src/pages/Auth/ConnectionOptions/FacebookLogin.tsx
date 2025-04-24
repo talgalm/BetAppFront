@@ -3,7 +3,7 @@ import { FacebookIcon } from './ConnectionOptions.styles';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
-import { userAtom } from '../../../Jotai/atoms';
+import { tokenAtom, userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterProvider } from '../Hooks/useRegisterProvider';
 import { VerifiedUserAtom } from '../Store/atoms';
@@ -20,6 +20,7 @@ const FacebookLoginButton = () => {
   const [, setUser] = useAtom(userAtom);
   const navigate = useNavigate();
   const [, setVerifiedUser] = useAtom(VerifiedUserAtom);
+  const [, setToken] = useAtom(tokenAtom);
 
   const handleFacebookLogin = () => {
     FB.login(
@@ -41,7 +42,7 @@ const FacebookLoginButton = () => {
                   } else {
                     //login
                     localStorage.removeItem('AuthStep');
-                    localStorage.setItem('token', res.accessToken);
+                    setToken(res.accessToken);
                     setUser(res.user);
                     navigate(`/home`);
                   }

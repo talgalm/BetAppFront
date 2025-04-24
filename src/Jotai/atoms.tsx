@@ -10,13 +10,6 @@ export const layoutAtom = atomWithStorage<{
   footerStyle: FooterStyle.SHOW,
 });
 
-export const userAtom = atomWithStorage<User>('userAtom', {
-  id: '2ad7e2f6-b8f9-48d0-b7ed-c94d906bdc73',
-  phoneNumber: '',
-});
+export const userAtom = atomWithStorage<User | null>('userAtom', null);
 
-export const groupAtom = atomWithStorage<Group>('groupAtom', {
-  id: '',
-  name: '',
-  users: [],
-});
+export const tokenAtom = atomWithStorage<string | null>('tokenAtom', null);

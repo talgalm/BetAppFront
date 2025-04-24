@@ -27,7 +27,8 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
   const { field } = useController({ name: inputName, control });
   const [userCurrentCoins, setUserCurrentCoins] = useState<number>(0);
   const [user, setUser] = useAtom(userAtom);
-  const { data } = useUser(user?.id);
+  const userId = user?.id ?? '';
+  const { data, isLoading, error } = useUser(userId);
   const [isCustomValue, setIsCustomValue] = useState(false);
 
   const BetimArray = [20, 30, 40, 0];

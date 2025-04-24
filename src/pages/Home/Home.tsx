@@ -10,7 +10,7 @@ import BetLoader from '../../Theme/Loader/loader';
 import { useEffect } from 'react';
 import { useUser } from '../../Hooks/hookQuery/useGetUser';
 import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
+import { tokenAtom, userAtom } from '../../Jotai/atoms';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
@@ -23,20 +23,23 @@ import SingleBetRow from './SingleBetRow';
 import { useNavigate } from 'react-router-dom';
 
 const Home = (): JSX.Element => {
-  const [user, setUser] = useAtom(userAtom);
-  const { data, isLoading } = useUser(user?.id);
   const { t } = useTranslation();
+  // const [user, setUser] = useAtom(userAtom);
+  const [token, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (!token) {
+  //     console.log('bad');
+  //   }
+  // }, [token]);
+
+  const userId = '';
+  const { data, isLoading, error } = useUser(userId);
 
   const createBetRoute = () => {
     navigate(`/new-bet`);
   };
-
-  useEffect(() => {
-    if (data) {
-      setUser(data);
-    }
-  }, [data, setUser]);
 
   if (isLoading) {
     return <BetLoader />;

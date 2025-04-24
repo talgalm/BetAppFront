@@ -37,12 +37,12 @@ const Header = () => {
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user, setUser] = useAtom(userAtom);
-  const { data } = useUser(user?.id);
+  const userId = user?.id ?? '';
+  const { data, isLoading, error } = useUser(userId);
   const path = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.clear();
     if (data) {
       setUser(data);
     }
@@ -85,7 +85,7 @@ const Header = () => {
             <LeftIconDiv>
               <BetimIcon />
               <Typography
-                value={user.points ?? '00'}
+                value={user?.points ?? '00'}
                 variant={TypographyTypes.TextSmall}
                 styleProps={{ color: '#2A69C6' }}
               />

@@ -10,6 +10,7 @@ export const ApiService = {
     method: HTTPMethod,
     data?: Record<string, unknown>,
     isFormData?: boolean,
+    token?: string,
     headers?: Record<string, string>
   ): Promise<T> => {
     const config: AxiosRequestConfig = {
@@ -22,6 +23,7 @@ export const ApiService = {
         ...(isFormData
           ? { 'Content-Type': ContentType.FORM }
           : { 'Content-Type': ContentType.JSON }),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...headers,
       },
       data:

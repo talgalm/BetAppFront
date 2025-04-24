@@ -14,7 +14,7 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { userAtom } from '../../../Jotai/atoms';
+import { tokenAtom, userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
 import BetLoader from '../../../Theme/Loader/loader';
 import { useLogin } from '../Hooks/useLogin';
@@ -24,7 +24,7 @@ const Login = (): JSX.Element => {
   const { control, handleSubmit, watch, getValues } = useFormContext<LoginFormInput>();
   const [, setActiveStep] = useAtom(UserActiveStep);
   const { mutate, isPending } = useLogin();
-  const [, setUser] = useAtom(userAtom);
+  const [, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
   const [maskPassword, setMaskPassword] = useState(true);
   const formValues = watch();
@@ -39,8 +39,7 @@ const Login = (): JSX.Element => {
     mutate(getValues(), {
       onSuccess: (res) => {
         localStorage.removeItem('AuthStep');
-        localStorage.setItem('token', res.token);
-        setUser(res.user);
+        setToken(res.token);
         navigate(`/home`);
       },
       onError: (error: any) => {

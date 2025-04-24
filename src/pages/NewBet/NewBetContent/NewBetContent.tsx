@@ -30,7 +30,8 @@ const NewBetContent = <T extends FieldValues>({
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
-  const { data } = useUser(user?.id);
+  const userId = user?.id ?? '';
+  const { data, isLoading, error } = useUser(userId);
 
   useEffect(() => {
     if (data) {

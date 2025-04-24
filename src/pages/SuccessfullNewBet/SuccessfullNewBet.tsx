@@ -6,7 +6,7 @@ import { TEXT_SEC_COLOR } from '../../Theme/ColorTheme';
 import { User } from '../../api/interfaces';
 import { ReactComponent as AddIcon } from '../../Theme/Icons/Minus.svg';
 
-import { AddParticipantTag } from '../../components/Inputs/InputWithPoints/InputWithPoints.styles';
+// import { AddParticipantTag } from '../../components/Inputs/InputWithPoints/InputWithPoints.styles';
 import { useAtom } from 'jotai';
 import { layoutAtom } from '../../Jotai/atoms';
 import { HeaderStyle, FooterStyle } from '../../Theme/ThemeInterfaces';
@@ -76,12 +76,12 @@ const SuccessfullNewBet = ({ isAddToCalendar }: SuccessfullNewBetProps) => {
             color: TEXT_SEC_COLOR,
           }}
         />
-        {users.map((user, index) => (
+        {/* {users.map((user, index) => (
           <AddParticipantTag key={index}>
             <AddIcon />
             <Typography value={user.fullName || user.id} variant={TypographyTypes.H4} />
           </AddParticipantTag>
-        ))}
+        ))} */}
       </ParticipantsDiv>
       <SuccessfullNewBetLink />
       <SuccessfullNewBetRisk />
