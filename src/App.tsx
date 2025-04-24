@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorBoundary } from 'react-error-boundary';
 import Header from './Layout/Header/Header';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { persistQueryClient } from '@tanstack/react-query-persist-client';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 
 import ErrorFallback from './Errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
@@ -21,6 +23,15 @@ const App = () => {
         staleTime: 60000,
       },
     },
+  });
+
+  const localStoragePersister = createSyncStoragePersister({
+    storage: window.localStorage,
+  });
+
+  persistQueryClient({
+    queryClient,
+    persister: localStoragePersister,
   });
   // access token + refresh token (need 2 to handle)
   return (

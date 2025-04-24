@@ -1,7 +1,6 @@
-import { useMutation, UseMutationResult, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { User } from '../../api/interfaces';
 import { ApiService, HTTPMethod } from '../../api/types';
-import { tokenAtom } from '../../Jotai/atoms';
 
 export const useUser = (id: string) => {
   return useQuery<User, Error>({
@@ -20,5 +19,6 @@ export const useProfile = (id: string) => {
       return ApiService.makeRequest<User>(`/auth/profile`, HTTPMethod.GET, undefined, true, true);
     },
     enabled: !!id,
+    staleTime: 5 * 60 * 1000,
   });
 };

@@ -27,6 +27,7 @@ import { TypographyTypes } from '../../Theme/Typography/typography';
 import { Typography } from '../../components/Topography/topography';
 import { useTranslation } from 'react-i18next';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { useLogout } from '../../pages/Auth/Hooks/useLogout';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
@@ -37,16 +38,11 @@ const Header = () => {
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user, setUser] = useAtom(userAtom);
-  const userId = user?.id ?? '';
-  const { data, isLoading, error } = useUser(userId);
+  // const userId = user?.id ?? '';
+  // const { data, isLoading, error } = useUser(userId);
   const path = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (data) {
-      setUser(data);
-    }
-  }, [data, setUser]);
+  const { mutate } = useLogout();
 
   const handleNextStep = () => {
     if (authStep.prev) {
@@ -60,8 +56,7 @@ const Header = () => {
   };
 
   const logout = () => {
-    localStorage.clear();
-    navigate(`/`);
+    mutate();
   };
 
   return (

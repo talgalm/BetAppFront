@@ -8,9 +8,7 @@ import {
 } from './Home.styles';
 import BetLoader from '../../Theme/Loader/loader';
 import { useEffect } from 'react';
-import { useProfile, useUser } from '../../Hooks/hookQuery/useGetUser';
-import { useAtom } from 'jotai';
-import { tokenAtom, userAtom } from '../../Jotai/atoms';
+import { useProfile } from '../../Hooks/hookQuery/useGetUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
@@ -24,11 +22,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
-  // const [user, setUser] = useAtom(userAtom);
-  const [token, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
 
-  const userId = ''; // or pull from token/userAtom
   const { data, isLoading, error } = useProfile('b907dc57-5b8e-407c-9aaa-35b57871b755');
 
   useEffect(() => {
@@ -37,12 +32,10 @@ const Home = (): JSX.Element => {
 
       // Example: check for 401 error to clear token and redirect to login
       if ((error as any).response?.status === 401) {
-        // setToken(null);
-        // setUser(null);
-        alert('!');
+        navigate('/');
       }
     }
-  }, [error, navigate, setToken]);
+  }, [error, navigate]);
 
   const createBetRoute = () => {
     navigate(`/new-bet`);

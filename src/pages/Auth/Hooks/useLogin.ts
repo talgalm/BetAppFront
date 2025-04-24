@@ -1,7 +1,5 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../api/types';
-import { Tokens } from '../../../api/interfaces';
-import Cookies from 'js-cookie'; // install with `npm install js-cookie`
 
 interface LoginPayload {
   email: string;
@@ -13,7 +11,7 @@ export const useLogin = (): UseMutationResult<{ accessToken: string }, Error, Lo
     mutationFn: async ({ email, password }: LoginPayload): Promise<{ accessToken: string }> => {
       const response = await ApiService.makeRequest<{
         accessToken: string;
-      }>('/auth/login', HTTPMethod.POST, { email, password });
+      }>('/auth/login', HTTPMethod.POST, { email, password }, false, false, true);
       document.cookie = `accessToken=${response.accessToken}; path=/; SameSite=Strict;`;
 
       return response;

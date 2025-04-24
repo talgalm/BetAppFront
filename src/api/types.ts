@@ -12,15 +12,12 @@ export const ApiService = {
     data?: Record<string, unknown>,
     isFormData?: boolean,
     withAuth?: boolean,
+    withCredentials = false,
     headers?: Record<string, string>
   ): Promise<T> => {
-    let token: string | undefined;
+    const getAccessToken = () => Cookies.get('accessToken');
 
-    if (withAuth) {
-      token = Cookies.get('accessToken');
-    }
-
-    const config: AxiosRequestConfig = {
+    const prepareConfig = (token?: string): AxiosRequestConfig => ({
       method,
       url:
         method === HTTPMethod.GET
@@ -39,10 +36,38 @@ export const ApiService = {
             ? new URLSearchParams(data as Record<string, string>).toString()
             : data
           : undefined,
-    };
+      withCredentials,
+    });
 
-    const response = await axios(config);
-    return response.data;
+    const token = withAuth ? getAccessToken() : undefined;
+
+    try {
+      const response = await axios(prepareConfig(token));
+      return response.data;
+    } catch (error: any) {
+      if (withAuth && error.response?.status === StatusCode.UNAUTHORIZED) {
+        // attempt to refresh
+        try {
+          const refreshResponse = await axios.post<{ accessToken: string }>(
+            `${BASE_URL}/auth/refresh`,
+            {},
+            { withCredentials: true } // send refreshToken cookie
+          );
+
+          const newAccessToken = refreshResponse.data.accessToken;
+          Cookies.set('accessToken', newAccessToken);
+
+          // retry original request
+          const retryResponse = await axios(prepareConfig(newAccessToken));
+          return retryResponse.data;
+        } catch (refreshError) {
+          console.error('Token refresh failed', refreshError);
+          throw refreshError;
+        }
+      }
+
+      throw error;
+    }
   },
 };
 
