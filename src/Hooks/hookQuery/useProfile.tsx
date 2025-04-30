@@ -12,13 +12,14 @@ export const useUser = (id: string) => {
   });
 };
 
-export const useProfile = (id: string) => {
+export const useProfile = (enabled?: boolean) => {
   return useQuery<User, Error>({
-    queryKey: ['user', id],
+    queryKey: ['user-profile'],
     queryFn: async () => {
       return ApiService.makeRequest<User>(`/auth/profile`, HTTPMethod.GET, undefined, true, true);
     },
-    enabled: !!id,
+    enabled,
+    retry: false,
     staleTime: 5 * 60 * 1000,
   });
 };

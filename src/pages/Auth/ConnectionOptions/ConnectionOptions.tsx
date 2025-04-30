@@ -80,17 +80,19 @@ const ConnectionOptions = ({ current }: ConnectionOptionsProps): JSX.Element => 
           <AppleIcon onClick={handleAppleLogin}></AppleIcon>
         </ConnectionOptionsTab>
       </ConnectionOptionsContainer>
-      <DontHaveAccountContainer onClick={handleNextStep}>
-        <Typography
-          value={t(`WelcomePage.${current}DontHave`)}
-          variant={TypographyTypes.TextMedium}
-        />
-        <Typography
-          value={t(`WelcomePage.${current}Now`)}
-          variant={TypographyTypes.TextMedium}
-          styleProps={{ color: theme.palette.primary.main }}
-        />
-      </DontHaveAccountContainer>
+      {current && (
+        <DontHaveAccountContainer onClick={handleNextStep}>
+          <Typography
+            value={t(`WelcomePage.${current}DontHave`)}
+            variant={TypographyTypes.TextMedium}
+          />
+          <Typography
+            value={t(`WelcomePage.${current}Now`)}
+            variant={TypographyTypes.TextMedium}
+            styleProps={{ color: theme.palette.primary.main }}
+          />
+        </DontHaveAccountContainer>
+      )}
     </BottomContainer>
   );
 };

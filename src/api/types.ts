@@ -12,7 +12,6 @@ export const ApiService = {
     data?: Record<string, unknown>,
     isFormData?: boolean,
     withAuth?: boolean,
-    withCredentials = false,
     headers?: Record<string, string>
   ): Promise<T> => {
     const getAccessToken = () => Cookies.get('accessToken');
@@ -21,13 +20,13 @@ export const ApiService = {
       method,
       url:
         method === HTTPMethod.GET
-          ? `${BASE_URL}${endpoint}?${new URLSearchParams(data as Record<string, string>)}`
+          ? `${BASE_URL}${endpoint}${data ? `?${new URLSearchParams(data as Record<string, string>).toString()}` : ''}`
           : `${BASE_URL}${endpoint}`,
       headers: {
         ...(isFormData
           ? { 'Content-Type': ContentType.FORM }
           : { 'Content-Type': ContentType.JSON }),
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        // ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...headers,
       },
       data:
@@ -36,7 +35,7 @@ export const ApiService = {
             ? new URLSearchParams(data as Record<string, string>).toString()
             : data
           : undefined,
-      withCredentials,
+      withCredentials: true,
     });
 
     const token = withAuth ? getAccessToken() : undefined;

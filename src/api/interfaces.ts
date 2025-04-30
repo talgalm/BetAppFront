@@ -5,9 +5,9 @@ export interface User {
   password?: string;
   email?: string;
   phoneNumber?: string;
-  points?: number;
+  betim?: number;
   bets?: Bet[];
-  groups?: Group[];
+  verifyEmail?: boolean;
 }
 
 export interface Tokens {

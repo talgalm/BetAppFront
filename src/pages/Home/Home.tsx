@@ -6,9 +6,6 @@ import {
   NotificationNumber,
   BetsContainer,
 } from './Home.styles';
-import BetLoader from '../../Theme/Loader/loader';
-import { useEffect } from 'react';
-import { useProfile } from '../../Hooks/hookQuery/useGetUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../Theme/Typography/typography';
@@ -19,36 +16,25 @@ import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/Su
 import { ReactComponent as BetsIcon } from '../../Theme/Icons/HomeIcons/BetsIcon.svg';
 import SingleBetRow from './SingleBetRow';
 import { useNavigate } from 'react-router-dom';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  const { data, isLoading, error } = useProfile('b907dc57-5b8e-407c-9aaa-35b57871b755');
-
-  useEffect(() => {
-    if (error) {
-      console.error('User fetch error:', error);
-
-      // Example: check for 401 error to clear token and redirect to login
-      if ((error as any).response?.status === 401) {
-        navigate('/');
-      }
-    }
-  }, [error, navigate]);
+  const [user] = useAtom(userAtom);
 
   const createBetRoute = () => {
     navigate(`/new-bet`);
   };
 
-  if (isLoading) {
-    return <BetLoader />;
-  }
-
   return (
     <HomeDivContainer>
       <ComplexContainer>
-        <Typography value={t('Home.Hi', { name: 'דניאל' })} variant={TypographyTypes.H1} />
+        <Typography
+          value={t('Home.Hi', { name: user?.fullName?.split(' ')[0] })}
+          variant={TypographyTypes.H1}
+        />
         <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
         <NotificationContainer>
           <NotificationCubeContainer backgroundColor="#EFFDF4">

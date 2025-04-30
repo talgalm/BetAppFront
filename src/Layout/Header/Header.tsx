@@ -18,7 +18,7 @@ import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
-import { useUser } from '../../Hooks/hookQuery/useGetUser';
+import { useProfile } from '../../Hooks/hookQuery/useProfile';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -33,14 +33,14 @@ const Header = () => {
   const isPrimary = useIsPrimaryExpand();
   const [authStep, setActiveStepAuth] = useAtom(UserActiveStep);
   const [newBetStep] = useAtom(ActiveStep);
-  const [verify, setVerify] = useState(true); // fix here
+  const [verify, setVerify] = useState(false);
+  const path = useLocation();
+  const shouldFetchProfile = path.pathname !== '/';
+  const { data, isSuccess, isError, isLoading } = useProfile(shouldFetchProfile);
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user, setUser] = useAtom(userAtom);
-  // const userId = user?.id ?? '';
-  // const { data, isLoading, error } = useUser(userId);
-  const path = useLocation();
   const navigate = useNavigate();
   const { mutate } = useLogout();
 
@@ -57,6 +57,26 @@ const Header = () => {
 
   const logout = () => {
     mutate();
+  };
+
+  useEffect(() => {
+    if (!user) {
+      if (isSuccess && data) {
+        setUser(data);
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (isSuccess && user?.verifyEmail === false) {
+      const dismissed = sessionStorage.getItem('verifyDismissed');
+      setVerify(dismissed !== 'true');
+    }
+  }, [isSuccess, user]);
+
+  const handleDismiss = () => {
+    setVerify(false);
+    sessionStorage.setItem('verifyDismissed', 'true');
   };
 
   return (
@@ -80,7 +100,7 @@ const Header = () => {
             <LeftIconDiv>
               <BetimIcon />
               <Typography
-                value={user?.points ?? '00'}
+                value={user?.betim ?? '00'}
                 variant={TypographyTypes.TextSmall}
                 styleProps={{ color: '#2A69C6' }}
               />
@@ -89,14 +109,14 @@ const Header = () => {
         )}
         <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
       </HeaderComponent>
-      {!verify && (
+      {isSuccess && verify && user?.verifyEmail === false && (
         <VerificationContainer>
           <Typography
-            value={'שלחנו לך קוד אימות למייל morgaltal@gmail.com'}
+            value={`שלחנו לך קוד אימות למייל ${user.email}`}
             variant={TypographyTypes.TextSmall}
             styleProps={{ color: '#DA3E3E' }}
           />
-          <RedCloseIcon onClick={() => setVerify(true)} />
+          <RedCloseIcon onClick={handleDismiss} />
         </VerificationContainer>
       )}
     </>

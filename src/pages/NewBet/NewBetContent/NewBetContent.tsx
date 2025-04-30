@@ -6,7 +6,7 @@ import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
 import { useEffect } from 'react';
-import { useUser } from '../../../Hooks/hookQuery/useGetUser';
+import { useUser } from '../../../Hooks/hookQuery/useProfile';
 import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';

@@ -11,7 +11,7 @@ export const useLogin = (): UseMutationResult<{ accessToken: string }, Error, Lo
     mutationFn: async ({ email, password }: LoginPayload): Promise<{ accessToken: string }> => {
       const response = await ApiService.makeRequest<{
         accessToken: string;
-      }>('/auth/login', HTTPMethod.POST, { email, password }, false, false, true);
+      }>('/auth/login', HTTPMethod.POST, { email, password }, false, false);
       document.cookie = `accessToken=${response.accessToken}; path=/; SameSite=Strict;`;
 
       return response;

@@ -38,9 +38,7 @@ const Login = (): JSX.Element => {
   const onSubmit = (data: LoginFormInput) => {
     mutate(getValues(), {
       onSuccess: (res) => {
-        localStorage.removeItem('AuthStep');
-        // setToken(res.token);
-        navigate(`/home`);
+        navigate(`/auth/success`);
       },
       onError: (error: any) => {
         console.error('Registration failed:', error);
