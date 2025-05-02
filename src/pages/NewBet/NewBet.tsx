@@ -19,10 +19,9 @@ import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './NewBetContent/NewBetContent';
-import { KeyboardAwareBottomBar } from '../../components/KeyboardAwareBottomBar/KeyboardAwareBottomBar.tsx';
 import { Checkbox } from '@mui/material';
 import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);

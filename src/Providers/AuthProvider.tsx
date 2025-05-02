@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { useProfile } from '../Hooks/hookQuery/useProfile';
+import { useProfile } from './useProfile';
 import { userAtom } from '../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router';

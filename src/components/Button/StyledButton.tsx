@@ -1,9 +1,9 @@
 import React from 'react';
 import { ButtonStyles } from './StyledButton.styles';
 import { Typography } from '../Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import { useTheme } from '@mui/material/styles';
 import { ThemeType } from '../../Theme/theme';
+import { TypographyTypes } from '../Topography/TypographyTypes';
 
 interface StyledButtonProps {
   value?: string;

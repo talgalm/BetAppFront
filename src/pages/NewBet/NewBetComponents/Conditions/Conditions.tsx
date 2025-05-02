@@ -8,13 +8,13 @@ import {
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
 import { Typography } from '../../../../components/Topography/topography';
-import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
 import { CreateBetInputs } from '../../Interface';
 import { Tag } from '../../../Home/SingleBetRow.styles';
+import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;

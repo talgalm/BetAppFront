@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import StyledButton from '../../../components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
@@ -17,6 +16,7 @@ import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styl
 import { useVerifyCode } from '../Hooks/useVerifyCode';
 import { VerifiedUserAtom } from '../Store/atoms';
 import BetLoader from '../../../Theme/Loader/loader';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 const CodeVerification = (): JSX.Element => {
   const theme = useTheme();

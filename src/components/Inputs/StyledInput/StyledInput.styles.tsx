@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { TEXT_THIRD_COLOR } from '../../../Theme/ColorTheme';
 import { TextField } from '@mui/material';
 import { padding } from 'polished';

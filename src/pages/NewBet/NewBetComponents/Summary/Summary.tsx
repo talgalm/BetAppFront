@@ -2,7 +2,6 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../Interface';
 import { Typography } from '../../../../components/Topography/topography';
-import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
 import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';
@@ -19,11 +18,12 @@ import {
   SummaryRow,
 } from './Summary.styles';
 import { useTranslation } from 'react-i18next';
-import { User } from '../../../../api/interfaces';
+import { User } from '../../../../Interfaces';
 import { formatDate } from '../../../../utils/Helpers';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../../Jotai/newBetAtoms';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';
+import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateBetInputs>();
@@ -43,7 +43,7 @@ const NewBetSummary: React.FC = () => {
         {watch().Name && (
           <Typography
             value={watch().Name}
-            variant={TypographyTypes.H4}
+            variant={TypographyTypes.H2}
             styleProps={{ color: 'black' }}
           />
         )}
@@ -55,7 +55,7 @@ const NewBetSummary: React.FC = () => {
           <SummaryColumn>
             <Typography
               value={t('NewBet.SummaryParticipantsTitle')}
-              variant={TypographyTypes.H5}
+              variant={TypographyTypes.H3}
               styleProps={{ color: 'black' }}
             />
             <ParticipantsRow>
@@ -74,12 +74,12 @@ const NewBetSummary: React.FC = () => {
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDescriptionTitle')}
-                variant={TypographyTypes.H5}
+                variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
               <Typography
                 value={watch().Description || ''}
-                variant={TypographyTypes.H4}
+                variant={TypographyTypes.TextBig}
                 styleProps={{
                   color: 'black',
                   whiteSpace: 'nowrap',
@@ -101,14 +101,14 @@ const NewBetSummary: React.FC = () => {
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryConditionsTitle')}
-                variant={TypographyTypes.H5}
+                variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
               <SummaryRow background={'#CED0EF'}>
                 <SinglePeopleIcon />
                 <Typography
                   value={t('NewBet.SummaryConditionsaTag')}
-                  variant={TypographyTypes.H7}
+                  variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
               </SummaryRow>
@@ -124,7 +124,7 @@ const NewBetSummary: React.FC = () => {
           <SummaryColumn>
             <Typography
               value={t('NewBet.SummaryBetimTitle')}
-              variant={TypographyTypes.H5}
+              variant={TypographyTypes.H3}
               styleProps={{ color: 'black' }}
             />
             <SummaryRow>
@@ -132,7 +132,7 @@ const NewBetSummary: React.FC = () => {
                 <SinglePeopleIcon />
                 <Typography
                   value={watch().Coins}
-                  variant={TypographyTypes.H7}
+                  variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
                 <BetimIcon width={18} height={18} />
@@ -149,13 +149,13 @@ const NewBetSummary: React.FC = () => {
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDeadlineTitle')}
-                variant={TypographyTypes.H5}
+                variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
               <SummaryRow background={'#CEEFEA'}>
                 <Typography
                   value={formatDate(watch().Deadline)}
-                  variant={TypographyTypes.H7}
+                  variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
               </SummaryRow>
@@ -172,7 +172,7 @@ const NewBetSummary: React.FC = () => {
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryFilesTitle')}
-                variant={TypographyTypes.H5}
+                variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
               <SummaryRow gap={4}>
@@ -202,7 +202,7 @@ const NewBetSummary: React.FC = () => {
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummarySupervisorTitle')}
-                variant={TypographyTypes.H5}
+                variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
 
@@ -210,7 +210,7 @@ const NewBetSummary: React.FC = () => {
                 <SmallAvatar>{watch().Supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
                 <Typography
                   value={watch().Supervisor?.[0]?.fullName || ''}
-                  variant={TypographyTypes.H5}
+                  variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
               </ParticipantsRow>

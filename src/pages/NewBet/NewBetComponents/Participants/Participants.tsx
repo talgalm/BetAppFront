@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
 import { Typography } from '../../../../components/Topography/topography';
-import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
-import { User } from '../../../../api/interfaces';
+import { User } from '../../../../Interfaces';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
 import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
@@ -29,6 +28,7 @@ import { CreateBetInputs } from '../../Interface';
 import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
+import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -161,7 +161,7 @@ const NewBetParticipants = <T extends FieldValues>({
         <ContactIcon />
         <Typography
           value={t(`NewBet.contacts`)}
-          variant={TypographyTypes.H10}
+          variant={TypographyTypes.TextBig}
           styleProps={{ color: PRIMARY_COLOR }}
         />
       </RowCenterContentContainer>

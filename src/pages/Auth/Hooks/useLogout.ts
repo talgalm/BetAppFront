@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../api/types';
+import { ApiService, HTTPMethod } from '../../../API/api';
 
 export const useLogout = (): UseMutationResult<void, Error, void> => {
   return useMutation({

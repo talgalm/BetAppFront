@@ -1,5 +1,4 @@
 import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import {
   ItemsBodyContent,
   ItemsContant,
@@ -18,7 +17,7 @@ import { ReactComponent as AddContactIcon } from '../../Theme/Icons/ContactAdd.s
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
-import { User } from '../../api/interfaces';
+import { User } from '../../Interfaces';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
@@ -34,6 +33,7 @@ import {
   CloseIconStyled,
   NameText,
 } from '../NewBet/NewBetComponents/Participants/Participants.styles';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 interface ContactModalProps<T extends FieldValues> {
   open: boolean;
@@ -115,7 +115,7 @@ const ContactModal = <T extends FieldValues>({
           <VIcon onClick={handleSaveAndClose} />
           <Typography
             value={t('ContactModal.chooseContact')}
-            variant={TypographyTypes.H6}
+            variant={TypographyTypes.H1}
             styleProps={{ textAlign: 'center', width: '100%' }}
           />
           <CloseIcon onClick={handleClose} />
@@ -177,7 +177,7 @@ const ContactModal = <T extends FieldValues>({
                     <SmallAvatar>{item.fullName?.charAt(0)}</SmallAvatar>
                     {item.fullName}
                   </ItemsNameImageCircleContent>
-                  <Typography value={item.phoneNumber || ''} variant={TypographyTypes.H6} />
+                  <Typography value={item.phoneNumber || ''} variant={TypographyTypes.H1} />
                 </ItemsBodyContent>
               ))}
           </ItemsContant>

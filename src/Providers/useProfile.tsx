@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { User } from '../../api/interfaces';
-import { ApiService, HTTPMethod } from '../../api/types';
+import { User } from '../Interfaces';
+import { ApiService, HTTPMethod } from '../API/api';
 
 export const useUser = (id: string) => {
   return useQuery<User, Error>({

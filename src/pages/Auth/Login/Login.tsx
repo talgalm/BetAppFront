@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { HeaderContainer, SignInContainer } from './Login.styles';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
@@ -14,21 +13,21 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { tokenAtom, userAtom } from '../../../Jotai/atoms';
 import { useNavigate } from 'react-router-dom';
 import BetLoader from '../../../Theme/Loader/loader';
 import { useLogin } from '../Hooks/useLogin';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { useProfile } from '../../../Providers/useProfile';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();
   const { control, handleSubmit, watch, getValues } = useFormContext<LoginFormInput>();
   const [, setActiveStep] = useAtom(UserActiveStep);
   const { mutate, isPending } = useLogin();
-  const [, setToken] = useAtom(tokenAtom);
   const navigate = useNavigate();
   const [maskPassword, setMaskPassword] = useState(true);
   const formValues = watch();
-
+  const { refetch } = useProfile();
   const [isFormEmpty, setIsFormEmpty] = useState(true);
 
   useEffect(() => {
@@ -37,7 +36,8 @@ const Login = (): JSX.Element => {
 
   const onSubmit = (data: LoginFormInput) => {
     mutate(getValues(), {
-      onSuccess: (res) => {
+      onSuccess: async (res) => {
+        await refetch();
         navigate(`/home`);
       },
       onError: (error: any) => {

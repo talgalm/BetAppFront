@@ -8,17 +8,17 @@ import {
   StyledAvatarGroup,
   ActionRow,
 } from './SingleBetRow.styles';
-import { Bet } from '../../api/interfaces';
+import { Bet } from '../../Interfaces';
 import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/SupervisorNotification.svg';
 import { ReactComponent as BetIcon } from '../../Theme/Icons/HomeIcons/BetNotification.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
 
 import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import { formatDate } from '../../utils/Helpers';
 import { Avatar, AvatarGroup } from '@mui/material';
 import StyledButton from '../../components/Button/StyledButton';
 import { ThemeType } from '../../Theme/theme';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 interface SingleBetRowProps {
   bet?: Bet;

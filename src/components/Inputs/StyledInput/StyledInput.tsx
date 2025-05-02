@@ -1,7 +1,7 @@
 import { Control, Controller, FieldValues, Path, PathValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { StyledTextField, WidthDiv, IconWrapperEnd, IconWrapperStart } from './StyledInput.styles';
+import { TypographyTypes } from '../../Topography/TypographyTypes';
 
 interface InputTextFullProps<T extends FieldValues> {
   control?: Control<T>;

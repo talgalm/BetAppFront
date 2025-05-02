@@ -20,11 +20,11 @@ import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
 import { authSteps } from '../../pages/Auth/WelcomePage/interface';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import { Typography } from '../../components/Topography/topography';
 import { useTranslation } from 'react-i18next';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useLogout } from '../../pages/Auth/Hooks/useLogout';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();

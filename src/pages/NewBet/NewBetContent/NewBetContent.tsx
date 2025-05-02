@@ -1,12 +1,11 @@
 import { ContentContainer, RowContentContainer } from '../NewBet.styles';
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
 import { useEffect } from 'react';
-import { useUser } from '../../../Hooks/hookQuery/useProfile';
+import { useUser } from '../../../Providers/useProfile';
 import { userAtom } from '../../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
@@ -16,6 +15,7 @@ import NewBetConditions from '../NewBetComponents/Conditions/Conditions';
 import Betim from '../NewBetComponents/Betim/Betim';
 import NewBetFiles from '../NewBetComponents/Files/Files';
 import NewBetSummary from '../NewBetComponents/Summary/Summary';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;

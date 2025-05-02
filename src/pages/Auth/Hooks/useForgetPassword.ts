@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../api/types';
+import { ApiService, HTTPMethod } from '../../../API/api';
 
 export const useForgetPassword = () => {
   return useMutation<{ send: boolean }, Error, string>({

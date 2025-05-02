@@ -8,7 +8,6 @@ import {
 } from './Home.styles';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import StyledButton from '../../components/Button/StyledButton';
 import { ThemeType } from '../../Theme/theme';
 import { ReactComponent as HistoryIcon } from '../../Theme/Icons/HomeIcons/HistoryIcon.svg';
@@ -18,6 +17,7 @@ import SingleBetRow from './SingleBetRow';
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

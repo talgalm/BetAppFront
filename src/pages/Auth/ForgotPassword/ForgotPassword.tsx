@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../../components/Topography/topography';
 import { HeaderContainer, SignInContainer } from './ForgotPassword.styles';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { ForgotPasswordFormInput } from '../Login/interface';
 import { useFormContext } from 'react-hook-form';
@@ -12,6 +11,7 @@ import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useForgetPassword } from '../Hooks/useForgetPassword';
 import BetLoader from '../../../Theme/Loader/loader';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 const ForgetPassword = (): JSX.Element => {
   const { t } = useTranslation();

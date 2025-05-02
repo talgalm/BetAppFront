@@ -1,5 +1,4 @@
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { HeaderContainer, SignInContainer } from './Register.styles';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
@@ -14,6 +13,7 @@ import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
 import { VerifiedUserAtom } from '../Store/atoms';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();

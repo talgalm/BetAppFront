@@ -30,10 +30,51 @@ const theme = createTheme({
     },
   },
   typography: {
+    h1: {
+      fontWeight: 500,
+      fontSize: 28,
+      fontFamily: 'Fredoka',
+    },
+    h2: {
+      fontWeight: 400,
+      fontSize: 20,
+      fontFamily: 'Fredoka',
+    },
+    h3: {
+      fontWeight: 500,
+      fontSize: 18,
+      fontFamily: 'Fredoka',
+    },
+    subtitle1: {
+      //TextBig
+      fontWeight: 400,
+      fontSize: 18,
+      fontFamily: 'Fredoka',
+    },
+    subtitle2: {
+      //TextBig
+      fontWeight: 400,
+      fontSize: 16,
+      fontFamily: 'Fredoka',
+    },
+    body1: {
+      //TextSmall
+      fontWeight: 500,
+      fontSize: 14,
+      color: '#9798A2',
+      fontFamily: 'Fredoka',
+    },
+    body2: {
+      //TextSmall
+      fontWeight: 500,
+      fontSize: 8,
+      color: '#ffffff',
+      fontFamily: 'Fredoka',
+    },
     button: {
-      fontSize: '1rem',
       fontWeight: 600,
-      textTransform: 'none',
+      fontSize: 18,
+      fontFamily: 'Fredoka',
     },
   },
 });

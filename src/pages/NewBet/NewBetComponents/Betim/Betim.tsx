@@ -8,14 +8,14 @@ import {
   StyledDivider,
 } from '../Betim/Betim.styles';
 import { Typography } from '../../../../components/Topography/topography';
-import { TypographyTypes } from '../../../../Theme/Typography/typography';
 import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
 import { ReactComponent as PlusIcon } from '../../../../Theme/Icons/AddIcon.svg';
 import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../../../Jotai/atoms';
-import { useUser } from '../../../../Hooks/hookQuery/useProfile';
+import { useUser } from '../../../../Providers/useProfile';
+import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;

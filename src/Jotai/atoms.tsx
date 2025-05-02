@@ -1,5 +1,5 @@
 import { atomWithStorage } from 'jotai/utils';
-import { Group, User } from '../api/interfaces';
+import { User } from '../Interfaces';
 import { FooterStyle, HeaderStyle } from '../Theme/ThemeInterfaces';
 
 export const layoutAtom = atomWithStorage<{
@@ -11,5 +11,3 @@ export const layoutAtom = atomWithStorage<{
 });
 
 export const userAtom = atomWithStorage<User | null>('userAtom', null);
-
-export const tokenAtom = atomWithStorage<string | null>('tokenAtom', null);

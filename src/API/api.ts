@@ -14,9 +14,7 @@ export const ApiService = {
     withAuth?: boolean,
     headers?: Record<string, string>
   ): Promise<T> => {
-    const getAccessToken = () => Cookies.get('accessToken');
-
-    const prepareConfig = (token?: string): AxiosRequestConfig => ({
+    const prepareConfig = (): AxiosRequestConfig => ({
       method,
       url:
         method === HTTPMethod.GET
@@ -26,7 +24,6 @@ export const ApiService = {
         ...(isFormData
           ? { 'Content-Type': ContentType.FORM }
           : { 'Content-Type': ContentType.JSON }),
-        // ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...headers,
       },
       data:
@@ -38,10 +35,8 @@ export const ApiService = {
       withCredentials: true,
     });
 
-    const token = withAuth ? getAccessToken() : undefined;
-
     try {
-      const response = await axios(prepareConfig(token));
+      const response = await axios(prepareConfig());
       return response.data;
     } catch (error: any) {
       if (withAuth && error.response?.status === StatusCode.UNAUTHORIZED) {
@@ -57,7 +52,7 @@ export const ApiService = {
           Cookies.set('accessToken', newAccessToken);
 
           // retry original request
-          const retryResponse = await axios(prepareConfig(newAccessToken));
+          const retryResponse = await axios(prepareConfig());
           return retryResponse.data;
         } catch (refreshError) {
           console.error('Token refresh failed', refreshError);

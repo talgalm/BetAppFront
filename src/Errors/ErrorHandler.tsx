@@ -9,9 +9,9 @@ import {
   PopUpOverlay,
 } from './ErrorHandler.styles';
 import { Typography } from '../components/Topography/topography';
-import { TypographyTypes } from '../Theme/Typography/typography';
 import StyledButton from '../components/Button/StyledButton';
 import { ThemeType } from '../Theme/theme';
+import { TypographyTypes } from '../components/Topography/TypographyTypes';
 
 export const ErrorHandler = (
   showBoundary?: (error: { title: string; subtitle: string }) => void,

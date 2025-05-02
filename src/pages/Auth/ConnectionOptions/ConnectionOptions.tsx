@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
@@ -16,6 +15,7 @@ import {
   DontHaveAccountContainer,
 } from './ConnectionOptions.styles';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 interface ConnectionOptionsProps {
   current?: string;

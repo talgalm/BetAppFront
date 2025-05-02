@@ -10,7 +10,6 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from './interface';
 import { Typography } from '../../../components/Topography/topography';
-import { TypographyTypes } from '../../../Theme/Typography/typography';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import RegisterForm from '../Register/RegisterForm';
 import RegisterProviderForm from '../Register/RegisterProviderForm';
@@ -18,6 +17,7 @@ import LoginForm from '../Login/LoginForm';
 import ForgotPasswordForm from '../ForgotPassword/ForgotPasswordForm';
 import NewPasswordForm from '../NewPassword/NewPasswordForm';
 import CodeVerification from '../CodeVerification/CodeVerification';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 
 const WelcomePage = (): JSX.Element => {
   const theme = useTheme();

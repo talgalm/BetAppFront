@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { PopUpDiv, PopUpOverlay } from '../ContactModal/ContactModal.styles';
 import { PopUpContent, PopUpHeader } from './ConditionModal.styles';
 import { Typography } from '../../components/Topography/topography';
-import { TypographyTypes } from '../../Theme/Typography/typography';
 import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.svg';
 import Calendar from '../../components/Calendar/Calendar';
 import { FieldValues, Control, Path } from 'react-hook-form';
-import { User } from '../../api/interfaces';
+import { User } from '../../Interfaces';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 interface ConditionModalProps<T extends FieldValues> {
   open: boolean;
