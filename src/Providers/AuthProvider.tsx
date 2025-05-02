@@ -2,19 +2,16 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { useProfile } from './useProfile';
 import { userAtom } from '../Jotai/atoms';
 import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router';
 import BetLoader from '../Theme/Loader/loader';
+import ErrorFallback from '../Errors/ErrorHandler';
+import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useAtom(userAtom);
-
-  // Don't fetch profile again if user is already known
   const shouldFetch = !user;
 
   const { data, isSuccess, isError, isLoading } = useProfile();
-
   const [initialized, setInitialized] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user && isSuccess && data) {
@@ -22,18 +19,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     if (isError) {
       setUser(null);
-      // optionally navigate('/login')
     }
     if ((isSuccess || isError) && shouldFetch) {
       setInitialized(true);
     }
     if (user) {
-      setInitialized(true); // skip loader if already logged in
+      setInitialized(true);
     }
   }, [user, isSuccess, isError, data, setUser, shouldFetch]);
 
   if (!initialized && isLoading) {
     return <BetLoader />;
+  }
+
+  const handleError = () => {
+    if (user) {
+      window.location.href = '/home';
+    } else {
+      window.location.href = '/';
+    }
+  };
+
+  if (isError && !user) {
+    return (
+      <ErrorFallback
+        error={ERROR_MESSAGES[ErrorTypes.ConnectionError]}
+        resetErrorBoundary={handleError}
+      />
+    );
   }
 
   return <>{children}</>;

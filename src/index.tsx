@@ -8,7 +8,7 @@ import Home from './pages/Home/Home';
 import NewBetForm from './pages/NewBet/NewBet.form';
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import VerifyEmail from './pages/Auth/VerifyEmail/VerifyEmail';
-import AuthCallback from './pages/Auth/AuthSuccess';
+import AuthCallback from './Providers/AuthCallback';
 
 export const pagesRouter = createBrowserRouter([
   {
