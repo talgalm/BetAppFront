@@ -15,9 +15,7 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIc
 
 import { Typography } from '../../components/Topography/topography';
 import { formatDate } from '../../utils/Helpers';
-import { Avatar, AvatarGroup } from '@mui/material';
-import StyledButton from '../../components/Button/StyledButton';
-import { ThemeType } from '../../Theme/theme';
+import { Avatar } from '@mui/material';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 interface SingleBetRowProps {

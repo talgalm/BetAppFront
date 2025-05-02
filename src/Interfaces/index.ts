@@ -6,13 +6,34 @@ export interface User {
   email?: string;
   phoneNumber?: string;
   betim?: number;
-  bets?: Bet[];
+  betsParticipating?: Bet[];
+  betsSupervising?: Bet[];
+  betsFinished?: Bet[];
   verifyEmail?: boolean;
 }
 
+export enum BetStatus {
+  ACTIVE = 'active',
+  PENDING = 'pending',
+  CANCELED = 'canceled',
+  COMPLETED = 'completed',
+}
+
 export interface Bet {
+  id: string;
   name: string;
-  createdAt: string;
-  groupName?: string;
-  userGuesses: User[];
+  description: string;
+  status: BetStatus;
+  betim: number;
+  deadline?: Date;
+  supervisor?: User;
+  predictions?: Prediction[];
+}
+
+export interface Prediction {
+  id: string;
+  betId: string;
+  userId: string;
+  description?: string;
+  deadline?: Date;
 }
