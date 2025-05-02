@@ -12,13 +12,10 @@ import { ReactComponent as HamburgerIcon } from '../../Theme/Icons/LayoutIcons/H
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/BetimHeaderIcon.svg';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as RedCloseIcon } from '../../Theme/Icons/LayoutIcons/RedClose.svg';
-
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-
 import { layoutAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
-import { useProfile } from '../../Hooks/hookQuery/useProfile';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -35,12 +32,10 @@ const Header = () => {
   const [newBetStep] = useAtom(ActiveStep);
   const [verify, setVerify] = useState(false);
   const path = useLocation();
-  const shouldFetchProfile = path.pathname !== '/';
-  const { data, isSuccess, isError, isLoading } = useProfile(shouldFetchProfile);
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
-  const [user, setUser] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   const navigate = useNavigate();
   const { mutate } = useLogout();
 
@@ -60,19 +55,11 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (!user) {
-      if (isSuccess && data) {
-        setUser(data);
-      }
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (isSuccess && user?.verifyEmail === false) {
+    if (user?.verifyEmail === false) {
       const dismissed = sessionStorage.getItem('verifyDismissed');
       setVerify(dismissed !== 'true');
     }
-  }, [isSuccess, user]);
+  }, [user]);
 
   const handleDismiss = () => {
     setVerify(false);
@@ -82,7 +69,7 @@ const Header = () => {
   return (
     <>
       <HeaderComponent headerStyle={layout.headerStyle}>
-        {authStep.prev && (
+        {authStep.step !== 'Welcome' && !path.pathname.includes('home') && (
           <RightIconDiv onClick={handleNextStep}>
             <ReturnArrow />
           </RightIconDiv>
@@ -109,7 +96,7 @@ const Header = () => {
         )}
         <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
       </HeaderComponent>
-      {isSuccess && verify && user?.verifyEmail === false && (
+      {verify && user?.verifyEmail === false && (
         <VerificationContainer>
           <Typography
             value={`שלחנו לך קוד אימות למייל ${user.email}`}

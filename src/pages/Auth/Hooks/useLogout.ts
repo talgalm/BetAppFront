@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult, useQuery } from '@tanstack/react-query';
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../api/types';
 
 export const useLogout = (): UseMutationResult<void, Error, void> => {

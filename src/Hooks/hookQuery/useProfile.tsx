@@ -12,7 +12,7 @@ export const useUser = (id: string) => {
   });
 };
 
-export const useProfile = (enabled?: boolean) => {
+export const useProfile = (enabled = true) => {
   return useQuery<User, Error>({
     queryKey: ['user-profile'],
     queryFn: async () => {
@@ -21,5 +21,6 @@ export const useProfile = (enabled?: boolean) => {
     enabled,
     retry: false,
     staleTime: 5 * 60 * 1000,
+    refetchOnMount: 'always',
   });
 };

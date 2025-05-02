@@ -11,6 +11,7 @@ import {
 import { Typography } from '../components/Topography/topography';
 import { TypographyTypes } from '../Theme/Typography/typography';
 import StyledButton from '../components/Button/StyledButton';
+import { ThemeType } from '../Theme/theme';
 
 export const ErrorHandler = (
   showBoundary?: (error: { title: string; subtitle: string }) => void,
@@ -39,7 +40,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
           <Typography value={typedError.subtitle} variant={TypographyTypes.TextMedium} />
         </PopUpContent>
         <ButtonsContainer>
-          <StyledButton value={typedError.buttonText} />
+          <StyledButton value={typedError.buttonText} colorVariant={ThemeType.Primary} />
         </ButtonsContainer>
       </PopUpDiv>
     </PopUpOverlay>

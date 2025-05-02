@@ -38,7 +38,7 @@ const Login = (): JSX.Element => {
   const onSubmit = (data: LoginFormInput) => {
     mutate(getValues(), {
       onSuccess: (res) => {
-        navigate(`/auth/success`);
+        navigate(`/home`);
       },
       onError: (error: any) => {
         console.error('Registration failed:', error);

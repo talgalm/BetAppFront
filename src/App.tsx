@@ -36,9 +36,9 @@ const App = () => {
   // access token + refresh token (need 2 to handle)
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <AuthProvider>
-          <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <AuthProvider>
             <GoogleOAuthProvider clientId="754492313540-4kl64as5d01muqmgaudat470uaq41hv3.apps.googleusercontent.com">
               <PrimaryBackground>
                 <Header />
@@ -48,9 +48,9 @@ const App = () => {
                 {/* <Footer /> */}
               </PrimaryBackground>
             </GoogleOAuthProvider>
-          </ThemeProvider>
-        </AuthProvider>
-      </ErrorBoundary>
+          </AuthProvider>
+        </ErrorBoundary>
+      </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
