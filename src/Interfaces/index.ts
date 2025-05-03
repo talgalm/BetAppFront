@@ -6,9 +6,9 @@ export interface User {
   email?: string;
   phoneNumber?: string;
   betim?: number;
-  betsParticipating?: Bet[];
-  betsSupervising?: Bet[];
-  betsFinished?: Bet[];
+  betsParticipating: Bet[];
+  betsSupervising: Bet[];
+  betsFinished: Bet[];
   verifyEmail?: boolean;
 }
 

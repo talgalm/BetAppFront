@@ -33,6 +33,9 @@ const Header = () => {
   const [verify, setVerify] = useState(false);
   const path = useLocation();
 
+  const [value, setValue] = useState(200);
+  const [downValue, setDownValue] = useState(100);
+
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user] = useAtom(userAtom);
@@ -66,6 +69,22 @@ const Header = () => {
     sessionStorage.setItem('verifyDismissed', 'true');
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        setValue((prevValue) => {
+          if (prevValue <= downValue) {
+            clearInterval(interval);
+            return downValue;
+          }
+          return prevValue - 1;
+        });
+      }, 50); // adjust speed of decrementing (50ms for smooth animation)
+    }, 1000); // wait 2 seconds before starting the countdown
+
+    return () => clearTimeout(timer); // clean up on component unmount
+  }, [downValue]);
+
   return (
     <>
       <HeaderComponent headerStyle={layout.headerStyle}>
@@ -87,7 +106,7 @@ const Header = () => {
             <LeftIconDiv>
               <BetimIcon />
               <Typography
-                value={user?.betim ?? '00'}
+                value={value}
                 variant={TypographyTypes.TextSmall}
                 styleProps={{ color: '#2A69C6' }}
               />

@@ -101,11 +101,46 @@ const NewBetParticipants = <T extends FieldValues>({
   };
 
   const mostActives: User[] = [
-    { id: 'TalGalmor', fullName: 'Tal Galmor', phoneNumber: '054-4363655' },
-    { id: 'JohnDoe', fullName: 'John Doe', phoneNumber: '054-1234567' },
-    { id: 'JaneSmith', fullName: 'Jane Smith', phoneNumber: '054-7654321' },
-    { id: 'Jane2Smith', fullName: 'Jan22e Smith', phoneNumber: '054-557654321' },
-    { id: 'Jan2Smi4h', fullName: 'Jase Smith', phoneNumber: '056-7654321' },
+    {
+      id: 'TalGalmor',
+      fullName: 'Tal Galmor',
+      phoneNumber: '054-4363655',
+      betsParticipating: [],
+      betsSupervising: [],
+      betsFinished: [],
+    },
+    {
+      id: 'JohnDoe',
+      fullName: 'John Doe',
+      phoneNumber: '054-1234567',
+      betsParticipating: [],
+      betsSupervising: [],
+      betsFinished: [],
+    },
+    {
+      id: 'JaneSmith',
+      fullName: 'Jane Smith',
+      phoneNumber: '054-7654321',
+      betsParticipating: [],
+      betsSupervising: [],
+      betsFinished: [],
+    },
+    {
+      id: 'Jane2Smith',
+      fullName: 'Jan22e Smith',
+      phoneNumber: '054-557654321',
+      betsParticipating: [],
+      betsSupervising: [],
+      betsFinished: [],
+    },
+    {
+      id: 'Jan2Smi4h',
+      fullName: 'Jase Smith',
+      phoneNumber: '056-7654321',
+      betsParticipating: [],
+      betsSupervising: [],
+      betsFinished: [],
+    },
   ];
 
   return (

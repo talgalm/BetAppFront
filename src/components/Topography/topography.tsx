@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { TypographyTypes } from './TypographyTypes';
 
 interface TopographyProps {
-  value: string | number;
+  value: string | number | undefined;
   variant: TypographyTypes;
   styleProps?: React.CSSProperties;
   onClick?(): void;

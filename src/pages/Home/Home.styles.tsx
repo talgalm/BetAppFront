@@ -7,7 +7,7 @@ export const HomeDivContainer = styled('div')({
   justifyContent: 'center',
   padding: 16,
   gap: 10,
-  marginTop: 54,
+  marginTop: 44,
   marginBottom: 50,
 });
 

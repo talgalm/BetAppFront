@@ -42,21 +42,33 @@ const Home = (): JSX.Element => {
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <BetsIcon />
-            <Typography value={7} variant={TypographyTypes.H1} styleProps={{ color: '#15AB94' }} />
+            <Typography
+              value={user?.betsParticipating?.length}
+              variant={TypographyTypes.H1}
+              styleProps={{ color: '#15AB94' }}
+            />
           </NotificationCubeContainer>
           <NotificationCubeContainer backgroundColor="#FEF3C7">
             <NotificationNumber backgroundColor="#D97706">
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <SupervisorIcon />
-            <Typography value={7} variant={TypographyTypes.H1} styleProps={{ color: '#D97706' }} />
+            <Typography
+              value={user?.betsSupervising?.length}
+              variant={TypographyTypes.H1}
+              styleProps={{ color: '#D97706' }}
+            />
           </NotificationCubeContainer>
           <NotificationCubeContainer backgroundColor="#FAE8FF">
             <NotificationNumber backgroundColor="#C026D3">
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <HistoryIcon />
-            <Typography value={7} variant={TypographyTypes.H1} styleProps={{ color: '#C026D3' }} />
+            <Typography
+              value={user?.betsFinished?.length}
+              variant={TypographyTypes.H1}
+              styleProps={{ color: '#C026D3' }}
+            />
           </NotificationCubeContainer>
         </NotificationContainer>
         <StyledButton
