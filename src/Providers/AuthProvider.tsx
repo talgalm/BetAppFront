@@ -5,11 +5,10 @@ import { useAtom } from 'jotai';
 import BetLoader from '../Theme/Loader/loader';
 import ErrorFallback from '../Errors/ErrorHandler';
 import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+const useAuthInit = () => {
   const [user, setUser] = useAtom(userAtom);
-  const shouldFetch = !user;
-
   const { data, isSuccess, isError, isLoading } = useProfile();
   const [initialized, setInitialized] = useState(false);
 
@@ -20,13 +19,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (isError) {
       setUser(null);
     }
-    if ((isSuccess || isError) && shouldFetch) {
+    if ((isSuccess || isError || user) && !initialized) {
       setInitialized(true);
     }
-    if (user) {
-      setInitialized(true);
+  }, [user, isSuccess, isError, data, setUser, initialized]);
+
+  return { user, initialized, isError, isLoading };
+};
+
+const AuthCheck = ({ children }: { children: ReactNode }) => {
+  const [user] = useAtom(userAtom);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && location.pathname === '/') {
+      navigate('/home', { replace: true });
     }
-  }, [user, isSuccess, isError, data, setUser, shouldFetch]);
+  }, [user, location.pathname, navigate]);
+
+  return <>{children}</>;
+};
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const navigate = useNavigate();
+  const { user, initialized, isError, isLoading } = useAuthInit();
 
   if (!initialized && isLoading) {
     return <BetLoader />;
@@ -34,20 +51,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const handleError = () => {
     if (user) {
-      window.location.href = '/home';
+      navigate('/home');
     } else {
-      window.location.href = '/';
+      navigate('/');
     }
   };
 
-  if (isError && !user) {
+  if (isError && user !== null) {
     return (
       <ErrorFallback
-        error={ERROR_MESSAGES[ErrorTypes.ConnectionError]}
+        error={ERROR_MESSAGES[ErrorTypes.AuthError]}
         resetErrorBoundary={handleError}
       />
     );
   }
 
-  return <>{children}</>;
+  return <AuthCheck>{children}</AuthCheck>;
 };

@@ -10,6 +10,7 @@ export enum ErrorTypes {
   FileNotSupported = 'FileNotSupported',
   FileTooBig = 'FileTooBig',
   OverlappingParticipants = 'OverlappingParticipants',
+  AuthError = 'AuthError',
 }
 
 export interface ErrorMessage {
@@ -49,5 +50,11 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
     title: 'יש לבחור בן אדם אחר',
     subtitle: 'האחראי לא יכול להיות משתתף בהתערבות, נא לבחור אדם אחר.',
     buttonText: 'בחר בן אדם אחר',
+  },
+  [ErrorTypes.AuthError]: {
+    icon: ConnectionErrorIcon,
+    title: 'בעיה בכניסה למערכת',
+    subtitle: 'ארתע תקלה בהתחברות , אנא נסה מחדש',
+    buttonText: 'טעינה מחדש',
   },
 };

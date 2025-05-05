@@ -18,13 +18,18 @@ import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
+import { NotificationColors, NotificationTypeColors } from './Colors';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [user] = useAtom(userAtom);
+  const [, setActiveStep] = useAtom(ActiveStep);
 
   const createBetRoute = () => {
+    setActiveStep(newBetSteps[NewBetStepValueTypes.Start]);
     navigate(`/new-bet`);
   };
 
@@ -37,37 +42,37 @@ const Home = (): JSX.Element => {
         />
         <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
         <NotificationContainer>
-          <NotificationCubeContainer backgroundColor="#EFFDF4">
-            <NotificationNumber backgroundColor="#15AB94">
+          <NotificationCubeContainer backgroundColor={NotificationColors.BetBackground}>
+            <NotificationNumber backgroundColor={NotificationColors.BetAccent}>
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <BetsIcon />
             <Typography
               value={user?.betsParticipating?.length}
               variant={TypographyTypes.H1}
-              styleProps={{ color: '#15AB94' }}
+              styleProps={{ color: NotificationColors.BetAccent }}
             />
           </NotificationCubeContainer>
-          <NotificationCubeContainer backgroundColor="#FEF3C7">
-            <NotificationNumber backgroundColor="#D97706">
+          <NotificationCubeContainer backgroundColor={NotificationColors.SupervisorBackground}>
+            <NotificationNumber backgroundColor={NotificationColors.SupervisorAccent}>
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <SupervisorIcon />
             <Typography
               value={user?.betsSupervising?.length}
               variant={TypographyTypes.H1}
-              styleProps={{ color: '#D97706' }}
+              styleProps={{ color: NotificationColors.SupervisorAccent }}
             />
           </NotificationCubeContainer>
-          <NotificationCubeContainer backgroundColor="#FAE8FF">
-            <NotificationNumber backgroundColor="#C026D3">
+          <NotificationCubeContainer backgroundColor={NotificationColors.HistoryBackground}>
+            <NotificationNumber backgroundColor={NotificationColors.HistoryAccent}>
               <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
             </NotificationNumber>
             <HistoryIcon />
             <Typography
               value={user?.betsFinished?.length}
               variant={TypographyTypes.H1}
-              styleProps={{ color: '#C026D3' }}
+              styleProps={{ color: NotificationColors.HistoryAccent }}
             />
           </NotificationCubeContainer>
         </NotificationContainer>
@@ -79,12 +84,15 @@ const Home = (): JSX.Element => {
       </ComplexContainer>
       <BetsContainer>
         <Typography value={t('Home.Notifications')} variant={TypographyTypes.TextBig} />
-        <SingleBetRow backgroundColor="#EFFDF4" type="bet" />
-        <SingleBetRow backgroundColor="#FEF3C7" type="supervisor" />
+        <SingleBetRow backgroundColor={NotificationTypeColors.bet.background} type="bet" />
+        <SingleBetRow
+          backgroundColor={NotificationTypeColors.supervisor.background}
+          type="supervisor"
+        />
       </BetsContainer>
       <BetsContainer>
         <Typography value={t('Home.OpenBets')} variant={TypographyTypes.TextBig} />
-        <SingleBetRow backgroundColor="#fff" type="ongoing" />
+        <SingleBetRow backgroundColor={NotificationColors.White} type="ongoing" />
       </BetsContainer>
     </HomeDivContainer>
   );

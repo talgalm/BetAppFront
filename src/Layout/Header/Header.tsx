@@ -115,7 +115,7 @@ const Header = () => {
         )}
         <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
       </HeaderComponent>
-      {verify && user?.verifyEmail === false && (
+      {user && verify && user?.verifyEmail === false && (
         <VerificationContainer>
           <Typography
             value={`שלחנו לך קוד אימות למייל ${user.email}`}

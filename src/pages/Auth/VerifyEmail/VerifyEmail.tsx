@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useVerifyEmail } from '../Hooks/useVerifyEmail';
 import BetLoader from '../../../Theme/Loader/loader';
 
