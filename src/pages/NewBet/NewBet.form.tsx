@@ -6,7 +6,7 @@ import { CreateBetInputs } from './Interface';
 const NewBetForm: React.FC = () => {
   const methods = useForm<CreateBetInputs>({
     defaultValues: {
-      Name: '',
+      name: '',
     },
   });
 

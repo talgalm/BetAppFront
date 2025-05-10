@@ -112,7 +112,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
           styleProps={{ color: '#15AB94' }}
         />
         <Typography
-          value={`${t('NewBet.CoinsDisclaimer')}`}
+          value={`${t('NewBet.betimDisclaimer')}`}
           variant={TypographyTypes.TextSmall}
           styleProps={{ color: '#9798A2' }}
         />

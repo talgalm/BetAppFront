@@ -6,11 +6,13 @@ export const HomeDivContainer = styled('div')<{ marginTop?: number }>(({ marginT
   alignItems: 'center',
   justifyContent: 'center',
   marginTop,
+  width: '100%',
+  position: 'fixed',
   backgroundColor: '#ffffff', // or your theme background
 }));
 
 export const ProgressBarContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 0 }) => ({
-  position: 'absolute',
+  position: 'fixed',
   width: '100%',
   padding: 16,
   paddingRight: 16,

@@ -65,9 +65,9 @@ const NewBetContent = <T extends FieldValues>({
           />
         </RowContentContainer>
       )}
-      {(type === NewBetStepValueTypes.Description || type === NewBetStepValueTypes.Name) && (
+      {(type === NewBetStepValueTypes.description || type === NewBetStepValueTypes.name) && (
         <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
-          {inputName && type === NewBetStepValueTypes.Name && (
+          {inputName && type === NewBetStepValueTypes.name && (
             <StyledInput
               control={control}
               inputName={inputName}
@@ -76,7 +76,7 @@ const NewBetContent = <T extends FieldValues>({
               placeholder={t(`NewBet.${type}Title`)}
             />
           )}
-          {inputName && type === NewBetStepValueTypes.Description && (
+          {inputName && type === NewBetStepValueTypes.description && (
             <StyledInput
               control={control}
               inputName={inputName}
@@ -87,22 +87,22 @@ const NewBetContent = <T extends FieldValues>({
           )}
         </div>
       )}
-      {inputName && type === NewBetStepValueTypes.Coins && (
+      {inputName && type === NewBetStepValueTypes.betim && (
         <Betim control={control} inputName={inputName} />
       )}
-      {inputName && control && type === NewBetStepValueTypes.Deadline && (
-        <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>
+      {inputName && control && type === NewBetStepValueTypes.deadline && (
+        <div style={{ width: '100%', paddingTop: 8, paddingBottom: 8 }}>
           <Calendar control={control} inputName={inputName} displayAddToCalendar />
         </div>
       )}
       {inputName && control && type === NewBetStepValueTypes.Conditions && (
         <NewBetConditions control={control} inputName={inputName} />
       )}
-      {inputName && type === NewBetStepValueTypes.Files && <NewBetFiles inputName={inputName} />}
-      {inputName && type === NewBetStepValueTypes.Participants && (
+      {inputName && type === NewBetStepValueTypes.files && <NewBetFiles inputName={inputName} />}
+      {inputName && type === NewBetStepValueTypes.participants && (
         <NewBetParticipants inputName={inputName} control={control} />
       )}
-      {inputName && type === NewBetStepValueTypes.Supervisor && (
+      {inputName && type === NewBetStepValueTypes.supervisor && (
         <NewBetParticipants limit={1} inputName={inputName} control={control} />
       )}
       {type === NewBetStepValueTypes.Summary && <NewBetSummary />}

@@ -3,6 +3,7 @@ import { ReactComponent as FileNotSupportedIcon } from '../Theme/Icons/ErrorIcon
 import { ReactComponent as FileTooBigIcon } from '../Theme/Icons/ErrorIcons/FileTooBig.svg';
 import { ReactComponent as NotEnoughBetimIcon } from '../Theme/Icons/ErrorIcons/NotEnoughBetim.svg';
 import { ReactComponent as OverlappingParticipantsIcon } from '../Theme/Icons/ErrorIcons/OverlappingParticipants.svg';
+import { ReactComponent as AuthErrorIcon } from '../Theme/Icons/ErrorIcons/AuthError.svg';
 
 export enum ErrorTypes {
   ConnectionError = 'ConnectionError',
@@ -52,9 +53,9 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
     buttonText: 'בחר בן אדם אחר',
   },
   [ErrorTypes.AuthError]: {
-    icon: ConnectionErrorIcon,
-    title: 'בעיה בכניסה למערכת',
-    subtitle: 'ארתע תקלה בהתחברות , אנא נסה מחדש',
-    buttonText: 'טעינה מחדש',
+    icon: AuthErrorIcon,
+    title: 'יש להתחבר מחדש',
+    subtitle: 'עבר יותר מידי זמן מאז שהתראינו בפעם האחרונה',
+    buttonText: 'התחבר מחדש',
   },
 };

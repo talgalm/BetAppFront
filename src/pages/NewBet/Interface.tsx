@@ -4,14 +4,14 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 
 export enum NewBetStepValueTypes {
   Start = 'Start',
-  Name = 'Name',
-  Description = 'Description',
-  Coins = 'Coins',
-  Deadline = 'Deadline',
-  Participants = 'Participants',
+  name = 'name',
+  description = 'description',
+  betim = 'betim',
+  deadline = 'deadline',
+  participants = 'participants',
   Conditions = 'Conditions',
-  Files = 'Files',
-  Supervisor = 'Supervisor',
+  files = 'files',
+  supervisor = 'supervisor',
   Summary = 'Summary',
 }
 
@@ -31,87 +31,90 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
   [NewBetStepValueTypes.Start]: {
     step: NewBetStepValueTypes.Start,
     inputName: NewBetStepValueTypes.Start,
-    continueButton: NewBetStepValueTypes.Name,
+    continueButton: NewBetStepValueTypes.name,
     continueButtonText: 'NewBet.startNewBet',
     prevButton: null,
   },
-  [NewBetStepValueTypes.Name]: {
-    step: NewBetStepValueTypes.Name,
-    inputName: NewBetStepValueTypes.Name,
-    continueButton: NewBetStepValueTypes.Participants,
+  [NewBetStepValueTypes.name]: {
+    step: NewBetStepValueTypes.name,
+    inputName: NewBetStepValueTypes.name,
+    continueButton: NewBetStepValueTypes.participants,
     prevButton: NewBetStepValueTypes.Start,
   },
-  [NewBetStepValueTypes.Participants]: {
-    inputName: NewBetStepValueTypes.Participants,
-    step: NewBetStepValueTypes.Participants,
-    continueButton: NewBetStepValueTypes.Description,
-    prevButton: NewBetStepValueTypes.Name,
+  [NewBetStepValueTypes.participants]: {
+    inputName: NewBetStepValueTypes.participants,
+    step: NewBetStepValueTypes.participants,
+    continueButton: NewBetStepValueTypes.description,
+    prevButton: NewBetStepValueTypes.name,
   },
-  [NewBetStepValueTypes.Description]: {
-    step: NewBetStepValueTypes.Description,
-    inputName: NewBetStepValueTypes.Description,
-    continueButton: NewBetStepValueTypes.Coins,
-    prevButton: NewBetStepValueTypes.Participants,
+  [NewBetStepValueTypes.description]: {
+    step: NewBetStepValueTypes.description,
+    inputName: NewBetStepValueTypes.description,
+    continueButton: NewBetStepValueTypes.betim,
+    prevButton: NewBetStepValueTypes.participants,
   },
   [NewBetStepValueTypes.Conditions]: {
-    inputName: NewBetStepValueTypes.Conditions,
+    inputName: NewBetStepValueTypes.participants,
     step: NewBetStepValueTypes.Conditions,
-    continueButton: NewBetStepValueTypes.Coins,
+    continueButton: NewBetStepValueTypes.betim,
     continuteWithout: false,
-    prevButton: NewBetStepValueTypes.Description,
+    prevButton: NewBetStepValueTypes.description,
   },
-  [NewBetStepValueTypes.Coins]: {
-    step: NewBetStepValueTypes.Coins,
-    inputName: NewBetStepValueTypes.Coins,
-    continueButton: NewBetStepValueTypes.Deadline,
+  [NewBetStepValueTypes.betim]: {
+    step: NewBetStepValueTypes.betim,
+    inputName: NewBetStepValueTypes.betim,
+    continueButton: NewBetStepValueTypes.deadline,
     continuteWithout: true,
     continuteWithoutIcon: <BetimIcon width={24} height={24} />,
-    prevButton: NewBetStepValueTypes.Description,
+    prevButton: NewBetStepValueTypes.description,
   },
-  [NewBetStepValueTypes.Deadline]: {
-    step: NewBetStepValueTypes.Deadline,
-    inputName: NewBetStepValueTypes.Deadline,
-    continueButton: NewBetStepValueTypes.Files,
+  [NewBetStepValueTypes.deadline]: {
+    step: NewBetStepValueTypes.deadline,
+    inputName: NewBetStepValueTypes.deadline,
+    continueButton: NewBetStepValueTypes.files,
     continuteWithout: true,
     continuteWithoutIcon: <CalendarIcon color="#15AB94" />,
-    prevButton: NewBetStepValueTypes.Coins,
+    prevButton: NewBetStepValueTypes.betim,
   },
-  [NewBetStepValueTypes.Files]: {
-    inputName: NewBetStepValueTypes.Files,
-    step: NewBetStepValueTypes.Files,
-    continueButton: NewBetStepValueTypes.Supervisor,
-    prevButton: NewBetStepValueTypes.Deadline,
+  [NewBetStepValueTypes.files]: {
+    inputName: NewBetStepValueTypes.files,
+    step: NewBetStepValueTypes.files,
+    continueButton: NewBetStepValueTypes.supervisor,
+    prevButton: NewBetStepValueTypes.deadline,
   },
-  [NewBetStepValueTypes.Supervisor]: {
-    inputName: NewBetStepValueTypes.Supervisor,
-    step: NewBetStepValueTypes.Supervisor,
+  [NewBetStepValueTypes.supervisor]: {
+    inputName: NewBetStepValueTypes.supervisor,
+    step: NewBetStepValueTypes.supervisor,
     continueButton: NewBetStepValueTypes.Summary,
-    prevButton: NewBetStepValueTypes.Files,
+    prevButton: NewBetStepValueTypes.files,
   },
   [NewBetStepValueTypes.Summary]: {
     inputName: NewBetStepValueTypes.Summary,
     step: NewBetStepValueTypes.Summary,
     continueButton: null,
     continueButtonText: 'NewBet.createBet',
-    prevButton: NewBetStepValueTypes.Supervisor,
+    prevButton: NewBetStepValueTypes.supervisor,
   },
 };
 
 export type CreateBetInputs = {
   Start?: string;
-  Name: string;
-  Description?: string;
-  Coins: number;
-  Deadline?: Date;
-  Participants?: User[];
-  Conditions?: Guess[];
-  Files?: File[];
-  Supervisor?: User[];
+  name: string;
+  description?: string;
+  betim: number;
+  deadline?: Date;
+  participants?: Participant[];
+  Conditions?: any;
+  files?: File[];
+  supervisor?: User[];
   Summary?: string;
 };
 
-export type Guess = {
-  userId: string;
-  text?: string;
+export type Participant = {
+  id?: string;
+  fullName?: string;
+  phoneNumber: string;
+  guess?: string;
   date?: Date;
+  approved?: boolean;
 };

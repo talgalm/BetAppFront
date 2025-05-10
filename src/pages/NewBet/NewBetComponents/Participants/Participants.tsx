@@ -24,7 +24,7 @@ import {
   StyledDivider,
 } from '../Participants/Participants.styles';
 import ContactModal from '../../../ContactModal/ContactModal';
-import { CreateBetInputs } from '../../Interface';
+import { CreateBetInputs, Participant } from '../../Interface';
 import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
@@ -66,7 +66,7 @@ const NewBetParticipants = <T extends FieldValues>({
     let finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
 
     if (limit && finalUsers[0].id !== user.id) {
-      const userExists = watch().Participants?.some((participant) => participant.id === user.id);
+      const userExists = watch().participants?.some((participant) => participant.id === user.id);
       if (userExists) {
         ErrorHandler(showBoundary, ErrorTypes.OverlappingParticipants);
       } else {
@@ -74,7 +74,18 @@ const NewBetParticipants = <T extends FieldValues>({
       }
     }
 
-    onChange(finalUsers);
+    const arr: Participant[] = [];
+
+    finalUsers.forEach((user: User) => {
+      const parseUser: Participant = {
+        phoneNumber: user.phoneNumber ?? '',
+        fullName: user.fullName ?? '',
+        id: user.id ?? '',
+      };
+      arr.push(parseUser);
+    });
+
+    onChange(arr);
   };
 
   const addUsers = (users: User[]) => {
@@ -150,7 +161,7 @@ const NewBetParticipants = <T extends FieldValues>({
           in={Array.isArray(value) && value.length > 0}
           timeout="auto"
           unmountOnExit
-          style={{ width: '100%' }} // Ensure Collapse fills the container
+          style={{ width: '100%' }}
         >
           <SelectedContainer>
             {Array.isArray(value) &&

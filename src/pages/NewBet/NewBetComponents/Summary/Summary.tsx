@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../Interface';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes, Participant } from '../../Interface';
 import { Typography } from '../../../../components/Topography/topography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
@@ -39,10 +39,10 @@ const NewBetSummary: React.FC = () => {
 
   return (
     <SummaryContainer>
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Name)}>
-        {watch().Name && (
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.name)}>
+        {watch().name && (
           <Typography
-            value={watch().Name}
+            value={watch().name}
             variant={TypographyTypes.H2}
             styleProps={{ color: 'black' }}
           />
@@ -50,8 +50,8 @@ const NewBetSummary: React.FC = () => {
         <EditIcon />
       </SummaryRow>
       <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Participants)}>
-        {watch().Participants && (
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.participants)}>
+        {watch().participants && (
           <SummaryColumn>
             <Typography
               value={t('NewBet.SummaryParticipantsTitle')}
@@ -59,8 +59,8 @@ const NewBetSummary: React.FC = () => {
               styleProps={{ color: 'black' }}
             />
             <ParticipantsRow>
-              {watch().Participants?.map((participant: User, index) => (
-                <SmallAvatar key={index}>{participant.fullName?.charAt(0)}</SmallAvatar>
+              {watch().participants?.map((participant: Participant, index) => (
+                <SmallAvatar key={index}>{participant.fullName}</SmallAvatar>
               ))}
             </ParticipantsRow>
           </SummaryColumn>
@@ -68,9 +68,9 @@ const NewBetSummary: React.FC = () => {
         <LeftArrow color="black" />
       </SummaryRow>
       <StyledDivider />
-      {watch().Description && (
+      {watch().description && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Description)}>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.description)}>
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDescriptionTitle')}
@@ -78,7 +78,7 @@ const NewBetSummary: React.FC = () => {
                 styleProps={{ color: 'black' }}
               />
               <Typography
-                value={watch().Description || ''}
+                value={watch().description || ''}
                 variant={TypographyTypes.TextBig}
                 styleProps={{
                   color: 'black',
@@ -95,7 +95,9 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      {watch().Conditions && (
+      {watch().participants?.some(
+        (particpent: Participant) => particpent.guess !== null || particpent.guess !== null
+      ) && (
         <>
           <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Conditions)}>
             <SummaryColumn>
@@ -119,8 +121,8 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Coins)}>
-        {watch().Coins !== undefined && (
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.betim)}>
+        {watch().betim !== undefined && (
           <SummaryColumn>
             <Typography
               value={t('NewBet.SummaryBetimTitle')}
@@ -131,7 +133,7 @@ const NewBetSummary: React.FC = () => {
               <SummaryRow background={'#CEEFEA'}>
                 <SinglePeopleIcon />
                 <Typography
-                  value={watch().Coins}
+                  value={watch().betim}
                   variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
@@ -143,9 +145,9 @@ const NewBetSummary: React.FC = () => {
         <LeftArrow color="black" />
       </SummaryRow>
       <StyledDivider />
-      {watch().Deadline && (
+      {watch().deadline && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Deadline)}>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.deadline)}>
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDeadlineTitle')}
@@ -154,7 +156,7 @@ const NewBetSummary: React.FC = () => {
               />
               <SummaryRow background={'#CEEFEA'}>
                 <Typography
-                  value={formatDate(watch().Deadline)}
+                  value={formatDate(watch().deadline)}
                   variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
@@ -166,9 +168,9 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      {watch().Files && (
+      {watch().files && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Files)}>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.files)}>
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryFilesTitle')}
@@ -176,7 +178,7 @@ const NewBetSummary: React.FC = () => {
                 styleProps={{ color: 'black' }}
               />
               <SummaryRow gap={4}>
-                {watch().Files?.map((file: File, index: number) => (
+                {watch().files?.map((file: File, index: number) => (
                   <AvatarWrapper key={index}>
                     {file.type.includes('image') ? (
                       <StyledImage src={URL.createObjectURL(file)} />
@@ -196,9 +198,9 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      {watch().Supervisor && (
+      {watch().supervisor && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Supervisor)}>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.supervisor)}>
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummarySupervisorTitle')}
@@ -207,9 +209,9 @@ const NewBetSummary: React.FC = () => {
               />
 
               <ParticipantsRow>
-                <SmallAvatar>{watch().Supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
+                <SmallAvatar>{watch().supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
                 <Typography
-                  value={watch().Supervisor?.[0]?.fullName || ''}
+                  value={watch().supervisor?.[0]?.fullName || ''}
                   variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />

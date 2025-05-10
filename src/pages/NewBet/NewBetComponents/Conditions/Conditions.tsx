@@ -58,7 +58,7 @@ const NewBetConditions = <T extends FieldValues>({
     <ConditionsContent>
       {inputName &&
         control &&
-        watch().Participants?.map((user, userIndex) => {
+        watch().participants?.map((user, userIndex) => {
           const userDate = value?.[userIndex]?.date || '';
           return (
             <ConditionsRowContent key={userIndex}>
@@ -73,7 +73,7 @@ const NewBetConditions = <T extends FieldValues>({
 
               <StyledInput
                 control={control}
-                inputName={`${inputName}.${userIndex}.text` as Path<T>}
+                inputName={`${inputName}.${currentIndex}.guess` as Path<T>}
                 placeholder={t(`NewBet.EnterCondition`)}
               />
 

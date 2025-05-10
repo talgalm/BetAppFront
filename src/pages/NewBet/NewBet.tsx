@@ -37,7 +37,7 @@ const NewBet = () => {
       return;
     }
 
-    if (step.step === NewBetStepValueTypes.Files) {
+    if (step.step === NewBetStepValueTypes.files) {
       setDisableButton(false);
       return;
     }
@@ -56,7 +56,7 @@ const NewBet = () => {
       setDisableButton(false);
     }
 
-    if (step.step === NewBetStepValueTypes.Coins) {
+    if (step.step === NewBetStepValueTypes.betim) {
       if (currentValue === 0 || currentValue === undefined) {
         setDisableButton(true);
       } else {
@@ -121,19 +121,21 @@ const NewBet = () => {
   };
 
   const changeNextStep = (checked: boolean) => {
-    if (step.step === NewBetStepValueTypes.Description) {
+    if (step.step === NewBetStepValueTypes.description) {
       if (checked) {
         step.continueButton = NewBetStepValueTypes.Conditions;
-        newBetSteps[NewBetStepValueTypes.Coins].prevButton = NewBetStepValueTypes.Conditions;
+        newBetSteps[NewBetStepValueTypes.betim].prevButton = NewBetStepValueTypes.Conditions;
       } else {
-        step.continueButton = NewBetStepValueTypes.Coins;
-        newBetSteps[NewBetStepValueTypes.Coins].prevButton = NewBetStepValueTypes.Description;
+        step.continueButton = NewBetStepValueTypes.betim;
+        newBetSteps[NewBetStepValueTypes.betim].prevButton = NewBetStepValueTypes.description;
       }
     }
   };
 
   return (
-    <>
+    <div
+      style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', overflowY: 'hidden' }}
+    >
       <ProgressBarContainer marginTop={step.step !== NewBetStepValueTypes.Start ? 50 : 0}>
         {step.step !== NewBetStepValueTypes.Start && (
           <ProgressBar targetProgress={targetProgress} />
@@ -146,7 +148,7 @@ const NewBet = () => {
               <NewBetContent control={control} inputName={step.inputName} type={step.step} />
             )}
           </form>
-          {step.step === NewBetStepValueTypes.Description && (
+          {step.step === NewBetStepValueTypes.description && (
             <CheckboxContainer>
               <Checkbox
                 onChange={(e) => changeNextStep(e.target.checked)}
@@ -193,7 +195,7 @@ const NewBet = () => {
           </ButtonsContainerInner>
         </ButtonsContainer>
       </HomeDivContainer>
-    </>
+    </div>
   );
 };
 
