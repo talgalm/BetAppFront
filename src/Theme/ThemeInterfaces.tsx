@@ -27,7 +27,7 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 999,
+    // zIndex: 10,
     boxShadow: `
       0px 2px 5px 0px #CBC6E31A,
       0px 9px 9px 0px #CBC6E317,

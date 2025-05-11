@@ -18,3 +18,8 @@ export const formatDate = (dateString: string | Date | undefined): string => {
   }
   return '';
 };
+
+export const formatPhoneNumber = (number: string | undefined): string => {
+  if (!number || number.length !== 10) return '';
+  return `${number.slice(0, 3)}-${number.slice(3)}`;
+};

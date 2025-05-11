@@ -1,4 +1,3 @@
-import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as CloseIcon } from '../../../../Theme/Icons/FullClose.svg';
 
@@ -7,12 +6,11 @@ export const FilesContainer = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   width: 343,
-  height: '29vh',
+  height: '30vh',
   backgroundColor: '#CEEFEA',
   borderRadius: 8,
   border: `1px dashed #15AB94`,
   flexDirection: 'column',
-  gap: 8,
 });
 
 export const FilesRow = styled('div')({
@@ -23,13 +21,9 @@ export const FilesRow = styled('div')({
   textAlign: 'center',
   width: '80%',
   gap: 4,
-  marginTop: 10,
-  marginBottom: 5,
 });
 
-export const UploadIconWrapper = styled('div')({
-  paddingTop: 16,
-});
+export const UploadIconWrapper = styled('div')({});
 
 export const SelectedContainer = styled('div')({
   display: 'flex',

@@ -60,7 +60,7 @@ const NewBetSummary: React.FC = () => {
             />
             <ParticipantsRow>
               {watch().participants?.map((participant: Participant, index) => (
-                <SmallAvatar key={index}>{participant.fullName}</SmallAvatar>
+                <SmallAvatar key={index}>{participant.fullName?.charAt(0)}</SmallAvatar>
               ))}
             </ParticipantsRow>
           </SummaryColumn>

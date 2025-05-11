@@ -20,7 +20,7 @@ export const ProgressBarContainer = styled('div')<{ marginTop?: number }>(({ mar
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 10,
+  zIndex: 0,
   backgroundColor: 'transparent',
   marginTop: marginTop,
 }));
@@ -113,6 +113,7 @@ export const RowCenterContentContainer = styled('div')({
 });
 
 export const ButtonsContainer = styled('div')({
+  position: 'fixed',
   bottom: 0,
   left: 0,
   right: 0,
@@ -139,7 +140,7 @@ export const SelectedContainer = styled('div')({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  width: 343,
+  width: '100%',
   height: '100%',
   borderRadius: 16,
   paddingTop: 10,

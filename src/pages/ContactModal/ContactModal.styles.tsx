@@ -12,7 +12,7 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   right: 0,
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  zIndex: 9999,
+  zIndex: 12,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-end',
@@ -30,10 +30,10 @@ export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>((
   width: '100%',
   maxWidth: '100%',
   minWidth: '100%',
-  height: '90vh',
+  height: '100vh',
   backgroundColor: 'White',
   borderBottom: 'none',
-  zIndex: 10000,
+  zIndex: 999,
   transition: 'transform 0.3s ease',
   transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
   boxSizing: 'border-box',
@@ -46,7 +46,18 @@ export const PopUpHeader = styled('div')({
   display: 'flex',
   width: '100%',
   justifyContent: 'space-between',
-  zIndex: 1000,
+  zIndex: 99,
+  marginTop: 50,
+  marginBottom: 0,
+});
+
+export const PopUpHeader2 = styled('div')({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+  zIndex: 99,
+  marginTop: 20,
+  marginBottom: 20,
 });
 
 export const PopUpScroll = styled('div')({
@@ -68,8 +79,9 @@ export const PopUpNotInContact = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  paddingTop: 16,
   gap: 8,
+  marginTop: 20,
+  marginBottom: 5,
 });
 
 export const ItemsContant = styled('div')({

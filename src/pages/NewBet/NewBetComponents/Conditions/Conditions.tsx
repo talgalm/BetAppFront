@@ -73,7 +73,7 @@ const NewBetConditions = <T extends FieldValues>({
 
               <StyledInput
                 control={control}
-                inputName={`${inputName}.${currentIndex}.guess` as Path<T>}
+                inputName={`${inputName}.${userIndex}.guess` as Path<T>}
                 placeholder={t(`NewBet.EnterCondition`)}
               />
 

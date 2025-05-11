@@ -9,6 +9,7 @@ export const RowCenterContentContainer = styled('div')({
   direction: 'rtl',
   width: '100%',
   gap: 5,
+  marginTop: -16,
   textAlign: 'center',
 });
 

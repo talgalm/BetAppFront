@@ -40,11 +40,10 @@ const StyledInput = <T extends FieldValues>({
           render={({ field, fieldState }) => {
             return (
               <WidthDiv>
-                {
-                  <IconWrapperStart>
-                    {StartIcon && <StartIcon onClick={startIconOnClick} />}
-                  </IconWrapperStart>
-                }
+                <IconWrapperStart>
+                  {StartIcon && <StartIcon onClick={startIconOnClick} />}
+                </IconWrapperStart>
+
                 <StyledTextField
                   fullWidth
                   placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
@@ -56,6 +55,7 @@ const StyledInput = <T extends FieldValues>({
                   marginExtand={extended}
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
+                  startIconGap={StartIcon !== null}
                 />
                 {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
               </WidthDiv>
@@ -64,12 +64,16 @@ const StyledInput = <T extends FieldValues>({
         />
       ) : (
         <WidthDiv>
+          <IconWrapperStart>
+            {StartIcon && <StartIcon onClick={startIconOnClick} />}
+          </IconWrapperStart>
           <StyledTextField
             fullWidth
             placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
             variant="outlined"
             multiline={extended}
             rows={extended ? 4 : undefined}
+            startIconGap={StartIcon !== null}
           />
           {<IconWrapperEnd>{EndIcon && <EndIcon />}</IconWrapperEnd>}
         </WidthDiv>

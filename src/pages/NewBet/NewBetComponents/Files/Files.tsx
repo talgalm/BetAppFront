@@ -61,7 +61,7 @@ const NewBetFiles = <T extends FieldValues>({
   };
 
   return (
-    <div style={{ display: 'flex', gap: 30, flexDirection: 'column' }}>
+    <div style={{ display: 'flex', gap: 30, flexDirection: 'column', marginBottom: 50 }}>
       <FilesContainer onClick={handleClickContainer} style={{ cursor: 'pointer' }}>
         <UploadIconWrapper>
           <UploadFileIcon />
@@ -70,12 +70,12 @@ const NewBetFiles = <T extends FieldValues>({
           <Typography
             value={t(`NewBet.uploadFilesTitle`)}
             variant={TypographyTypes.TextBig}
-            styleProps={{ color: '#001845', fontWeight: 500 }}
+            styleProps={{ color: '#001845', fontWeight: 400 }}
           />
           <Typography
             value={t(`NewBet.uploadFilesSubtitle`)}
             variant={TypographyTypes.TextSmall}
-            styleProps={{ color: '#7F8CB9', fontWeight: 400 }}
+            styleProps={{ color: '#9798A2', fontWeight: 500 }}
           />
         </FilesRow>
         <StyledButton
@@ -84,10 +84,11 @@ const NewBetFiles = <T extends FieldValues>({
             width: '56%',
             backgroundColor: 'white',
             height: 32,
-            color: '#15AB94',
+            marginTop: 8,
             border: '2px solid #15AB94',
             marginBottom: 10,
           }}
+          colorVariant="secondary"
           onClick={() => fileInputRef.current?.click()}
         />
         <input

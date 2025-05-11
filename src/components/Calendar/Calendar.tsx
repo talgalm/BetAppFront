@@ -30,7 +30,6 @@ const Calendar = <T extends FieldValues>({
   }, [isChecked, setValue]);
 
   const hebrewWeekdayFormatter = (locale: string | undefined, date: Date) => {
-    // Get just the Hebrew letter without any apostrophe
     const weekdays = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
     return weekdays[date.getDay()];
   };
@@ -43,7 +42,16 @@ const Calendar = <T extends FieldValues>({
           control={control}
           render={({ field }) => (
             <StyledCalendar
-              onChange={(value) => field.onChange(value)}
+              onChange={(value) => {
+                const selectedDate = field.value as Date | null;
+
+                const selectedDateStr = selectedDate?.toDateString?.() ?? '';
+                const newDateStr = (value as Date)?.toDateString?.() ?? '';
+
+                const isSameDay = selectedDateStr === newDateStr;
+
+                field.onChange(isSameDay ? null : value);
+              }}
               value={field.value}
               nextLabel={
                 <LeftArrow width={12} height={12} style={{ transform: 'rotate(180deg)' }} />
