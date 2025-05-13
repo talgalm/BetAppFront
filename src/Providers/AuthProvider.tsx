@@ -3,26 +3,29 @@ import { useProfile } from './useProfile';
 import { userAtom } from '../Jotai/atoms';
 import { useAtom } from 'jotai';
 import BetLoader from '../Theme/Loader/loader';
-import ErrorFallback from '../Errors/ErrorHandler';
+import ErrorFallback, { ErrorHandler } from '../Errors/ErrorHandler';
 import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useErrorBoundary } from 'react-error-boundary';
 
 const useAuthInit = () => {
   const [user, setUser] = useAtom(userAtom);
-  const { data, isSuccess, isError, isLoading } = useProfile();
+  const { data, isSuccess, isError, isLoading, error } = useProfile();
   const [initialized, setInitialized] = useState(false);
+  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
     if (!user && isSuccess && data) {
       setUser(data);
     }
     if (isError) {
+      ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
       setUser(null);
     }
     if ((isSuccess || isError || user) && !initialized) {
       setInitialized(true);
     }
-  }, [user, isSuccess, isError, data, setUser, initialized]);
+  }, [user, isSuccess, isError, data, setUser, initialized, showBoundary]);
 
   return { user, initialized, isError, isLoading };
 };
@@ -58,6 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   if (isError && user !== null) {
+    console.log('!');
     return (
       <ErrorFallback
         error={ERROR_MESSAGES[ErrorTypes.AuthError]}

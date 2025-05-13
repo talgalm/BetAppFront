@@ -99,7 +99,7 @@ const NewBetContent = <T extends FieldValues>({
         <NewBetConditions control={control} inputName={inputName} />
       )}
       {inputName && type === NewBetStepValueTypes.files && <NewBetFiles inputName={inputName} />}
-      {inputName && type === NewBetStepValueTypes.participants && (
+      {inputName && type === NewBetStepValueTypes.participents && (
         <NewBetParticipants inputName={inputName} control={control} />
       )}
       {inputName && type === NewBetStepValueTypes.supervisor && (

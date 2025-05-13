@@ -8,7 +8,7 @@ export enum NewBetStepValueTypes {
   description = 'description',
   betim = 'betim',
   deadline = 'deadline',
-  participants = 'participants',
+  participents = 'participents',
   Conditions = 'Conditions',
   files = 'files',
   supervisor = 'supervisor',
@@ -38,12 +38,12 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
   [NewBetStepValueTypes.name]: {
     step: NewBetStepValueTypes.name,
     inputName: NewBetStepValueTypes.name,
-    continueButton: NewBetStepValueTypes.participants,
+    continueButton: NewBetStepValueTypes.participents,
     prevButton: NewBetStepValueTypes.Start,
   },
-  [NewBetStepValueTypes.participants]: {
-    inputName: NewBetStepValueTypes.participants,
-    step: NewBetStepValueTypes.participants,
+  [NewBetStepValueTypes.participents]: {
+    inputName: NewBetStepValueTypes.participents,
+    step: NewBetStepValueTypes.participents,
     continueButton: NewBetStepValueTypes.description,
     prevButton: NewBetStepValueTypes.name,
   },
@@ -51,10 +51,10 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     step: NewBetStepValueTypes.description,
     inputName: NewBetStepValueTypes.description,
     continueButton: NewBetStepValueTypes.betim,
-    prevButton: NewBetStepValueTypes.participants,
+    prevButton: NewBetStepValueTypes.participents,
   },
   [NewBetStepValueTypes.Conditions]: {
-    inputName: NewBetStepValueTypes.participants,
+    inputName: NewBetStepValueTypes.participents,
     step: NewBetStepValueTypes.Conditions,
     continueButton: NewBetStepValueTypes.betim,
     continuteWithout: false,
@@ -103,7 +103,7 @@ export type CreateBetInputs = {
   description?: string;
   betim: number;
   deadline?: Date;
-  participants?: Participant[];
+  participents?: Participant[];
   Conditions?: any;
   files?: File[];
   supervisor?: User[];

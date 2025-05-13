@@ -66,7 +66,7 @@ const NewBetParticipants = <T extends FieldValues>({
     let finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
 
     if (limit && finalUsers[0].id !== user.id) {
-      const userExists = watch().participants?.some((participant) => participant.id === user.id);
+      const userExists = watch().participents?.some((participant) => participant.id === user.id);
       if (userExists) {
         ErrorHandler(showBoundary, ErrorTypes.OverlappingParticipants);
       } else {

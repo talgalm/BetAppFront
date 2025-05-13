@@ -22,6 +22,7 @@ import NewBetContent from './NewBetContent/NewBetContent';
 import { Checkbox } from '@mui/material';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { useCreateBet } from './Hooks/useCreatebet';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -30,6 +31,7 @@ const NewBet = () => {
   const [targetProgress, setTargetProgress] = useState(0);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const formValues = watch();
+  const createBet = useCreateBet();
 
   useEffect(() => {
     if (step.step === NewBetStepValueTypes.Start || step.step === NewBetStepValueTypes.Summary) {
@@ -116,8 +118,16 @@ const NewBet = () => {
     }
   };
 
-  const onSubmit = (data: CreateBetInputs) => {
+  const onSubmit = (data: any) => {
     console.log(data);
+    createBet.mutate(data, {
+      onSuccess: (res) => {
+        console.log('Bet created:', res.bet);
+      },
+      onError: (err) => {
+        console.error('Failed to create bet:', err.message);
+      },
+    });
   };
 
   const changeNextStep = (checked: boolean) => {

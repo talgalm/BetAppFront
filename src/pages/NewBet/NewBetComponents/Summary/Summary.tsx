@@ -50,8 +50,8 @@ const NewBetSummary: React.FC = () => {
         <EditIcon />
       </SummaryRow>
       <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.participants)}>
-        {watch().participants && (
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.participents)}>
+        {watch().participents && (
           <SummaryColumn>
             <Typography
               value={t('NewBet.SummaryParticipantsTitle')}
@@ -59,7 +59,7 @@ const NewBetSummary: React.FC = () => {
               styleProps={{ color: 'black' }}
             />
             <ParticipantsRow>
-              {watch().participants?.map((participant: Participant, index) => (
+              {watch().participents?.map((participant: Participant, index) => (
                 <SmallAvatar key={index}>{participant.fullName?.charAt(0)}</SmallAvatar>
               ))}
             </ParticipantsRow>
@@ -95,7 +95,7 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      {watch().participants?.some(
+      {watch().participents?.some(
         (particpent: Participant) => particpent.guess !== null || particpent.guess !== null
       ) && (
         <>

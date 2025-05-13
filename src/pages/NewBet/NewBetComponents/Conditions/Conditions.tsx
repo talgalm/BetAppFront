@@ -58,7 +58,7 @@ const NewBetConditions = <T extends FieldValues>({
     <ConditionsContent>
       {inputName &&
         control &&
-        watch().participants?.map((user, userIndex) => {
+        watch().participents?.map((user, userIndex) => {
           const userDate = value?.[userIndex]?.date || '';
           return (
             <ConditionsRowContent key={userIndex}>
