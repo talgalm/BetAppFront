@@ -19,13 +19,15 @@ const useAuthInit = () => {
       setUser(data);
     }
     if (isError) {
-      ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
+      if (error.message === 'Network Error') ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
+      console.log(error);
+      console.log('!');
       setUser(null);
     }
     if ((isSuccess || isError || user) && !initialized) {
       setInitialized(true);
     }
-  }, [user, isSuccess, isError, data, setUser, initialized, showBoundary]);
+  }, [user, isSuccess, isError, data, setUser, initialized, showBoundary, error]);
 
   return { user, initialized, isError, isLoading };
 };
@@ -53,6 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const handleError = () => {
+    console.log('0');
     if (user) {
       navigate('/home');
     } else {
@@ -61,7 +64,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   if (isError && user !== null) {
-    console.log('!');
     return (
       <ErrorFallback
         error={ERROR_MESSAGES[ErrorTypes.AuthError]}

@@ -59,7 +59,6 @@ export const ApiService = {
           throw refreshError;
         }
       }
-
       throw error;
     }
   },

@@ -29,6 +29,7 @@ import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { useMostActives } from '../../Hooks/useMostActives';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -45,7 +46,7 @@ const NewBetParticipants = <T extends FieldValues>({
   const [openModal, setOpenModal] = useState(false);
   const { watch } = useFormContext<CreateBetInputs>();
   const { showBoundary } = useErrorBoundary();
-  // const { mostActives = [] } = useGetMostActives(user?.id);
+  const { data: mostActives = [], isLoading, error } = useMostActives(); // const { mostActives = [] } = useGetMostActives(user?.id);
 
   const {
     field: { value, onChange },
@@ -111,49 +112,6 @@ const NewBetParticipants = <T extends FieldValues>({
     return currentUsers.some((selectedUser: User) => selectedUser.id === user.id);
   };
 
-  const mostActives: User[] = [
-    {
-      id: 'TalGalmor',
-      fullName: 'Tal Galmor',
-      phoneNumber: '054-4363655',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: 'JohnDoe',
-      fullName: 'John Doe',
-      phoneNumber: '054-1234567',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: 'JaneSmith',
-      fullName: 'Jane Smith',
-      phoneNumber: '054-7654321',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: 'Jane2Smith',
-      fullName: 'Jan22e Smith',
-      phoneNumber: '054-557654321',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: 'Jan2Smi4h',
-      fullName: 'Jase Smith',
-      phoneNumber: '056-7654321',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-  ];
-
   return (
     <>
       {!limit && (
@@ -201,6 +159,7 @@ const NewBetParticipants = <T extends FieldValues>({
               <Typography value={item.phoneNumber || ''} variant={TypographyTypes.TextMedium} />
             </ParticipantsContentRow>
           ))}
+        {mostActives.length === 0 && <div>ss</div>}
       </ParticipantsContent>
       <StyledDivider />
       <RowCenterContentContainer onClick={() => setOpenModal(true)}>

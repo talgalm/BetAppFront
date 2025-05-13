@@ -38,6 +38,7 @@ import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { formatPhoneNumber } from '../../utils/Helpers';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
+import { useUsers } from '../Home/Hooks/useUsers';
 
 interface ContactModalProps<T extends FieldValues> {
   open: boolean;
@@ -62,6 +63,8 @@ const ContactModal = <T extends FieldValues>({
   const { t } = useTranslation();
   const [user, setUser] = useAtom(userAtom);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const { data, isSuccess } = useUsers({ enabled: open });
+  const [contacts, setContacts] = useState<User[]>([]);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const debouncedSetSearchTerm = useMemo(
     () =>
@@ -96,232 +99,11 @@ const ContactModal = <T extends FieldValues>({
     );
   };
 
-  const fakeContacs: User[] = [
-    {
-      id: '1',
-      fullName: 'Tal Galmor',
-      phoneNumber: '0544363655',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '2',
-      fullName: 'John Doe',
-      phoneNumber: '0541234567',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '3',
-      fullName: 'Jane Smith',
-      phoneNumber: '0547654321',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '4',
-      fullName: 'Mike Brown',
-      phoneNumber: '0549876543',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '5',
-      fullName: 'Emily White',
-      phoneNumber: '0545432109',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '6',
-      fullName: 'David Lee',
-      phoneNumber: '0546543210',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '7',
-      fullName: 'Sarah Connor',
-      phoneNumber: '0541478523',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '8',
-      fullName: 'Bruce Wayne',
-      phoneNumber: '0543698521',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '9',
-      fullName: 'Clark Kent',
-      phoneNumber: '0547894561',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '10',
-      fullName: 'Diana Prince',
-      phoneNumber: '0542589631',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '11',
-      fullName: 'Peter Parker',
-      phoneNumber: '0543697412',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '12',
-      fullName: 'Tony Stark',
-      phoneNumber: '0548529634',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '13',
-      fullName: 'Steve Rogers',
-      phoneNumber: '0547418529',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '14',
-      fullName: 'Natasha Romanoff',
-      phoneNumber: '0549632587',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '15',
-      fullName: 'Wanda Maximoff',
-      phoneNumber: '0541597532',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '16',
-      fullName: 'Stephen Strange',
-      phoneNumber: '0543571598',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '17',
-      fullName: 'Nick Fury',
-      phoneNumber: '0549517534',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '18',
-      fullName: 'Bucky Barnes',
-      phoneNumber: '0542581479',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '19',
-      fullName: 'Scott Lang',
-      phoneNumber: '0547891236',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '20',
-      fullName: 'Sam Wilson',
-      phoneNumber: '0543216547',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '21',
-      fullName: "T'Challa",
-      phoneNumber: '0549873214',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '22',
-      fullName: 'Loki Laufeyson',
-      phoneNumber: '0543698527',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '23',
-      fullName: 'Carol Danvers',
-      phoneNumber: '0541472583',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '24',
-      fullName: 'Gamora Zen',
-      phoneNumber: '0547413698',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '25',
-      fullName: 'Rocket Raccoon',
-      phoneNumber: '0548521473',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '26',
-      fullName: 'Groot',
-      phoneNumber: '0549637412',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '27',
-      fullName: 'Drax the Destroyer',
-      phoneNumber: '0541593574',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-    {
-      id: '28',
-      fullName: 'Nebula',
-      phoneNumber: '0549514862',
-      betsParticipating: [],
-      betsSupervising: [],
-      betsFinished: [],
-    },
-  ];
+  useEffect(() => {
+    if (isSuccess) {
+      setContacts(data);
+    }
+  }, [data, isSuccess]);
 
   const removeUser = (item: User) => {
     setSelectedUsers((prevSelected) =>
@@ -385,7 +167,7 @@ const ContactModal = <T extends FieldValues>({
         </ItemsHeaderContent>
         <PopUpScroll>
           <ItemsContant>
-            {fakeContacs
+            {contacts
               .filter(
                 (item) =>
                   item.fullName?.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
@@ -407,10 +189,7 @@ const ContactModal = <T extends FieldValues>({
                     <SmallAvatar>{item.fullName?.charAt(0)}</SmallAvatar>
                     {item.fullName}
                   </ItemsNameImageCircleContent>
-                  <Typography
-                    value={formatPhoneNumber(item.phoneNumber) || ''}
-                    variant={TypographyTypes.H3}
-                  />
+                  <Typography value={item.phoneNumber || ''} variant={TypographyTypes.H3} />
                 </ItemsBodyContent>
               ))}
           </ItemsContant>

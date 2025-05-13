@@ -55,7 +55,7 @@ const StyledInput = <T extends FieldValues>({
                   marginExtand={extended}
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
-                  startIconGap={StartIcon !== null}
+                  startIconGap={StartIcon !== undefined}
                 />
                 {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
               </WidthDiv>
