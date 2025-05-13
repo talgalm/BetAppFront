@@ -2,16 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { User } from '../Interfaces';
 import { ApiService, HTTPMethod } from '../API/api';
 
-export const useUser = (id: string) => {
-  return useQuery<User, Error>({
-    queryKey: ['user', id],
-    queryFn: async () => {
-      return ApiService.makeRequest<User>(`/users/${id}`, HTTPMethod.GET, undefined, true, true);
-    },
-    enabled: !!id,
-  });
-};
-
 export const useProfile = (enabled = true) => {
   return useQuery<User, Error>({
     queryKey: ['user-profile'],

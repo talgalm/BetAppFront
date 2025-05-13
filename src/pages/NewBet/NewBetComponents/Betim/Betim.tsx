@@ -14,7 +14,6 @@ import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../../../Jotai/atoms';
-import { useUser } from '../../../../Providers/useProfile';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 interface BetimProps<T extends FieldValues> {
@@ -26,16 +25,11 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
   const { t } = useTranslation();
   const { field } = useController({ name: inputName, control });
   const [userCurrentCoins, setUserCurrentCoins] = useState<number>(0);
-  const [user, setUser] = useAtom(userAtom);
-  const userId = user?.id ?? '';
-  const { data, isLoading, error } = useUser(userId);
+  const [user] = useAtom(userAtom);
+
   const [isCustomValue, setIsCustomValue] = useState(false);
 
   const BetimArray = [20, 30, 40, 0];
-
-  useEffect(() => {
-    if (data) setUser(data);
-  }, [data, setUser]);
 
   useEffect(() => {
     if (user?.betim !== undefined) setUserCurrentCoins(user.betim);

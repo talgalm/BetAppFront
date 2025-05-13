@@ -4,10 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
-import { useEffect } from 'react';
-import { useUser } from '../../../Providers/useProfile';
-import { userAtom } from '../../../Jotai/atoms';
-import { useAtom } from 'jotai';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
 import NewBetParticipants from '../NewBetComponents/Participants/Participants';
@@ -29,15 +25,6 @@ const NewBetContent = <T extends FieldValues>({
   control,
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
-  const [user, setUser] = useAtom(userAtom);
-  const userId = user?.id ?? '';
-  const { data, isLoading, error } = useUser(userId);
-
-  useEffect(() => {
-    if (data) {
-      setUser(data);
-    }
-  }, [data, setUser]);
 
   return (
     <ContentContainer>
