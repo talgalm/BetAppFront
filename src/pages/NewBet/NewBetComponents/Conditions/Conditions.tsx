@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
 import { CreateBetInputs } from '../../Interface';
-import { Tag } from '../../../Home/SingleBetRow.styles';
+import { TagStyled } from '../../../Home/SingleBetRow.styles';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
@@ -87,9 +87,9 @@ const NewBetConditions = <T extends FieldValues>({
                   />
                 )}
                 {userDate && (
-                  <Tag background="#CEEFEA">
+                  <TagStyled background="#CEEFEA">
                     <Typography value={formatDate(userDate)} variant={TypographyTypes.TextMedium} />
-                  </Tag>
+                  </TagStyled>
                 )}
               </ConditionsRowContentCenter>
             </ConditionsRowContent>

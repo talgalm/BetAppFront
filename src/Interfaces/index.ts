@@ -17,6 +17,7 @@ export enum BetStatus {
   PENDING = 'pending',
   CANCELED = 'canceled',
   COMPLETED = 'completed',
+  PENDING_DECISION = 'pending_decision',
 }
 
 export interface Bet {

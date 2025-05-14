@@ -50,16 +50,18 @@ export const ActionRow = styled('div')({
   paddingLeft: 16,
 });
 
-export const Tag = styled('div')<{ background?: string; gap?: number }>(({ background, gap }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  flexDirection: 'row',
-  background,
-  padding: background ? '4px 6px 4px 6px' : 'none',
-  borderRadius: background ? 6 : 'none',
-  gap: gap ?? 4,
-}));
+export const TagStyled = styled('div')<{ background?: string; gap?: number }>(
+  ({ background, gap }) => ({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    background,
+    padding: background ? '4px 6px 4px 6px' : 'none',
+    borderRadius: background ? 6 : 'none',
+    gap: gap ?? 4,
+  })
+);
 
 export const NotificationTextHeader = styled('div')({
   display: 'flex',
