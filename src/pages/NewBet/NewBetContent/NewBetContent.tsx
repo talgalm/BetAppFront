@@ -15,7 +15,8 @@ import NewBetFiles from '../NewBetComponents/Files/Files';
 import NewBetSummary from '../NewBetComponents/Summary/Summary';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { useEffect } from 'react';
-import { fireConfettiFromBottom } from '../../../utils/confetti';
+import { fireConfetti } from '../../../utils/confetti';
+import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -29,10 +30,9 @@ const NewBetContent = <T extends FieldValues>({
   control,
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
+
   useEffect(() => {
-    if (type === NewBetStepValueTypes.Success) {
-      fireConfettiFromBottom();
-    }
+    type === NewBetStepValueTypes.Success && fireConfetti();
   }, [type]);
 
   return (

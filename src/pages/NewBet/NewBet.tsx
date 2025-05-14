@@ -24,6 +24,7 @@ import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '../../Theme/theme';
+import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -32,6 +33,7 @@ const NewBet = () => {
   const [targetProgress, setTargetProgress] = useState(0);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const formValues = watch();
+  const cleanNewBet = useCleanCreateNewBet();
   const createBet = useCreateBet();
 
   useEffect(() => {
@@ -103,7 +105,7 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep === null) {
-        console.log('Back to home');
+        cleanNewBet();
       }
       if (nextStep) {
         const progressValue = !back

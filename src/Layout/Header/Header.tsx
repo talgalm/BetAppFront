@@ -25,6 +25,8 @@ import { useTranslation } from 'react-i18next';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useLogout } from '../../pages/Auth/Hooks/useLogout';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
+import { AreYouSureDialog } from '../../components/AreYouSureDialog/AreYouSureDialog';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
@@ -35,22 +37,17 @@ const Header = () => {
 
   const [value, setValue] = useState(200);
   const [downValue, setDownValue] = useState(100);
+  const cleanNewBet = useCleanCreateNewBet();
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user] = useAtom(userAtom);
-  const navigate = useNavigate();
   const { mutate } = useLogout();
 
   const handleNextStep = () => {
     if (authStep.prev) {
       setActiveStepAuth(authSteps[authStep.prev]);
     }
-  };
-
-  const routeToHome = () => {
-    localStorage.clear();
-    navigate(`/home`);
   };
 
   const logout = () => {
@@ -79,11 +76,22 @@ const Header = () => {
           }
           return prevValue - 1;
         });
-      }, 50); // adjust speed of decrementing (50ms for smooth animation)
-    }, 1000); // wait 2 seconds before starting the countdown
+      }, 50);
+    }, 1000);
 
-    return () => clearTimeout(timer); // clean up on component unmount
+    return () => clearTimeout(timer);
   }, [downValue]);
+
+  const [open, setOpen] = useState(false);
+
+  const handleConfirm = () => {
+    cleanNewBet();
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -94,7 +102,7 @@ const Header = () => {
           </RightIconDiv>
         )}
         {newBetStep !== null && (
-          <LeftIconNoBack onClick={routeToHome}>
+          <LeftIconNoBack onClick={() => setOpen(true)}>
             <CloseIcon />
           </LeftIconNoBack>
         )}
@@ -125,6 +133,7 @@ const Header = () => {
           <RedCloseIcon onClick={handleDismiss} />
         </VerificationContainer>
       )}
+      <AreYouSureDialog open={open} onClose={handleCancel} onConfirm={handleConfirm} />
     </>
   );
 };

@@ -1,7 +1,6 @@
-// utils/confetti.ts
 import confetti from 'canvas-confetti';
 
-export const fireConfettiFromBottom = () => {
+export const fireConfetti = () => {
   const duration = 2 * 1000;
   const end = Date.now() + duration;
 
