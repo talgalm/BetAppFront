@@ -2,11 +2,21 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import NewBet from './NewBet';
 import { CreateBetInputs } from './Interface';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
 
 const NewBetForm: React.FC = () => {
+  const [user] = useAtom(userAtom);
   const methods = useForm<CreateBetInputs>({
     defaultValues: {
-      name: '',
+      participents: [
+        {
+          phoneNumber: user?.phoneNumber ?? '',
+          fullName: user?.fullName ?? '',
+          id: user?.id ?? '',
+          approved: true,
+        },
+      ],
     },
   });
 

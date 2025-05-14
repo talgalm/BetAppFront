@@ -23,6 +23,7 @@ import { Checkbox } from '@mui/material';
 import { Typography } from '../../components/Topography/topography';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
+import { ThemeType } from '../../Theme/theme';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -34,7 +35,12 @@ const NewBet = () => {
   const createBet = useCreateBet();
 
   useEffect(() => {
-    if (step.step === NewBetStepValueTypes.Start || step.step === NewBetStepValueTypes.Summary) {
+    if (
+      step.step === NewBetStepValueTypes.Start ||
+      step.step === NewBetStepValueTypes.Summary ||
+      step.step === NewBetStepValueTypes.Success ||
+      step.step === NewBetStepValueTypes.supervisor
+    ) {
       setDisableButton(false);
       return;
     }
@@ -96,6 +102,9 @@ const NewBet = () => {
     if (step.skipToEnd) {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
+      if (nextStep === null) {
+        console.log('Back to home');
+      }
       if (nextStep) {
         const progressValue = !back
           ? Math.min(targetProgress + 10, 100)
@@ -104,9 +113,9 @@ const NewBet = () => {
         setActiveStep(newBetSteps[nextStep]);
 
         if (nextStep === NewBetStepValueTypes.Summary) {
-          newBetSteps[nextStep].progress = 100;
+          newBetSteps[nextStep].progress = 90;
           setActiveStep(newBetSteps[nextStep]);
-          setTargetProgress(100);
+          setTargetProgress(90);
         } else {
           setTargetProgress(progressValue);
         }
@@ -119,15 +128,16 @@ const NewBet = () => {
   };
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    createBet.mutate(data, {
-      onSuccess: (res) => {
-        console.log('Bet created:', res.bet);
-      },
-      onError: (err) => {
-        console.error('Failed to create bet:', err.message);
-      },
-    });
+    setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
+    setTargetProgress(100);
+    // createBet.mutate(data, {
+    //   onSuccess: (res) => {
+    //     setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
+    //   },
+    //   onError: (err) => {
+    //     console.error('Failed to create bet:', err.message);
+    //   },
+    // });
   };
 
   const changeNextStep = (checked: boolean) => {
@@ -186,6 +196,13 @@ const NewBet = () => {
           )}
         </PageContainer>
         <ButtonsContainer>
+          {step.step === NewBetStepValueTypes.deadline && (
+            <StyledButton
+              value={t(step.continueButtonText ?? t('NewBet.Continue'))}
+              onClick={() => handleStep(step.continueButton, false, NewBetStepValueTypes.deadline)}
+              colorVariant={ThemeType.Secondary}
+            />
+          )}
           <ButtonsContainerInner>
             {step.inputName && (
               <StyledButton
@@ -203,6 +220,13 @@ const NewBet = () => {
               />
             )}
           </ButtonsContainerInner>
+          {step.step === NewBetStepValueTypes.Success && (
+            <StyledButton
+              value={t('NewBet.WatchBet')}
+              onClick={() => console.log('Watch')}
+              colorVariant={ThemeType.Secondary}
+            />
+          )}
         </ButtonsContainer>
       </HomeDivContainer>
     </div>

@@ -13,6 +13,7 @@ export enum NewBetStepValueTypes {
   files = 'files',
   supervisor = 'supervisor',
   Summary = 'Summary',
+  Success = 'Success',
 }
 
 export interface NewBetStep {
@@ -95,6 +96,13 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     continueButtonText: 'NewBet.createBet',
     prevButton: NewBetStepValueTypes.supervisor,
   },
+  [NewBetStepValueTypes.Success]: {
+    inputName: NewBetStepValueTypes.Success,
+    step: NewBetStepValueTypes.Success,
+    continueButton: null,
+    continueButtonText: 'חזור למסך הבית',
+    prevButton: null,
+  },
 };
 
 export type CreateBetInputs = {
@@ -108,6 +116,7 @@ export type CreateBetInputs = {
   files?: File[];
   supervisor?: User[];
   Summary?: string;
+  Success?: string;
 };
 
 export type Participant = {

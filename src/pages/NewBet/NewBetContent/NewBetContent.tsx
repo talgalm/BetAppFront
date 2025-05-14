@@ -6,6 +6,8 @@ import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../Interface';
 import Calendar from '../../../components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
+import { ReactComponent as DisplaySmallIcon } from '../../../Theme/Icons/NewBetDisplaySmall.svg';
+
 import NewBetParticipants from '../NewBetComponents/Participants/Participants';
 import NewBetConditions from '../NewBetComponents/Conditions/Conditions';
 import Betim from '../NewBetComponents/Betim/Betim';
@@ -51,6 +53,11 @@ const NewBetContent = <T extends FieldValues>({
             styleProps={{ color: 'black' }}
           />
         </RowContentContainer>
+      )}
+      {type === NewBetStepValueTypes.Success && (
+        <div style={{ padding: 16 }}>
+          <DisplaySmallIcon />
+        </div>
       )}
       {(type === NewBetStepValueTypes.description || type === NewBetStepValueTypes.name) && (
         <div style={{ width: '100%', paddingTop: 16, paddingBottom: 16 }}>

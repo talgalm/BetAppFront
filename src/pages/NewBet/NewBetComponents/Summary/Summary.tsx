@@ -33,7 +33,7 @@ const NewBetSummary: React.FC = () => {
 
   const handleStepSkip = (stepToSkip: NewBetStepValueTypes) => {
     newBetSteps[stepToSkip].skipToEnd = true;
-    newBetSteps[stepToSkip].progress = 100;
+    newBetSteps[stepToSkip].progress = 90;
     setActiveStep(newBetSteps[stepToSkip]);
   };
 

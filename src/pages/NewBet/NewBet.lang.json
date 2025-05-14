@@ -65,5 +65,10 @@
   "betimDisclaimer": "רק משתתפים עם יתרת בטים מספקת יוכלו להשתתף בהתערבות",
   "other": "אחר",
   "ModalCoinsTitle": "מספר בטים",
-  "ModalCoinsSubtitle": "כאן תוכל להזין מספר בטים להתערבות"
+  "ModalCoinsSubtitle": "כאן תוכל להזין מספר בטים להתערבות",
+
+  "SuccessTitle": "התערבות נפתחה בהצלחה!",
+  "SuccessSubtitle": "המשתתפים יקבלו התראה והבטים ינעלו עד ההכרעה",
+  "SuccessSubtitle2": "מחכים לראות איך זה יגמר 😉",
+  "WatchBet" : "צפה בהתערבות"
 }

@@ -30,6 +30,8 @@ import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 import { useMostActives } from '../../Hooks/useMostActives';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../../../Jotai/atoms';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -46,6 +48,7 @@ const NewBetParticipants = <T extends FieldValues>({
   const [openModal, setOpenModal] = useState(false);
   const { watch } = useFormContext<CreateBetInputs>();
   const { showBoundary } = useErrorBoundary();
+  const [user] = useAtom(userAtom);
   const { data: mostActives = [], isLoading, error } = useMostActives(); // const { mostActives = [] } = useGetMostActives(user?.id);
 
   const {
@@ -65,13 +68,14 @@ const NewBetParticipants = <T extends FieldValues>({
       : [...currentUsers, user];
 
     let finalUsers = limit ? updatedUsers.slice(0, limit) : updatedUsers;
-
     if (limit && finalUsers[0].id !== user.id) {
       const userExists = watch().participents?.some((participant) => participant.id === user.id);
       if (userExists) {
         ErrorHandler(showBoundary, ErrorTypes.OverlappingParticipants);
       } else {
         finalUsers = [user];
+        console.log('!');
+        onChange(user);
       }
     }
 
@@ -85,8 +89,10 @@ const NewBetParticipants = <T extends FieldValues>({
       };
       arr.push(parseUser);
     });
-
-    onChange(arr);
+    if (!limit) {
+      console.log('!!');
+      onChange(arr);
+    }
   };
 
   const addUsers = (users: User[]) => {
@@ -98,7 +104,7 @@ const NewBetParticipants = <T extends FieldValues>({
 
     const updatedUsers = [...currentUsers, ...newUsers];
 
-    onChange(limit ? updatedUsers.slice(0, limit) : updatedUsers);
+    onChange(limit ? updatedUsers[0] : updatedUsers);
   };
 
   const removeUser = (user: User) => {
@@ -114,7 +120,7 @@ const NewBetParticipants = <T extends FieldValues>({
 
   return (
     <>
-      {!limit && (
+      {!limit && value.filter((item: User) => item.id !== user?.id).length > 0 && (
         <Collapse
           in={Array.isArray(value) && value.length > 0}
           timeout="auto"
@@ -123,28 +129,32 @@ const NewBetParticipants = <T extends FieldValues>({
         >
           <SelectedContainer>
             {Array.isArray(value) &&
-              value.map((item: User, index: number) => (
-                <ParticipantsCollapseContainer key={index}>
-                  <ParticipantsCollapseRow key={index}>
-                    <AvatarWrapper>
-                      <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
-                      <CloseButton onClick={() => removeUser(item)}>
-                        <CloseIconStyled />
-                      </CloseButton>
-                    </AvatarWrapper>
-                    <NameText>{item.fullName?.slice(4)}</NameText>
-                  </ParticipantsCollapseRow>
-                </ParticipantsCollapseContainer>
-              ))}
+              value
+                .filter((item: User) => item.id !== user?.id)
+                .map((item: User, index: number) => (
+                  <ParticipantsCollapseContainer key={index}>
+                    <ParticipantsCollapseRow key={index}>
+                      <AvatarWrapper>
+                        <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
+                        <CloseButton onClick={() => removeUser(item)}>
+                          <CloseIconStyled />
+                        </CloseButton>
+                      </AvatarWrapper>
+                      <NameText>{item.fullName?.split(' ')[0]}</NameText>
+                    </ParticipantsCollapseRow>
+                  </ParticipantsCollapseContainer>
+                ))}
           </SelectedContainer>
         </Collapse>
       )}
       <ParticipantsContent>
-        <Typography
-          value={t(`NewBet.mostActives`)}
-          variant={TypographyTypes.H2}
-          styleProps={{ marginBottom: 10, paddingRight: 6 }}
-        />
+        {mostActives.length > 0 && (
+          <Typography
+            value={t(`NewBet.mostActives`)}
+            variant={TypographyTypes.H2}
+            styleProps={{ marginBottom: 10, paddingRight: 6 }}
+          />
+        )}
         {mostActives.length > 0 &&
           mostActives.map((item, index) => (
             <ParticipantsContentRow
@@ -159,7 +169,7 @@ const NewBetParticipants = <T extends FieldValues>({
               <Typography value={item.phoneNumber || ''} variant={TypographyTypes.TextMedium} />
             </ParticipantsContentRow>
           ))}
-        {mostActives.length === 0 && <div>ss</div>}
+        {mostActives.length === 0 && <div></div>}
       </ParticipantsContent>
       <StyledDivider />
       <RowCenterContentContainer onClick={() => setOpenModal(true)}>

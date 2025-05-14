@@ -66,7 +66,7 @@ const Calendar = <T extends FieldValues>({
           )}
         />
       )}
-      {displayAddToCalendar && (
+      {/* {displayAddToCalendar && (
         <CheckboxDiv>
           <Checkbox
             onChange={(e) => setIsChecked(e.target.checked)}
@@ -79,7 +79,7 @@ const Calendar = <T extends FieldValues>({
           />
           <Typography value={t('Calendar.addToCalendar')} variant={TypographyTypes.TextMedium} />
         </CheckboxDiv>
-      )}
+      )} */}
     </div>
   );
 };

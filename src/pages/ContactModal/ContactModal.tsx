@@ -151,7 +151,7 @@ const ContactModal = <T extends FieldValues>({
                           <CloseIconStyled />
                         </CloseButton>
                       </AvatarWrapper>
-                      <NameText>{item.fullName}</NameText>
+                      <NameText>{item.fullName?.split(' ')[0]}</NameText>
                     </ParticipantsCollapseRow>
                   </ParticipantsCollapseContainer>
                 ))}

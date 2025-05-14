@@ -38,9 +38,9 @@ const NewBetConditions = <T extends FieldValues>({
 
   const handleCloseModal = (discard?: boolean) => {
     setCurrentIndex(null);
-    if (discard) {
-      onChange(undefined);
-    }
+    // if (discard) {
+    //   onChange(undefined);
+    // }
   };
 
   const handleOpenModal = (index: number) => {
@@ -65,7 +65,7 @@ const NewBetConditions = <T extends FieldValues>({
               <ConditionsRowContentCenter>
                 <StyledAvatar> {user.fullName?.charAt(0)} </StyledAvatar>
                 <Typography
-                  value={user.fullName || ''}
+                  value={user.fullName?.split(' ')[0] || ''}
                   variant={TypographyTypes.TextBig}
                   styleProps={{ color: 'black' }}
                 />
