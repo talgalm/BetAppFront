@@ -21,7 +21,7 @@ import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
 import { NotificationColors, NotificationTypeColors } from './Colors';
-import { BetStatus } from '../../Interfaces';
+import { Bet } from '../../Interfaces';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -85,7 +85,18 @@ const Home = (): JSX.Element => {
       </ComplexContainer>
       <BetsContainer>
         <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
-        <SingleBetRow type={BetStatus.PENDING} />
+        {user?.betsParticipating &&
+          user.betsParticipating.map((bet: Bet) => (
+            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
+          ))}
+        {user?.betsSupervising &&
+          user.betsSupervising.map((bet: Bet) => (
+            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
+          ))}
+        {user?.betsFinished &&
+          user.betsFinished.map((bet: Bet) => (
+            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
+          ))}
       </BetsContainer>
     </HomeDivContainer>
   );

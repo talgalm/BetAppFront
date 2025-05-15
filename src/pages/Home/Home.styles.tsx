@@ -53,6 +53,7 @@ export const NotificationCubeContainer = styled('div')<NotificationCubeProps>(
     display: 'flex',
     backgroundColor,
     position: 'relative',
+    zIndex: 0,
   })
 );
 

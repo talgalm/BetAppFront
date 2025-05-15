@@ -35,13 +35,13 @@ const Header = () => {
   const [verify, setVerify] = useState(false);
   const path = useLocation();
 
-  const [value, setValue] = useState(200);
   const [downValue, setDownValue] = useState(100);
   const cleanNewBet = useCleanCreateNewBet();
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [user] = useAtom(userAtom);
+  const [value, setValue] = useState(user?.betim || 0);
   const { mutate } = useLogout();
 
   const handleNextStep = () => {
@@ -66,21 +66,21 @@ const Header = () => {
     sessionStorage.setItem('verifyDismissed', 'true');
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        setValue((prevValue) => {
-          if (prevValue <= downValue) {
-            clearInterval(interval);
-            return downValue;
-          }
-          return prevValue - 1;
-        });
-      }, 50);
-    }, 1000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     const interval = setInterval(() => {
+  //       setValue((prevValue) => {
+  //         if (prevValue <= downValue) {
+  //           clearInterval(interval);
+  //           return downValue;
+  //         }
+  //         return prevValue - 1;
+  //       });
+  //     }, 50);
+  //   }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [downValue]);
+  //   return () => clearTimeout(timer);
+  // }, [downValue]);
 
   const [open, setOpen] = useState(false);
 

@@ -34,20 +34,19 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
       </NotificationHeader>
       <NotificationHeader>
         <NotificationTextHeader>
-          <Typography value={'משחק שחמט בין דני ליוסי'} variant={TypographyTypes.H3} />
-          <Typography
-            value={'תיאור עד שורה ואז 3 נקודות כמו כאן...'}
-            variant={TypographyTypes.TextMedium}
-          />
+          <Typography value={bet?.name} variant={TypographyTypes.H3} />
+          <Typography value={bet?.description} variant={TypographyTypes.TextMedium} />
         </NotificationTextHeader>
       </NotificationHeader>
       <NotificationRow>
         <TagStyled background="#CEEFEA">
-          <Typography value={formatDate(new Date())} variant={TypographyTypes.TextMedium} />
+          {bet?.deadline && (
+            <Typography value={formatDate(bet?.deadline)} variant={TypographyTypes.TextMedium} />
+          )}
         </TagStyled>
         <TagStyled background="#CEEFEA">
           <BetimIcon />
-          <Typography value={'25'} variant={TypographyTypes.TextMedium} />
+          <Typography value={bet?.betim} variant={TypographyTypes.TextMedium} />
         </TagStyled>
         <StyledAvatarGroup max={6} spacing="small">
           <Avatar alt="Travis Howard" sx={{ width: 24, height: 24 }} />
@@ -69,21 +68,6 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
           />
         </ActionRow>
       )}
-      {/* 
-      {type !== 'ongoing' && (
-        <ActionRow>
-          <Typography
-            value={t(`Home.Confirm`)}
-            variant={TypographyTypes.Button}
-            styleProps={{ color: '#15AB94' }}
-          />
-          <Typography
-            value={t(`Home.Cancel`)}
-            variant={TypographyTypes.Button}
-            styleProps={{ color: '#E33E21' }}
-          />
-        </ActionRow>
-      )} */}
     </NotificationContainer>
   );
 };
