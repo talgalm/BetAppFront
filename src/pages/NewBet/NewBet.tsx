@@ -130,16 +130,15 @@ const NewBet = () => {
   };
 
   const onSubmit = (data: any) => {
-    setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
-    setTargetProgress(100);
-    // createBet.mutate(data, {
-    //   onSuccess: (res) => {
-    //     setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
-    //   },
-    //   onError: (err) => {
-    //     console.error('Failed to create bet:', err.message);
-    //   },
-    // });
+    createBet.mutate(data, {
+      onSuccess: (res) => {
+        setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
+        setTargetProgress(100);
+      },
+      onError: (err) => {
+        console.error('Failed to create bet:', err.message);
+      },
+    });
   };
 
   const changeNextStep = (checked: boolean) => {

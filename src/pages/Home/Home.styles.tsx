@@ -8,7 +8,7 @@ export const HomeDivContainer = styled('div')({
   padding: 16,
   gap: 10,
   marginTop: 54,
-  marginBottom: 50,
+  marginBottom: 60,
 });
 
 export const ComplexContainer = styled('div')({

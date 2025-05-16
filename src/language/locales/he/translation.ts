@@ -1,5 +1,6 @@
 import NewBet from '../../../pages/NewBet/NewBet.lang.json';
 import Input from '../../../components/Inputs/Input.lang.json';
+import Switch from '../../../components/Switch/Switch.lang.json';
 import Calendar from '../../../components/Calendar/Calendar.lang.json';
 import Header from '../../../Layout/Header/Header.lang.json';
 import ContactModal from '../../../pages/ContactModal/ContactModal.lang.json';
@@ -19,4 +20,5 @@ export default {
   Header: Header,
   ContactModal: ContactModal,
   ConditionModal: ConditionModal,
+  Switch: Switch,
 };

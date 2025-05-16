@@ -6,9 +6,7 @@ export interface User {
   email?: string;
   phoneNumber?: string;
   betim?: number;
-  betsParticipating: Bet[];
-  betsSupervising: Bet[];
-  betsFinished: Bet[];
+  bets: Bet[];
   verifyEmail?: boolean;
 }
 
@@ -29,6 +27,7 @@ export interface Bet {
   deadline?: Date;
   supervisor?: User;
   predictions?: Prediction[];
+  isSupervisor?: boolean;
 }
 
 export interface Prediction {

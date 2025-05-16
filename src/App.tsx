@@ -12,6 +12,8 @@ import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persist
 import ErrorFallback from './Errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme';
+import StyledSwitch from './components/Switch/Switch';
+import { PRIMARY_BACKGROUND } from './Theme/ColorTheme';
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -33,7 +35,6 @@ const App = () => {
     queryClient,
     persister: localStoragePersister,
   });
-  // access token + refresh token (need 2 to handle)
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
@@ -46,6 +47,19 @@ const App = () => {
                   <Outlet />
                 </main>
                 {/* <Footer /> */}
+                <div
+                  style={{
+                    position: 'fixed',
+                    bottom: 10,
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '0 16px',
+                  }}
+                >
+                  <StyledSwitch />
+                </div>
               </PrimaryBackground>
             </GoogleOAuthProvider>
           </AuthProvider>

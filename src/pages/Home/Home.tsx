@@ -20,8 +20,9 @@ import { userAtom } from '../../Jotai/atoms';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
-import { NotificationColors, NotificationTypeColors } from './Colors';
-import { Bet } from '../../Interfaces';
+import { NotificationColors } from './Colors';
+import { Bet, BetStatus } from '../../Interfaces';
+import StyledSwitch from '../../components/Switch/Switch';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -49,7 +50,7 @@ const Home = (): JSX.Element => {
             </NotificationNumber>
             <BetsIcon />
             <Typography
-              value={user?.betsParticipating?.length}
+              value={user?.bets?.filter((bet) => bet.status === BetStatus.ACTIVE).length}
               variant={TypographyTypes.H1}
               styleProps={{ color: NotificationColors.BetAccent }}
             />
@@ -60,7 +61,7 @@ const Home = (): JSX.Element => {
             </NotificationNumber>
             <SupervisorIcon />
             <Typography
-              value={user?.betsSupervising?.length}
+              value={user?.bets?.filter((bet) => bet.isSupervisor).length}
               variant={TypographyTypes.H1}
               styleProps={{ color: NotificationColors.SupervisorAccent }}
             />
@@ -71,7 +72,7 @@ const Home = (): JSX.Element => {
             </NotificationNumber>
             <HistoryIcon />
             <Typography
-              value={user?.betsFinished?.length}
+              value={user?.bets?.filter((bet) => bet.status === BetStatus.COMPLETED).length}
               variant={TypographyTypes.H1}
               styleProps={{ color: NotificationColors.HistoryAccent }}
             />
@@ -85,18 +86,8 @@ const Home = (): JSX.Element => {
       </ComplexContainer>
       <BetsContainer>
         <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
-        {user?.betsParticipating &&
-          user.betsParticipating.map((bet: Bet) => (
-            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
-          ))}
-        {user?.betsSupervising &&
-          user.betsSupervising.map((bet: Bet) => (
-            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
-          ))}
-        {user?.betsFinished &&
-          user.betsFinished.map((bet: Bet) => (
-            <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
-          ))}
+        {user?.bets &&
+          user.bets.map((bet: Bet) => <SingleBetRow key={bet.id} bet={bet} type={bet.status} />)}
       </BetsContainer>
     </HomeDivContainer>
   );
