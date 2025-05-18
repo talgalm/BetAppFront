@@ -105,7 +105,7 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep === null) {
-        cleanNewBet();
+        // cleanNewBet();
       }
       if (nextStep) {
         const progressValue = !back

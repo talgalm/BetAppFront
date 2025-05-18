@@ -1,4 +1,4 @@
-import { Avatar } from '@mui/material';
+import { Avatar, Fab } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface ItemsBodyContentProps {
@@ -46,7 +46,7 @@ export const PopUpHeader = styled('div')({
   display: 'flex',
   width: '100%',
   justifyContent: 'space-between',
-  zIndex: 99,
+  zIndex: 5,
   marginTop: 50,
   marginBottom: 0,
 });
@@ -56,7 +56,7 @@ export const PopUpHeader2 = styled('div')({
   width: '100%',
   justifyContent: 'space-between',
   zIndex: 99,
-  marginTop: 20,
+  marginTop: 40,
   marginBottom: 20,
 });
 
@@ -133,3 +133,14 @@ export const SmallAvatar = styled(Avatar)({
   height: 24,
   fontSize: 11,
 });
+
+export const CornerFab = styled(Fab)(({ theme }) => ({
+  position: 'fixed',
+  bottom: theme.spacing(2),
+  left: theme.spacing(2),
+  zIndex: 1300, // above overlays
+  [theme.breakpoints.up('sm')]: {
+    left: 'auto',
+    right: theme.spacing(2), // bottom‑right on tablets/desktop
+  },
+}));

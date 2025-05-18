@@ -13,7 +13,7 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/Betim
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as RedCloseIcon } from '../../Theme/Icons/LayoutIcons/RedClose.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-import { layoutAtom, userAtom } from '../../Jotai/atoms';
+import { layoutAtom, layoutEphemeralAtom, userAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
@@ -40,6 +40,8 @@ const Header = () => {
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
+  const [layoutEphemeral] = useAtom(layoutEphemeralAtom);
+
   const [user] = useAtom(userAtom);
   const [value, setValue] = useState(user?.betim || 0);
   const { mutate } = useLogout();
@@ -96,6 +98,15 @@ const Header = () => {
     setOpen(false);
   };
 
+  const handleX = () => {
+    if (!layoutEphemeral?.overlay) {
+      setOpen(true);
+      return;
+    }
+
+    layoutEphemeral.overlay();
+  };
+
   return (
     <>
       <HeaderComponent headerStyle={layout.headerStyle}>
@@ -105,7 +116,7 @@ const Header = () => {
           </RightIconDiv>
         )}
         {newBetStep !== null && (
-          <LeftIconNoBack onClick={() => setOpen(true)}>
+          <LeftIconNoBack onClick={handleX}>
             <CloseIcon />
           </LeftIconNoBack>
         )}

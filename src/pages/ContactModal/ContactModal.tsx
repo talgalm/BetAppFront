@@ -1,5 +1,6 @@
 import { Typography } from '../../components/Topography/topography';
 import {
+  CornerFab,
   ItemsBodyContent,
   ItemsContant,
   ItemsHeaderContent,
@@ -21,9 +22,9 @@ import { Control, FieldValues, Path, useController, useForm } from 'react-hook-f
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
 import { User } from '../../Interfaces';
 import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
+import { layoutEphemeralAtom, userAtom } from '../../Jotai/atoms';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { Collapse } from '@mui/material';
+import { Collapse, Fab } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
 import {
   ParticipantsCollapseContainer,
@@ -39,6 +40,7 @@ import { formatPhoneNumber } from '../../utils/Helpers';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
 import { useUsers } from '../Home/Hooks/useUsers';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface ContactModalProps<T extends FieldValues> {
   open: boolean;
@@ -119,11 +121,11 @@ const ContactModal = <T extends FieldValues>({
   return (
     <PopUpOverlay isOpen={open} onClick={handleClose}>
       <PopUpDiv isOpen={open} onClick={(e) => e.stopPropagation()} padding>
-        <PopUpHeader>
+        {/* <PopUpHeader>
           <ReturnIcon onClick={handleSaveAndClose} />
           <Logo />
           <CloseIcon onClick={handleClose} />
-        </PopUpHeader>
+        </PopUpHeader> */}
         <PopUpHeader2>
           <StyledInput
             placeholder={t(`ContactModal.search`)}
@@ -193,6 +195,9 @@ const ContactModal = <T extends FieldValues>({
                 </ItemsBodyContent>
               ))}
           </ItemsContant>
+          <CornerFab color="primary" aria-label="save" onClick={handleSaveAndClose}>
+            <CheckIcon />
+          </CornerFab>
         </PopUpScroll>
       </PopUpDiv>
     </PopUpOverlay>

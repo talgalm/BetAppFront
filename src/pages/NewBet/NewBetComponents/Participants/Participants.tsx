@@ -31,7 +31,8 @@ import { ErrorTypes } from '../../../../Errors/interface';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
-import { userAtom } from '../../../../Jotai/atoms';
+import { layoutAtom, layoutEphemeralAtom, userAtom } from '../../../../Jotai/atoms';
+import { FooterStyle, HeaderStyle } from '../../../../Theme/ThemeInterfaces';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -50,7 +51,8 @@ const NewBetParticipants = <T extends FieldValues>({
   const { showBoundary } = useErrorBoundary();
   const [user] = useAtom(userAtom);
   const { data: mostActives = [], isLoading, error } = useMostActives(); // const { mostActives = [] } = useGetMostActives(user?.id);
-
+  const [layout, setLayout] = useAtom(layoutEphemeralAtom);
+  console.log(layout);
   const {
     field: { value, onChange },
   } = useController({
@@ -118,6 +120,15 @@ const NewBetParticipants = <T extends FieldValues>({
     return currentUsers.some((selectedUser: User) => selectedUser.id === user.id);
   };
 
+  const handleOpenContactModal = (state: boolean) => {
+    setOpenModal(state);
+    if (state) {
+      setLayout({ overlay: () => setOpenModal(false) });
+    } else {
+      setLayout({ overlay: undefined });
+    }
+  };
+
   return (
     <>
       {!limit && value.filter((item: User) => item.id !== user?.id).length > 0 && (
@@ -172,7 +183,7 @@ const NewBetParticipants = <T extends FieldValues>({
         {mostActives.length === 0 && <div></div>}
       </ParticipantsContent>
       <StyledDivider />
-      <RowCenterContentContainer onClick={() => setOpenModal(true)}>
+      <RowCenterContentContainer onClick={() => handleOpenContactModal(true)}>
         <ContactIcon />
         <Typography
           value={t(`NewBet.contacts`)}
@@ -183,7 +194,7 @@ const NewBetParticipants = <T extends FieldValues>({
       {control && inputName && (
         <ContactModal
           open={openModal}
-          handleClose={() => setOpenModal(false)}
+          handleClose={() => handleOpenContactModal(false)}
           handleSave={addUsers}
           control={control}
           inputName={inputName}
