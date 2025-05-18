@@ -9,6 +9,7 @@ import NewBetForm from './pages/NewBet/NewBet.form';
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import VerifyEmail from './pages/Auth/VerifyEmail/VerifyEmail';
 import AuthCallback from './Providers/AuthCallback';
+import BetPage from './pages/Bet/BetPage';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const pagesRouter = createBrowserRouter([
       {
         path: '/auth/success',
         element: <AuthCallback />,
+      },
+      {
+        path: '/bet/:id',
+        element: <BetPage />,
       },
     ],
   },

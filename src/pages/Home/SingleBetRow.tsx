@@ -16,6 +16,7 @@ import { formatDate } from '../../utils/Helpers';
 import { Avatar } from '@mui/material';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
+import { useNavigate } from 'react-router-dom';
 
 interface SingleBetRowProps {
   bet?: Bet;
@@ -25,9 +26,16 @@ interface SingleBetRowProps {
 
 const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Element => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleBet = () => {
+    if (bet) {
+      navigate(`/bet/${bet.id}`);
+    }
+  };
 
   return (
-    <NotificationContainer>
+    <NotificationContainer onClick={handleBet}>
       <NotificationHeader>
         <Tag type={betStatusToTagType[type || BetStatus.ACTIVE]} />
         {isSupervisor && <Tag type={TagType.SUPERVISOR} />}

@@ -28,12 +28,14 @@ export interface Bet {
   supervisor?: User;
   predictions?: Prediction[];
   isSupervisor?: boolean;
+  createdAt?: Date;
 }
 
 export interface Prediction {
   id: string;
-  betId: string;
-  userId: string;
-  description?: string;
-  deadline?: Date;
+  date?: Date;
+  fullName?: string;
+  guess?: string;
+  phoneNumber: string;
+  approved?: 'pending' | 'active' | 'canceled';
 }

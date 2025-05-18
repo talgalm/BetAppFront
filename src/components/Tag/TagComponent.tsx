@@ -60,7 +60,7 @@ const Tag = ({ type = TagType.COMPLETED }: TagProps) => {
 
   return (
     <TagStyled background={background}>
-      <Typography value={type} variant={TypographyTypes.TextSmall} styleProps={{ color: accent }} />
+      <Typography value={type} variant={TypographyTypes.VerySmall} styleProps={{ color: accent }} />
     </TagStyled>
   );
 };

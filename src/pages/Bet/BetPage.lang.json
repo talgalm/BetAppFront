@@ -1,0 +1,11 @@
+{
+    "createdAt": "התערבות נפתחה {{hour}} {{date}}",
+    "participents": "משתתפים",
+    "description": "תיאור",
+    "predictions": "תנאים",
+    "betim": "בטים",
+    "deadline": "דדליין",
+    "files": "קבצים",
+    "supervisor": "אחראי",
+    "personalPredictions" : "תנאים אישיים"
+}

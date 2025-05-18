@@ -14,7 +14,7 @@ const NewBetForm: React.FC = () => {
           phoneNumber: user?.phoneNumber ?? '',
           fullName: user?.fullName ?? '',
           id: user?.id ?? '',
-          approved: true,
+          approved: 'active',
         },
       ],
     },

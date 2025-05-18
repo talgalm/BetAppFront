@@ -22,7 +22,6 @@ import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
 import { NotificationColors } from './Colors';
 import { Bet, BetStatus } from '../../Interfaces';
-import StyledSwitch from '../../components/Switch/Switch';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

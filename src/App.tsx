@@ -13,7 +13,6 @@ import ErrorFallback from './Errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme';
 import StyledSwitch from './components/Switch/Switch';
-import { PRIMARY_BACKGROUND } from './Theme/ColorTheme';
 
 const App = () => {
   const queryClient = new QueryClient({

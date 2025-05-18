@@ -18,7 +18,6 @@ import {
   SummaryRow,
 } from './Summary.styles';
 import { useTranslation } from 'react-i18next';
-import { User } from '../../../../Interfaces';
 import { formatDate } from '../../../../utils/Helpers';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../../Jotai/newBetAtoms';

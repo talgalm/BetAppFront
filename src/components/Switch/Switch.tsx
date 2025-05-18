@@ -10,7 +10,7 @@ import { ReactComponent as HomeIcon } from '../../Theme/Icons/LayoutIcons/Switch
 import { ReactComponent as ProfileIcon } from '../../Theme/Icons/LayoutIcons/SwitchProfile.svg';
 
 const CustomSwitch = styled(Switch)(({ theme }) => ({
-  width: 328,
+  width: 335,
   height: 64,
   padding: 0,
   borderRadius: 32,
@@ -21,6 +21,9 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     '&.Mui-checked': {
       transform: 'translateX(160px)',
       color: '#4cafab',
+      '& + .MuiSwitch-track': {
+        backgroundColor: '#f2f1f8',
+      },
     },
   },
   '& .MuiSwitch-thumb': {
@@ -31,11 +34,7 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     borderRadius: 32,
-    backgroundColor: '#f2f1f8',
-    opacity: 1,
-  },
-  '& .Mui-checked + .MuiSwitch-track': {
-    backgroundColor: '#f2f1f8',
+    backgroundColor: '#f8f8fb',
     opacity: 1,
   },
 }));
