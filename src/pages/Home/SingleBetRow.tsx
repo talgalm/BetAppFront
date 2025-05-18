@@ -47,11 +47,11 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
         </NotificationTextHeader>
       </NotificationHeader>
       <NotificationRow>
-        <TagStyled background="#CEEFEA">
-          {bet?.deadline && (
+        {bet?.deadline && (
+          <TagStyled background="#CEEFEA">
             <Typography value={formatDate(bet?.deadline)} variant={TypographyTypes.TextMedium} />
-          )}
-        </TagStyled>
+          </TagStyled>
+        )}
         <TagStyled background="#CEEFEA">
           <BetimIcon />
           <Typography value={bet?.betim} variant={TypographyTypes.TextMedium} />

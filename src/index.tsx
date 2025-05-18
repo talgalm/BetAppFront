@@ -10,6 +10,7 @@ import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import VerifyEmail from './pages/Auth/VerifyEmail/VerifyEmail';
 import AuthCallback from './Providers/AuthCallback';
 import BetPage from './pages/Bet/BetPage';
+import Profile from './pages/Profile/Profile';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const pagesRouter = createBrowserRouter([
       {
         path: '/home',
         element: <Home />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
       {
         path: '/new-bet',

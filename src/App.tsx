@@ -13,6 +13,7 @@ import ErrorFallback from './Errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme';
 import StyledSwitch from './components/Switch/Switch';
+import Footer from './Layout/Footer/Footer';
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -45,20 +46,7 @@ const App = () => {
                 <main style={{ flexGrow: 1 }}>
                   <Outlet />
                 </main>
-                {/* <Footer /> */}
-                <div
-                  style={{
-                    position: 'fixed',
-                    bottom: 10,
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: '0 16px',
-                  }}
-                >
-                  <StyledSwitch />
-                </div>
+                <Footer />
               </PrimaryBackground>
             </GoogleOAuthProvider>
           </AuthProvider>

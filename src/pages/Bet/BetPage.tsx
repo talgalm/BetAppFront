@@ -22,10 +22,11 @@ import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { Participant } from '../NewBet/Interface';
 import { isArray } from 'lodash';
+import BetLoader from '../../Theme/Loader/loader';
 
 interface FieldRowProps {
   label: string;
-  value?: string | number;
+  value?: string | number | null;
   background?: string;
   icon?: any;
   arrValue?: Prediction[] | User;
@@ -47,58 +48,72 @@ const BetPage = (): JSX.Element => {
       icon: FileIcon,
     },
     { label: t('BetPage.betim'), value: bet?.betim, background: '#CEEFEA', icon: BetimIcon },
-    { label: t('BetPage.deadline'), value: formatDate(bet?.deadline), background: '#CED0EF' },
+    {
+      label: t('BetPage.deadline'),
+      value: formatDate(bet?.deadline) !== '' ? formatDate(bet?.deadline) : null,
+      background: '#CED0EF',
+    },
     { label: t('BetPage.files'), value: bet?.description, background: '#CED0EF', icon: FileIcon },
     { label: t('BetPage.supervisor'), value: '', arrValue: bet?.supervisor },
   ];
 
   const FieldRow = ({ label, value = '—', background, icon: Icon, arrValue }: FieldRowProps) => (
     <>
-      <Row>
-        <Column>
-          <Typography value={label} variant={TypographyTypes.H3} styleProps={{ color: 'black' }} />
-          {background ? (
-            <SummaryRow background={background}>
-              <Typography
-                value={value}
-                variant={TypographyTypes.TextMedium}
-                styleProps={{ color: 'black' }}
-              />
-              {Icon && <Icon width={18} height={18} />}
-            </SummaryRow>
-          ) : (
-            <>
-              <Typography
-                value={value}
-                variant={TypographyTypes.TextMedium}
-                styleProps={{ color: 'black' }}
-              />
-              {!isArray(arrValue) && arrValue && (
-                <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
-                  <SmallAvatar>{arrValue.fullName?.charAt(0)}</SmallAvatar>
+      {(value || arrValue) && (
+        <Row>
+          <Column>
+            <Typography
+              value={label}
+              variant={TypographyTypes.H3}
+              styleProps={{ color: 'black' }}
+            />
+            {background ? (
+              <SummaryRow background={background}>
+                {value && (
                   <Typography
-                    value={arrValue.fullName}
+                    value={value}
                     variant={TypographyTypes.TextMedium}
                     styleProps={{ color: 'black' }}
                   />
-                </div>
-              )}
-            </>
-          )}
-          {arrValue && (
-            <AvatarRow>
-              {isArray(arrValue) &&
-                arrValue.map((participant: Prediction, index) => (
-                  <SmallAvatar key={index} status={participant?.approved ?? 'pending'}>
-                    {participant.fullName?.charAt(0)}
-                  </SmallAvatar>
-                ))}
-            </AvatarRow>
-          )}
-        </Column>
-        <ArrowIcon />
-      </Row>
-      <StyledDivider />
+                )}
+                {Icon && <Icon width={18} height={18} />}
+              </SummaryRow>
+            ) : (
+              <>
+                {value && (
+                  <Typography
+                    value={value}
+                    variant={TypographyTypes.TextMedium}
+                    styleProps={{ color: 'black' }}
+                  />
+                )}
+                {!isArray(arrValue) && arrValue && (
+                  <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
+                    <SmallAvatar>{arrValue.fullName?.charAt(0)}</SmallAvatar>
+                    <Typography
+                      value={arrValue.fullName}
+                      variant={TypographyTypes.TextMedium}
+                      styleProps={{ color: 'black' }}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+            {arrValue && (
+              <AvatarRow>
+                {isArray(arrValue) &&
+                  arrValue.map((participant: Prediction, index) => (
+                    <SmallAvatar key={index} status={participant?.approved ?? 'pending'}>
+                      {participant.fullName?.charAt(0)}
+                    </SmallAvatar>
+                  ))}
+              </AvatarRow>
+            )}
+          </Column>
+          <ArrowIcon />
+        </Row>
+      )}
+      {(value || arrValue) && <StyledDivider />}
     </>
   );
 
@@ -120,6 +135,10 @@ const BetPage = (): JSX.Element => {
     : '';
 
   const [date, hour] = formattedDate.split(', ');
+
+  if (isLoading) {
+    <BetLoader />;
+  }
 
   return (
     <MainContainer>

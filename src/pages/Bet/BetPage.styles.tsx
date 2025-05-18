@@ -8,7 +8,7 @@ export const MainContainer = styled('div')({
   justifyContent: 'center',
   width: '100%',
   marginTop: 54,
-  marginBottom: 100,
+  marginBottom: 25,
 });
 
 export const HeaderContainer = styled('div')({

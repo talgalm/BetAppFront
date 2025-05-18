@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as HomeIcon } from '../../Theme/Icons/LayoutIcons/SwitchHome.svg';
 import { ReactComponent as ProfileIcon } from '../../Theme/Icons/LayoutIcons/SwitchProfile.svg';
 
-const CustomSwitch = styled(Switch)(({ theme }) => ({
+const CustomSwitch = styled(Switch)({
   width: 335,
   height: 64,
   padding: 0,
@@ -20,9 +20,10 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     transitionDuration: '300ms',
     '&.Mui-checked': {
       transform: 'translateX(160px)',
-      color: '#4cafab',
+      color: 'red',
       '& + .MuiSwitch-track': {
-        backgroundColor: '#f2f1f8',
+        backgroundColor: '#f8f8fb',
+        opacity: 1,
       },
     },
   },
@@ -37,11 +38,15 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     backgroundColor: '#f8f8fb',
     opacity: 1,
   },
-}));
+});
 
-export default function StyledSwitch() {
+export interface StyledSwitchProps {
+  checked: boolean;
+  onChange: (next: boolean) => void;
+}
+
+export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
   const { t } = useTranslation();
-  const [checked, setChecked] = React.useState(false);
 
   return (
     <FormGroup>
@@ -96,7 +101,7 @@ export default function StyledSwitch() {
           />
         </Box>
 
-        <CustomSwitch checked={checked} onChange={() => setChecked(!checked)} />
+        <CustomSwitch checked={checked} onChange={(_, next) => onChange(next)} />
       </Box>
     </FormGroup>
   );

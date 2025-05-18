@@ -43,10 +43,13 @@ const Header = () => {
   const [user] = useAtom(userAtom);
   const [value, setValue] = useState(user?.betim || 0);
   const { mutate } = useLogout();
+  const navigate = useNavigate();
 
   const handleNextStep = () => {
     if (authStep.prev) {
       setActiveStepAuth(authSteps[authStep.prev]);
+    } else {
+      navigate('/home');
     }
   };
 
@@ -96,7 +99,7 @@ const Header = () => {
   return (
     <>
       <HeaderComponent headerStyle={layout.headerStyle}>
-        {authStep.step !== 'Welcome' && !path.pathname.includes('home') && (
+        {!path.pathname.includes('home') && (
           <RightIconDiv onClick={handleNextStep}>
             <ReturnArrow />
           </RightIconDiv>
@@ -106,7 +109,7 @@ const Header = () => {
             <CloseIcon />
           </LeftIconNoBack>
         )}
-        {path.pathname.includes('home') && (
+        {(path.pathname.includes('home') || path.pathname.includes('profile')) && (
           <>
             <RightIconDiv onClick={logout}>
               <HamburgerIcon />
