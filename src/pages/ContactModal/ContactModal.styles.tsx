@@ -138,9 +138,9 @@ export const CornerFab = styled(Fab)(({ theme }) => ({
   position: 'fixed',
   bottom: theme.spacing(2),
   left: theme.spacing(2),
-  zIndex: 1300, // above overlays
+  zIndex: 1300,
   [theme.breakpoints.up('sm')]: {
     left: 'auto',
-    right: theme.spacing(2), // bottom‑right on tablets/desktop
+    right: theme.spacing(2),
   },
 }));

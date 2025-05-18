@@ -121,11 +121,6 @@ const ContactModal = <T extends FieldValues>({
   return (
     <PopUpOverlay isOpen={open} onClick={handleClose}>
       <PopUpDiv isOpen={open} onClick={(e) => e.stopPropagation()} padding>
-        {/* <PopUpHeader>
-          <ReturnIcon onClick={handleSaveAndClose} />
-          <Logo />
-          <CloseIcon onClick={handleClose} />
-        </PopUpHeader> */}
         <PopUpHeader2>
           <StyledInput
             placeholder={t(`ContactModal.search`)}
@@ -195,7 +190,7 @@ const ContactModal = <T extends FieldValues>({
                 </ItemsBodyContent>
               ))}
           </ItemsContant>
-          <CornerFab color="primary" aria-label="save" onClick={handleSaveAndClose}>
+          <CornerFab color="primary" onClick={handleSaveAndClose}>
             <CheckIcon />
           </CornerFab>
         </PopUpScroll>

@@ -32,7 +32,6 @@ import { TypographyTypes } from '../../../../components/Topography/TypographyTyp
 import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { layoutAtom, layoutEphemeralAtom, userAtom } from '../../../../Jotai/atoms';
-import { FooterStyle, HeaderStyle } from '../../../../Theme/ThemeInterfaces';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;

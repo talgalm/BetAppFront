@@ -14,7 +14,7 @@ import { ReactComponent as HistoryIcon } from '../../Theme/Icons/HomeIcons/Histo
 import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/Supervisor.svg';
 import { ReactComponent as BetsIcon } from '../../Theme/Icons/HomeIcons/BetsIcon.svg';
 import SingleBetRow from './SingleBetRow';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../Jotai/atoms';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
@@ -22,17 +22,29 @@ import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
 import { NotificationColors } from './Colors';
 import { Bet, BetStatus } from '../../Interfaces';
+import { useEffect } from 'react';
+import { useProfile } from '../../Providers/useProfile';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [user] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
   const [, setActiveStep] = useAtom(ActiveStep);
+  const location = useLocation();
+  const cameFromCleanup = location.state?.fromNewBetCleanup;
+  const { data, isSuccess, isError, isLoading, error } = useProfile();
 
   const createBetRoute = () => {
     setActiveStep(newBetSteps[NewBetStepValueTypes.Start]);
     navigate(`/new-bet`);
   };
+
+  useEffect(() => {
+    if (cameFromCleanup) {
+      if (isSuccess && data) setUser(data);
+      window.history.replaceState(null, document.title);
+    }
+  }, [cameFromCleanup]);
 
   return (
     <HomeDivContainer>

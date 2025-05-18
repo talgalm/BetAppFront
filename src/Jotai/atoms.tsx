@@ -12,4 +12,5 @@ export const layoutAtom = atomWithStorage<{
 });
 
 export const layoutEphemeralAtom = atom<{ overlay?: () => void }>({});
+
 export const userAtom = atomWithStorage<User | null>('userAtom', null);

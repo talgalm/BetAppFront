@@ -25,6 +25,8 @@ import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '../../Theme/theme';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
+import { useNavigate } from 'react-router-dom';
+import { Bet } from '../../Interfaces';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -35,6 +37,9 @@ const NewBet = () => {
   const formValues = watch();
   const cleanNewBet = useCleanCreateNewBet();
   const createBet = useCreateBet();
+  const navigate = useNavigate();
+
+  const [newBet, setNewBet] = useState<Bet | undefined>(undefined);
 
   useEffect(() => {
     if (
@@ -105,7 +110,8 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep === null) {
-        // cleanNewBet();
+        console.log(step);
+        if (step.step === NewBetStepValueTypes.Success) cleanNewBet();
       }
       if (nextStep) {
         const progressValue = !back
@@ -132,6 +138,7 @@ const NewBet = () => {
   const onSubmit = (data: any) => {
     createBet.mutate(data, {
       onSuccess: (res) => {
+        setNewBet(res.bet);
         setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
         setTargetProgress(100);
       },
@@ -139,6 +146,12 @@ const NewBet = () => {
         console.error('Failed to create bet:', err.message);
       },
     });
+  };
+
+  const handleBet = () => {
+    if (newBet) {
+      navigate(`/bet/${newBet.id}`);
+    }
   };
 
   const changeNextStep = (checked: boolean) => {
@@ -224,7 +237,7 @@ const NewBet = () => {
           {step.step === NewBetStepValueTypes.Success && (
             <StyledButton
               value={t('NewBet.WatchBet')}
-              onClick={() => console.log('Watch')}
+              onClick={handleBet}
               colorVariant={ThemeType.Secondary}
             />
           )}

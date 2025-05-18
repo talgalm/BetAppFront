@@ -59,8 +59,7 @@ export const AvatarRow = styled('div')({
   display: 'flex',
   flexDirection: 'row-reverse',
   gap: 4,
-  justifyContent: 'flex-start',
-  alignItems: 'felx',
+  justifyContent: 'flex-end',
 });
 
 type Status = 'pending' | 'active' | 'canceled';

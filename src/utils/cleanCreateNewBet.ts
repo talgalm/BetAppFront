@@ -6,6 +6,6 @@ export const useCleanCreateNewBet = () => {
   return () => {
     localStorage.removeItem('betForm');
     localStorage.removeItem('NewBetStep');
-    navigate('/home');
+    navigate('/home', { state: { fromNewBetCleanup: true } });
   };
 };
