@@ -38,4 +38,5 @@ export interface Prediction {
   guess?: string;
   phoneNumber: string;
   approved?: 'pending' | 'active' | 'canceled';
+  userId?: string;
 }

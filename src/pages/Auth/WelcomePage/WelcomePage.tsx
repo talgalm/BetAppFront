@@ -98,7 +98,7 @@ const WelcomePage = (): JSX.Element => {
           `WelcomePage.${AuthStepValueTypes.SuccessfulRegister}Title`,
           `WelcomePage.${AuthStepValueTypes.SuccessfulRegister}Subtitle`,
           'WelcomePage.BackToLogin',
-          AuthStepValueTypes.RegisterInfo
+          AuthStepValueTypes.Login
         )}
     </MainContainer>
   );

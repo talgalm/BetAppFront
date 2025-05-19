@@ -43,7 +43,7 @@ const Header = () => {
   const [layoutEphemeral] = useAtom(layoutEphemeralAtom);
 
   const [user] = useAtom(userAtom);
-  const [value, setValue] = useState(user?.betim || 0);
+  const betim = user?.betim ?? 0;
   const { mutate } = useLogout();
   const navigate = useNavigate();
 
@@ -128,7 +128,7 @@ const Header = () => {
             <LeftIconDiv>
               <BetimIcon />
               <Typography
-                value={value}
+                value={betim}
                 variant={TypographyTypes.TextSmall}
                 styleProps={{ color: '#2A69C6' }}
               />

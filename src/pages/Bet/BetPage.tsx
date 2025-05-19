@@ -10,6 +10,8 @@ import {
   Column,
   AvatarRow,
   SmallAvatar,
+  ButtonsContainer,
+  ButtonsContainerInner,
 } from './BetPage.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
@@ -23,6 +25,10 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { Participant } from '../NewBet/Interface';
 import { isArray } from 'lodash';
 import BetLoader from '../../Theme/Loader/loader';
+import StyledButton from '../../components/Button/StyledButton';
+import { ThemeType } from '../../Theme/theme';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
 
 interface FieldRowProps {
   label: string;
@@ -36,6 +42,7 @@ const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
+  const [user] = useAtom(userAtom);
   const { data: bet, isLoading, error } = useBet(id);
 
   const fieldDefinitions: FieldRowProps[] = [
@@ -102,11 +109,18 @@ const BetPage = (): JSX.Element => {
             {arrValue && (
               <AvatarRow>
                 {isArray(arrValue) &&
-                  arrValue.map((participant: Prediction, index) => (
-                    <SmallAvatar key={index} status={participant?.approved ?? 'pending'}>
-                      {participant.fullName?.charAt(0)}
-                    </SmallAvatar>
-                  ))}
+                  [...arrValue]
+                    .sort((a, b) =>
+                      user && a.userId === user.id ? -1 : user && b.userId === user.id ? 1 : 0
+                    )
+                    .map((participant) => (
+                      <SmallAvatar
+                        key={participant.userId}
+                        status={participant.approved ?? 'pending'}
+                      >
+                        {participant.fullName?.charAt(0)}
+                      </SmallAvatar>
+                    ))}
               </AvatarRow>
             )}
           </Column>
@@ -161,6 +175,18 @@ const BetPage = (): JSX.Element => {
           />
         ))}
       </ContentContainer>
+      <ButtonsContainer>
+        <StyledButton
+          value={'!!!'}
+          onClick={() => console.log('!')}
+          styleProps={{ width: '100%' }}
+        />
+        <Typography
+          value={'!!!!!!!!!!'}
+          variant={TypographyTypes.Button}
+          styleProps={{ color: '#E33E21' }}
+        />
+      </ButtonsContainer>
     </MainContainer>
   );
 };

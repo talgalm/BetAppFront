@@ -24,6 +24,7 @@ import { NotificationColors } from './Colors';
 import { Bet, BetStatus } from '../../Interfaces';
 import { useEffect } from 'react';
 import { useProfile } from '../../Providers/useProfile';
+import BetLoader from '../../Theme/Loader/loader';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
@@ -45,6 +46,14 @@ const Home = (): JSX.Element => {
       window.history.replaceState(null, document.title);
     }
   }, [cameFromCleanup]);
+
+  if (isLoading) {
+    return <BetLoader />;
+  }
+
+  if (isSuccess && data && !user) {
+    setUser(data);
+  }
 
   return (
     <HomeDivContainer>

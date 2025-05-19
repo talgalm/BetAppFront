@@ -8,7 +8,7 @@ export const MainContainer = styled('div')({
   justifyContent: 'center',
   width: '100%',
   marginTop: 54,
-  marginBottom: 25,
+  overflowY: 'hidden',
 });
 
 export const HeaderContainer = styled('div')({
@@ -21,6 +21,7 @@ export const HeaderContainer = styled('div')({
   alignItems: 'flex-end',
   width: '100%',
   zIndex: 2,
+  textAlign: 'right',
   backgroundColor: '#ffffff',
   boxShadow: `
     0px 2px 5px 0px #CBC6E31A,
@@ -32,10 +33,12 @@ export const HeaderContainer = styled('div')({
 });
 
 export const ContentContainer = styled('div')({
+  position: 'fixed',
+  inset: '210px 0 140px 0',
   display: 'flex',
-  width: '100%',
   flexDirection: 'column',
-  marginTop: 125,
+  width: '100%',
+  overflowY: 'auto',
 });
 
 export const Row = styled('div')({
@@ -57,9 +60,9 @@ export const Column = styled('div')({
 
 export const AvatarRow = styled('div')({
   display: 'flex',
-  flexDirection: 'row-reverse',
+  flexDirection: 'row',
   gap: 4,
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
 });
 
 type Status = 'pending' | 'active' | 'canceled';
@@ -82,10 +85,32 @@ export const SmallAvatar = styled(Avatar, {
   height: 24,
   fontSize: 11,
   zIndex: 0,
-  // 2) If somehow status is undefined, default to NONE:
   border: status
     ? statusToBorder[status] === 'none'
       ? 'none'
       : `2px solid ${statusToBorder[status] || 'grey'}`
     : '',
 }));
+
+export const ButtonsContainer = styled('div')({
+  position: 'fixed',
+  bottom: 10,
+  left: 0,
+  right: 0,
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+  flexDirection: 'column',
+  gap: 15,
+  padding: 16,
+  zIndex: 10,
+});
+
+export const ButtonsContainerInner = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: 10,
+  alignItems: 'center',
+  width: '100%',
+});

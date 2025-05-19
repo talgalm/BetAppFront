@@ -8,7 +8,7 @@ import {
   StyledAvatarGroup,
   ActionRow,
 } from './SingleBetRow.styles';
-import { Bet, BetStatus } from '../../Interfaces';
+import { Bet, BetStatus, Prediction } from '../../Interfaces';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
 
 import { Typography } from '../../components/Topography/topography';
@@ -17,6 +17,9 @@ import { Avatar } from '@mui/material';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
+import { SmallAvatar } from '../Bet/BetPage.styles';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../Jotai/atoms';
 
 interface SingleBetRowProps {
   bet?: Bet;
@@ -27,11 +30,17 @@ interface SingleBetRowProps {
 const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [user, setUser] = useAtom(userAtom);
 
   const handleBet = () => {
     if (bet) {
       navigate(`/bet/${bet.id}`);
     }
+  };
+
+  const shouldInvite = () => {
+    const myPrediction = bet?.predictions?.find((pred) => pred.userId === user?.id);
+    return myPrediction?.approved ?? BetStatus.PENDING;
   };
 
   return (
@@ -57,12 +66,15 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
           <Typography value={bet?.betim} variant={TypographyTypes.TextMedium} />
         </TagStyled>
         <StyledAvatarGroup max={6} spacing="small">
-          <Avatar alt="Travis Howard" sx={{ width: 24, height: 24 }} />
-          <Avatar alt="Cindy Baker" sx={{ width: 24, height: 24 }} />
-          <Avatar alt="Travis Howard" sx={{ width: 24, height: 24 }} />
+          {bet?.predictions &&
+            bet?.predictions.map((participant: Prediction, index) => (
+              <SmallAvatar key={index} status={participant?.approved ?? 'pending'}>
+                {participant.fullName?.charAt(0)}
+              </SmallAvatar>
+            ))}
         </StyledAvatarGroup>
       </NotificationRow>
-      {type === BetStatus.PENDING && (
+      {shouldInvite() === BetStatus.PENDING && (
         <ActionRow>
           <Typography
             value={t(`Home.Confirm`)}
