@@ -12,9 +12,9 @@ import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
 import { ReactComponent as PlusIcon } from '../../../../Theme/Icons/AddIcon.svg';
 import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../../../Jotai/atoms';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { useQueryClient } from '@tanstack/react-query';
+import { User } from '../../../../Interfaces';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;
@@ -25,7 +25,8 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
   const { t } = useTranslation();
   const { field } = useController({ name: inputName, control });
   const [userCurrentCoins, setUserCurrentCoins] = useState<number>(0);
-  const [user] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
 
   const [isCustomValue, setIsCustomValue] = useState(false);
 

@@ -15,8 +15,6 @@ import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/Su
 import { ReactComponent as BetsIcon } from '../../Theme/Icons/HomeIcons/BetsIcon.svg';
 import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
@@ -25,88 +23,97 @@ import { Bet, BetStatus } from '../../Interfaces';
 import { useEffect } from 'react';
 import { useProfile } from '../../Providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
+import { useAtom } from 'jotai';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [user, setUser] = useAtom(userAtom);
   const [, setActiveStep] = useAtom(ActiveStep);
+
+  const { data: profile, isLoading } = useProfile();
+
   const location = useLocation();
   const cameFromCleanup = location.state?.fromNewBetCleanup;
-  const { data: profile, isSuccess, isLoading } = useProfile();
-
-  const createBetRoute = () => {
-    setActiveStep(newBetSteps[NewBetStepValueTypes.Start]);
-    navigate(`/new-bet`);
-  };
 
   useEffect(() => {
     if (cameFromCleanup) {
-      if (isSuccess && profile) setUser(profile);
       window.history.replaceState(null, document.title);
     }
   }, [cameFromCleanup]);
 
-  if (isLoading) {
+  if (isLoading || !profile) {
     return <BetLoader />;
   }
+
+  const firstName = profile.fullName?.split(' ')[0] ?? '';
+  const activeBetsCount = profile.bets.filter((b) => b.status === BetStatus.ACTIVE).length;
+  const supervisorCount = profile.bets.filter((b) => b.isSupervisor).length;
+  const completedBetsCount = profile.bets.filter((b) => b.status === BetStatus.COMPLETED).length;
+
+  const createBetRoute = () => {
+    setActiveStep(newBetSteps[NewBetStepValueTypes.Start]);
+    navigate('/new-bet');
+  };
 
   return (
     <HomeDivContainer>
       <ComplexContainer>
-        <Typography
-          value={t('Home.Hi', { name: user?.fullName?.split(' ')[0] })}
-          variant={TypographyTypes.H1}
-        />
+        <Typography value={t('Home.Hi', { name: firstName })} variant={TypographyTypes.H1} />
         <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
+
         <NotificationContainer>
-          <NotificationCubeContainer backgroundColor={NotificationColors.BetBackground}>
-            <NotificationNumber backgroundColor={NotificationColors.BetAccent}>
-              <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
-            </NotificationNumber>
-            <BetsIcon />
-            <Typography
-              value={user?.bets?.filter((bet) => bet.status === BetStatus.ACTIVE).length}
-              variant={TypographyTypes.H1}
-              styleProps={{ color: NotificationColors.BetAccent }}
-            />
-          </NotificationCubeContainer>
-          <NotificationCubeContainer backgroundColor={NotificationColors.SupervisorBackground}>
-            <NotificationNumber backgroundColor={NotificationColors.SupervisorAccent}>
-              <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
-            </NotificationNumber>
-            <SupervisorIcon />
-            <Typography
-              value={user?.bets?.filter((bet) => bet.isSupervisor).length}
-              variant={TypographyTypes.H1}
-              styleProps={{ color: NotificationColors.SupervisorAccent }}
-            />
-          </NotificationCubeContainer>
-          <NotificationCubeContainer backgroundColor={NotificationColors.HistoryBackground}>
-            <NotificationNumber backgroundColor={NotificationColors.HistoryAccent}>
-              <Typography value={'+2'} variant={TypographyTypes.VerySmall} />
-            </NotificationNumber>
-            <HistoryIcon />
-            <Typography
-              value={user?.bets?.filter((bet) => bet.status === BetStatus.COMPLETED).length}
-              variant={TypographyTypes.H1}
-              styleProps={{ color: NotificationColors.HistoryAccent }}
-            />
-          </NotificationCubeContainer>
+          <NotificationCube
+            icon={<BetsIcon />}
+            value={activeBetsCount}
+            bg={NotificationColors.BetBackground}
+            accent={NotificationColors.BetAccent}
+          />
+          <NotificationCube
+            icon={<SupervisorIcon />}
+            value={supervisorCount}
+            bg={NotificationColors.SupervisorBackground}
+            accent={NotificationColors.SupervisorAccent}
+          />
+          <NotificationCube
+            icon={<HistoryIcon />}
+            value={completedBetsCount}
+            bg={NotificationColors.HistoryBackground}
+            accent={NotificationColors.HistoryAccent}
+          />
         </NotificationContainer>
+
         <StyledButton
           value={t('Home.CreateNewBet')}
           colorVariant={ThemeType.Primary}
           onClick={createBetRoute}
         />
       </ComplexContainer>
+
       <BetsContainer>
         <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
-        {profile?.bets &&
-          profile.bets.map((bet: Bet) => <SingleBetRow key={bet.id} bet={bet} type={bet.status} />)}
+        {profile.bets.map((bet: Bet) => (
+          <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
+        ))}
       </BetsContainer>
     </HomeDivContainer>
   );
 };
 
 export default Home;
+
+interface CubeProps {
+  icon: React.ReactElement;
+  value: number;
+  bg: string;
+  accent: string;
+}
+const NotificationCube = ({ icon, value, bg, accent }: CubeProps) => (
+  <NotificationCubeContainer backgroundColor={bg}>
+    <NotificationNumber backgroundColor={accent}>
+      {/* You had a hard‑coded "+2" badge; replace or remove as needed */}
+      <Typography value="+2" variant={TypographyTypes.VerySmall} />
+    </NotificationNumber>
+    {icon}
+    <Typography value={value} variant={TypographyTypes.H1} styleProps={{ color: accent }} />
+  </NotificationCubeContainer>
+);

@@ -31,7 +31,8 @@ import { ErrorTypes } from '../../../../Errors/interface';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
 import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
-import { layoutAtom, layoutEphemeralAtom, userAtom } from '../../../../Jotai/atoms';
+import { layoutEphemeralAtom } from '../../../../Jotai/atoms';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -48,8 +49,9 @@ const NewBetParticipants = <T extends FieldValues>({
   const [openModal, setOpenModal] = useState(false);
   const { watch } = useFormContext<CreateBetInputs>();
   const { showBoundary } = useErrorBoundary();
-  const [user] = useAtom(userAtom);
-  const { data: mostActives = [], isLoading, error } = useMostActives(); // const { mostActives = [] } = useGetMostActives(user?.id);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
+  const { data: mostActives = [], isLoading, error } = useMostActives();
   const [layout, setLayout] = useAtom(layoutEphemeralAtom);
   console.log(layout);
   const {

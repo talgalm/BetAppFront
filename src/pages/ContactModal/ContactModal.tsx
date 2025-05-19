@@ -21,8 +21,6 @@ import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path, useController, useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
 import { User } from '../../Interfaces';
-import { useAtom } from 'jotai';
-import { layoutEphemeralAtom, userAtom } from '../../Jotai/atoms';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { Collapse, Fab } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
@@ -36,11 +34,11 @@ import {
   NameText,
 } from '../NewBet/NewBetComponents/Participants/Participants.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
-import { formatPhoneNumber } from '../../utils/Helpers';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
 import { useUsers } from '../Home/Hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface ContactModalProps<T extends FieldValues> {
   open: boolean;
@@ -63,7 +61,8 @@ const ContactModal = <T extends FieldValues>({
   limit,
 }: ContactModalProps<T>) => {
   const { t } = useTranslation();
-  const [user, setUser] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const { data, isSuccess } = useUsers({ enabled: open });
   const [contacts, setContacts] = useState<User[]>([]);

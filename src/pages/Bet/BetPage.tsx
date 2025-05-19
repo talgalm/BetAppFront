@@ -22,13 +22,10 @@ import { StyledDivider, SummaryRow } from '../NewBet/NewBetComponents/Summary/Su
 import { formatDate } from '../../utils/Helpers';
 import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
-import { Participant } from '../NewBet/Interface';
 import { isArray } from 'lodash';
 import BetLoader from '../../Theme/Loader/loader';
 import StyledButton from '../../components/Button/StyledButton';
-import { ThemeType } from '../../Theme/theme';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface FieldRowProps {
   label: string;
@@ -42,7 +39,8 @@ const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
-  const [user] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
   const { data: bet, isLoading, error } = useBet(id);
 
   const fieldDefinitions: FieldRowProps[] = [

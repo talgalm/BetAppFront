@@ -1,76 +1,44 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import { useProfile } from './useProfile';
-import { userAtom } from '../Jotai/atoms';
-import { useAtom } from 'jotai';
+import React, { ReactNode } from 'react';
+import { useLocation, useNavigate, Navigate } from 'react-router-dom';
 import BetLoader from '../Theme/Loader/loader';
 import ErrorFallback, { ErrorHandler } from '../Errors/ErrorHandler';
 import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useErrorBoundary } from 'react-error-boundary';
-
-const useAuthInit = () => {
-  const [user, setUser] = useAtom(userAtom);
-  const { data, isSuccess, isError, isLoading, error } = useProfile();
-  const [initialized, setInitialized] = useState(false);
-  const { showBoundary } = useErrorBoundary();
-
-  useEffect(() => {
-    if (!user && isSuccess && data) {
-      setUser(data);
-    }
-    if (isError) {
-      if (error.message === 'Network Error') ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
-      console.log(error);
-      console.log('!');
-      setUser(null);
-    }
-    if ((isSuccess || isError || user) && !initialized) {
-      setInitialized(true);
-    }
-  }, [user, isSuccess, isError, data, setUser, initialized, showBoundary, error]);
-
-  return { user, initialized, isError, isLoading };
-};
-
-const AuthCheck = ({ children }: { children: ReactNode }) => {
-  const [user] = useAtom(userAtom);
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user && location.pathname === '/') {
-      navigate('/home', { replace: true });
-    }
-  }, [user, location.pathname, navigate]);
-
-  return <>{children}</>;
-};
+import { useAuth } from './Hooks/useAuth';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate();
-  const { user, initialized, isError, isLoading } = useAuthInit();
+  const { showBoundary } = useErrorBoundary();
+  const { user, initialized, isLoading, isError, error } = useAuth();
+  const location = useLocation();
 
   if (!initialized && isLoading) {
     return <BetLoader />;
   }
 
-  const handleError = () => {
-    console.log('0');
-    if (user) {
-      navigate('/home');
-    } else {
-      navigate('/');
+  if (isError) {
+    if (error?.message === 'Network Error') {
+      ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
     }
-  };
 
-  if (isError && user !== null) {
     return (
       <ErrorFallback
         error={ERROR_MESSAGES[ErrorTypes.AuthError]}
-        resetErrorBoundary={handleError}
+        resetErrorBoundary={() => {
+          // redirect depending on user presence
+          window.location.href = user ? '/home' : '/';
+        }}
       />
     );
   }
 
-  return <AuthCheck>{children}</AuthCheck>;
+  // Redirect immediately before rendering children
+  if (user && location.pathname === '/') {
+    return <Navigate to="/home" replace />;
+  }
+
+  if (!user && location.pathname !== '/') {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
 };

@@ -13,7 +13,7 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/Betim
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as RedCloseIcon } from '../../Theme/Icons/LayoutIcons/RedClose.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-import { layoutAtom, layoutEphemeralAtom, userAtom } from '../../Jotai/atoms';
+import { layoutAtom, layoutEphemeralAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
@@ -27,6 +27,8 @@ import { useLogout } from '../../pages/Auth/Hooks/useLogout';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { AreYouSureDialog } from '../../components/AreYouSureDialog/AreYouSureDialog';
+import { useQueryClient } from '@tanstack/react-query';
+import { User } from '../../Interfaces';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
@@ -42,7 +44,8 @@ const Header = () => {
   const [layout] = useAtom(layoutAtom);
   const [layoutEphemeral] = useAtom(layoutEphemeralAtom);
 
-  const [user] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
   const betim = user?.betim ?? 0;
   const { mutate } = useLogout();
   const navigate = useNavigate();

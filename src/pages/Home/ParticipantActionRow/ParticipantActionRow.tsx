@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { BetStatus, Prediction } from '../../../Interfaces';
-import { userAtom } from '../../../Jotai/atoms';
+import { BetStatus, Prediction, User } from '../../../Interfaces';
 import { ActionRow } from '../SingleBetRow.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { ParticipantAction, useParticipantAction } from '../../Bet/Hooks/useParticipentAction';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   betId: string;
@@ -15,7 +15,8 @@ interface Props {
 
 export default function ParticipantActionRow({ betId, predictions, handleBetStatus }: Props) {
   const { t } = useTranslation();
-  const [user] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
 
   const { mutateAsync } = useParticipantAction();
 
