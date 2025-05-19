@@ -31,6 +31,17 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
   const showActionRow =
     bet.predictions?.find((p) => p.userId === user?.id)?.approved === BetStatus.PENDING;
 
+  const betStatus: TagType | undefined =
+    type === BetStatus.ACTIVE
+      ? TagType.ACTIVE
+      : !showActionRow && type === BetStatus.PENDING
+        ? TagType.PENDING_APPROVAL_REST
+        : showActionRow
+          ? TagType.PENDING_APPROVAL
+          : undefined;
+
+  const tagType: TagType = betStatus ?? betStatusToTagType[type ?? BetStatus.ACTIVE];
+
   const handleBet = () => {
     if (bet) {
       navigate(`/bet/${bet.id}`);
@@ -44,7 +55,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
   return (
     <NotificationContainer onClick={handleBet}>
       <NotificationHeader>
-        <Tag type={betStatusToTagType[type || BetStatus.ACTIVE]} />
+        <Tag type={tagType} />
         {isSupervisor && <Tag type={TagType.SUPERVISOR} />}
       </NotificationHeader>
       <NotificationHeader>

@@ -15,7 +15,7 @@ import {
 } from './BetPage.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
-import Tag, { betStatusToTagType } from '../../components/Tag/TagComponent';
+import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
 import { BetStatus, Prediction, User } from '../../Interfaces';
 import { ReactComponent as ArrowIcon } from '../../Theme/Icons/Bet/Arrow.svg';
 import { StyledDivider, SummaryRow } from '../NewBet/NewBetComponents/Summary/Summary.styles';
@@ -26,6 +26,7 @@ import { isArray } from 'lodash';
 import BetLoader from '../../Theme/Loader/loader';
 import StyledButton from '../../components/Button/StyledButton';
 import { useQueryClient } from '@tanstack/react-query';
+import { ParticipantAction } from './Hooks/useParticipentAction';
 
 interface FieldRowProps {
   label: string;
@@ -152,6 +153,29 @@ const BetPage = (): JSX.Element => {
     <BetLoader />;
   }
 
+  const showActionRow =
+    bet?.predictions?.find((p) => p.userId === user?.id)?.approved === BetStatus.PENDING;
+
+  const betStatus: TagType | undefined =
+    bet?.status === BetStatus.ACTIVE
+      ? TagType.ACTIVE
+      : !showActionRow && bet?.status === BetStatus.PENDING
+        ? TagType.PENDING_APPROVAL_REST
+        : showActionRow
+          ? TagType.PENDING_APPROVAL
+          : undefined;
+
+  const tagType: TagType = betStatus ?? betStatusToTagType[bet?.status ?? BetStatus.ACTIVE];
+
+  const handleAction = (action: ParticipantAction) => {
+    if (tagType === TagType.PENDING_APPROVAL_REST) {
+      console.log(`Clicked "${action}" – tagType:`, tagType);
+    }
+    if (tagType === TagType.PENDING_APPROVAL) {
+      console.log(`Clicked "${action}" – tagType:`, tagType);
+    }
+  };
+
   return (
     <MainContainer>
       <HeaderContainer>
@@ -159,7 +183,7 @@ const BetPage = (): JSX.Element => {
         {bet?.createdAt && (
           <Typography value={t('BetPage.createdAt', { date, hour })} variant={TypographyTypes.H2} />
         )}
-        <Tag type={betStatusToTagType[bet?.status || BetStatus.ACTIVE]} />
+        <Tag type={tagType} />
       </HeaderContainer>
       <ContentContainer>
         {fieldDefinitions.map((field, idx) => (
@@ -175,13 +199,15 @@ const BetPage = (): JSX.Element => {
       </ContentContainer>
       <ButtonsContainer>
         <StyledButton
-          value={'!!!'}
-          onClick={() => console.log('!')}
+          value={tagType === TagType.PENDING_APPROVAL_REST ? 'סיום ובחירת מנצח' : 'אשר השתתפות'}
+          onClick={() => handleAction(ParticipantAction.APPROVE)}
           styleProps={{ width: '100%' }}
+          disabled={tagType === TagType.PENDING_APPROVAL_REST}
         />
         <Typography
-          value={'!!!!!!!!!!'}
+          value={tagType === TagType.PENDING_APPROVAL_REST ? 'יציאה מהתערבות' : 'דחה הזמנה'}
           variant={TypographyTypes.Button}
+          onClick={() => handleAction(ParticipantAction.REJECT)}
           styleProps={{ color: '#E33E21' }}
         />
       </ButtonsContainer>

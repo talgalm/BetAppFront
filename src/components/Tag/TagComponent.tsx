@@ -5,6 +5,7 @@ import { TypographyTypes } from '../Topography/TypographyTypes';
 
 export enum TagType {
   PENDING_APPROVAL = 'ממתין לאישור',
+  PENDING_APPROVAL_REST = 'ממתין לאישור שאר משתתפים',
   SUPERVISOR = 'מפקח',
   ACTIVE = 'פעיל',
   COMPLETED = 'הסתיים',
@@ -25,6 +26,10 @@ export const TagTypeColors: Record<keyof typeof TagType, { background: string; a
     background: '#FFEED6',
     accent: '#D87330',
   },
+  PENDING_APPROVAL_REST: {
+    background: '#FFEED6',
+    accent: '#D87330',
+  },
   SUPERVISOR: {
     background: '#FFFAB8',
     accent: '#9E6C00',
@@ -42,8 +47,8 @@ export const TagTypeColors: Record<keyof typeof TagType, { background: string; a
     accent: '#D87330',
   },
   CANCELED: {
-    background: '#E33E214f',
-    accent: '#E33E21',
+    background: '#FFE9F0',
+    accent: '#CA1A61',
   },
 };
 
