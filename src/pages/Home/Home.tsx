@@ -33,7 +33,7 @@ const Home = (): JSX.Element => {
   const [, setActiveStep] = useAtom(ActiveStep);
   const location = useLocation();
   const cameFromCleanup = location.state?.fromNewBetCleanup;
-  const { data, isSuccess, isError, isLoading, error } = useProfile();
+  const { data: profile, isSuccess, isLoading } = useProfile();
 
   const createBetRoute = () => {
     setActiveStep(newBetSteps[NewBetStepValueTypes.Start]);
@@ -42,17 +42,13 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     if (cameFromCleanup) {
-      if (isSuccess && data) setUser(data);
+      if (isSuccess && profile) setUser(profile);
       window.history.replaceState(null, document.title);
     }
   }, [cameFromCleanup]);
 
   if (isLoading) {
     return <BetLoader />;
-  }
-
-  if (isSuccess && data && !user) {
-    setUser(data);
   }
 
   return (
@@ -106,8 +102,8 @@ const Home = (): JSX.Element => {
       </ComplexContainer>
       <BetsContainer>
         <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
-        {user?.bets &&
-          user.bets.map((bet: Bet) => <SingleBetRow key={bet.id} bet={bet} type={bet.status} />)}
+        {profile?.bets &&
+          profile.bets.map((bet: Bet) => <SingleBetRow key={bet.id} bet={bet} type={bet.status} />)}
       </BetsContainer>
     </HomeDivContainer>
   );

@@ -6,7 +6,7 @@ interface TopographyProps {
   value: string | number | undefined;
   variant: TypographyTypes;
   styleProps?: React.CSSProperties;
-  onClick?(): void;
+  onClick?(param?: any): void;
 }
 
 export const Typography: React.FC<TopographyProps> = ({ value, variant, styleProps, onClick }) => {

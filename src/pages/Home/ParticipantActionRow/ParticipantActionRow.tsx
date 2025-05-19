@@ -1,0 +1,56 @@
+import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
+import { BetStatus, Prediction } from '../../../Interfaces';
+import { userAtom } from '../../../Jotai/atoms';
+import { ActionRow } from '../SingleBetRow.styles';
+import { Typography } from '../../../components/Topography/topography';
+import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { ParticipantAction, useParticipantAction } from '../../Bet/Hooks/useParticipentAction';
+
+interface Props {
+  betId: string;
+  predictions: Prediction[];
+  handleBetStatus: (status: string) => void;
+}
+
+export default function ParticipantActionRow({ betId, predictions, handleBetStatus }: Props) {
+  const { t } = useTranslation();
+  const [user] = useAtom(userAtom);
+
+  const { mutateAsync } = useParticipantAction();
+
+  const myStatus = predictions.find((p) => p.userId === user?.id)?.approved;
+  if (myStatus !== BetStatus.PENDING) return null;
+
+  const send = async (action: ParticipantAction) => {
+    try {
+      const res = await mutateAsync({ betId, userId: user!.id, action });
+      handleBetStatus(res.result);
+      console.log('✔︎ server said:', res);
+    } catch (err) {
+      console.error('✘ request failed:', err);
+    }
+  };
+
+  const handleClick = (action: ParticipantAction) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    send(action);
+  };
+
+  return (
+    <ActionRow>
+      <Typography
+        value={t('Home.Confirm')}
+        variant={TypographyTypes.Button}
+        styleProps={{ color: '#15AB94' }}
+        onClick={handleClick(ParticipantAction.APPROVE)}
+      />
+      <Typography
+        value={t('Home.Cancel')}
+        variant={TypographyTypes.Button}
+        styleProps={{ color: '#E33E21' }}
+        onClick={handleClick(ParticipantAction.REJECT)}
+      />
+    </ActionRow>
+  );
+}

@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   TagStyled,
   NotificationContainer,
@@ -6,31 +5,31 @@ import {
   NotificationRow,
   NotificationTextHeader,
   StyledAvatarGroup,
-  ActionRow,
 } from './SingleBetRow.styles';
-import { Bet, BetStatus, Prediction } from '../../Interfaces';
+import { Bet, BetStatus, Prediction, User } from '../../Interfaces';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
-
 import { Typography } from '../../components/Topography/topography';
 import { formatDate } from '../../utils/Helpers';
-import { Avatar } from '@mui/material';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
 import { SmallAvatar } from '../Bet/BetPage.styles';
-import { useAtom } from 'jotai';
-import { userAtom } from '../../Jotai/atoms';
+import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface SingleBetRowProps {
-  bet?: Bet;
+  bet: Bet;
   type?: BetStatus;
   isSupervisor?: boolean;
 }
 
 const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Element => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
-  const [user, setUser] = useAtom(userAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
+
+  const showActionRow =
+    bet.predictions?.find((p) => p.userId === user?.id)?.approved === BetStatus.PENDING;
 
   const handleBet = () => {
     if (bet) {
@@ -38,9 +37,8 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
     }
   };
 
-  const shouldInvite = () => {
-    const myPrediction = bet?.predictions?.find((pred) => pred.userId === user?.id);
-    return myPrediction?.approved ?? BetStatus.PENDING;
+  const handleBetStatus = (status: string) => {
+    // setDisaply(false);
   };
 
   return (
@@ -74,19 +72,12 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
             ))}
         </StyledAvatarGroup>
       </NotificationRow>
-      {shouldInvite() === BetStatus.PENDING && (
-        <ActionRow>
-          <Typography
-            value={t(`Home.Confirm`)}
-            variant={TypographyTypes.Button}
-            styleProps={{ color: '#15AB94' }}
-          />
-          <Typography
-            value={t(`Home.Cancel`)}
-            variant={TypographyTypes.Button}
-            styleProps={{ color: '#E33E21' }}
-          />
-        </ActionRow>
+      {showActionRow && (
+        <ParticipantActionRow
+          betId={bet?.id ?? ''}
+          predictions={bet?.predictions || []}
+          handleBetStatus={handleBetStatus}
+        />
       )}
     </NotificationContainer>
   );
