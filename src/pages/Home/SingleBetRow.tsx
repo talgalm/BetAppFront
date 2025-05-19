@@ -48,10 +48,6 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
     }
   };
 
-  const handleBetStatus = (status: string) => {
-    // setDisaply(false);
-  };
-
   return (
     <NotificationContainer onClick={handleBet}>
       <NotificationHeader>
@@ -84,11 +80,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
         </StyledAvatarGroup>
       </NotificationRow>
       {showActionRow && (
-        <ParticipantActionRow
-          betId={bet?.id ?? ''}
-          predictions={bet?.predictions || []}
-          handleBetStatus={handleBetStatus}
-        />
+        <ParticipantActionRow betId={bet?.id ?? ''} predictions={bet?.predictions || []} />
       )}
     </NotificationContainer>
   );

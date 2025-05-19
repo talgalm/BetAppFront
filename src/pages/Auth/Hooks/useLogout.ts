@@ -1,19 +1,27 @@
-import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
 
 export const useLogout = (): UseMutationResult<void, Error, void> => {
+  const queryClient = useQueryClient(); // ←  access the singleton cache
+
   return useMutation({
     mutationFn: async (): Promise<void> => {
+      /* ---- server‑side logout ---- */
       await ApiService.makeRequest('/auth/logout', HTTPMethod.POST, undefined, true, true);
 
-      // 🧹 Remove access & refresh tokens from cookies
+      /* ---- drop auth cookies ---- */
       document.cookie = 'accessToken=; Max-Age=0; path=/; SameSite=Strict;';
       document.cookie = 'refreshToken=; Max-Age=0; path=/; SameSite=Strict;';
 
-      // 🧹 Clear React Query persisted cache
+      /* ---- clear React‑Query caches ---- */
+      queryClient.removeQueries({ queryKey: ['user-profile'] });
+      queryClient.clear(); // (optional) nuke everything in memory
+
+      /* ---- clear persisted storage ---- */
       localStorage.clear();
       sessionStorage.clear();
-      // Optionally redirect or trigger logout flow
+
+      /* ---- redirect to login ---- */
       window.location.href = '/';
     },
   });

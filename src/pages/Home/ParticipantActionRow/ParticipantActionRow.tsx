@@ -10,10 +10,9 @@ import { useQueryClient } from '@tanstack/react-query';
 interface Props {
   betId: string;
   predictions: Prediction[];
-  handleBetStatus: (status: string) => void;
 }
 
-export default function ParticipantActionRow({ betId, predictions, handleBetStatus }: Props) {
+export default function ParticipantActionRow({ betId, predictions }: Props) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
@@ -26,7 +25,6 @@ export default function ParticipantActionRow({ betId, predictions, handleBetStat
   const send = async (action: ParticipantAction) => {
     try {
       const res = await mutateAsync({ betId, userId: user!.id, action });
-      handleBetStatus(res.result);
       console.log('✔︎ server said:', res);
     } catch (err) {
       console.error('✘ request failed:', err);
