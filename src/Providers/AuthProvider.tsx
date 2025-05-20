@@ -8,8 +8,10 @@ import { useAuth } from './Hooks/useAuth';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { showBoundary } = useErrorBoundary();
-  const { user, initialized, isLoading, isError, error } = useAuth();
   const location = useLocation();
+  const onLoginPage = location.pathname === '/';
+
+  const { user, initialized, isLoading, isError, error } = useAuth(!onLoginPage);
 
   if (!initialized && isLoading) {
     return <BetLoader />;

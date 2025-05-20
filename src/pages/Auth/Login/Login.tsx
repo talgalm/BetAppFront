@@ -27,7 +27,7 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const [maskPassword, setMaskPassword] = useState(true);
   const formValues = watch();
-  const { refetch } = useProfile();
+  const { refetch } = useProfile(false);
   const [isFormEmpty, setIsFormEmpty] = useState(true);
 
   useEffect(() => {
