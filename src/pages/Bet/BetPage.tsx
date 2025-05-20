@@ -185,7 +185,7 @@ const BetPage = (): JSX.Element => {
         )}
         <Tag type={tagType} />
       </HeaderContainer>
-      <ContentContainer>
+      <ContentContainer isActive={tagType === TagType.ACTIVE}>
         {fieldDefinitions.map((field, idx) => (
           <FieldRow
             key={idx}
@@ -199,17 +199,25 @@ const BetPage = (): JSX.Element => {
       </ContentContainer>
       <ButtonsContainer>
         <StyledButton
-          value={tagType === TagType.PENDING_APPROVAL_REST ? 'סיום ובחירת מנצח' : 'אשר השתתפות'}
+          value={
+            tagType === TagType.PENDING_APPROVAL_REST
+              ? 'סיום ובחירת מנצח'
+              : tagType === TagType.PENDING_APPROVAL
+                ? 'אשר השתתפות'
+                : 'סיום'
+          }
           onClick={() => handleAction(ParticipantAction.APPROVE)}
           styleProps={{ width: '100%' }}
           disabled={tagType === TagType.PENDING_APPROVAL_REST}
         />
-        <Typography
-          value={tagType === TagType.PENDING_APPROVAL_REST ? 'יציאה מהתערבות' : 'דחה הזמנה'}
-          variant={TypographyTypes.Button}
-          onClick={() => handleAction(ParticipantAction.REJECT)}
-          styleProps={{ color: '#E33E21' }}
-        />
+        {(tagType === TagType.PENDING_APPROVAL_REST || tagType === TagType.PENDING_APPROVAL) && (
+          <Typography
+            value={tagType === TagType.PENDING_APPROVAL_REST ? 'יציאה מהתערבות' : 'דחה הזמנה'}
+            variant={TypographyTypes.Button}
+            onClick={() => handleAction(ParticipantAction.REJECT)}
+            styleProps={{ color: '#E33E21' }}
+          />
+        )}
       </ButtonsContainer>
     </MainContainer>
   );

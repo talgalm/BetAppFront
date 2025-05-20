@@ -1,8 +1,16 @@
-// components/ConfirmDialog.tsx
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { Dialog } from '@mui/material';
 import { Typography } from '../Topography/topography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
+import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonsContainer,
+  PopUpContent,
+  PopUpHeader,
+  PopUpRUDiv,
+} from '../../Errors/ErrorHandler.styles';
+import { ThemeType } from '../../Theme/theme';
+import StyledButton from '../Button/StyledButton';
 
 type ConfirmDialogProps = {
   open: boolean;
@@ -14,39 +22,36 @@ export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({ open, onClose, 
   const { t } = useTranslation();
   return (
     <Dialog open={open} onClose={onClose} dir="rtl">
-      <DialogTitle>
-        <Typography
-          value={'מה, נלחצת ?'}
-          variant={TypographyTypes.H1}
-          styleProps={{ color: 'black' }}
-        />
-      </DialogTitle>
-      <DialogContent style={{ gap: 15, display: 'flex', flexDirection: 'column' }}>
-        <Typography
-          value={'התחלת התערבות בהתלהבות, ואז נמאס לך באמצע ? נשמע מוכר'}
-          variant={TypographyTypes.TextMedium}
-          styleProps={{ color: 'black' }}
-        />
-        <Typography
-          value={'אולי תפתיע ותסיים פעם אחת משהו ?'}
-          variant={TypographyTypes.TextSmall}
-          styleProps={{ color: 'black' }}
-        />
-      </DialogContent>
-      <DialogActions style={{ gap: 20, display: 'flex', justifyContent: 'center' }}>
-        <Typography
-          value={'וואלה שכנעת'}
-          variant={TypographyTypes.Button}
-          styleProps={{ color: '#15AB94' }}
-          onClick={onClose}
-        />
-        <Typography
-          value={'עזוב אותי יזין'}
-          variant={TypographyTypes.Button}
-          styleProps={{ color: '#E33E21' }}
-          onClick={onConfirm}
-        />
-      </DialogActions>
+      <PopUpRUDiv>
+        <PopUpHeader>
+          <CloseIcon onClick={onClose} />
+        </PopUpHeader>
+        <PopUpContent>
+          <Typography
+            value={'לסיים פתיחת ההתערבות ?'}
+            variant={TypographyTypes.H3}
+            styleProps={{ color: 'black' }}
+          />
+          <Typography
+            value={'אם תסגור כעת, ההתערבות לא תישמר וכל הנתונים שהזנת יימחקו'}
+            variant={TypographyTypes.TextMedium}
+            styleProps={{ color: 'black' }}
+          />
+        </PopUpContent>
+        <ButtonsContainer>
+          <StyledButton
+            value={'לסגור בלי לשמור'}
+            colorVariant={ThemeType.Primary}
+            onClick={onConfirm}
+          />
+          <StyledButton
+            value={'שמירה כטיוטה'}
+            colorVariant={ThemeType.Secondary}
+            styleProps={{ border: '2px solid #15AB94' }}
+            onClick={onClose}
+          />
+        </ButtonsContainer>
+      </PopUpRUDiv>
     </Dialog>
   );
 };

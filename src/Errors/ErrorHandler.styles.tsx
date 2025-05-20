@@ -58,4 +58,19 @@ export const PopUpContent = styled('div')({
 export const ButtonsContainer = styled('div')({
   width: '100%',
   paddingBottom: 12,
+  gap: 12,
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const PopUpRUDiv = styled('div')({
+  gap: 12,
+  borderRadius: 16,
+  paddingTop: 16,
+  paddingRight: 16,
+  paddingLeft: 16,
+  backgroundColor: 'white',
+  display: 'flex',
+  justifyContent: 'space-between',
+  flexDirection: 'column',
 });
