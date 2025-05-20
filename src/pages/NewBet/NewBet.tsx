@@ -27,6 +27,7 @@ import { ThemeType } from '../../Theme/theme';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
 import { Bet } from '../../Interfaces';
+import { useQueryClient } from '@tanstack/react-query';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -38,6 +39,7 @@ const NewBet = () => {
   const cleanNewBet = useCleanCreateNewBet();
   const createBet = useCreateBet();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [newBet, setNewBet] = useState<Bet | undefined>(undefined);
 
@@ -138,6 +140,7 @@ const NewBet = () => {
   const onSubmit = (data: any) => {
     createBet.mutate(data, {
       onSuccess: (res) => {
+        queryClient.invalidateQueries({ queryKey: ['user-profile'] });
         setNewBet(res.bet);
         setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
         setTargetProgress(100);

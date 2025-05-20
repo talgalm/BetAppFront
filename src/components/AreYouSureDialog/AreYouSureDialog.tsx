@@ -3,14 +3,8 @@ import { Typography } from '../Topography/topography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonsContainer,
-  PopUpContent,
-  PopUpHeader,
-  PopUpRUDiv,
-} from '../../Errors/ErrorHandler.styles';
-import { ThemeType } from '../../Theme/theme';
-import StyledButton from '../Button/StyledButton';
+import { PopUpContent, PopUpHeader, PopUpRUDiv } from '../../Errors/ErrorHandler.styles';
+import ButtonsHub from '../../pages/ButtonsHub';
 
 type ConfirmDialogProps = {
   open: boolean;
@@ -28,29 +22,24 @@ export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({ open, onClose, 
         </PopUpHeader>
         <PopUpContent>
           <Typography
-            value={'לסיים פתיחת ההתערבות ?'}
+            value={t('AreYouSureDialog.Title')}
             variant={TypographyTypes.H3}
             styleProps={{ color: 'black' }}
           />
           <Typography
-            value={'אם תסגור כעת, ההתערבות לא תישמר וכל הנתונים שהזנת יימחקו'}
+            value={t('AreYouSureDialog.Subtitle')}
             variant={TypographyTypes.TextMedium}
             styleProps={{ color: 'black' }}
           />
         </PopUpContent>
-        <ButtonsContainer>
-          <StyledButton
-            value={'לסגור בלי לשמור'}
-            colorVariant={ThemeType.Primary}
-            onClick={onConfirm}
-          />
-          <StyledButton
-            value={'שמירה כטיוטה'}
-            colorVariant={ThemeType.Secondary}
-            styleProps={{ border: '2px solid #15AB94' }}
-            onClick={onClose}
-          />
-        </ButtonsContainer>
+        <ButtonsHub
+          type="relative"
+          textButtonUp={t('AreYouSureDialog.ConfimButton')}
+          onClickButtonUp={onConfirm}
+          textButtonDown={t('AreYouSureDialog.CloseButton')}
+          onClickButtonDown={onClose}
+          propsOverrideButtonsDown={{ border: '2px solid #15AB94' }}
+        />
       </PopUpRUDiv>
     </Dialog>
   );

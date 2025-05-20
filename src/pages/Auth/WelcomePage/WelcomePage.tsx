@@ -18,19 +18,15 @@ import ForgotPasswordForm from '../ForgotPassword/ForgotPasswordForm';
 import NewPasswordForm from '../NewPassword/NewPasswordForm';
 import CodeVerification from '../CodeVerification/CodeVerification';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import ButtonsHub from '../../ButtonsHub';
 
 const WelcomePage = (): JSX.Element => {
-  const theme = useTheme();
   const { t } = useTranslation();
   const [step, setActiveStep] = useAtom(UserActiveStep);
 
   const handleNextStep = (nextStep: AuthStepValueTypes) => {
     setActiveStep(authSteps[nextStep]);
   };
-
-  // useEffect(() => {
-  //   localStorage.clear();
-  // }, []);
 
   const renderSuccessPage = (
     image: JSX.Element,
@@ -62,15 +58,11 @@ const WelcomePage = (): JSX.Element => {
             <WelcomePageImage />
           </div>
           <ButtonsContainer>
-            <StyledButton
-              value={t('WelcomePage.LoginTitle')}
-              colorVariant={ThemeType.Primary}
-              onClick={() => handleNextStep(AuthStepValueTypes.Login)}
-            />
-            <StyledButton
-              value={t('WelcomePage.RegisterTitle')}
-              colorVariant={ThemeType.Secondary}
-              onClick={() => handleNextStep(AuthStepValueTypes.RegisterInfo)}
+            <ButtonsHub
+              textButtonUp={t('WelcomePage.LoginTitle')}
+              onClickButtonUp={() => handleNextStep(AuthStepValueTypes.Login)}
+              textButtonDown={t('WelcomePage.RegisterTitle')}
+              onClickButtonDown={() => handleNextStep(AuthStepValueTypes.RegisterInfo)}
             />
           </ButtonsContainer>
         </>

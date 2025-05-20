@@ -11,7 +11,6 @@ import {
   AvatarRow,
   SmallAvatar,
   ButtonsContainer,
-  ButtonsContainerInner,
 } from './BetPage.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';

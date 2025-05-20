@@ -55,14 +55,6 @@ export const PopUpContent = styled('div')({
   direction: 'rtl',
 });
 
-export const ButtonsContainer = styled('div')({
-  width: '100%',
-  paddingBottom: 12,
-  gap: 12,
-  display: 'flex',
-  flexDirection: 'column',
-});
-
 export const PopUpRUDiv = styled('div')({
   gap: 12,
   borderRadius: 16,

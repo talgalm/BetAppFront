@@ -10,6 +10,7 @@ import BetPage from '../../../pages/Bet/BetPage.lang.json';
 import WelcomePage from '../../../pages/Auth/WelcomePage/WelcomePage.lang.json';
 import Home from '../../../pages/Home/Home.lang.json';
 import Register from '../../../pages/Auth/Register/Register.lang.json';
+import AreYouSureDialog from '../../../components/AreYouSureDialog/AreYouSureDialog.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
@@ -23,4 +24,5 @@ export default {
   ConditionModal: ConditionModal,
   Switch: Switch,
   BetPage: BetPage,
+  AreYouSureDialog: AreYouSureDialog,
 };

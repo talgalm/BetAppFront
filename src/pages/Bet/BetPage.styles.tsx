@@ -34,7 +34,7 @@ export const HeaderContainer = styled('div')({
 
 export const ContentContainer = styled('div')<{ isActive?: boolean }>(({ isActive }) => ({
   position: 'fixed',
-  inset: `210px 0 ${isActive ? 100 : 140}px 0`,
+  inset: `180px 0 ${isActive ? 100 : 140}px 0`,
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
