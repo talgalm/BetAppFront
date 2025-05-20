@@ -14,7 +14,7 @@ export const HomeDivContainer = styled('div')({
 export const ComplexContainer = styled('div')({
   borderRadius: 16,
   padding: 16,
-  gap: 16,
+  gap: 8,
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: '#EFF6FF',
@@ -85,4 +85,20 @@ export const BetsContainer = styled('div')({
   flexDirection: 'column',
   gap: 12,
   padding: '8px 0px 8px 0px',
+});
+
+export const NoBetsContainer = styled('div')({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  textAlign: 'center',
+  direction: 'rtl',
+  marginTop: 50,
+  gap: 4,
+});
+
+export const IconContainer = styled('div')({
+  marginBottom: 15,
 });

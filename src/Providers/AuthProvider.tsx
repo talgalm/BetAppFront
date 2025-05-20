@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { ReactNode } from 'react';
+import { useLocation, Navigate } from 'react-router-dom';
 import BetLoader from '../Theme/Loader/loader';
 import ErrorFallback, { ErrorHandler } from '../Errors/ErrorHandler';
 import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';

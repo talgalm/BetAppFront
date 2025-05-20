@@ -41,7 +41,7 @@ export const ParticipantsRow = styled('div')({
 
 export const StyledDivider = styled(Divider)({
   width: '100%',
-  borderBottomWidth: 2,
+  borderBottomWidth: 1,
   borderColor: '#C8C8E1',
 });
 

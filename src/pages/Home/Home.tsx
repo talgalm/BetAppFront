@@ -5,6 +5,8 @@ import {
   NotificationCubeContainer,
   NotificationNumber,
   BetsContainer,
+  NoBetsContainer,
+  IconContainer,
 } from './Home.styles';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Topography/topography';
@@ -13,6 +15,7 @@ import { ThemeType } from '../../Theme/theme';
 import { ReactComponent as HistoryIcon } from '../../Theme/Icons/HomeIcons/HistoryIcon.svg';
 import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/Supervisor.svg';
 import { ReactComponent as BetsIcon } from '../../Theme/Icons/HomeIcons/BetsIcon.svg';
+import { ReactComponent as NoBetsIcon } from '../../Theme/Icons/HomeIcons/NoBetsIcon.svg';
 import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
@@ -57,44 +60,66 @@ const Home = (): JSX.Element => {
 
   return (
     <HomeDivContainer>
-      <ComplexContainer>
-        <Typography value={t('Home.Hi', { name: firstName })} variant={TypographyTypes.H1} />
-        <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
+      {profile.bets.length === 0 ? (
+        <>
+          <ComplexContainer>
+            <Typography value={t('Home.Hi', { name: firstName })} variant={TypographyTypes.H3} />
+            <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
+            <StyledButton
+              value={t('Home.CreateNewBet')}
+              colorVariant={ThemeType.Primary}
+              onClick={createBetRoute}
+            />
+          </ComplexContainer>
+          <NoBetsContainer>
+            <IconContainer>
+              <NoBetsIcon />
+            </IconContainer>
+            <Typography value={t('Home.NoBetsTitle')} variant={TypographyTypes.H3} />
+            <Typography value={t('Home.NoBetsSubTitle')} variant={TypographyTypes.TextBig} />
+          </NoBetsContainer>
+        </>
+      ) : (
+        <>
+          <ComplexContainer>
+            <Typography value={t('Home.Hi', { name: firstName })} variant={TypographyTypes.H1} />
+            <Typography value={t('Home.Subtitle')} variant={TypographyTypes.TextBig} />
 
-        <NotificationContainer>
-          <NotificationCube
-            icon={<BetsIcon />}
-            value={activeBetsCount}
-            bg={NotificationColors.BetBackground}
-            accent={NotificationColors.BetAccent}
-          />
-          <NotificationCube
-            icon={<SupervisorIcon />}
-            value={supervisorCount}
-            bg={NotificationColors.SupervisorBackground}
-            accent={NotificationColors.SupervisorAccent}
-          />
-          <NotificationCube
-            icon={<HistoryIcon />}
-            value={completedBetsCount}
-            bg={NotificationColors.HistoryBackground}
-            accent={NotificationColors.HistoryAccent}
-          />
-        </NotificationContainer>
+            <NotificationContainer>
+              <NotificationCube
+                icon={<BetsIcon />}
+                value={activeBetsCount}
+                bg={NotificationColors.BetBackground}
+                accent={NotificationColors.BetAccent}
+              />
+              <NotificationCube
+                icon={<SupervisorIcon />}
+                value={supervisorCount}
+                bg={NotificationColors.SupervisorBackground}
+                accent={NotificationColors.SupervisorAccent}
+              />
+              <NotificationCube
+                icon={<HistoryIcon />}
+                value={completedBetsCount}
+                bg={NotificationColors.HistoryBackground}
+                accent={NotificationColors.HistoryAccent}
+              />
+            </NotificationContainer>
 
-        <StyledButton
-          value={t('Home.CreateNewBet')}
-          colorVariant={ThemeType.Primary}
-          onClick={createBetRoute}
-        />
-      </ComplexContainer>
-
-      <BetsContainer>
-        <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
-        {profile.bets.map((bet: Bet) => (
-          <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
-        ))}
-      </BetsContainer>
+            <StyledButton
+              value={t('Home.CreateNewBet')}
+              colorVariant={ThemeType.Primary}
+              onClick={createBetRoute}
+            />
+          </ComplexContainer>
+          <BetsContainer>
+            <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
+            {profile.bets.map((bet: Bet) => (
+              <SingleBetRow key={bet.id} bet={bet} type={bet.status} />
+            ))}
+          </BetsContainer>
+        </>
+      )}
     </HomeDivContainer>
   );
 };
