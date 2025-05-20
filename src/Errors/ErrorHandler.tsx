@@ -1,13 +1,7 @@
 import { FallbackProps } from 'react-error-boundary';
 import { ERROR_MESSAGES, ErrorMessage, ErrorTypes } from './interface';
 import { ReactComponent as CloseIcon } from '../Theme/Icons/Close.svg';
-import {
-  ButtonsContainer,
-  PopUpContent,
-  PopUpDiv,
-  PopUpHeader,
-  PopUpOverlay,
-} from './ErrorHandler.styles';
+import { PopUpContent, PopUpDiv, PopUpHeader, PopUpOverlay } from './ErrorHandler.styles';
 import { Typography } from '../components/Topography/topography';
 import StyledButton from '../components/Button/StyledButton';
 import { ThemeType } from '../Theme/theme';
@@ -40,7 +34,8 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
           <Typography value={typedError.title} variant={TypographyTypes.H3} />
           <Typography value={typedError.subtitle} variant={TypographyTypes.TextMedium} />
         </PopUpContent>
-        <ButtonsHub textButtonUp={typedError.buttonText} />
+        {/* <ButtonsHub textButtonUp={typedError.buttonText} /> */}
+        <ButtonsHub buttons={[{ value: typedError.buttonText }]} />
       </PopUpDiv>
     </PopUpOverlay>
   );

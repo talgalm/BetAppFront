@@ -4,7 +4,9 @@ import { TypographyTypes } from '../Topography/TypographyTypes';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import { PopUpContent, PopUpHeader, PopUpRUDiv } from '../../Errors/ErrorHandler.styles';
-import ButtonsHub from '../../pages/ButtonsHub';
+import ButtonsHub, { ButtonsHubStatus } from '../../pages/ButtonsHub';
+import { ThemeType } from '../../Theme/theme';
+import { ButtonConfig } from '../Button/StyledButton';
 
 type ConfirmDialogProps = {
   open: boolean;
@@ -14,32 +16,41 @@ type ConfirmDialogProps = {
 
 export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({ open, onClose, onConfirm }) => {
   const { t } = useTranslation();
+
+  const title = t('AreYouSureDialog.Title');
+  const subtitle = t('AreYouSureDialog.Subtitle');
+
+  const buttons: ButtonConfig[] = [
+    {
+      value: t('AreYouSureDialog.ConfimButton'),
+      onClick: onConfirm,
+      colorVariant: ThemeType.Primary,
+    },
+    {
+      value: t('AreYouSureDialog.CloseButton'),
+      onClick: onClose,
+      colorVariant: ThemeType.Secondary,
+      styleProps: { border: '2px solid #15AB94' },
+    },
+  ];
+
   return (
     <Dialog open={open} onClose={onClose} dir="rtl">
       <PopUpRUDiv>
         <PopUpHeader>
           <CloseIcon onClick={onClose} />
         </PopUpHeader>
+
         <PopUpContent>
+          <Typography value={title} variant={TypographyTypes.H3} styleProps={{ color: 'black' }} />
           <Typography
-            value={t('AreYouSureDialog.Title')}
-            variant={TypographyTypes.H3}
-            styleProps={{ color: 'black' }}
-          />
-          <Typography
-            value={t('AreYouSureDialog.Subtitle')}
+            value={subtitle}
             variant={TypographyTypes.TextMedium}
             styleProps={{ color: 'black' }}
           />
         </PopUpContent>
-        <ButtonsHub
-          type="relative"
-          textButtonUp={t('AreYouSureDialog.ConfimButton')}
-          onClickButtonUp={onConfirm}
-          textButtonDown={t('AreYouSureDialog.CloseButton')}
-          onClickButtonDown={onClose}
-          propsOverrideButtonsDown={{ border: '2px solid #15AB94' }}
-        />
+
+        <ButtonsHub type={ButtonsHubStatus.COLUMN} buttons={buttons} />
       </PopUpRUDiv>
     </Dialog>
   );

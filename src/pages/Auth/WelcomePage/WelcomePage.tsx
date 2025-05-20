@@ -2,7 +2,7 @@ import { ButtonsContainer, MainContainer, TextConatiner } from './WelcomePage.st
 import { ReactComponent as WelcomePageImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage.svg';
 import { ReactComponent as SuccessfulRegisterImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage2.svg';
 import { ReactComponent as SuccessfulChangePasswordImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage3.svg';
-import StyledButton from '../../../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '../../../components/Button/StyledButton';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { ThemeType } from '../../../Theme/theme';
@@ -27,6 +27,19 @@ const WelcomePage = (): JSX.Element => {
   const handleNextStep = (nextStep: AuthStepValueTypes) => {
     setActiveStep(authSteps[nextStep]);
   };
+
+  const buttons: ButtonConfig[] = [
+    {
+      value: t('WelcomePage.LoginTitle'),
+      onClick: () => handleNextStep(AuthStepValueTypes.Login),
+      colorVariant: ThemeType.Primary,
+    },
+    {
+      value: t('WelcomePage.RegisterTitle'),
+      onClick: () => handleNextStep(AuthStepValueTypes.RegisterInfo),
+      colorVariant: ThemeType.Secondary,
+    },
+  ];
 
   const renderSuccessPage = (
     image: JSX.Element,
@@ -58,12 +71,7 @@ const WelcomePage = (): JSX.Element => {
             <WelcomePageImage />
           </div>
           <ButtonsContainer>
-            <ButtonsHub
-              textButtonUp={t('WelcomePage.LoginTitle')}
-              onClickButtonUp={() => handleNextStep(AuthStepValueTypes.Login)}
-              textButtonDown={t('WelcomePage.RegisterTitle')}
-              onClickButtonDown={() => handleNextStep(AuthStepValueTypes.RegisterInfo)}
-            />
+            <ButtonsHub buttons={buttons} />
           </ButtonsContainer>
         </>
       )}

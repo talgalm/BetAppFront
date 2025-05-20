@@ -7,5 +7,10 @@
     "deadline": "דדליין",
     "files": "קבצים",
     "supervisor": "אחראי",
-    "personalPredictions" : "תנאים אישיים"
+    "personalPredictions" : "תנאים אישיים",
+    "approveAndPickWinner": "סיום ובחירת מנצח",
+    "approveParticipation": "אשר השתתפות",
+    "finish": "סיום",
+    "leaveBet": "יציאה מהתערבות",
+    "rejectInvite": "דחה הזמנה"
 }

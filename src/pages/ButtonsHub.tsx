@@ -1,40 +1,41 @@
-import StyledButton from '../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '../components/Button/StyledButton';
 import { ThemeType } from '../Theme/theme';
 import { ButtonsHubContainer } from './ButtonsHub.styles';
 
+export enum ButtonsHubStatus {
+  FIXED = 'fixed',
+  COLUMN = 'relative',
+  ROW = 'row',
+}
+
 type ButtonsHubProps = {
-  type?: 'fixed' | 'relative';
-  textButtonUp: string;
-  textButtonDown?: string;
-  onClickButtonUp?: () => void;
-  onClickButtonDown?: () => void;
-  propsOverrideButtonsDown?: React.CSSProperties;
+  type?: ButtonsHubStatus;
+  buttons: ButtonConfig[];
 };
 
 export const ButtonsHub: React.FC<ButtonsHubProps> = ({
-  type = 'relative',
-  textButtonUp,
-  textButtonDown,
-  onClickButtonUp,
-  onClickButtonDown,
-  propsOverrideButtonsDown,
+  type = ButtonsHubStatus.COLUMN,
+  buttons,
 }) => {
-  const isFixed = type === 'fixed';
-
+  const isFixed = type === ButtonsHubStatus.FIXED;
+  const isRow = type === ButtonsHubStatus.ROW;
   return (
-    <ButtonsHubContainer isFixed={isFixed}>
-      <StyledButton
-        value={textButtonUp}
-        colorVariant={ThemeType.Primary}
-        onClick={onClickButtonUp}
-      />
-      {textButtonDown && (
-        <StyledButton
-          value={textButtonDown}
-          colorVariant={ThemeType.Secondary}
-          onClick={onClickButtonDown}
-          styleProps={propsOverrideButtonsDown}
-        />
+    <ButtonsHubContainer isFixed={isFixed} isRow={isRow}>
+      {buttons.map(
+        (
+          { value, onClick, colorVariant = ThemeType.Primary, styleProps, disabled, icon },
+          index
+        ) => (
+          <StyledButton
+            key={index}
+            value={value}
+            colorVariant={colorVariant}
+            onClick={onClick}
+            styleProps={styleProps}
+            disabled={disabled}
+            icon={icon}
+          />
+        )
       )}
     </ButtonsHubContainer>
   );

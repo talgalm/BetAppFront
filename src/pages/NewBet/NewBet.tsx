@@ -9,7 +9,7 @@ import {
 } from './NewBet.styles';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
-import StyledButton from '../../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '../../components/Button/StyledButton';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +28,7 @@ import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
 import { Bet } from '../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
+import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -169,6 +170,33 @@ const NewBet = () => {
     }
   };
 
+  const buttons: ButtonConfig[] = [
+    ...(step.inputName
+      ? [
+          {
+            value: t(step.continueButtonText ?? t('NewBet.Continue')),
+            onClick: () => handleStep(step.continueButton),
+            styleProps: { width: '100%' },
+            disabled: disableButton,
+          },
+        ]
+      : []),
+
+    ...(step.prevButton
+      ? [
+          {
+            icon: <ArrowRight color={PRIMARY_COLOR} />,
+            onClick: () => handleStep(step.prevButton, true),
+            styleProps: {
+              width: '32%',
+              backgroundColor: 'white',
+              border: '2px solid #15AB94',
+            },
+          },
+        ]
+      : []),
+  ];
+
   return (
     <div
       style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', overflowY: 'hidden' }}
@@ -220,23 +248,7 @@ const NewBet = () => {
               colorVariant={ThemeType.Secondary}
             />
           )}
-          <ButtonsContainerInner>
-            {step.inputName && (
-              <StyledButton
-                value={t(step.continueButtonText ?? t('NewBet.Continue'))}
-                onClick={() => handleStep(step.continueButton)}
-                styleProps={{ width: '100%' }}
-                disabled={disableButton}
-              />
-            )}
-            {step.prevButton && (
-              <StyledButton
-                onClick={() => handleStep(step.prevButton, true)}
-                icon={<ArrowRight color={PRIMARY_COLOR} />}
-                styleProps={{ width: '32%', backgroundColor: 'white', border: '2px solid #15AB94' }}
-              />
-            )}
-          </ButtonsContainerInner>
+          <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW} />
           {step.step === NewBetStepValueTypes.Success && (
             <StyledButton
               value={t('NewBet.WatchBet')}

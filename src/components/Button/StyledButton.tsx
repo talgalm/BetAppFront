@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { ThemeType } from '../../Theme/theme';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 
-interface StyledButtonProps {
+export interface ButtonConfig {
   value?: string;
   textColor?: string;
   onClick?: () => void;
@@ -17,7 +17,7 @@ interface StyledButtonProps {
   type?: 'button' | 'reset' | 'submit' | undefined;
 }
 
-const StyledButton: React.FC<StyledButtonProps> = ({
+const StyledButton: React.FC<ButtonConfig> = ({
   value,
   onClick,
   variant = TypographyTypes.Button,
@@ -48,7 +48,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
         <Typography
           value={value}
           variant={TypographyTypes.Button}
-          styleProps={{ color: theme.palette[colorVariant].contrastText }}
+          styleProps={{ color: mergedStyles?.color ?? theme.palette[colorVariant].contrastText }}
         />
       )}
       {icon}

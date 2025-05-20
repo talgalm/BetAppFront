@@ -23,9 +23,11 @@ import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { isArray } from 'lodash';
 import BetLoader from '../../Theme/Loader/loader';
-import StyledButton from '../../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '../../components/Button/StyledButton';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction } from './Hooks/useParticipentAction';
+import { ThemeType } from '../../Theme/theme';
+import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 
 interface FieldRowProps {
   label: string;
@@ -166,6 +168,32 @@ const BetPage = (): JSX.Element => {
 
   const tagType: TagType = betStatus ?? betStatusToTagType[bet?.status ?? BetStatus.ACTIVE];
 
+  const buttons: ButtonConfig[] = [
+    {
+      value:
+        tagType === TagType.PENDING_APPROVAL_REST
+          ? t('BetPage.approveAndPickWinner')
+          : tagType === TagType.PENDING_APPROVAL
+            ? t('BetPage.approveParticipation')
+            : t('BetPage.finish'),
+      onClick: () => handleAction(ParticipantAction.APPROVE),
+      disabled: tagType === TagType.PENDING_APPROVAL_REST,
+    },
+    ...(tagType === TagType.PENDING_APPROVAL_REST || tagType === TagType.PENDING_APPROVAL
+      ? [
+          {
+            value:
+              tagType === TagType.PENDING_APPROVAL_REST
+                ? t('BetPage.leaveBet')
+                : t('BetPage.rejectInvite'),
+            onClick: () => handleAction(ParticipantAction.REJECT),
+            colorVariant: ThemeType.Secondary,
+            styleProps: { color: '#E33E21' },
+          },
+        ]
+      : []),
+  ];
+
   const handleAction = (action: ParticipantAction) => {
     if (tagType === TagType.PENDING_APPROVAL_REST) {
       console.log(`Clicked "${action}" – tagType:`, tagType);
@@ -196,28 +224,7 @@ const BetPage = (): JSX.Element => {
           />
         ))}
       </ContentContainer>
-      <ButtonsContainer>
-        <StyledButton
-          value={
-            tagType === TagType.PENDING_APPROVAL_REST
-              ? 'סיום ובחירת מנצח'
-              : tagType === TagType.PENDING_APPROVAL
-                ? 'אשר השתתפות'
-                : 'סיום'
-          }
-          onClick={() => handleAction(ParticipantAction.APPROVE)}
-          styleProps={{ width: '100%' }}
-          disabled={tagType === TagType.PENDING_APPROVAL_REST}
-        />
-        {(tagType === TagType.PENDING_APPROVAL_REST || tagType === TagType.PENDING_APPROVAL) && (
-          <Typography
-            value={tagType === TagType.PENDING_APPROVAL_REST ? 'יציאה מהתערבות' : 'דחה הזמנה'}
-            variant={TypographyTypes.Button}
-            onClick={() => handleAction(ParticipantAction.REJECT)}
-            styleProps={{ color: '#E33E21' }}
-          />
-        )}
-      </ButtonsContainer>
+      <ButtonsHub type={ButtonsHubStatus.FIXED} buttons={buttons} />
     </MainContainer>
   );
 };
