@@ -1,5 +1,6 @@
 import { Avatar, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { ReactComponent as ArrowIcon } from '../../Theme/Icons/Bet/Arrow.svg';
 
 export const MainContainer = styled('div')({
   display: 'flex',
@@ -34,7 +35,7 @@ export const HeaderContainer = styled('div')({
 
 export const ContentContainer = styled('div')<{ isActive?: boolean }>(({ isActive }) => ({
   position: 'fixed',
-  inset: `180px 0 ${isActive ? 100 : 140}px 0`,
+  inset: `${isActive ? 210 : 180}px 0 ${isActive ? 100 : 140}px 0`,
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
@@ -58,12 +59,13 @@ export const Column = styled('div')({
   gap: 5,
 });
 
-export const AvatarRow = styled('div')({
+export const AvatarRow = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: isOpen ? 'column' : 'row', // Or 'row wrap' if you want avatars + names in a row
   gap: 4,
   justifyContent: 'flex-start',
-});
+  transition: 'all 1s ease',
+}));
 
 type Status = 'pending' | 'active' | 'canceled';
 
@@ -114,3 +116,11 @@ export const ButtonsContainerInner = styled('div')({
   alignItems: 'center',
   width: '100%',
 });
+
+export const RotatingArrow = styled(ArrowIcon)<{ open: boolean }>`
+  transform: ${({ open }) => (open ? 'rotate(-90deg)' : 'rotate(0deg)')};
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 12px;
+`;

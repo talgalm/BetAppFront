@@ -67,7 +67,7 @@ const theme = createTheme({
     body2: {
       //TextSmall
       fontWeight: 500,
-      fontSize: 8,
+      fontSize: 9,
       color: '#ffffff',
       fontFamily: 'Fredoka',
     },

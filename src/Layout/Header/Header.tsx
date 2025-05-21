@@ -42,7 +42,7 @@ const Header = () => {
 
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
-  const [layoutEphemeral] = useAtom(layoutEphemeralAtom);
+  const [layoutEphemeral, setLayout] = useAtom(layoutEphemeralAtom);
 
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
@@ -106,8 +106,8 @@ const Header = () => {
       setOpen(true);
       return;
     }
-
     layoutEphemeral.overlay();
+    setLayout({ overlay: undefined });
   };
 
   return (

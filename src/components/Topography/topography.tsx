@@ -6,10 +6,17 @@ interface TopographyProps {
   value: string | number | undefined;
   variant: TypographyTypes;
   styleProps?: React.CSSProperties;
+  truncate?: boolean;
   onClick?(param?: any): void;
 }
 
-export const Typography: React.FC<TopographyProps> = ({ value, variant, styleProps, onClick }) => {
+export const Typography: React.FC<TopographyProps> = ({
+  value,
+  variant,
+  styleProps,
+  truncate,
+  onClick,
+}) => {
   const theme = useTheme();
 
   // Access theme.typography[variant] using MUI's variant names
@@ -34,9 +41,10 @@ export const Typography: React.FC<TopographyProps> = ({ value, variant, stylePro
       onClick={onClick}
       style={{
         ...mergedStyles,
-        whiteSpace: mergedStyles?.whiteSpace || 'pre-wrap',
-        overflow: mergedStyles?.overflow || 'hidden',
-        textOverflow: mergedStyles?.textOverflow || 'ellipsis',
+        whiteSpace: truncate ? 'nowrap' : mergedStyles?.whiteSpace || 'pre-wrap',
+        overflow: truncate ? 'hidden' : mergedStyles?.overflow || 'visible',
+        textOverflow: truncate ? 'ellipsis' : mergedStyles?.textOverflow || 'clip',
+        maxWidth: truncate ? '250px' : mergedStyles?.maxWidth || 'none',
         display: 'block',
       }}
     >
