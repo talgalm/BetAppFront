@@ -93,7 +93,7 @@ const NewBetContent = <T extends FieldValues>({
       )}
       {inputName && control && type === NewBetStepValueTypes.deadline && (
         <div style={{ width: '100%', paddingTop: 8, paddingBottom: 8 }}>
-          <Calendar control={control} inputName={inputName} displayAddToCalendar />
+          <Calendar control={control} inputName={inputName} />
         </div>
       )}
       {inputName && control && type === NewBetStepValueTypes.Conditions && (
