@@ -8,7 +8,7 @@ export type Participant = {
   phoneNumber: string;
   guess?: string;
   date?: Date | string;
-  approved?: boolean;
+  status?: boolean;
 };
 
 export type CreateBetInputs = {
@@ -34,7 +34,7 @@ export const useCreateBet = (): UseMutationResult<{ bet: Bet }, Error, CreateBet
           ...p,
           date: p.date ? new Date(p.date).toISOString() : null,
         })),
-        files: [], // not sending files
+        files: [],
         supervisor: betData.supervisor ?? [],
       };
 

@@ -37,10 +37,9 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
   }, [user]);
 
   const handleCoinsChange = (value: number, isCustom = false) => {
-    // eslint-disable-next-line no-constant-condition
-    if (true) {
+    if (user?.betim) {
       field.onChange(value);
-      setUserCurrentCoins(200 - value);
+      setUserCurrentCoins(user?.betim - value);
       setIsCustomValue(isCustom);
     }
   };

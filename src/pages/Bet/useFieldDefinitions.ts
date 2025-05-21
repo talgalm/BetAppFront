@@ -11,6 +11,7 @@ interface FieldRowProps {
   background?: string;
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   arrValue?: Prediction[] | User;
+  disclaimer?: string;
 }
 
 export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
@@ -25,13 +26,25 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
     //   background: '#CED0EF',
     //   icon: FileIcon,
     // },
-    { label: t('BetPage.betim'), value: bet?.betim, background: '#CEEFEA', icon: BetimIcon },
+    {
+      label: t('BetPage.betim'),
+      value: bet?.betim,
+      background: '#CEEFEA',
+      icon: BetimIcon,
+      disclaimer: 'betim',
+    },
     {
       label: t('BetPage.deadline'),
       value: formatDate(bet?.deadline) || null,
       background: '#CED0EF',
+      disclaimer: 'deadline',
     },
-    { label: t('BetPage.files'), value: bet?.description, background: '#CED0EF', icon: FileIcon },
-    { label: t('BetPage.supervisor'), value: '', arrValue: bet?.supervisor },
+    // { label: t('BetPage.files'), value: bet?.description, background: '#CED0EF', icon: FileIcon },
+    {
+      label: t('BetPage.supervisor'),
+      value: '',
+      arrValue: bet?.supervisor,
+      disclaimer: 'supervisor',
+    },
   ];
 };

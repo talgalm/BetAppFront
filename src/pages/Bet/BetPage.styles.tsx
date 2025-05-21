@@ -1,6 +1,7 @@
-import { Avatar, Divider } from '@mui/material';
+import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as ArrowIcon } from '../../Theme/Icons/Bet/Arrow.svg';
+import { ParticipantStatus } from '../../Interfaces';
 
 export const MainContainer = styled('div')({
   display: 'flex',
@@ -52,31 +53,30 @@ export const Row = styled('div')({
   padding: '8px 16px 8px 16px',
 });
 
-export const Column = styled('div')({
+export const Column = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   display: 'flex',
   flexDirection: 'column',
   direction: 'rtl',
   gap: 5,
-});
+  width: isOpen ? '100%' : 'auto',
+}));
 
 export const AvatarRow = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   display: 'flex',
-  flexDirection: isOpen ? 'column' : 'row', // Or 'row wrap' if you want avatars + names in a row
-  gap: 4,
+  flexDirection: isOpen ? 'column' : 'row',
+  gap: 5,
   justifyContent: 'flex-start',
-  transition: 'all 1s ease',
+  width: '100%',
 }));
 
-type Status = 'pending' | 'active' | 'canceled';
-
-const statusToBorder: Record<Status, string> = {
-  pending: 'orange',
-  active: 'green',
-  canceled: 'red',
+const statusToBorder: Record<ParticipantStatus, string> = {
+  pending: '#EF9645',
+  active: '#15AB94',
+  canceled: '#DA3E3E',
 };
 
 interface SmallAvatarProps {
-  status?: Status;
+  status?: ParticipantStatus;
 }
 
 export const SmallAvatar = styled(Avatar, {
@@ -122,5 +122,5 @@ export const RotatingArrow = styled(ArrowIcon)<{ open: boolean }>`
   transition: transform 0.2s ease;
   flex-shrink: 0;
   align-self: flex-start;
-  margin-top: 12px;
+  margin-top: 13px;
 `;

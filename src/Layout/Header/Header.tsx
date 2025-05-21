@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   HeaderComponent,
   LeftIconDiv,
@@ -27,8 +27,9 @@ import { useLogout } from '../../pages/Auth/Hooks/useLogout';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { AreYouSureDialog } from '../../components/AreYouSureDialog/AreYouSureDialog';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { User } from '../../Interfaces';
+import { useProfile } from '../../Providers/useProfile';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
@@ -43,10 +44,9 @@ const Header = () => {
   const { t } = useTranslation();
   const [layout] = useAtom(layoutAtom);
   const [layoutEphemeral, setLayout] = useAtom(layoutEphemeralAtom);
-
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData<User>(['user-profile']);
-  const betim = user?.betim ?? 0;
+  const { data: user } = useProfile();
+  const [animatedBetim, setAnimatedBetim] = useState<number | undefined>(user?.betim);
+  const previousBetimRef = useRef<number | undefined>(user?.betim);
   const { mutate } = useLogout();
   const navigate = useNavigate();
 
@@ -74,21 +74,35 @@ const Header = () => {
     sessionStorage.setItem('verifyDismissed', 'true');
   };
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     const interval = setInterval(() => {
-  //       setValue((prevValue) => {
-  //         if (prevValue <= downValue) {
-  //           clearInterval(interval);
-  //           return downValue;
-  //         }
-  //         return prevValue - 1;
-  //       });
-  //     }, 50);
-  //   }, 1000);
+  useEffect(() => {
+    if (user?.betim !== undefined && previousBetimRef.current !== undefined) {
+      if (user.betim < previousBetimRef.current) {
+        const diff = previousBetimRef.current - user.betim;
+        const duration = 1000;
+        const steps = 30;
+        const stepTime = duration / steps;
+        const decrement = diff / steps;
 
-  //   return () => clearTimeout(timer);
-  // }, [downValue]);
+        let current = previousBetimRef.current;
+        let count = 0;
+
+        const interval = setInterval(() => {
+          count++;
+          current -= decrement;
+          setAnimatedBetim(Math.round(current));
+
+          if (count >= steps) {
+            clearInterval(interval);
+            setAnimatedBetim(user.betim);
+          }
+        }, stepTime);
+      } else {
+        setAnimatedBetim(user.betim);
+      }
+    }
+
+    previousBetimRef.current = user?.betim;
+  }, [user?.betim]);
 
   const [open, setOpen] = useState(false);
 
@@ -131,7 +145,7 @@ const Header = () => {
             <LeftIconDiv>
               <BetimIcon />
               <Typography
-                value={betim}
+                value={animatedBetim}
                 variant={TypographyTypes.TextSmall}
                 styleProps={{ color: '#2A69C6' }}
               />

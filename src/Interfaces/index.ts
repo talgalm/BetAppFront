@@ -31,12 +31,18 @@ export interface Bet {
   createdAt?: Date;
 }
 
+export enum ParticipantStatus {
+  APPROVED = 'active',
+  PENDING = 'pending',
+  CANCELED = 'canceled',
+}
+
 export interface Prediction {
   id: string;
   date?: Date;
   fullName?: string;
   guess?: string;
   phoneNumber: string;
-  approved?: 'pending' | 'active' | 'canceled';
+  status?: ParticipantStatus;
   userId?: string;
 }

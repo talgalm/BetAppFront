@@ -5,17 +5,17 @@ import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styl
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { BetStatus, User } from '../../Interfaces';
+import { ParticipantStatus, User } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
-import FieldRow from './BetPageRow/BetPageRow';
 import { createActionButtons } from './buttons';
 import { getTagType } from '../../utils/betUtils';
-import { useFieldDefinitions } from './interface';
+import { useFieldDefinitions } from './useFieldDefinitions';
 import { useState } from 'react';
+import FieldRow from './BetPageRow/FieldRow';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ const BetPage = (): JSX.Element => {
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
 
   const showActionRow =
-    bet?.predictions?.find((p) => p.userId === user?.id)?.approved === BetStatus.PENDING;
+    bet?.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
 
   const tagType = getTagType(bet?.status, showActionRow);
 

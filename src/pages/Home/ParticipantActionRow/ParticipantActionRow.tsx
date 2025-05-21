@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { BetStatus, Prediction, User } from '../../../Interfaces';
+import { BetStatus, ParticipantStatus, Prediction, User } from '../../../Interfaces';
 import { ActionRow } from '../SingleBetRow.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
@@ -19,8 +19,8 @@ export default function ParticipantActionRow({ betId, predictions }: Props) {
 
   const { mutateAsync } = useParticipantAction();
 
-  const myStatus = predictions.find((p) => p.userId === user?.id)?.approved;
-  if (myStatus !== BetStatus.PENDING) return null;
+  const myStatus = predictions.find((p) => p.userId === user?.id)?.status;
+  if (myStatus !== ParticipantStatus.PENDING) return null;
 
   const send = async (action: ParticipantAction) => {
     try {

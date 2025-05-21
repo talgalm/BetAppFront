@@ -36,11 +36,9 @@ const NewBetConditions = <T extends FieldValues>({
     name: inputName || ('' as Path<T>),
   });
 
-  const handleCloseModal = (discard?: boolean) => {
+  const handleCloseModal = () => {
+    if (currentIndex) handleDateChange('', currentIndex);
     setCurrentIndex(null);
-    // if (discard) {
-    //   onChange(undefined);
-    // }
   };
 
   const handleOpenModal = (index: number) => {

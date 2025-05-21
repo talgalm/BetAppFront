@@ -6,7 +6,7 @@ import {
   NotificationTextHeader,
   StyledAvatarGroup,
 } from './SingleBetRow.styles';
-import { Bet, BetStatus, Prediction, User } from '../../Interfaces';
+import { Bet, BetStatus, ParticipantStatus, Prediction, User } from '../../Interfaces';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
 import { Typography } from '../../components/Topography/topography';
 import { formatDate } from '../../utils/Helpers';
@@ -29,7 +29,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
   const user = queryClient.getQueryData<User>(['user-profile']);
 
   const showActionRow =
-    bet.predictions?.find((p) => p.userId === user?.id)?.approved === BetStatus.PENDING;
+    bet.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
 
   const betStatus: TagType | undefined =
     type === BetStatus.ACTIVE
@@ -62,7 +62,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
       </NotificationHeader>
       <NotificationRow>
         {bet?.deadline && (
-          <TagStyled background="#CEEFEA">
+          <TagStyled background="#CED0EF">
             <Typography value={formatDate(bet?.deadline)} variant={TypographyTypes.TextMedium} />
           </TagStyled>
         )}
@@ -73,7 +73,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
         <StyledAvatarGroup max={6} spacing="small">
           {bet?.predictions &&
             bet?.predictions.map((participant: Prediction, index) => (
-              <SmallAvatar key={index} status={participant?.approved ?? 'pending'}>
+              <SmallAvatar key={index} status={participant?.status ?? ParticipantStatus.PENDING}>
                 {participant.fullName?.charAt(0)}
               </SmallAvatar>
             ))}

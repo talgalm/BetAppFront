@@ -3,7 +3,7 @@ import { User } from '../Interfaces';
 import { ApiService, HTTPMethod } from '../API/api';
 
 type ProfileOptions = Omit<
-  UseQueryOptions<User | null, Error, User | null, ['user-profile']>,
+  UseQueryOptions<User | null, Error, User | null>,
   'queryKey' | 'queryFn'
 >;
 
@@ -14,7 +14,7 @@ type ProfileOptions = Omit<
  * @param options   – extra React‑Query options (onSuccess, staleTime, …)
  */
 export const useProfile = (enabled = true, options?: ProfileOptions) =>
-  useQuery<User | null, Error, User | null, ['user-profile']>({
+  useQuery<User | null, Error, User | null>({
     queryKey: ['user-profile'],
     queryFn: async () => {
       try {
@@ -32,9 +32,9 @@ export const useProfile = (enabled = true, options?: ProfileOptions) =>
     },
     enabled,
     retry: 1,
-    staleTime: 10 * 60 * 1000, // 10min fresh window
-    refetchOnMount: false, // don’t flicker on page swaps
-    refetchInterval: 15 * 60 * 1000, // silent 15min polling
+    staleTime: 10 * 60 * 1000,
+    refetchOnMount: false,
+    refetchInterval: 15 * 60 * 1000,
     refetchIntervalInBackground: true,
-    ...options, // callers can override
+    ...options,
   });
