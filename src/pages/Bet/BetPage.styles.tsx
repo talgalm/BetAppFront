@@ -61,13 +61,32 @@ export const Column = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   width: isOpen ? '100%' : 'auto',
 }));
 
-export const AvatarRow = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
+export const AvatarsOnlyView = styled('div')<{ isVisible: boolean }>(({ isVisible }) => ({
   display: 'flex',
-  flexDirection: isOpen ? 'column' : 'row',
+  flexDirection: 'row',
   gap: 5,
-  justifyContent: 'flex-start',
-  width: '100%',
+  opacity: isVisible ? 1 : 0,
+  height: isVisible ? 'auto' : 0,
+  overflow: 'hidden',
+  transition: 'opacity 1s ease',
+  position: isVisible ? 'relative' : 'absolute',
 }));
+
+export const DetailsListView = styled('div')<{ isVisible: boolean }>(({ isVisible }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 5,
+  opacity: isVisible ? 1 : 0,
+  height: isVisible ? 'auto' : 0,
+  overflow: 'hidden',
+  transition: 'opacity 1s ease',
+  position: isVisible ? 'relative' : 'absolute',
+}));
+
+export const AvatarRow = styled('div')({
+  position: 'relative',
+  width: '100%',
+});
 
 const statusToBorder: Record<ParticipantStatus, string> = {
   pending: '#EF9645',

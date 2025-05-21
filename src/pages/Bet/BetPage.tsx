@@ -9,7 +9,7 @@ import { ParticipantStatus, User } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
-import { ParticipantAction } from './Hooks/useParticipentAction';
+import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons } from './buttons';
 import { getTagType } from '../../utils/betUtils';
@@ -24,7 +24,7 @@ const BetPage = (): JSX.Element => {
   const user = queryClient.getQueryData<User>(['user-profile']);
   const { data: bet, isLoading } = useBet(id);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+  const { mutateAsync } = useParticipantAction();
   const fieldDefinitions = useFieldDefinitions(bet);
 
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
@@ -34,7 +34,16 @@ const BetPage = (): JSX.Element => {
 
   const tagType = getTagType(bet?.status, showActionRow);
 
-  const buttons = createActionButtons(tagType, (action: ParticipantAction) => console.log(action));
+  const send = async (action: ParticipantAction) => {
+    try {
+      const res = await mutateAsync({ betId: bet?.id ?? '', userId: user!.id, action });
+      console.log('✔︎ server said:', res);
+    } catch (err) {
+      console.error('✘ request failed:', err);
+    }
+  };
+
+  const buttons = createActionButtons(tagType, (action: ParticipantAction) => send(action));
 
   if (isLoading) {
     <BetLoader />;

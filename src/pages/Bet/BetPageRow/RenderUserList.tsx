@@ -2,7 +2,7 @@ import React from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Prediction, ParticipantStatus, User } from '../../../Interfaces';
-import { AvatarRow, SmallAvatar } from '../BetPage.styles';
+import { AvatarRow, AvatarsOnlyView, DetailsListView, SmallAvatar } from '../BetPage.styles';
 import {
   AddParticipentRow,
   UserListContainer,
@@ -35,44 +35,49 @@ const RenderUserList: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }
 
   return (
     <UserListContainer>
-      <AvatarRow isOpen={isOpen}>
-        {sorted.map((participant) => (
-          <div key={participant.userId}>
-            {isOpen ? (
-              <UserListRowWithBorderContainer>
-                <UserListRowContainer>
-                  <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
-                    {participant.fullName?.charAt(0)}
-                  </SmallAvatar>
-                  <Typography
-                    value={participant.fullName}
-                    variant={TypographyTypes.TextMedium}
-                    styleProps={{ color: 'black' }}
-                  />
-                </UserListRowContainer>
+      <AvatarRow>
+        <AvatarsOnlyView isVisible={!isOpen}>
+          {sorted.map((participant) => (
+            <SmallAvatar
+              key={participant.userId}
+              status={participant.status ?? ParticipantStatus.PENDING}
+            >
+              {participant.fullName?.charAt(0)}
+            </SmallAvatar>
+          ))}
+        </AvatarsOnlyView>
+
+        <DetailsListView isVisible={isOpen}>
+          {sorted.map((participant) => (
+            <UserListRowWithBorderContainer key={participant.userId}>
+              <UserListRowContainer>
+                <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
+                  {participant.fullName?.charAt(0)}
+                </SmallAvatar>
                 <Typography
-                  value={participant.guess}
+                  value={participant.fullName}
                   variant={TypographyTypes.TextMedium}
                   styleProps={{ color: 'black' }}
                 />
-                {participant.date && (
-                  <SummaryRow>
-                    <Typography
-                      value={formatDate(participant.date)}
-                      variant={TypographyTypes.TextSmall}
-                      styleProps={{ color: 'black' }}
-                    />
-                    {Icon && <Icon width={18} height={18} />}
-                  </SummaryRow>
-                )}
-              </UserListRowWithBorderContainer>
-            ) : (
-              <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
-                {participant.fullName?.charAt(0)}
-              </SmallAvatar>
-            )}
-          </div>
-        ))}
+              </UserListRowContainer>
+              <Typography
+                value={participant.guess}
+                variant={TypographyTypes.TextMedium}
+                styleProps={{ color: 'black' }}
+              />
+              {participant.date && (
+                <SummaryRow>
+                  <Typography
+                    value={formatDate(participant.date)}
+                    variant={TypographyTypes.TextSmall}
+                    styleProps={{ color: 'black' }}
+                  />
+                  {Icon && <Icon width={18} height={18} />}
+                </SummaryRow>
+              )}
+            </UserListRowWithBorderContainer>
+          ))}
+        </DetailsListView>
       </AvatarRow>
       {isOpen && (
         <AddParticipentRow>

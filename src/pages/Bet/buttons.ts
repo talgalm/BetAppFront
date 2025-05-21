@@ -1,4 +1,3 @@
-// utils/buttons.ts
 import { ButtonConfig } from '../../components/Button/StyledButton';
 import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
