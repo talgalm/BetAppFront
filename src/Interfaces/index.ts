@@ -25,9 +25,10 @@ export interface Bet {
   status: BetStatus;
   betim: number;
   deadline?: Date;
-  supervisor?: User;
+  supervisor?: User & { status?: ParticipantStatus };
   predictions?: Prediction[];
   isSupervisor?: boolean;
+  supervisorStatus?: ParticipantStatus;
   createdAt?: Date;
 }
 

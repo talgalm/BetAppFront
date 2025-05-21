@@ -4,7 +4,7 @@ import { isArray } from 'lodash';
 import { FieldRowProps } from './types';
 import RenderUserList from './RenderUserList';
 import RenderSingleUser from './RenderSingleUser';
-import { Row, Column, RotatingArrow } from '../BetPage.styles';
+import { Row, Column, RotatingArrow, DisclaimerWrapper } from '../BetPage.styles';
 import { SummaryRow, StyledDivider } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
@@ -30,7 +30,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
         <Column isOpen={isOpen && label === t('BetPage.participents')}>
           <Typography value={label} variant={TypographyTypes.H3} styleProps={{ color: 'black' }} />
           {background ? (
-            <SummaryRow background={background} isOpen={isOpen}>
+            <SummaryRow background={background}>
               {value && (
                 <Typography
                   value={value}
@@ -54,12 +54,14 @@ const FieldRow: React.FC<FieldRowProps> = ({
             isOpen={isOpen}
             Icon={Icon}
           />
-          {isOpen && disclaimer && (
-            <Typography
-              value={t(`BetPage.${disclaimer}Disclaimer`)}
-              variant={TypographyTypes.TextMedium}
-            />
-          )}
+          <DisclaimerWrapper isVisible={isOpen && !!disclaimer}>
+            {disclaimer && (
+              <Typography
+                value={t(`BetPage.${disclaimer}Disclaimer`)}
+                variant={TypographyTypes.TextMedium}
+              />
+            )}
+          </DisclaimerWrapper>
         </Column>
         <RotatingArrow open={isOpen} />
       </Row>

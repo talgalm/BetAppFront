@@ -29,7 +29,8 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
   const user = queryClient.getQueryData<User>(['user-profile']);
 
   const showActionRow =
-    bet.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
+    bet.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING ||
+    (isSupervisor && bet.supervisorStatus === ParticipantStatus.PENDING);
 
   const betStatus: TagType | undefined =
     type === BetStatus.ACTIVE

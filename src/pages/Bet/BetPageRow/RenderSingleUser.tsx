@@ -4,11 +4,15 @@ import { UserSingleRow } from './BetPageRow.styles';
 import { SmallAvatar } from '../BetPage.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { useParams } from 'react-router-dom';
+import { useBet } from '../Hooks/useBet';
 
 const RenderSingleUser: React.FC<{ user: User }> = ({ user }) => {
+  const { id } = useParams();
+  const { data: bet } = useBet(id);
   return (
     <UserSingleRow>
-      <SmallAvatar>{user.fullName?.charAt(0)}</SmallAvatar>
+      <SmallAvatar status={bet?.supervisor?.status}>{user.fullName?.charAt(0)}</SmallAvatar>
       <Typography
         value={user.fullName}
         variant={TypographyTypes.TextMedium}

@@ -136,10 +136,17 @@ export const ButtonsContainerInner = styled('div')({
   width: '100%',
 });
 
-export const RotatingArrow = styled(ArrowIcon)<{ open: boolean }>`
-  transform: ${({ open }) => (open ? 'rotate(-90deg)' : 'rotate(0deg)')};
-  transition: transform 0.2s ease;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 13px;
-`;
+export const RotatingArrow = styled(ArrowIcon)<{ open: boolean }>(({ open }) => ({
+  transform: open ? 'rotate(-90deg)' : 'rotate(0deg)',
+  transition: 'transform 0.2s ease',
+  flexShrink: 0,
+  alignSelf: 'flex-start',
+  marginTop: 13,
+}));
+
+export const DisclaimerWrapper = styled('div')<{ isVisible: boolean }>(({ isVisible }) => ({
+  maxHeight: isVisible ? '200px' : '0',
+  opacity: isVisible ? 1 : 0,
+  transition: 'opacity 0.5s ease, max-height 0.5s ease',
+  overflow: 'hidden',
+}));

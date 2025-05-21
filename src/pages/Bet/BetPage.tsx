@@ -36,10 +36,9 @@ const BetPage = (): JSX.Element => {
 
   const send = async (action: ParticipantAction) => {
     try {
-      const res = await mutateAsync({ betId: bet?.id ?? '', userId: user!.id, action });
-      console.log('✔︎ server said:', res);
+      await mutateAsync({ betId: bet?.id ?? '', userId: user!.id, action });
     } catch (err) {
-      console.error('✘ request failed:', err);
+      /* empty */
     }
   };
 
