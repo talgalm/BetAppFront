@@ -4,6 +4,8 @@ import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { Bet, Prediction, User } from '../../Interfaces';
 import { formatDate } from '../../utils/Helpers';
+import { finishBetAtom } from '../../Jotai/atoms';
+import { useAtom } from 'jotai';
 
 interface FieldRowProps {
   label: string;
@@ -16,9 +18,14 @@ interface FieldRowProps {
 
 export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
   const { t } = useTranslation();
+  const [finishBet] = useAtom(finishBetAtom);
 
   return [
-    { label: t('BetPage.participents'), value: '', arrValue: bet?.predictions },
+    {
+      label: finishBet ? t('BetPage.whoWon') : t('BetPage.participents'),
+      value: '',
+      arrValue: bet?.predictions,
+    },
     { label: t('BetPage.description'), value: bet?.description },
     // {
     //   label: t('BetPage.predictions'),

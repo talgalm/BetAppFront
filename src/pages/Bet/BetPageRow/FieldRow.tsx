@@ -2,12 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isArray } from 'lodash';
 import { FieldRowProps } from './types';
-import RenderUserList from './RenderUserList';
-import RenderSingleUser from './RenderSingleUser';
+import ParticipentsListBet from './ParticipentsListBet';
+import ParticipentsBet from './ParticipentsBet';
 import { Row, Column, RotatingArrow, DisclaimerWrapper } from '../BetPage.styles';
 import { SummaryRow, StyledDivider } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { useAtom } from 'jotai';
+import { finishBetAtom } from '../../../Jotai/atoms';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,
@@ -21,6 +23,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
   onToggle,
 }) => {
   const { t } = useTranslation();
+  const [isFinish] = useAtom(finishBetAtom);
 
   if (!value && !arrValue) return null;
 
@@ -28,7 +31,11 @@ const FieldRow: React.FC<FieldRowProps> = ({
     <>
       <Row onClick={onToggle}>
         <Column isOpen={isOpen && label === t('BetPage.participents')}>
-          <Typography value={label} variant={TypographyTypes.H3} styleProps={{ color: 'black' }} />
+          <Typography
+            value={label}
+            variant={TypographyTypes.H3}
+            styleProps={{ color: 'black', marginBottom: label === t('BetPage.whoWon') ? 10 : 0 }}
+          />
           {background ? (
             <SummaryRow background={background}>
               {value && (
@@ -45,10 +52,10 @@ const FieldRow: React.FC<FieldRowProps> = ({
               {value && (
                 <Typography value={value} variant={TypographyTypes.TextMedium} truncate={!isOpen} />
               )}
-              {!isArray(arrValue) && arrValue && <RenderSingleUser user={arrValue} />}
+              {!isArray(arrValue) && arrValue && <ParticipentsBet user={arrValue} />}
             </>
           )}
-          <RenderUserList
+          <ParticipentsListBet
             arrValue={arrValue}
             currentUser={currentUser}
             isOpen={isOpen}
@@ -63,9 +70,9 @@ const FieldRow: React.FC<FieldRowProps> = ({
             )}
           </DisclaimerWrapper>
         </Column>
-        <RotatingArrow open={isOpen} />
+        {!isFinish ? <RotatingArrow open={isOpen} /> : <div></div>}
       </Row>
-      <StyledDivider />
+      {!isFinish ? <StyledDivider /> : <div></div>}
     </>
   );
 };

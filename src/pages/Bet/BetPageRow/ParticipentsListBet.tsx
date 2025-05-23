@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Prediction, ParticipantStatus, User } from '../../../Interfaces';
@@ -14,6 +14,9 @@ import { TypographyTypes } from '../../../components/Topography/TypographyTypes'
 import { formatDate } from '../../../utils/Helpers';
 import { ReactComponent as AddIcon } from '../../../Theme/Icons/Bet/AddIcon.svg';
 import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
+import { useAtom } from 'jotai';
+import { finishBetAtom } from '../../../Jotai/atoms';
+import Radio from '@mui/material/Radio';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });
@@ -22,8 +25,16 @@ interface Props {
   Icon?: React.ElementType;
 }
 
-const RenderUserList: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }) => {
+const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }) => {
   const { t } = useTranslation();
+  const [isFinish] = useAtom(finishBetAtom);
+  const [pickedWinner, setPickWinner] = useState<Prediction | null>(null);
+
+  const handlePickWinner = (userId: string) => {
+    const selected = sorted.find((p) => p.id === userId) || null;
+    setPickWinner(selected);
+  };
+
   if (!isArray(arrValue)) return null;
 
   const sorted = [...arrValue].sort((a, b) => {
@@ -48,17 +59,30 @@ const RenderUserList: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }
         </AvatarsOnlyView>
 
         <DetailsListView isVisible={isOpen}>
-          {sorted.map((participant) => (
-            <UserListRowWithBorderContainer key={participant.userId}>
+          {sorted.map((participant: Prediction) => (
+            <UserListRowWithBorderContainer
+              key={participant.userId}
+              onClick={() => handlePickWinner(participant.id)}
+            >
+              {' '}
               <UserListRowContainer>
-                <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
-                  {participant.fullName?.charAt(0)}
-                </SmallAvatar>
-                <Typography
-                  value={participant.fullName}
-                  variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
-                />
+                <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
+                  <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
+                    {participant.fullName?.charAt(0)}
+                  </SmallAvatar>
+                  <Typography
+                    value={participant.fullName}
+                    variant={TypographyTypes.TextMedium}
+                    styleProps={{ color: 'black' }}
+                  />
+                </div>
+                {isOpen && isFinish && (
+                  <Radio
+                    name="winner"
+                    value={participant.userId}
+                    checked={pickedWinner?.userId === participant.userId}
+                  />
+                )}
               </UserListRowContainer>
               <Typography
                 value={participant.guess}
@@ -79,7 +103,7 @@ const RenderUserList: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }
           ))}
         </DetailsListView>
       </AvatarRow>
-      {isOpen && (
+      {isOpen && !isFinish && (
         <AddParticipentRow>
           <AddIcon />
           <Typography
@@ -93,4 +117,4 @@ const RenderUserList: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }
   );
 };
 
-export default RenderUserList;
+export default ParticipentsListBet;

@@ -7,7 +7,7 @@ import { TypographyTypes } from '../../../components/Topography/TypographyTypes'
 import { useParams } from 'react-router-dom';
 import { useBet } from '../Hooks/useBet';
 
-const RenderSingleUser: React.FC<{ user: User }> = ({ user }) => {
+const ParticipentsBet: React.FC<{ user: User }> = ({ user }) => {
   const { id } = useParams();
   const { data: bet } = useBet(id);
   return (
@@ -22,4 +22,4 @@ const RenderSingleUser: React.FC<{ user: User }> = ({ user }) => {
   );
 };
 
-export default RenderSingleUser;
+export default ParticipentsBet;

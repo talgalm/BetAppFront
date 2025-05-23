@@ -13,7 +13,7 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/Betim
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as RedCloseIcon } from '../../Theme/Icons/LayoutIcons/RedClose.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-import { layoutAtom, layoutEphemeralAtom } from '../../Jotai/atoms';
+import { finishBetAtom, layoutAtom, layoutEphemeralAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { UserActiveStep } from '../../Jotai/UserAtoms';
@@ -49,10 +49,13 @@ const Header = () => {
   const previousBetimRef = useRef<number | undefined>(user?.betim);
   const { mutate } = useLogout();
   const navigate = useNavigate();
+  const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
 
   const handleNextStep = () => {
     if (authStep.prev) {
       setActiveStepAuth(authSteps[authStep.prev]);
+    } else if (finishBet) {
+      SetFinishBet(null);
     } else {
       navigate('/home');
     }

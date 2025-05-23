@@ -36,9 +36,10 @@ export const HeaderContainer = styled('div')({
 
 export const ContentContainer = styled('div')<{ isActive?: boolean }>(({ isActive }) => ({
   position: 'fixed',
-  inset: `${isActive ? 210 : 180}px 0 ${isActive ? 100 : 140}px 0`,
+  inset: `${isActive ? 180 : 180}px 0 ${isActive ? 140 : 140}px 0`, //210
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'flex-start',
   width: '100%',
   overflowY: 'auto',
 }));
@@ -58,7 +59,8 @@ export const Column = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   flexDirection: 'column',
   direction: 'rtl',
   gap: 5,
-  width: isOpen ? '100%' : 'auto',
+  // width: isOpen ? '100%' : 'auto',
+  width: '100%',
 }));
 
 export const AvatarsOnlyView = styled('div')<{ isVisible: boolean }>(({ isVisible }) => ({
@@ -81,6 +83,8 @@ export const DetailsListView = styled('div')<{ isVisible: boolean }>(({ isVisibl
   overflow: 'hidden',
   transition: 'opacity 1s ease',
   position: isVisible ? 'relative' : 'absolute',
+  // backgroundColor: '#15AB94',
+  // borderRadius: 8,
 }));
 
 export const AvatarRow = styled('div')({

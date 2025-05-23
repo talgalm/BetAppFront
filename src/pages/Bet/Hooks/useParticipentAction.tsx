@@ -91,7 +91,7 @@ export const useParticipantAction = () => {
         };
       });
 
-      return { previousProfile, previousBet }; // ✅ ensure it returns correct shape
+      return { previousProfile, previousBet };
     },
 
     onError: (_err, { betId }, context) => {

@@ -16,6 +16,8 @@ import { getTagType } from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
 import { useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
+import { useAtom } from 'jotai';
+import { finishBetAtom } from '../../Jotai/atoms';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -26,7 +28,7 @@ const BetPage = (): JSX.Element => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { mutateAsync } = useParticipantAction();
   const fieldDefinitions = useFieldDefinitions(bet);
-
+  const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
 
   const showActionRow =
@@ -42,7 +44,19 @@ const BetPage = (): JSX.Element => {
     }
   };
 
-  const buttons = createActionButtons(tagType, (action: ParticipantAction) => send(action));
+  const handleAction = (action: ParticipantAction) => {
+    const allowedTypes = [TagType.PENDING_APPROVAL, TagType.PENDING_APPROVAL_REST];
+
+    if (allowedTypes.includes(tagType)) {
+      send(action);
+    } else if (!finishBet) {
+      SetFinishBet(true);
+    } else {
+      /// send pick winner
+    }
+  };
+
+  const buttons = createActionButtons(tagType, handleAction, finishBet ?? false);
 
   if (isLoading) {
     <BetLoader />;
@@ -51,22 +65,48 @@ const BetPage = (): JSX.Element => {
   return (
     <MainContainer>
       <HeaderContainer>
-        <Typography value={bet?.name} variant={TypographyTypes.H1} />
+        <Typography
+          value={finishBet ? t('BetPage.approveAndPickWinner') : bet?.name}
+          variant={TypographyTypes.H1}
+        />
         {bet?.createdAt && (
           <Typography value={t('BetPage.createdAt', { date, hour })} variant={TypographyTypes.H2} />
         )}
         <Tag type={tagType} />
       </HeaderContainer>
       <ContentContainer isActive={tagType === TagType.ACTIVE}>
-        {fieldDefinitions.map((field, idx) => (
-          <FieldRow
-            key={idx}
-            {...field}
-            currentUser={user}
-            isOpen={openIndex === idx}
-            onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
-          />
-        ))}
+        {!finishBet &&
+          fieldDefinitions.map((field, idx) => (
+            <FieldRow
+              key={idx}
+              {...field}
+              currentUser={user}
+              isOpen={openIndex === idx}
+              onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+            />
+          ))}
+        {finishBet && (
+          <div>
+            {[fieldDefinitions[1]].map((field, idx) => (
+              <FieldRow
+                key={idx}
+                {...field}
+                currentUser={user}
+                isOpen={true}
+                onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+              />
+            ))}
+            {[fieldDefinitions[0]].map((field, idx) => (
+              <FieldRow
+                key={idx}
+                {...field}
+                currentUser={user}
+                isOpen={true}
+                onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+              />
+            ))}
+          </div>
+        )}
       </ContentContainer>
       <ButtonsHub type={ButtonsHubStatus.FIXED} buttons={buttons} />
     </MainContainer>

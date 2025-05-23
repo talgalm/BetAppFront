@@ -16,6 +16,8 @@ export const UserListRowContainer = styled('div')({
   display: 'flex',
   flexDirection: 'row',
   gap: 5,
+  justifyContent: 'space-between',
+  alignItems: 'center',
   width: '100%',
 });
 
