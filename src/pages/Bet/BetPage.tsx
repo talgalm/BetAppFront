@@ -17,7 +17,8 @@ import { useFieldDefinitions } from './useFieldDefinitions';
 import { useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
-import { finishBetAtom } from '../../Jotai/atoms';
+import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
+import { usePickWinnerAction } from './Hooks/usePickWinner';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -26,10 +27,12 @@ const BetPage = (): JSX.Element => {
   const user = queryClient.getQueryData<User>(['user-profile']);
   const { data: bet, isLoading } = useBet(id);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { mutateAsync } = useParticipantAction();
+  const { mutateAsync: PickAction } = useParticipantAction();
+  const { mutateAsync: PickWinner } = usePickWinnerAction();
   const fieldDefinitions = useFieldDefinitions(bet);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
+  const [pickedWinner] = useAtom(betWinnerAtom);
 
   const showActionRow =
     bet?.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
@@ -38,7 +41,19 @@ const BetPage = (): JSX.Element => {
 
   const send = async (action: ParticipantAction) => {
     try {
-      await mutateAsync({ betId: bet?.id ?? '', userId: user!.id, action });
+      await PickAction({ betId: bet?.id ?? '', userId: user!.id, action });
+    } catch (err) {
+      /* empty */
+    }
+  };
+
+  const sendWinner = async () => {
+    try {
+      await PickWinner({
+        betId: bet?.id ?? '',
+        userId: user!.id,
+        winnerId: pickedWinner?.id ?? '',
+      });
     } catch (err) {
       /* empty */
     }
@@ -52,7 +67,8 @@ const BetPage = (): JSX.Element => {
     } else if (!finishBet) {
       SetFinishBet(true);
     } else {
-      /// send pick winner
+      sendWinner();
+      // console.log('!');
     }
   };
 
@@ -74,7 +90,10 @@ const BetPage = (): JSX.Element => {
         )}
         <Tag type={tagType} />
       </HeaderContainer>
-      <ContentContainer isActive={tagType === TagType.ACTIVE}>
+      <ContentContainer
+        isActive={tagType === TagType.ACTIVE}
+        isOneButton={tagType === TagType.COMPLETED}
+      >
         {!finishBet &&
           fieldDefinitions.map((field, idx) => (
             <FieldRow

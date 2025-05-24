@@ -15,7 +15,7 @@ import { formatDate } from '../../../utils/Helpers';
 import { ReactComponent as AddIcon } from '../../../Theme/Icons/Bet/AddIcon.svg';
 import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 import { useAtom } from 'jotai';
-import { finishBetAtom } from '../../../Jotai/atoms';
+import { betWinnerAtom, finishBetAtom } from '../../../Jotai/atoms';
 import Radio from '@mui/material/Radio';
 
 interface Props {
@@ -28,7 +28,7 @@ interface Props {
 const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }) => {
   const { t } = useTranslation();
   const [isFinish] = useAtom(finishBetAtom);
-  const [pickedWinner, setPickWinner] = useState<Prediction | null>(null);
+  const [pickedWinner, setPickWinner] = useAtom(betWinnerAtom);
 
   const handlePickWinner = (userId: string) => {
     const selected = sorted.find((p) => p.id === userId) || null;
@@ -64,7 +64,6 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
               key={participant.userId}
               onClick={() => handlePickWinner(participant.id)}
             >
-              {' '}
               <UserListRowContainer>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
                   <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>

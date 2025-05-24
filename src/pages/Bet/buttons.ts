@@ -11,6 +11,10 @@ export const createActionButtons = (
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 
+  if (tagType === TagType.COMPLETED) {
+    return [];
+  }
+
   // First Button Logic
   if (tagType === TagType.PENDING_APPROVAL) {
     buttons.push({

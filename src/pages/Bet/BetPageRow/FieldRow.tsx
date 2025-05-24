@@ -29,7 +29,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
 
   return (
     <>
-      <Row onClick={onToggle}>
+      <Row onClick={onToggle} isWinner={label === t('BetPage.winner')}>
         <Column isOpen={isOpen && label === t('BetPage.participents')}>
           <Typography
             value={label}

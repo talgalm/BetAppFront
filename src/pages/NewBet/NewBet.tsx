@@ -174,7 +174,9 @@ const NewBet = () => {
     ...(step.inputName
       ? [
           {
-            value: t(step.continueButtonText ?? t('NewBet.Continue')),
+            value: t(
+              step.skipToEnd ? t('NewBet.Save') : (step.continueButtonText ?? t('NewBet.Continue'))
+            ),
             onClick: () => handleStep(step.continueButton),
             styleProps: { width: '100%' },
             disabled: disableButton,

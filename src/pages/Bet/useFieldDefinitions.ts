@@ -20,7 +20,7 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
   const { t } = useTranslation();
   const [finishBet] = useAtom(finishBetAtom);
 
-  return [
+  const fields: FieldRowProps[] = [
     {
       label: finishBet ? t('BetPage.whoWon') : t('BetPage.participents'),
       value: '',
@@ -54,4 +54,15 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
       disclaimer: 'supervisor',
     },
   ];
+
+  if (bet?.winner) {
+    fields.unshift({
+      label: t('BetPage.winner'),
+      value: '',
+      arrValue: bet.winner,
+      disclaimer: bet.predictions?.find((pred) => pred.id === bet.winner?.id)?.guess ?? '',
+    });
+  }
+
+  return fields;
 };

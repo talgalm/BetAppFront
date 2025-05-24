@@ -34,17 +34,19 @@ export const HeaderContainer = styled('div')({
   `,
 });
 
-export const ContentContainer = styled('div')<{ isActive?: boolean }>(({ isActive }) => ({
-  position: 'fixed',
-  inset: `${isActive ? 180 : 180}px 0 ${isActive ? 140 : 140}px 0`, //210
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  width: '100%',
-  overflowY: 'auto',
-}));
+export const ContentContainer = styled('div')<{ isActive?: boolean; isOneButton?: boolean }>(
+  ({ isActive, isOneButton }) => ({
+    position: 'fixed',
+    inset: `${isActive ? 180 : 180}px 0 ${isActive ? 140 : isOneButton ? 0 : 140}px 0`, //210
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: '100%',
+    overflowY: 'auto',
+  })
+);
 
-export const Row = styled('div')({
+export const Row = styled('div')<{ isWinner?: boolean }>(({ isWinner }) => ({
   display: 'flex',
   width: '100%',
   flexDirection: 'row-reverse',
@@ -52,7 +54,8 @@ export const Row = styled('div')({
   alignItems: 'center',
   gap: 16,
   padding: '8px 16px 8px 16px',
-});
+  backgroundColor: isWinner ? '#A8D6CC' : 'transparent',
+}));
 
 export const Column = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   display: 'flex',
