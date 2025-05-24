@@ -38,7 +38,7 @@ const NewBetSummary: React.FC = () => {
 
   return (
     <SummaryContainer>
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.name)}>
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.name)} betCreation={true}>
         {watch().name && (
           <Typography
             value={watch().name}
@@ -49,7 +49,10 @@ const NewBetSummary: React.FC = () => {
         <EditIcon />
       </SummaryRow>
       <StyledDivider />
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.participents)}>
+      <SummaryRow
+        onClick={() => handleStepSkip(NewBetStepValueTypes.participents)}
+        betCreation={true}
+      >
         {watch().participents && (
           <SummaryColumn>
             <Typography
@@ -69,7 +72,10 @@ const NewBetSummary: React.FC = () => {
       <StyledDivider />
       {watch().description && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.description)}>
+          <SummaryRow
+            onClick={() => handleStepSkip(NewBetStepValueTypes.description)}
+            betCreation={true}
+          >
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDescriptionTitle')}
@@ -98,7 +104,10 @@ const NewBetSummary: React.FC = () => {
         (particpent: Participant) => particpent.guess !== null || particpent.guess !== null
       ) && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.Conditions)}>
+          <SummaryRow
+            onClick={() => handleStepSkip(NewBetStepValueTypes.Conditions)}
+            betCreation={true}
+          >
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryConditionsTitle')}
@@ -120,7 +129,7 @@ const NewBetSummary: React.FC = () => {
           <StyledDivider />
         </>
       )}
-      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.betim)}>
+      <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.betim)} betCreation={true}>
         {watch().betim !== undefined && (
           <SummaryColumn>
             <Typography
@@ -146,7 +155,10 @@ const NewBetSummary: React.FC = () => {
       <StyledDivider />
       {watch().deadline && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.deadline)}>
+          <SummaryRow
+            onClick={() => handleStepSkip(NewBetStepValueTypes.deadline)}
+            betCreation={true}
+          >
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryDeadlineTitle')}
@@ -169,7 +181,7 @@ const NewBetSummary: React.FC = () => {
       )}
       {watch().files && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.files)}>
+          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.files)} betCreation={true}>
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummaryFilesTitle')}
@@ -199,7 +211,10 @@ const NewBetSummary: React.FC = () => {
       )}
       {watch().supervisor && (
         <>
-          <SummaryRow onClick={() => handleStepSkip(NewBetStepValueTypes.supervisor)}>
+          <SummaryRow
+            onClick={() => handleStepSkip(NewBetStepValueTypes.supervisor)}
+            betCreation={true}
+          >
             <SummaryColumn>
               <Typography
                 value={t('NewBet.SummarySupervisorTitle')}

@@ -6,6 +6,7 @@ export enum ButtonsHubStatus {
   FIXED = 'fixed',
   COLUMN = 'relative',
   ROW = 'row',
+  ROW_AND_FIXED = 'row_and_fixed',
 }
 
 type ButtonsHubProps = {
@@ -17,8 +18,8 @@ export const ButtonsHub: React.FC<ButtonsHubProps> = ({
   type = ButtonsHubStatus.COLUMN,
   buttons,
 }) => {
-  const isFixed = type === ButtonsHubStatus.FIXED;
-  const isRow = type === ButtonsHubStatus.ROW;
+  const isFixed = type === ButtonsHubStatus.FIXED || type === ButtonsHubStatus.ROW_AND_FIXED;
+  const isRow = type === ButtonsHubStatus.ROW || type === ButtonsHubStatus.ROW_AND_FIXED;
   return (
     <ButtonsHubContainer isFixed={isFixed} isRow={isRow}>
       {buttons.map(

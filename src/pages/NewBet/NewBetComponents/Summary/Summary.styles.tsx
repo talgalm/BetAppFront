@@ -11,10 +11,22 @@ export const SummaryContainer = styled('div')({
   paddingRight: 10,
 });
 
-export const SummaryRow = styled('div')<{ background?: string; gap?: number }>(
-  ({ background, gap }: { background?: string; gap?: number }) => ({
+export const SummaryRow = styled('div')<{
+  background?: string;
+  gap?: number;
+  betCreation?: boolean;
+}>(
+  ({
+    background,
+    gap,
+    betCreation,
+  }: {
+    background?: string;
+    gap?: number;
+    betCreation?: boolean;
+  }) => ({
     display: 'flex',
-    width: 'fit-content',
+    width: betCreation ? '100%' : 'fit-content',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row-reverse',

@@ -12,9 +12,15 @@ type ConfirmDialogProps = {
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onAbort?: () => void;
 };
 
-export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({ open, onClose, onConfirm }) => {
+export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({
+  open,
+  onClose,
+  onConfirm,
+  onAbort,
+}) => {
   const { t } = useTranslation();
 
   const title = t('AreYouSureDialog.Title');
@@ -38,7 +44,7 @@ export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({ open, onClose, 
     <Dialog open={open} onClose={onClose} dir="rtl">
       <PopUpRUDiv>
         <PopUpHeader>
-          <CloseIcon onClick={onClose} />
+          <CloseIcon onClick={onAbort} />
         </PopUpHeader>
 
         <PopUpContent>

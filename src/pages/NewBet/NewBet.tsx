@@ -250,7 +250,7 @@ const NewBet = () => {
               colorVariant={ThemeType.Secondary}
             />
           )}
-          <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW} />
+          <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW_AND_FIXED} />
           {step.step === NewBetStepValueTypes.Success && (
             <StyledButton
               value={t('NewBet.WatchBet')}

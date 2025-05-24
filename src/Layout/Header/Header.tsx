@@ -118,6 +118,10 @@ const Header = () => {
     setOpen(false);
   };
 
+  const handleSaveAsDraft = () => {
+    console.log('');
+  };
+
   const handleX = () => {
     if (!layoutEphemeral?.overlay) {
       setOpen(true);
@@ -167,7 +171,12 @@ const Header = () => {
           <RedCloseIcon onClick={handleDismiss} />
         </VerificationContainer>
       )}
-      <AreYouSureDialog open={open} onClose={handleCancel} onConfirm={handleConfirm} />
+      <AreYouSureDialog
+        open={open}
+        onClose={handleSaveAsDraft}
+        onConfirm={handleConfirm}
+        onAbort={handleCancel}
+      />
     </>
   );
 };
