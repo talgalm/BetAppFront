@@ -34,6 +34,7 @@ export const SummaryRow = styled('div')<{
     padding: background ? '4px 6px 4px 6px' : 'none',
     borderRadius: background ? 6 : 'none',
     gap: gap ?? 4,
+    marginBottom: betCreation ? 0 : 10, //
   })
 );
 

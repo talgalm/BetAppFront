@@ -6,7 +6,7 @@ import { Bet, ParticipantStatus, Prediction, User } from '../../../Interfaces';
 interface ActionPayload {
   betId: string;
   userId: string;
-  winnerId: string;
+  winners: string[];
 }
 
 export const usePickWinnerAction = () => {
@@ -21,13 +21,12 @@ export const usePickWinnerAction = () => {
       previousBet?: unknown;
     }
   >({
-    mutationFn: ({ betId, userId, winnerId }) =>
+    mutationFn: ({ betId, userId, winners }) =>
       ApiService.makeRequest<{ result: string }>(
         `/bets/${betId}/participants/${userId}/pick-winner`,
         HTTPMethod.POST,
-        { winnerId }
+        { winners }
       ),
-
     // onMutate: async ({
     //   betId,
     //   userId,

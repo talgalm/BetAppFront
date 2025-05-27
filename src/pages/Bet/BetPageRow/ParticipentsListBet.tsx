@@ -28,11 +28,17 @@ interface Props {
 const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }) => {
   const { t } = useTranslation();
   const [isFinish] = useAtom(finishBetAtom);
-  const [pickedWinner, setPickWinner] = useAtom(betWinnerAtom);
+  const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
   const handlePickWinner = (userId: string) => {
-    const selected = sorted.find((p) => p.id === userId) || null;
-    setPickWinner(selected);
+    setPickedWinners((prev) => {
+      const alreadyPicked = prev.includes(userId);
+      if (alreadyPicked) {
+        return prev.filter((id) => id !== userId); // unselect if already picked
+      } else {
+        return [...prev, userId]; // add to selection
+      }
+    });
   };
 
   if (!isArray(arrValue)) return null;
@@ -62,8 +68,8 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
           {sorted.map((participant: Prediction) => (
             <UserListRowWithBorderContainer
               key={participant.userId}
-              onClick={() => handlePickWinner(participant.id)}
-              selected={pickedWinner?.userId === participant.userId}
+              onClick={() => handlePickWinner(participant.userId ?? '')}
+              selected={pickedWinners.some((winnerId) => winnerId === participant.userId)}
               finisMode={isFinish ?? false}
             >
               <UserListRowContainer>
@@ -81,20 +87,20 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
                   <Radio
                     name="winner"
                     value={participant.userId}
-                    checked={pickedWinner?.userId === participant.userId}
+                    checked={pickedWinners.some((winnerId) => winnerId === participant.userId)}
                   />
                 )}
               </UserListRowContainer>
               <Typography
                 value={participant.guess}
-                variant={TypographyTypes.TextMedium}
+                variant={TypographyTypes.TextSmall}
                 styleProps={{ color: 'black' }}
               />
               {participant.date && (
                 <SummaryRow background={'#CED0EF'}>
                   <Typography
                     value={formatDate(participant.date)}
-                    variant={TypographyTypes.TextSmall}
+                    variant={TypographyTypes.TextMedium}
                     styleProps={{ color: 'black' }}
                   />
                   {Icon && <Icon width={18} height={18} />}

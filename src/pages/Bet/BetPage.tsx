@@ -32,7 +32,7 @@ const BetPage = (): JSX.Element => {
   const fieldDefinitions = useFieldDefinitions(bet);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
-  const [pickedWinner] = useAtom(betWinnerAtom);
+  const [pickedWinners] = useAtom(betWinnerAtom);
 
   const showActionRow =
     bet?.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
@@ -49,11 +49,13 @@ const BetPage = (): JSX.Element => {
 
   const sendWinner = async () => {
     try {
-      await PickWinner({
-        betId: bet?.id ?? '',
-        userId: user!.id,
-        winnerId: pickedWinner?.id ?? '',
-      });
+      if (pickedWinners.length > 0) {
+        await PickWinner({
+          betId: bet?.id ?? '',
+          userId: user!.id,
+          winners: pickedWinners,
+        });
+      }
     } catch (err) {
       /* empty */
     }
@@ -90,10 +92,7 @@ const BetPage = (): JSX.Element => {
         )}
         <Tag type={tagType} />
       </HeaderContainer>
-      <ContentContainer
-        isActive={tagType === TagType.ACTIVE}
-        isOneButton={tagType === TagType.COMPLETED}
-      >
+      <ContentContainer state={finishBet ?? false} isOneButton={tagType === TagType.COMPLETED}>
         {!finishBet &&
           fieldDefinitions.map((field, idx) => (
             <FieldRow

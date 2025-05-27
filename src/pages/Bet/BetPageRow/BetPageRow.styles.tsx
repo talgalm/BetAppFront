@@ -20,6 +20,8 @@ export const UserListRowWithBorderContainer = styled('div')<{
   border: finisMode ? '1px solid var(--TealDisabled, #A8D6CC)' : 'none',
   borderRadius: finisMode ? 16 : 0,
   padding: finisMode ? 16 : 0,
+  paddingBottom: finisMode ? 12 : 0,
+  paddingTop: finisMode ? 12 : 0,
 
   ...(selected && !finisMode
     ? {

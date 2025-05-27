@@ -34,15 +34,16 @@ export const HeaderContainer = styled('div')({
   `,
 });
 
-export const ContentContainer = styled('div')<{ isActive?: boolean; isOneButton?: boolean }>(
-  ({ isActive, isOneButton }) => ({
+export const ContentContainer = styled('div')<{ state?: boolean; isOneButton?: boolean }>(
+  ({ state, isOneButton }) => ({
     position: 'fixed',
-    inset: `${isActive ? 180 : 180}px 0 ${isActive ? 140 : isOneButton ? 0 : 140}px 0`, //210
+    inset: `${180}px 0 ${state ? 80 : 140}px 0`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: '100%',
     overflowY: 'auto',
+    height: isOneButton ? '100%' : 'auto',
   })
 );
 

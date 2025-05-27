@@ -15,4 +15,4 @@ export const layoutEphemeralAtom = atom<{ overlay?: () => void }>({});
 
 export const finishBetAtom = atom<boolean | null>(null);
 
-export const betWinnerAtom = atom<Prediction | null>(null);
+export const betWinnerAtom = atom<string[]>([]);
