@@ -63,6 +63,8 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
             <UserListRowWithBorderContainer
               key={participant.userId}
               onClick={() => handlePickWinner(participant.id)}
+              selected={pickedWinner?.userId === participant.userId}
+              finisMode={isFinish ?? false}
             >
               <UserListRowContainer>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
@@ -89,7 +91,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
                 styleProps={{ color: 'black' }}
               />
               {participant.date && (
-                <SummaryRow>
+                <SummaryRow background={'#CED0EF'}>
                   <Typography
                     value={formatDate(participant.date)}
                     variant={TypographyTypes.TextSmall}

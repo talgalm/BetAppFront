@@ -15,6 +15,9 @@ import { formatDate } from '../../../../utils/Helpers';
 import { CreateBetInputs } from '../../Interface';
 import { TagStyled } from '../../../Home/SingleBetRow.styles';
 import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { useAtom } from 'jotai';
+import { headerAtom } from '../../../../Jotai/atoms';
+import { HeaderStyle } from '../../../../Theme/ThemeInterfaces';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -28,6 +31,7 @@ const NewBetConditions = <T extends FieldValues>({
   const { watch } = useFormContext<CreateBetInputs>();
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const [header, setHeader] = useAtom(headerAtom);
 
   const {
     field: { value, onChange },
@@ -37,11 +41,13 @@ const NewBetConditions = <T extends FieldValues>({
   });
 
   const handleCloseModal = () => {
-    if (currentIndex) handleDateChange('', currentIndex);
+    // if (currentIndex) handleDateChange('', currentIndex);
     setCurrentIndex(null);
+    setHeader(HeaderStyle.PRIMARY);
   };
 
   const handleOpenModal = (index: number) => {
+    setHeader(HeaderStyle.SECONDARY);
     setCurrentIndex(index);
   };
 

@@ -6,11 +6,28 @@ export const UserListContainer = styled('div')({
   flexDirection: 'column',
 });
 
-export const UserListRowWithBorderContainer = styled('div')({
+export const UserListRowWithBorderContainer = styled('div')<{
+  selected?: boolean;
+  finisMode?: boolean;
+}>(({ selected, finisMode }) => ({
   width: '100%',
-  borderBottom: '1px solid #DADADA',
-  paddingBottom: 10,
-});
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 5,
+
+  backgroundColor: finisMode && selected ? '#CEEFEA' : 'white',
+
+  border: finisMode ? '1px solid var(--TealDisabled, #A8D6CC)' : 'none',
+  borderRadius: finisMode ? 16 : 0,
+  padding: finisMode ? 16 : 0,
+
+  ...(selected && !finisMode
+    ? {
+        borderBottom: '1px solid #DADADA',
+        paddingBottom: 10,
+      }
+    : {}),
+}));
 
 export const UserListRowContainer = styled('div')({
   display: 'flex',

@@ -39,13 +39,14 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.SECONDARY]: {
     height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
+    position: 'fixed',
+    top: -1,
     width: '100%',
     padding: 16,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 100,
-    boxShadow: '0px 2px 5px 0px #CBC6E31A',
+    zIndex: 0,
   },
 };
 

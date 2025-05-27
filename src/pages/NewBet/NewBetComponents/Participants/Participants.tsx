@@ -53,7 +53,6 @@ const NewBetParticipants = <T extends FieldValues>({
   const user = queryClient.getQueryData<User>(['user-profile']);
   const { data: mostActives = [], isLoading, error } = useMostActives();
   const [layout, setLayout] = useAtom(layoutEphemeralAtom);
-  console.log(layout);
   const {
     field: { value, onChange },
   } = useController({
@@ -77,7 +76,6 @@ const NewBetParticipants = <T extends FieldValues>({
         ErrorHandler(showBoundary, ErrorTypes.OverlappingParticipants);
       } else {
         finalUsers = [user];
-        console.log('!');
         onChange(user);
       }
     }
@@ -93,7 +91,6 @@ const NewBetParticipants = <T extends FieldValues>({
       arr.push(parseUser);
     });
     if (!limit) {
-      console.log('!!');
       onChange(arr);
     }
   };

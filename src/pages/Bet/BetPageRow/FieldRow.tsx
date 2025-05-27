@@ -64,7 +64,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
           <DisclaimerWrapper isVisible={isOpen && !!disclaimer}>
             {disclaimer && (
               <Typography
-                value={t(`BetPage.${disclaimer}Disclaimer`)}
+                value={t(`BetPage.${disclaimer}Disclaimer`, { value })}
                 variant={TypographyTypes.TextMedium}
               />
             )}

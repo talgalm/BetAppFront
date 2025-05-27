@@ -1,6 +1,5 @@
 import {
   ButtonsContainer,
-  ButtonsContainerInner,
   CheckboxContainer,
   CheckboxTextContainer,
   HomeDivContainer,
@@ -113,7 +112,6 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep === null) {
-        console.log(step);
         if (step.step === NewBetStepValueTypes.Success) cleanNewBet();
       }
       if (nextStep) {
@@ -244,11 +242,15 @@ const NewBet = () => {
         </PageContainer>
         <ButtonsContainer>
           {step.step === NewBetStepValueTypes.deadline && (
-            <StyledButton
-              value={t(step.continueButtonText ?? t('NewBet.Continue'))}
-              onClick={() => handleStep(step.continueButton, false, NewBetStepValueTypes.deadline)}
-              colorVariant={ThemeType.Secondary}
-            />
+            <div style={{ marginBottom: 60 }}>
+              <StyledButton
+                value={t(step.continueButtonText ?? t('NewBet.Continue'))}
+                onClick={() =>
+                  handleStep(step.continueButton, false, NewBetStepValueTypes.deadline)
+                }
+                colorVariant={ThemeType.Secondary}
+              />
+            </div>
           )}
           <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW_AND_FIXED} />
           {step.step === NewBetStepValueTypes.Success && (

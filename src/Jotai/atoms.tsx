@@ -5,11 +5,11 @@ import { Prediction } from '../Interfaces';
 
 export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;
-  footerStyle: FooterStyle;
 }>('layoutAtom', {
   headerStyle: HeaderStyle.PRIMARY,
-  footerStyle: FooterStyle.SHOW,
 });
+
+export const headerAtom = atom<HeaderStyle>(HeaderStyle.PRIMARY);
 
 export const layoutEphemeralAtom = atom<{ overlay?: () => void }>({});
 
