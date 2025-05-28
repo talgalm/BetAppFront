@@ -100,6 +100,7 @@ const statusToBorder: Record<ParticipantStatus, string> = {
   pending: '#EF9645',
   active: '#15AB94',
   canceled: '#DA3E3E',
+  voted: '#4d8ff7',
 };
 
 interface SmallAvatarProps {

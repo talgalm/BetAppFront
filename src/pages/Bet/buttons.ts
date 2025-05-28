@@ -15,6 +15,15 @@ export const createActionButtons = (
     return [];
   }
 
+  const oneButtonDispaly = isFinish
+    ? t('BetPage.finishAndApprove')
+    : t('BetPage.approveAndPickWinner');
+
+  const isOneButtonDispalyAfterVote = tagType === TagType.PENDING_DECISION;
+  const oneButtonDispalyAfterVote = isOneButtonDispalyAfterVote
+    ? 'המתן'
+    : t('BetPage.approveAndPickWinner');
+
   // First Button Logic
   if (tagType === TagType.PENDING_APPROVAL) {
     buttons.push({
@@ -24,15 +33,15 @@ export const createActionButtons = (
     });
   } else if (tagType === TagType.PENDING_APPROVAL_REST || tagType === TagType.ACTIVE) {
     buttons.push({
-      value: isFinish ? t('BetPage.finishAndApprove') : t('BetPage.approveAndPickWinner'),
+      value: oneButtonDispaly,
       onClick: () => handleAction(ParticipantAction.APPROVE),
       disabled: tagType === TagType.PENDING_APPROVAL_REST,
     });
   } else {
     buttons.push({
-      value: t('BetPage.approveAndPickWinner'),
+      value: oneButtonDispalyAfterVote,
       onClick: () => handleAction(ParticipantAction.APPROVE),
-      disabled: false,
+      disabled: isOneButtonDispalyAfterVote,
     });
   }
 

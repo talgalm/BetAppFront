@@ -23,7 +23,7 @@ export const usePickWinnerAction = () => {
   >({
     mutationFn: ({ betId, userId, winners }) =>
       ApiService.makeRequest<{ result: string }>(
-        `/bets/${betId}/participants/${userId}/pick-winner`,
+        `/votes/${betId}/participants/${userId}/vote`,
         HTTPMethod.POST,
         { winners }
       ),

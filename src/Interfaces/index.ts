@@ -16,6 +16,7 @@ export enum BetStatus {
   CANCELED = 'canceled',
   COMPLETED = 'completed',
   PENDING_DECISION = 'pending_decision',
+  WAITING_COMPLETION = 'waiting_complition',
 }
 
 export interface Bet {
@@ -37,6 +38,7 @@ export enum ParticipantStatus {
   APPROVED = 'active',
   PENDING = 'pending',
   CANCELED = 'canceled',
+  VOTED = 'voted',
 }
 
 export interface Prediction {
