@@ -27,12 +27,6 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
       arrValue: bet?.predictions,
     },
     { label: t('BetPage.description'), value: bet?.description },
-    // {
-    //   label: t('BetPage.predictions'),
-    //   value: t('BetPage.personalPredictions'),
-    //   background: '#CED0EF',
-    //   icon: FileIcon,
-    // },
     {
       label: t('BetPage.betim'),
       value: bet?.betim,
