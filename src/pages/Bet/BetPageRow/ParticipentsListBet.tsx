@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { Prediction, ParticipantStatus, User } from '../../../Interfaces';
+import { Prediction, ParticipantStatus, User, Bet } from '../../../Interfaces';
 import { AvatarRow, AvatarsOnlyView, DetailsListView, SmallAvatar } from '../BetPage.styles';
 import {
   AddParticipentRow,
@@ -17,6 +17,8 @@ import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles
 import { useAtom } from 'jotai';
 import { betWinnerAtom, finishBetAtom } from '../../../Jotai/atoms';
 import Radio from '@mui/material/Radio';
+import { useParams } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });
@@ -27,6 +29,11 @@ interface Props {
 
 const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, Icon }) => {
   const { t } = useTranslation();
+  const { id } = useParams();
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
+  const bet = queryClient.getQueryData<Bet>(['bet', id]);
+
   const [isFinish] = useAtom(finishBetAtom);
   const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
@@ -110,7 +117,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
           ))}
         </DetailsListView>
       </AvatarRow>
-      {isOpen && !isFinish && (
+      {isOpen && !isFinish && bet?.creator === user?.id && (
         <AddParticipentRow>
           <AddIcon />
           <Typography

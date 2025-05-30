@@ -24,7 +24,7 @@ import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons } from './buttons';
 import { getParticipentStatus, getTagType } from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
 import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
@@ -44,20 +44,25 @@ const BetPage = (): JSX.Element => {
   const { mutateAsync: PickWinner } = usePickWinnerAction();
   const fieldDefinitions = useFieldDefinitions(bet);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
-  const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
+  const [date, hour] = useMemo(() => {
+    return bet?.createdAt ? formatDateToGB(bet.createdAt).split(', ') : ['', ''];
+  }, [bet?.createdAt]);
   const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
   const tagType = getTagType(bet);
 
-  const send = async (action: ParticipantAction) => {
-    try {
-      await PickAction({ betId: bet?.id ?? '', userId: user!.id, action });
-    } catch (err) {
-      /* empty */
-    }
-  };
+  const handleParticipantAction = useCallback(
+    async (action: ParticipantAction) => {
+      try {
+        await PickAction({ betId: bet?.id ?? '', userId: user!.id, action });
+      } catch {
+        /* empty */
+      }
+    },
+    [PickAction, bet?.id, user]
+  );
 
-  const sendWinner = async () => {
+  const submitWinners = useCallback(async () => {
     try {
       if (pickedWinners.length > 0) {
         const result = await PickWinner({
@@ -66,34 +71,38 @@ const BetPage = (): JSX.Element => {
           winners: pickedWinners,
         });
         setPickedWinners([]);
-        if (result.action === VoteDecision.UNDECIDED || result.action === VoteDecision.ENDED) {
+        if ([VoteDecision.UNDECIDED, VoteDecision.ENDED].includes(result.action)) {
           SetFinishBet(false);
         }
       }
-    } catch (err) {
+    } catch {
       /* empty */
     }
-  };
+  }, [pickedWinners, PickWinner, bet?.id, user, setPickedWinners, SetFinishBet]);
 
-  const handleAction = (action: ParticipantAction) => {
-    const allowedTypes = [TagType.PENDING_APPROVAL, TagType.PENDING_APPROVAL_REST];
+  const handleAction = useCallback(
+    (action: ParticipantAction) => {
+      const allowedTypes = [TagType.PENDING_APPROVAL, TagType.PENDING_APPROVAL_REST];
+      if (allowedTypes.includes(tagType)) {
+        handleParticipantAction(action);
+      } else if (!finishBet) {
+        SetFinishBet(true);
+      } else {
+        submitWinners();
+      }
+    },
+    [handleParticipantAction, submitWinners, finishBet, SetFinishBet, tagType]
+  );
 
-    if (allowedTypes.includes(tagType)) {
-      send(action);
-    } else if (!finishBet) {
-      SetFinishBet(true);
-    } else {
-      sendWinner();
-    }
+  const handleOpenRow = (idx: number) => {
+    setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   const participentStatus = getParticipentStatus(bet, user?.id);
 
   const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
 
-  if (isLoading) {
-    <BetLoader />;
-  }
+  if (isLoading) return <BetLoader />;
 
   return (
     <MainContainer>
@@ -153,38 +162,27 @@ const BetPage = (): JSX.Element => {
             </div>
           </>
         )}
-        {!finishBet &&
-          fieldDefinitions.map((field, idx) => (
-            <FieldRow
-              key={idx}
-              {...field}
-              currentUser={user}
-              isOpen={openIndex === idx}
-              onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
-            />
-          ))}
-        {finishBet && (
-          <div>
-            {[fieldDefinitions[1]].map((field, idx) => (
+        {finishBet
+          ? fieldDefinitions
+              .slice(0, 2)
+              .map((field, idx) => (
+                <FieldRow
+                  key={idx}
+                  {...field}
+                  currentUser={user}
+                  isOpen
+                  onToggle={() => handleOpenRow(idx)}
+                />
+              ))
+          : fieldDefinitions.map((field, idx) => (
               <FieldRow
                 key={idx}
                 {...field}
                 currentUser={user}
-                isOpen={true}
-                onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
+                isOpen={openIndex === idx}
+                onToggle={() => handleOpenRow(idx)}
               />
             ))}
-            {[fieldDefinitions[0]].map((field, idx) => (
-              <FieldRow
-                key={idx}
-                {...field}
-                currentUser={user}
-                isOpen={true}
-                onToggle={() => setOpenIndex((prev) => (prev === idx ? null : idx))}
-              />
-            ))}
-          </div>
-        )}
       </ContentContainer>
       <ButtonsHub type={ButtonsHubStatus.FIXED} buttons={buttons} />
     </MainContainer>
