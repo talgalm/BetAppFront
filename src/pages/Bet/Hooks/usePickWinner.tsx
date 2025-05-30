@@ -1,7 +1,7 @@
 // src/pages/Bet/Hooks/useParticipantAction.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { Bet, ParticipantStatus, Prediction, User } from '../../../Interfaces';
+import { Bet, ParticipantStatus, Prediction, User, VoteDecision } from '../../../Interfaces';
 
 interface ActionPayload {
   betId: string;
@@ -9,11 +9,16 @@ interface ActionPayload {
   winners: string[];
 }
 
+interface ResultPaylod {
+  bet: Bet;
+  action: VoteDecision;
+}
+
 export const usePickWinnerAction = () => {
   const queryClient = useQueryClient();
 
   return useMutation<
-    { result: string },
+    ResultPaylod,
     Error,
     ActionPayload,
     {
@@ -22,84 +27,24 @@ export const usePickWinnerAction = () => {
     }
   >({
     mutationFn: ({ betId, userId, winners }) =>
-      ApiService.makeRequest<{ result: string }>(
+      ApiService.makeRequest<ResultPaylod>(
         `/votes/${betId}/participants/${userId}/vote`,
         HTTPMethod.POST,
         { winners }
       ),
-    // onMutate: async ({
-    //   betId,
-    //   userId,
-    //   action,
-    // }): Promise<{
-    //   previousProfile?: User;
-    //   previousBet?: unknown;
-    // }> => {
-    //   await Promise.all([
-    //     queryClient.cancelQueries({ queryKey: ['user-profile'] }),
-    //     queryClient.cancelQueries({ queryKey: ['bet', betId] }),
-    //   ]);
+    onSuccess: (data) => {
+      queryClient.setQueryData<Bet>(['bet', data.bet.id], data.bet);
 
-    //   const previousProfile = queryClient.getQueryData<User>(['user-profile']);
-    //   const previousBet = queryClient.getQueryData(['bet', betId]);
+      queryClient.setQueryData<User>(['user-profile'], (oldUser) => {
+        if (!oldUser) return oldUser;
 
-    //   queryClient.setQueryData<User>(['user-profile'], (old) => {
-    //     if (!old) return old;
-    //     return {
-    //       ...old,
-    //       bets: old.bets.map((bet) => {
-    //         if (bet.id !== betId) return bet;
-    //         return {
-    //           ...bet,
-    //           predictions: (bet.predictions ?? []).map((pred) =>
-    //             pred.userId === userId
-    //               ? {
-    //                   ...pred,
-    //                   status:
-    //                     action === ParticipantAction.APPROVE
-    //                       ? ParticipantStatus.APPROVED
-    //                       : ParticipantStatus.PENDING,
-    //                 }
-    //               : pred
-    //           ),
-    //         };
-    //       }),
-    //     };
-    //   });
-
-    //   queryClient.setQueryData(['bet', betId], (old: Bet) => {
-    //     if (!old) return old;
-    //     return {
-    //       ...old,
-    //       predictions: (old.predictions ?? []).map((pred: Prediction) =>
-    //         pred.userId === userId
-    //           ? {
-    //               ...pred,
-    //               status:
-    //                 action === ParticipantAction.APPROVE
-    //                   ? ParticipantStatus.APPROVED
-    //                   : ParticipantStatus.PENDING,
-    //             }
-    //           : pred
-    //       ),
-    //     };
-    //   });
-
-    //   return { previousProfile, previousBet };
-    // },
-
-    // onError: (_err, { betId }, context) => {
-    //   if (context?.previousProfile) {
-    //     queryClient.setQueryData(['user-profile'], context.previousProfile);
-    //   }
-    //   if (context?.previousBet) {
-    //     queryClient.setQueryData(['bet', betId], context.previousBet);
-    //   }
-    // },
-
-    // onSettled: (_data, _error, { betId }) => {
-    //   queryClient.invalidateQueries({ queryKey: ['user-profile'] });
-    //   queryClient.invalidateQueries({ queryKey: ['bet', betId] });
-    // },
+        return {
+          ...oldUser,
+          bets: oldUser.bets.map((b) =>
+            b.id === data.bet.id ? { ...b, status: data.bet.status } : b
+          ),
+        };
+      });
+    },
   });
 };

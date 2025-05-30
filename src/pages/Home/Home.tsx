@@ -115,12 +115,7 @@ const Home = (): JSX.Element => {
           <BetsContainer>
             <Typography value={t('Home.Bets')} variant={TypographyTypes.TextBig} />
             {profile.bets.map((bet: Bet) => (
-              <SingleBetRow
-                key={bet.id}
-                bet={bet}
-                type={bet.status}
-                isSupervisor={bet.isSupervisor}
-              />
+              <SingleBetRow key={bet.id} bet={bet} isSupervisor={bet.isSupervisor} />
             ))}
           </BetsContainer>
         </>

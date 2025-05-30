@@ -16,7 +16,7 @@ export enum BetStatus {
   CANCELED = 'canceled',
   COMPLETED = 'completed',
   PENDING_DECISION = 'pending_decision',
-  WAITING_COMPLETION = 'waiting_complition',
+  FINAL_DECISION_PENDING = 'final_pending_decision',
 }
 
 export interface Bet {
@@ -49,4 +49,10 @@ export interface Prediction {
   phoneNumber: string;
   status?: ParticipantStatus;
   userId?: string;
+}
+
+export enum VoteDecision {
+  DRAW = 'draw',
+  ENDED = 'ended',
+  UNDECIDED = 'undecided',
 }

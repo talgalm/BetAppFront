@@ -3,11 +3,14 @@ import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
+import { ParticipantStatus, User } from '../../Interfaces';
+import { getParticipentStatus } from '../../utils/betUtils';
 
 export const createActionButtons = (
   tagType: TagType,
   handleAction: (a: ParticipantAction) => void,
-  isFinish: boolean
+  isFinish: boolean,
+  participentStatus?: ParticipantStatus
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 
@@ -19,10 +22,9 @@ export const createActionButtons = (
     ? t('BetPage.finishAndApprove')
     : t('BetPage.approveAndPickWinner');
 
-  const isOneButtonDispalyAfterVote = tagType === TagType.PENDING_DECISION;
-  const oneButtonDispalyAfterVote = isOneButtonDispalyAfterVote
-    ? 'המתן'
-    : t('BetPage.approveAndPickWinner');
+  const isOneButtonDispalyAfterVote = participentStatus === ParticipantStatus.VOTED;
+  const oneButtonDispalyAfterVote =
+    participentStatus === ParticipantStatus.APPROVED ? t('BetPage.approveAndPickWinner') : 'המתן';
 
   // First Button Logic
   if (tagType === TagType.PENDING_APPROVAL) {
@@ -37,7 +39,7 @@ export const createActionButtons = (
       onClick: () => handleAction(ParticipantAction.APPROVE),
       disabled: tagType === TagType.PENDING_APPROVAL_REST,
     });
-  } else {
+  } else if (tagType === TagType.PENDING_DECISION) {
     buttons.push({
       value: oneButtonDispalyAfterVote,
       onClick: () => handleAction(ParticipantAction.APPROVE),
@@ -63,11 +65,3 @@ export const createActionButtons = (
 
   return buttons;
 };
-
-// if type PENDING_APPROVAL :
-// buton first t('BetPage.approveAndPickWinner'
-// buton second t('BetPage.rejectInvite')
-
-// if type PENDING_APPROVAL_REST ||  type ACTIVE:
-// buton first t('BetPage.approveParticipation')
-// buton second t('BetPage.leaveBet') <- disable if PENDING_APPROVAL_REST

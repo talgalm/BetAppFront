@@ -11,37 +11,23 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIc
 import { Typography } from '../../components/Topography/topography';
 import { formatDate } from '../../utils/Helpers';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
-import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
+import Tag, { TagType } from '../../components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
 import { SmallAvatar } from '../Bet/BetPage.styles';
 import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
-import { useQueryClient } from '@tanstack/react-query';
+import { getTagType } from '../../utils/betUtils';
 
 interface SingleBetRowProps {
   bet: Bet;
-  type?: BetStatus;
   isSupervisor?: boolean;
 }
 
-const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Element => {
+const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData<User>(['user-profile']);
 
-  const showActionRow =
-    bet.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING ||
-    (isSupervisor && bet.supervisorStatus === ParticipantStatus.PENDING);
+  const tagType = getTagType(bet);
 
-  const betStatus: TagType | undefined =
-    type === BetStatus.ACTIVE
-      ? TagType.ACTIVE
-      : !showActionRow && type === BetStatus.PENDING
-        ? TagType.PENDING_APPROVAL_REST
-        : showActionRow
-          ? TagType.PENDING_APPROVAL
-          : undefined;
-
-  const tagType: TagType = betStatus ?? betStatusToTagType[type ?? BetStatus.ACTIVE];
+  const isPending = tagType === TagType.PENDING_APPROVAL;
 
   const handleBet = () => {
     if (bet) {
@@ -80,7 +66,7 @@ const SingleBetRow = ({ bet, type, isSupervisor }: SingleBetRowProps): JSX.Eleme
             ))}
         </StyledAvatarGroup>
       </NotificationRow>
-      {showActionRow && (
+      {isPending && (
         <ParticipantActionRow betId={bet?.id ?? ''} predictions={bet?.predictions || []} />
       )}
     </NotificationContainer>

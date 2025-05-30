@@ -10,8 +10,8 @@ export enum TagType {
   ACTIVE = 'פעיל',
   COMPLETED = 'הסתיים',
   PENDING_DECISION = 'ממתין להכרעה',
-  WAITING_COMPLETION = 'ממתין להכרעה',
   CANCELED = 'בוטלה',
+  FINAL_DECISION_PENDING = 'ממתין להכרעה סופית',
 }
 
 export const betStatusToTagType: Record<BetStatus, TagType> = {
@@ -20,7 +20,7 @@ export const betStatusToTagType: Record<BetStatus, TagType> = {
   [BetStatus.COMPLETED]: TagType.COMPLETED,
   [BetStatus.PENDING]: TagType.PENDING_APPROVAL,
   [BetStatus.PENDING_DECISION]: TagType.PENDING_DECISION,
-  [BetStatus.WAITING_COMPLETION]: TagType.WAITING_COMPLETION,
+  [BetStatus.FINAL_DECISION_PENDING]: TagType.FINAL_DECISION_PENDING,
 };
 
 export const TagTypeColors: Record<keyof typeof TagType, { background: string; accent: string }> = {
@@ -48,7 +48,7 @@ export const TagTypeColors: Record<keyof typeof TagType, { background: string; a
     background: '#FFEED6',
     accent: '#D87330',
   },
-  WAITING_COMPLETION: {
+  FINAL_DECISION_PENDING: {
     background: '#FFEED6',
     accent: '#D87330',
   },

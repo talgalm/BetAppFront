@@ -5,14 +5,14 @@ import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styl
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { ParticipantStatus, User } from '../../Interfaces';
+import { ParticipantStatus, User, VoteDecision } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons } from './buttons';
-import { getTagType } from '../../utils/betUtils';
+import { getParticipentStatus, getTagType } from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
 import { useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
@@ -34,10 +34,7 @@ const BetPage = (): JSX.Element => {
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
   const [pickedWinners] = useAtom(betWinnerAtom);
 
-  const showActionRow =
-    bet?.predictions?.find((p) => p.userId === user?.id)?.status === ParticipantStatus.PENDING;
-
-  const tagType = getTagType(bet?.status, showActionRow);
+  const tagType = getTagType(bet);
 
   const send = async (action: ParticipantAction) => {
     try {
@@ -50,11 +47,14 @@ const BetPage = (): JSX.Element => {
   const sendWinner = async () => {
     try {
       if (pickedWinners.length > 0) {
-        await PickWinner({
+        const result = await PickWinner({
           betId: bet?.id ?? '',
           userId: user!.id,
           winners: pickedWinners,
         });
+        if (result.action === VoteDecision.UNDECIDED) {
+          SetFinishBet(false);
+        }
       }
     } catch (err) {
       /* empty */
@@ -74,7 +74,9 @@ const BetPage = (): JSX.Element => {
     }
   };
 
-  const buttons = createActionButtons(tagType, handleAction, finishBet ?? false);
+  const participentStatus = getParticipentStatus(bet, user?.id);
+
+  const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
 
   if (isLoading) {
     <BetLoader />;
