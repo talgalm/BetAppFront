@@ -1,11 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useBet } from './Hooks/useBet';
-import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styles';
+import {
+  HeaderContainer,
+  MainContainer,
+  ContentContainer,
+  WinnerContainer,
+  WinnerContainerWrapper,
+  WinnerRow,
+  SmallAvatar,
+  WinnerRowInner,
+  WinnerRowInnerSec,
+} from './BetPage.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { ParticipantStatus, User, VoteDecision } from '../../Interfaces';
+import { User, VoteDecision } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
@@ -19,6 +29,9 @@ import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
 import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
 import { usePickWinnerAction } from './Hooks/usePickWinner';
+import { ReactComponent as WinnerIcon } from '../../Theme/Icons/Bet/Winner.svg';
+import { ReactComponent as WinnerCupIcon } from '../../Theme/Icons/Bet/WinnerCup.svg';
+import { StyledDivider } from '../NewBet/NewBetComponents/Participants/Participants.styles';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -32,7 +45,7 @@ const BetPage = (): JSX.Element => {
   const fieldDefinitions = useFieldDefinitions(bet);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [date, hour] = formatDateToGB(bet?.createdAt).split(', ');
-  const [pickedWinners] = useAtom(betWinnerAtom);
+  const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
   const tagType = getTagType(bet);
 
@@ -52,7 +65,8 @@ const BetPage = (): JSX.Element => {
           userId: user!.id,
           winners: pickedWinners,
         });
-        if (result.action === VoteDecision.UNDECIDED) {
+        setPickedWinners([]);
+        if (result.action === VoteDecision.UNDECIDED || result.action === VoteDecision.ENDED) {
           SetFinishBet(false);
         }
       }
@@ -70,7 +84,6 @@ const BetPage = (): JSX.Element => {
       SetFinishBet(true);
     } else {
       sendWinner();
-      // console.log('!');
     }
   };
 
@@ -95,6 +108,51 @@ const BetPage = (): JSX.Element => {
         <Tag type={tagType} />
       </HeaderContainer>
       <ContentContainer state={finishBet ?? false} isOneButton={tagType === TagType.COMPLETED}>
+        {bet?.winners && (
+          <>
+            <WinnerContainerWrapper>
+              <WinnerContainer>
+                <WinnerIcon />
+                <Typography
+                  value={
+                    bet.winners.length === 1 ? t('BetPage.SingleWinner') : t('BetPage.MultiWinner')
+                  }
+                  variant={TypographyTypes.H3}
+                  styleProps={{ color: '#15AB94' }}
+                />
+                {bet.winners.map((winner: User) => (
+                  <WinnerRow key={winner.id}>
+                    <WinnerRowInner>
+                      <SmallAvatar />
+                      <Typography
+                        value={winner.fullName}
+                        variant={TypographyTypes.TextMedium}
+                        styleProps={{ color: 'black' }}
+                      />
+                    </WinnerRowInner>
+                    <WinnerRowInnerSec>
+                      <Typography
+                        value={t('BetPage.betim')}
+                        variant={TypographyTypes.H2}
+                        styleProps={{ color: '#D97706' }}
+                      />
+                      <Typography
+                        value={winner.betim}
+                        variant={TypographyTypes.H2}
+                        styleProps={{ color: '#D97706' }}
+                      />
+
+                      <WinnerCupIcon />
+                    </WinnerRowInnerSec>
+                  </WinnerRow>
+                ))}
+              </WinnerContainer>
+            </WinnerContainerWrapper>
+            <div style={{ marginBottom: -15 }}>
+              <StyledDivider />
+            </div>
+          </>
+        )}
         {!finishBet &&
           fieldDefinitions.map((field, idx) => (
             <FieldRow

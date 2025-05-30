@@ -14,10 +14,6 @@ export const createActionButtons = (
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 
-  if (tagType === TagType.COMPLETED) {
-    return [];
-  }
-
   const oneButtonDispaly = isFinish
     ? t('BetPage.finishAndApprove')
     : t('BetPage.approveAndPickWinner');
@@ -45,6 +41,12 @@ export const createActionButtons = (
       onClick: () => handleAction(ParticipantAction.APPROVE),
       disabled: isOneButtonDispalyAfterVote,
     });
+  } else if (tagType === TagType.COMPLETED) {
+    buttons.push({
+      value: t('BetPage.CreateSimilerBet'),
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onClick: () => {},
+    });
   }
 
   // Second Button Logic (REJECT/LEAVE)
@@ -60,6 +62,14 @@ export const createActionButtons = (
       onClick: () => handleAction(ParticipantAction.REJECT),
       colorVariant: ThemeType.Secondary,
       styleProps: { color: '#E33E21' },
+    });
+  } else if (tagType === TagType.COMPLETED) {
+    buttons.push({
+      value: t('BetPage.DeleteBet'),
+      colorVariant: ThemeType.Secondary,
+      styleProps: { color: '#E33E21' },
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onClick: () => {},
     });
   }
 

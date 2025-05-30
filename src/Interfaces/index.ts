@@ -30,7 +30,7 @@ export interface Bet {
   predictions?: Prediction[];
   isSupervisor?: boolean;
   supervisorStatus?: ParticipantStatus;
-  winner?: User;
+  winners?: User[];
   createdAt?: Date;
 }
 

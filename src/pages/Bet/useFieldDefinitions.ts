@@ -55,14 +55,5 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
     },
   ];
 
-  if (bet?.winner) {
-    fields.unshift({
-      label: t('BetPage.winner'),
-      value: '',
-      arrValue: bet.winner,
-      disclaimer: bet.predictions?.find((pred) => pred.id === bet.winner?.id)?.guess ?? '',
-    });
-  }
-
   return fields;
 };

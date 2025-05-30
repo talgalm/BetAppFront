@@ -1,7 +1,6 @@
 import { atomWithStorage } from 'jotai/utils';
-import { FooterStyle, HeaderStyle } from '../Theme/ThemeInterfaces';
+import { HeaderStyle } from '../Theme/ThemeInterfaces';
 import { atom } from 'jotai';
-import { Prediction } from '../Interfaces';
 
 export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;
