@@ -15,7 +15,7 @@ import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { useLocation } from 'react-router';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
-import { StyledDialog } from '../../components/StyledDialog/StyledDialog';
+import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useProfile } from '../../Providers/useProfile';
 import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
@@ -69,6 +69,7 @@ const Header = () => {
       <EmailVerificationBanner user={user} />
       <StyledDialog
         open={open}
+        type={DialogType.BetCreation}
         onClose={handleSaveAsDraft}
         onConfirm={handleConfirmExit}
         onAbort={handleCancelExit}

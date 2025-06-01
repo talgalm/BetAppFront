@@ -20,6 +20,7 @@ import { useAtom } from 'jotai';
 import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
 import { usePickWinnerAction } from './Hooks/usePickWinner';
 import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
+import { StyledDialog } from '../../components/StyledDialog/StyledDialog';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -129,6 +130,7 @@ const BetPage = (): JSX.Element => {
             ))}
       </ContentContainer>
       <ButtonsHub type={ButtonsHubStatus.FIXED} buttons={buttons} />
+      <StyledDialog open={true} />
     </MainContainer>
   );
 };

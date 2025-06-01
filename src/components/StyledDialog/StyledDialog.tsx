@@ -10,37 +10,38 @@ import { ButtonConfig } from '../Button/StyledButton';
 
 export enum DialogType {
   BetCreation = 'betCreation',
-  BetCreator = 'bet_creator',
-  BetSupervisor = 'bet_supervisor',
+  BetCreator = 'betcreator',
+  BetSupervisor = 'betsupervisor',
 }
 
 type ConfirmDialogProps = {
   type?: DialogType;
   open: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
+  onClose?: () => void;
+  onConfirm?: () => void;
   onAbort?: () => void;
 };
 
 export const StyledDialog: React.FC<ConfirmDialogProps> = ({
   open,
+  type,
   onClose,
   onConfirm,
   onAbort,
 }) => {
   const { t } = useTranslation();
 
-  const title = t('AreYouSureDialog.Title');
-  const subtitle = t('AreYouSureDialog.Subtitle');
+  const title = t(`StyledDialog.${type}Title`);
+  const subtitle = t(`StyledDialog.${type}Subtitle`);
 
   const buttons: ButtonConfig[] = [
     {
-      value: t('AreYouSureDialog.ConfimButton'),
+      value: t(`StyledDialog.${type}ConfimButton`),
       onClick: onConfirm,
       colorVariant: ThemeType.Primary,
     },
     {
-      value: t('AreYouSureDialog.CloseButton'),
+      value: t(`StyledDialog.${type}CloseButton`),
       onClick: onClose,
       colorVariant: ThemeType.Secondary,
       styleProps: { border: '2px solid #15AB94' },
