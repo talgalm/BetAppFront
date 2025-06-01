@@ -16,6 +16,8 @@ export enum BetStatus {
   CANCELED = 'canceled',
   COMPLETED = 'completed',
   PENDING_DECISION = 'pending_decision',
+  PENDING_CREATOR = 'pending_creator',
+  PENDING_SUPERVISOR = 'pending_supervisor',
   FINAL_DECISION_PENDING = 'final_pending_decision',
 }
 

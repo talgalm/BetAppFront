@@ -4,6 +4,8 @@ import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
 import { ParticipantStatus, User } from '../../Interfaces';
+import { DialogType } from '../../components/StyledDialog/StyledDialog';
+import { useTranslation } from 'react-i18next';
 
 export const createActionButtons = (
   tagType: TagType,
@@ -69,6 +71,39 @@ export const createActionButtons = (
       styleProps: { color: '#E33E21' },
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onClick: () => {},
+    });
+  }
+
+  return buttons;
+};
+
+export const createDialogButtons = (dialogType: DialogType): ButtonConfig[] => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { t } = useTranslation();
+  const buttons: ButtonConfig[] = [];
+
+  buttons.push({
+    value: t(`StyledDialog.SecondRoundVoting`),
+    // onClick: onConfirm,
+    colorVariant: ThemeType.Primary,
+  });
+  buttons.push({
+    value: t(`StyledDialog.MultiWinners`),
+    // onClick: onConfirm,
+    colorVariant: ThemeType.Primary,
+  });
+
+  if (dialogType === DialogType.BetCreator) {
+    buttons.push({
+      value: t(`StyledDialog.${dialogType}AddSupervisor`),
+      // onClick: onConfirm,
+      colorVariant: ThemeType.Primary,
+    });
+  } else if (dialogType === DialogType.BetSupervisor) {
+    buttons.push({
+      value: t(`StyledDialog.${dialogType}PickWinner`),
+      // onClick: onConfirm,
+      colorVariant: ThemeType.Primary,
     });
   }
 

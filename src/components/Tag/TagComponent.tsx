@@ -21,6 +21,8 @@ export const betStatusToTagType: Record<BetStatus, TagType> = {
   [BetStatus.PENDING]: TagType.PENDING_APPROVAL,
   [BetStatus.PENDING_DECISION]: TagType.PENDING_DECISION,
   [BetStatus.FINAL_DECISION_PENDING]: TagType.FINAL_DECISION_PENDING,
+  [BetStatus.PENDING_CREATOR]: TagType.FINAL_DECISION_PENDING,
+  [BetStatus.PENDING_SUPERVISOR]: TagType.FINAL_DECISION_PENDING,
 };
 
 export const TagTypeColors: Record<keyof typeof TagType, { background: string; accent: string }> = {

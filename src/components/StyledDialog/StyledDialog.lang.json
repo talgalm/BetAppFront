@@ -2,5 +2,11 @@
   "betCreationTitle": "לסיים פתיחת ההתערבות ?",
   "betCreationSubtitle": "אם תסגור כעת, ההתערבות לא תישמר וכל הנתונים שהזנת יימחקו",
   "betCreationConfimButton": "לסגור בלי לשמור",
-  "betCreationCloseButton": "שמירה כטיוטה"
+  "betCreationCloseButton": "שמירה כטיוטה",
+  "betCreatorTitle": "ההתערבות הסתיימה ללא הכרעה",
+  "betCreatorSubtitle": "אנא בחר את הפעולה שתרצה להכריע את ההתערבות",
+  "SecondRoundVoting": "סיבוב הצבעות נוסף",
+  "MultiWinners": "בחר בכמה זוכים",
+  "betCreatorAddSupervisor": "הוסף מפקח",
+  "betSupervisorPickWinner": "בחר מנצח"
 }

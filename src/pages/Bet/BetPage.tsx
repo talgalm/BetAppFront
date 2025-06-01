@@ -5,22 +5,24 @@ import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styl
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { User, VoteDecision } from '../../Interfaces';
+import { BetStatus, User, VoteDecision } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
-import { createActionButtons } from './buttons';
+import { createActionButtons, createDialogButtons } from './buttons';
 import { getParticipantAwareTagType, getParticipentStatus } from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
 import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
 import { usePickWinnerAction } from './Hooks/usePickWinner';
 import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
-import { StyledDialog } from '../../components/StyledDialog/StyledDialog';
+import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
+import { useBetLogic } from './Hooks/useBetLogic';
+import { ButtonConfig } from '../../components/Button/StyledButton';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -40,6 +42,18 @@ const BetPage = (): JSX.Element => {
 
   const tagType = getParticipantAwareTagType(bet, user?.id);
   const participentStatus = getParticipentStatus(bet, user?.id);
+  const [open, setOpen] = useState(false);
+
+  const { handleCloseModal } = useBetLogic({
+    setOpen,
+  });
+
+  useEffect(() => {
+    console.log(bet?.status);
+    if (bet?.status === BetStatus.PENDING_CREATOR) {
+      setOpen(true);
+    }
+  }, [bet]);
 
   const handleParticipantAction = useCallback(
     async (action: ParticipantAction) => {
@@ -90,6 +104,9 @@ const BetPage = (): JSX.Element => {
 
   const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
 
+  const dialogType = !bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
+  const dialogButtons = createDialogButtons(dialogType);
+
   if (isLoading) return <BetLoader />;
 
   return (
@@ -130,7 +147,12 @@ const BetPage = (): JSX.Element => {
             ))}
       </ContentContainer>
       <ButtonsHub type={ButtonsHubStatus.FIXED} buttons={buttons} />
-      <StyledDialog open={true} />
+      <StyledDialog
+        type={DialogType.BetCreator}
+        open={open}
+        closeModal={handleCloseModal}
+        buttons={dialogButtons}
+      />
     </MainContainer>
   );
 };

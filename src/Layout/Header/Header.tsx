@@ -20,6 +20,7 @@ import { useProfile } from '../../Providers/useProfile';
 import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
 import { useHeaderLogic } from './Hooks/useHeaderLogic';
+import { createDialogButtons } from './buttons';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
@@ -40,6 +41,8 @@ const Header = () => {
   } = useHeaderLogic({
     setOpen,
   });
+
+  const dialogButtons = createDialogButtons(DialogType.BetCreation);
 
   return (
     <>
@@ -70,9 +73,8 @@ const Header = () => {
       <StyledDialog
         open={open}
         type={DialogType.BetCreation}
-        onClose={handleSaveAsDraft}
-        onConfirm={handleConfirmExit}
-        onAbort={handleCancelExit}
+        closeModal={handleCancelExit}
+        buttons={dialogButtons}
       />
     </>
   );
