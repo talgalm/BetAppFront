@@ -77,35 +77,34 @@ export const createActionButtons = (
   return buttons;
 };
 
-export const createDialogButtons = (dialogType: DialogType): ButtonConfig[] => {
+export const createDialogButtons = (
+  dialogType: DialogType,
+  actions: { [key: string]: () => void }
+): ButtonConfig[] => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { t } = useTranslation();
-  const buttons: ButtonConfig[] = [];
 
-  buttons.push({
-    value: t(`StyledDialog.SecondRoundVoting`),
-    // onClick: onConfirm,
-    colorVariant: ThemeType.Primary,
-  });
-  buttons.push({
-    value: t(`StyledDialog.MultiWinners`),
-    // onClick: onConfirm,
-    colorVariant: ThemeType.Primary,
-  });
-
-  if (dialogType === DialogType.BetCreator) {
-    buttons.push({
-      value: t(`StyledDialog.${dialogType}AddSupervisor`),
-      // onClick: onConfirm,
+  return [
+    {
+      value: t('StyledDialog.SecondRoundVoting'),
+      onClick: actions['secondRoundVoting'],
       colorVariant: ThemeType.Primary,
-    });
-  } else if (dialogType === DialogType.BetSupervisor) {
-    buttons.push({
-      value: t(`StyledDialog.${dialogType}PickWinner`),
-      // onClick: onConfirm,
+    },
+    {
+      value: t('StyledDialog.MultiWinners'),
+      onClick: actions['multiWinners'],
       colorVariant: ThemeType.Primary,
-    });
-  }
-
-  return buttons;
+    },
+    dialogType === DialogType.BetCreator
+      ? {
+          value: t('StyledDialog.BetCreatorAddSupervisor'),
+          onClick: actions['addSupervisor'],
+          colorVariant: ThemeType.Primary,
+        }
+      : {
+          value: t('StyledDialog.BetSupervisorPickWinner'),
+          onClick: actions['pickWinner'],
+          colorVariant: ThemeType.Primary,
+        },
+  ];
 };

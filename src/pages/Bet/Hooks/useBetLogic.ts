@@ -1,21 +1,43 @@
-import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
-import { finishBetAtom, layoutEphemeralAtom } from '../../../Jotai/atoms';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
-import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
-import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
-import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
+import { finishBetAtom } from '../../../Jotai/atoms';
+import { useUpdateBet } from './useUpdateBet';
 
 interface UseBetLogicProps {
   setOpen: (open: boolean) => void;
 }
 
 export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
+  const { mutate: updateBet } = useUpdateBet();
+  const [, SetFinishBet] = useAtom(finishBetAtom);
   const handleCloseModal = () => {
     setOpen(false);
   };
 
+  const secondRoundVoting = () =>
+    updateBet({
+      betId: '',
+      data: {},
+    });
+
+  const multiWinners = () =>
+    updateBet({
+      betId: '',
+      data: { delareWinners: true },
+    });
+  const addSupervisor = () =>
+    updateBet({
+      betId: '',
+      data: {},
+    });
+  const pickWinner = () => {
+    SetFinishBet(false);
+  };
+
   return {
     handleCloseModal,
+    secondRoundVoting,
+    multiWinners,
+    addSupervisor,
+    pickWinner,
   };
 };

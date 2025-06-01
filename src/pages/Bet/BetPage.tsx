@@ -23,6 +23,7 @@ import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useBetLogic } from './Hooks/useBetLogic';
 import { ButtonConfig } from '../../components/Button/StyledButton';
+import { useUpdateBet } from './Hooks/useUpdateBet';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -44,12 +45,12 @@ const BetPage = (): JSX.Element => {
   const participentStatus = getParticipentStatus(bet, user?.id);
   const [open, setOpen] = useState(false);
 
-  const { handleCloseModal } = useBetLogic({
-    setOpen,
-  });
+  const { handleCloseModal, secondRoundVoting, multiWinners, addSupervisor, pickWinner } =
+    useBetLogic({
+      setOpen,
+    });
 
   useEffect(() => {
-    console.log(bet?.status);
     if (bet?.status === BetStatus.PENDING_CREATOR) {
       setOpen(true);
     }
@@ -104,8 +105,14 @@ const BetPage = (): JSX.Element => {
 
   const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
 
-  const dialogType = !bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
-  const dialogButtons = createDialogButtons(dialogType);
+  const dialogType = bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
+
+  const dialogButtons = createDialogButtons(dialogType, {
+    secondRoundVoting,
+    multiWinners,
+    addSupervisor,
+    pickWinner,
+  });
 
   if (isLoading) return <BetLoader />;
 
