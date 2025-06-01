@@ -37,15 +37,17 @@ export const HeaderContainer = styled('div')({
 export const ContentContainer = styled('div')<{ state?: boolean; isOneButton?: boolean }>(
   ({ state, isOneButton }) => ({
     position: 'fixed',
-    inset: `${180}px 0 ${state ? 80 : 140}px 0`,
+    inset: `${180}px 0 ${150}px 0`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: '100%',
     overflowY: 'auto',
-    height: isOneButton ? '100%' : 'auto',
+    // height: '100%',
   })
 );
+
+// small mobile -> in cmpleted   inset: `${180}px 0 ${150}px 0`,
 
 export const Row = styled('div')<{ isWinner?: boolean }>(({ isWinner }) => ({
   display: 'flex',

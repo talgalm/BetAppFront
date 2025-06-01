@@ -12,7 +12,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons } from './buttons';
-import { getParticipentStatus, getTagType } from '../../utils/betUtils';
+import { getParticipantAwareTagType, getParticipentStatus } from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
 import { useCallback, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
@@ -37,7 +37,8 @@ const BetPage = (): JSX.Element => {
   }, [bet?.createdAt]);
   const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
-  const tagType = getTagType(bet);
+  const tagType = getParticipantAwareTagType(bet, user?.id);
+  const participentStatus = getParticipentStatus(bet, user?.id);
 
   const handleParticipantAction = useCallback(
     async (action: ParticipantAction) => {
@@ -86,8 +87,6 @@ const BetPage = (): JSX.Element => {
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const participentStatus = getParticipentStatus(bet, user?.id);
-
   const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
 
   if (isLoading) return <BetLoader />;
@@ -109,6 +108,7 @@ const BetPage = (): JSX.Element => {
         {finishBet
           ? fieldDefinitions
               .slice(0, 2)
+              .reverse()
               .map((field, idx) => (
                 <FieldRow
                   key={idx}

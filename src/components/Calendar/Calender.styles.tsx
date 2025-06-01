@@ -17,8 +17,8 @@ export const StyledCalendar = styled(Calendar)`
     border: none;
     border-radius: 0;
     padding: 0;
-    width: 40px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
     display: flex;
     justify-content: center;
     align-items: center;

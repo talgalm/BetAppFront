@@ -91,6 +91,7 @@ const NewBetSummary: React.FC = () => {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   width: '300px',
+                  direction: 'rtl',
                 }}
               />
             </SummaryColumn>

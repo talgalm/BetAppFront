@@ -4,7 +4,6 @@ import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
 import { ParticipantStatus, User } from '../../Interfaces';
-import { getParticipentStatus } from '../../utils/betUtils';
 
 export const createActionButtons = (
   tagType: TagType,

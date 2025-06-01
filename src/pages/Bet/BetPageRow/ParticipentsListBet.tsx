@@ -70,7 +70,6 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
             </SmallAvatar>
           ))}
         </AvatarsOnlyView>
-
         <DetailsListView isVisible={isOpen}>
           {sorted.map((participant: Prediction) => (
             <UserListRowWithBorderContainer

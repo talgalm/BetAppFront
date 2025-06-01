@@ -49,3 +49,17 @@ export const getParticipentStatus = (
   }
   return ParticipantStatus.CANCELED;
 };
+
+export const getParticipantAwareTagType = (
+  bet: Bet | undefined,
+  userId: string | undefined
+): TagType => {
+  const baseTagType = getTagType(bet);
+  const participantStatus = getParticipentStatus(bet, userId);
+
+  if (participantStatus === ParticipantStatus.PENDING) {
+    return TagType.PENDING_APPROVAL;
+  }
+
+  return baseTagType;
+};

@@ -11,11 +11,12 @@ import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIc
 import { Typography } from '../../components/Topography/topography';
 import { formatDate } from '../../utils/Helpers';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
-import Tag, { TagType } from '../../components/Tag/TagComponent';
+import Tag, { betStatusToTagType, TagType } from '../../components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
 import { SmallAvatar } from '../Bet/BetPage.styles';
 import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
-import { getTagType } from '../../utils/betUtils';
+import { getParticipantAwareTagType, getParticipentStatus, getTagType } from '../../utils/betUtils';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface SingleBetRowProps {
   bet: Bet;
@@ -24,9 +25,10 @@ interface SingleBetRowProps {
 
 const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
 
-  const tagType = getTagType(bet);
-
+  const tagType = getParticipantAwareTagType(bet, user?.id);
   const isPending = tagType === TagType.PENDING_APPROVAL;
 
   const handleBet = () => {

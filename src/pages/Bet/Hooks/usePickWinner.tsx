@@ -1,7 +1,6 @@
-// src/pages/Bet/Hooks/useParticipantAction.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { Bet, ParticipantStatus, Prediction, User, VoteDecision } from '../../../Interfaces';
+import { Bet, User, VoteDecision } from '../../../Interfaces';
 
 interface ActionPayload {
   betId: string;
