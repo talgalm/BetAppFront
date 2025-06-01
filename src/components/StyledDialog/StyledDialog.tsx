@@ -8,14 +8,21 @@ import ButtonsHub, { ButtonsHubStatus } from '../../pages/ButtonsHub';
 import { ThemeType } from '../../Theme/theme';
 import { ButtonConfig } from '../Button/StyledButton';
 
+export enum DialogType {
+  BetCreation = 'betCreation',
+  BetCreator = 'bet_creator',
+  BetSupervisor = 'bet_supervisor',
+}
+
 type ConfirmDialogProps = {
+  type?: DialogType;
   open: boolean;
   onClose: () => void;
   onConfirm: () => void;
   onAbort?: () => void;
 };
 
-export const AreYouSureDialog: React.FC<ConfirmDialogProps> = ({
+export const StyledDialog: React.FC<ConfirmDialogProps> = ({
   open,
   onClose,
   onConfirm,

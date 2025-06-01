@@ -48,6 +48,7 @@ export const ContentContainer = styled('div')<{ state?: boolean; isOneButton?: b
 );
 
 // small mobile -> in cmpleted   inset: `${180}px 0 ${150}px 0`,
+// small mobile -> in cmpleted   inset: `${180}px 0 ${0}px 0`,
 
 export const Row = styled('div')<{ isWinner?: boolean }>(({ isWinner }) => ({
   display: 'flex',
@@ -102,7 +103,7 @@ const statusToBorder: Record<ParticipantStatus, string> = {
   pending: '#EF9645',
   active: '#15AB94',
   canceled: '#DA3E3E',
-  voted: '#4d8ff7',
+  voted: '',
 };
 
 interface SmallAvatarProps {

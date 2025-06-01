@@ -15,7 +15,7 @@ import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { useLocation } from 'react-router';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
-import { AreYouSureDialog } from '../../components/AreYouSureDialog/AreYouSureDialog';
+import { StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useProfile } from '../../Providers/useProfile';
 import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
@@ -67,7 +67,7 @@ const Header = () => {
         <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
       </HeaderComponent>
       <EmailVerificationBanner user={user} />
-      <AreYouSureDialog
+      <StyledDialog
         open={open}
         onClose={handleSaveAsDraft}
         onConfirm={handleConfirmExit}
