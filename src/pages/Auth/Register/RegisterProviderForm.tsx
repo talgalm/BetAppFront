@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { useTranslation } from 'react-i18next';
 import RegisterProvider from './RegisterProvider';
+import { getRegisterProviderSchema } from '../../../Schemas/RegisterProviderSchema';
 
 export type RegisterProviderFormInput = {
   PhoneNumber: string;
@@ -11,11 +11,7 @@ export type RegisterProviderFormInput = {
 const RegisterProviderForm = (): JSX.Element => {
   const { t } = useTranslation();
 
-  const schema = z.object({
-    PhoneNumber: z
-      .string({ required_error: t('Register.Validation.Required') })
-      .min(10, t('Register.Validation.PhoneInvalid')),
-  });
+  const schema = getRegisterProviderSchema(t);
 
   const methods = useForm<RegisterProviderFormInput>({
     defaultValues: {
