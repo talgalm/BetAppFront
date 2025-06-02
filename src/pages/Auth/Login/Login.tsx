@@ -18,6 +18,7 @@ import BetLoader from '../../../Theme/Loader/loader';
 import { useLogin } from '../Hooks/useLogin';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { useProfile } from '../../../Providers/useProfile';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();
@@ -29,13 +30,16 @@ const Login = (): JSX.Element => {
   const formValues = watch();
   const { refetch } = useProfile(false);
   const [isFormEmpty, setIsFormEmpty] = useState(true);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setIsFormEmpty(Object.values(formValues).some((value) => !value));
+    queryClient.clear();
   }, [formValues]);
 
   const onSubmit = (data: LoginFormInput) => {
-    mutate(getValues(), {
+    const values = getValues();
+    mutate(values, {
       onSuccess: async (res) => {
         await refetch();
         navigate(`/home`);

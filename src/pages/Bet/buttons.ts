@@ -103,7 +103,7 @@ export const createDialogButtons = (
         }
       : {
           value: t('StyledDialog.BetSupervisorPickWinner'),
-          onClick: actions['pickWinner'],
+          onClick: actions['pickWinnerOption'],
           colorVariant: ThemeType.Primary,
         },
   ];

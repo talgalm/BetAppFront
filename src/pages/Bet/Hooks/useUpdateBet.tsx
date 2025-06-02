@@ -4,7 +4,9 @@ import { Bet } from '../../../Interfaces';
 
 interface UpdateBetPayload {
   betId: string;
-  data: Partial<Bet> & { delareWinners?: boolean } & { singleWinner?: string };
+  data: Partial<Bet> & { delareWinners?: boolean } & { singleWinner?: string } & {
+    addSupervisor?: string;
+  };
 }
 
 interface UpdateBetResponse {

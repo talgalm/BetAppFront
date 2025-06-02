@@ -11,6 +11,7 @@ export enum ErrorTypes {
   FileNotSupported = 'FileNotSupported',
   FileTooBig = 'FileTooBig',
   OverlappingParticipants = 'OverlappingParticipants',
+  NoParticipants = 'NoParticipants',
   AuthError = 'AuthError',
 }
 
@@ -48,14 +49,20 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
   },
   [ErrorTypes.OverlappingParticipants]: {
     icon: OverlappingParticipantsIcon,
-    title: 'יש לבחור בן אדם אחר',
-    subtitle: 'האחראי לא יכול להיות משתתף בהתערבות, נא לבחור אדם אחר.',
-    buttonText: 'בחר בן אדם אחר',
+    title: 'יש לבחור משתתף אחר',
+    subtitle: 'האחראי לא יכול להיות משתתף בהתערבות, נא לבחור משתתף אחר.',
+    buttonText: 'בחר משתתף אחר',
   },
   [ErrorTypes.AuthError]: {
     icon: AuthErrorIcon,
     title: 'יש להתחבר מחדש',
     subtitle: 'עבר יותר מידי זמן מאז שהתראינו בפעם האחרונה',
     buttonText: 'התחבר מחדש',
+  },
+  [ErrorTypes.NoParticipants]: {
+    icon: OverlappingParticipantsIcon,
+    title: 'יש לבחור לפחות משתתף אחד',
+    subtitle: 'נא לבחור לפחות משתתף אחד כדי להמשיך.',
+    buttonText: 'בחר משתתף',
   },
 };

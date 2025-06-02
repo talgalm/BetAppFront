@@ -45,10 +45,16 @@ const BetPage = (): JSX.Element => {
   const participentStatus = getParticipentStatus(bet, user?.id);
   const [open, setOpen] = useState(false);
 
-  const { handleCloseModal, secondRoundVoting, multiWinners, addSupervisor, pickWinner } =
-    useBetLogic({
-      setOpen,
-    });
+  const {
+    handleCloseModal,
+    secondRoundVoting,
+    multiWinners,
+    addSupervisor,
+    pickSingleWinner,
+    pickWinnerOption,
+  } = useBetLogic({
+    setOpen,
+  });
 
   useEffect(() => {
     if (bet?.status === BetStatus.PENDING_CREATOR) {
@@ -77,7 +83,10 @@ const BetPage = (): JSX.Element => {
         });
         setPickedWinners([]);
         if ([VoteDecision.UNDECIDED, VoteDecision.ENDED].includes(result.action)) {
-          SetFinishBet(false);
+          SetFinishBet({
+            isFinished: true,
+            mode: 'multi',
+          });
         }
       }
     } catch {
@@ -91,19 +100,36 @@ const BetPage = (): JSX.Element => {
       if (allowedTypes.includes(tagType)) {
         handleParticipantAction(action);
       } else if (!finishBet) {
-        SetFinishBet(true);
+        SetFinishBet({
+          isFinished: true,
+          mode: 'multi',
+        });
       } else {
-        submitWinners();
+        if (finishBet.mode === 'multi') submitWinners();
+        else pickSingleWinner(pickedWinners[0]);
       }
     },
-    [handleParticipantAction, submitWinners, finishBet, SetFinishBet, tagType]
+    [
+      tagType,
+      finishBet,
+      handleParticipantAction,
+      SetFinishBet,
+      submitWinners,
+      pickSingleWinner,
+      pickedWinners,
+    ]
   );
 
   const handleOpenRow = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const buttons = createActionButtons(tagType, handleAction, finishBet ?? false, participentStatus);
+  const buttons = createActionButtons(
+    tagType,
+    handleAction,
+    finishBet?.isFinished ?? false,
+    participentStatus
+  );
 
   const dialogType = bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
 
@@ -111,7 +137,7 @@ const BetPage = (): JSX.Element => {
     secondRoundVoting,
     multiWinners,
     addSupervisor,
-    pickWinner,
+    pickWinnerOption,
   });
 
   if (isLoading) return <BetLoader />;
@@ -128,7 +154,10 @@ const BetPage = (): JSX.Element => {
         )}
         <Tag type={tagType} />
       </HeaderContainer>
-      <ContentContainer state={finishBet ?? false} isOneButton={tagType === TagType.COMPLETED}>
+      <ContentContainer
+        state={finishBet?.isFinished ?? false}
+        isOneButton={tagType === TagType.COMPLETED}
+      >
         {bet?.winners && <WinnerSection winners={bet.winners} />}
         {finishBet
           ? fieldDefinitions

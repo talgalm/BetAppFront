@@ -29,8 +29,18 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
       betId: '',
       data: {},
     });
-  const pickWinner = () => {
-    SetFinishBet(false);
+
+  const pickSingleWinner = (singleWinner: string) =>
+    updateBet({
+      betId: '',
+      data: { singleWinner },
+    });
+  const pickWinnerOption = () => {
+    setOpen(false);
+    SetFinishBet({
+      isFinished: false,
+      mode: 'single',
+    });
   };
 
   return {
@@ -38,6 +48,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
     secondRoundVoting,
     multiWinners,
     addSupervisor,
-    pickWinner,
+    pickWinnerOption,
+    pickSingleWinner,
   };
 };

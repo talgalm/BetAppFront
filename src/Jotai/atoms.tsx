@@ -12,6 +12,11 @@ export const headerAtom = atom<HeaderStyle>(HeaderStyle.PRIMARY);
 
 export const layoutEphemeralAtom = atom<{ overlay?: () => void }>({});
 
-export const finishBetAtom = atom<boolean | null>(null);
+export interface FinishBetState {
+  isFinished: boolean;
+  mode: 'single' | 'multi';
+}
+
+export const finishBetAtom = atom<FinishBetState | null>(null);
 
 export const betWinnerAtom = atom<string[]>([]);

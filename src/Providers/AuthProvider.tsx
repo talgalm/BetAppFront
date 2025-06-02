@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   const onLoginPage = location.pathname === '/';
 
-  const { user, initialized, isLoading, isError, error } = useAuth(!onLoginPage);
+  const { user, initialized, isLoading, isError, error } = useAuth(!!onLoginPage);
 
   if (!initialized && isLoading) {
     return <BetLoader />;
@@ -35,10 +35,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Redirect immediately before rendering children
   if (user && location.pathname === '/') {
+    console.log('2');
     return <Navigate to="/home" replace />;
   }
 
   if (!user && location.pathname !== '/') {
+    console.log('1');
     return <Navigate to="/" replace />;
   }
 

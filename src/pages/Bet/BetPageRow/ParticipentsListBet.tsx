@@ -38,13 +38,20 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
   const [pickedWinners, setPickedWinners] = useAtom(betWinnerAtom);
 
   const handlePickWinner = (userId: string) => {
+    const mode = isFinish?.mode;
+
     setPickedWinners((prev) => {
       const alreadyPicked = prev.includes(userId);
+
       if (alreadyPicked) {
-        return prev.filter((id) => id !== userId); // unselect if already picked
-      } else {
-        return [...prev, userId]; // add to selection
+        return prev.filter((id) => id !== userId);
       }
+
+      if (mode === 'single') {
+        return [userId];
+      }
+
+      return [...prev, userId];
     });
   };
 
@@ -76,7 +83,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
               key={participant.userId}
               onClick={() => handlePickWinner(participant.userId ?? '')}
               selected={pickedWinners.some((winnerId) => winnerId === participant.userId)}
-              finisMode={isFinish ?? false}
+              finisMode={isFinish?.isFinished ?? false}
             >
               <UserListRowContainer>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
