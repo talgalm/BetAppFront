@@ -25,7 +25,7 @@ import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '../../Theme/theme';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
-import { Bet } from '../../Interfaces';
+import { Bet, User } from '../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 
@@ -40,6 +40,7 @@ const NewBet = () => {
   const createBet = useCreateBet();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
 
   const [newBet, setNewBet] = useState<Bet | undefined>(undefined);
 
@@ -137,6 +138,7 @@ const NewBet = () => {
   };
 
   const onSubmit = (data: any) => {
+    data.creator = user?.id;
     createBet.mutate(data, {
       onSuccess: (res) => {
         queryClient.invalidateQueries({ queryKey: ['user-profile'] });

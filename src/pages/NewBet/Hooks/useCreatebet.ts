@@ -8,7 +8,7 @@ export type Participant = {
   phoneNumber: string;
   guess?: string;
   date?: Date | string;
-  status?: boolean;
+  status?: string;
 };
 
 export type CreateBetInputs = {
@@ -22,6 +22,7 @@ export type CreateBetInputs = {
   files?: File[]; // Ignored in the request
   supervisor?: Participant[];
   Summary?: string;
+  creator: string;
 };
 
 export const useCreateBet = (): UseMutationResult<{ bet: Bet }, Error, CreateBetInputs> => {

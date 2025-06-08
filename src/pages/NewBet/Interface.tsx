@@ -125,5 +125,5 @@ export type Participant = {
   phoneNumber: string;
   guess?: string;
   date?: Date;
-  status?: 'pending' | 'active' | 'canceled' | 'waiting_complition';
+  status?: string;
 };

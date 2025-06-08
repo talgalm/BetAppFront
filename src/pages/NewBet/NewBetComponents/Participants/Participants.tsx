@@ -82,11 +82,12 @@ const NewBetParticipants = <T extends FieldValues>({
 
     const arr: Participant[] = [];
 
-    finalUsers.forEach((user: User) => {
+    finalUsers.forEach((user: User & { status?: string }) => {
       const parseUser: Participant = {
         phoneNumber: user.phoneNumber ?? '',
         fullName: user.fullName ?? '',
         id: user.id ?? '',
+        status: user.status ?? '',
       };
       arr.push(parseUser);
     });
