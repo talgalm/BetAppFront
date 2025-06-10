@@ -10,7 +10,7 @@ import { ReactComponent as ReturnArrow } from '../../Theme/Icons/LayoutIcons/Ret
 import { ReactComponent as HamburgerIcon } from '../../Theme/Icons/LayoutIcons/HamburgerIcon.svg';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-import { headerAtom } from '../../Jotai/atoms';
+import { contactModalDialogAtom, headerAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { useLocation } from 'react-router';
@@ -27,6 +27,7 @@ const Header = () => {
   const [newBetStep] = useAtom(ActiveStep);
   const path = useLocation();
   const [headerStyle] = useAtom(headerAtom);
+  const [contactDialog, setContactDialog] = useAtom(contactModalDialogAtom);
 
   const { data: user } = useProfile();
   const [open, setOpen] = useState(false);
@@ -52,7 +53,7 @@ const Header = () => {
             <ReturnArrow />
           </RightIconDiv>
         )}
-        {newBetStep !== null && (
+        {(newBetStep !== null || contactDialog) && (
           <LeftIconNoBack onClick={handleNewBetExit}>
             <CloseIcon />
           </LeftIconNoBack>

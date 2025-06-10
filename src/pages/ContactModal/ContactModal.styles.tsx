@@ -40,6 +40,7 @@ export const PopUpDiv = styled('div')<{ isOpen?: boolean; padding?: boolean }>((
   margin: 0,
   padding: '24px 16px 24px 16px',
   overflow: 'hidden',
+  direction: 'rtl',
 }));
 
 export const PopUpHeader = styled('div')({

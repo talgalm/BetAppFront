@@ -12,16 +12,21 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons, createDialogButtons } from './buttons';
-import { getParticipantAwareTagType, getParticipentStatus } from '../../utils/betUtils';
+import {
+  extractContacts,
+  getParticipantAwareTagType,
+  getParticipentStatus,
+} from '../../utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
-import { betWinnerAtom, finishBetAtom } from '../../Jotai/atoms';
+import { betWinnerAtom, contactModalDialogAtom, finishBetAtom } from '../../Jotai/atoms';
 import { usePickWinnerAction } from './Hooks/usePickWinner';
 import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useBetLogic } from './Hooks/useBetLogic';
+import ContactModal from '../ContactModal/ContactModal';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -34,6 +39,7 @@ const BetPage = (): JSX.Element => {
   const { mutateAsync: PickWinner } = usePickWinnerAction();
   const fieldDefinitions = useFieldDefinitions(bet);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
+  const [contactDialog, setContactDialog] = useAtom(contactModalDialogAtom);
   const [date, hour] = useMemo(() => {
     return bet?.createdAt ? formatDateToGB(bet.createdAt).split(', ') : ['', ''];
   }, [bet?.createdAt]);
@@ -50,13 +56,14 @@ const BetPage = (): JSX.Element => {
     AddSupervisorDialogAction,
     pickSingleWinner,
     DrawDialogAction,
+    AddSupervisor,
   } = useBetLogic({
     setOpen,
   });
 
   const isDraw =
     (bet?.status === BetStatus.PENDING_SUPERVISOR && bet.supervisor?.id === user?.id) ||
-    (bet?.status === BetStatus.PENDING_CREATOR && bet.creator?.id === user?.id);
+    (bet?.status === BetStatus.PENDING_CREATOR && bet.creator?.id === user?.id && !bet.supervisor);
 
   useEffect(() => {
     if (isDraw) {
@@ -139,6 +146,10 @@ const BetPage = (): JSX.Element => {
     DrawDialogAction,
   });
 
+  const handleSupervisorAdd = (users: User[]) => {
+    if (bet && users[0].id) AddSupervisor(bet?.id, users[0].id);
+  };
+
   if (isLoading) return <BetLoader />;
 
   return (
@@ -187,6 +198,13 @@ const BetPage = (): JSX.Element => {
         open={open}
         closeModal={handleCloseModal}
         buttons={dialogButtons}
+      />
+      <ContactModal
+        open={!!contactDialog}
+        handleClose={() => setContactDialog(null)}
+        handleSave={handleSupervisorAdd}
+        limit={1}
+        limitContacts={extractContacts(bet)}
       />
     </MainContainer>
   );

@@ -10,6 +10,7 @@ export const MainContainer = styled('div')({
   justifyContent: 'center',
   width: '100%',
   marginTop: 54,
+  position: 'fixed',
   overflowY: 'hidden',
 });
 

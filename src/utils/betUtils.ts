@@ -1,5 +1,5 @@
 import { betStatusToTagType, TagType } from '../components/Tag/TagComponent';
-import { Bet, BetStatus, ParticipantStatus } from '../Interfaces';
+import { Bet, BetStatus, Contact, ParticipantStatus } from '../Interfaces';
 
 export const getTagType = (bet: Bet | undefined): TagType => {
   if (!bet) {
@@ -62,4 +62,18 @@ export const getParticipantAwareTagType = (
   }
 
   return baseTagType;
+};
+
+export const extractContacts = (bet: Bet | null | undefined): Contact[] => {
+  if (!bet || !bet.predictions) {
+    return [];
+  }
+
+  return bet.predictions
+    .filter((prediction) => prediction.userId && prediction.fullName)
+    .map((prediction) => ({
+      id: prediction.userId!,
+      fullName: prediction.fullName!,
+      phoneNumber: prediction.phoneNumber,
+    }));
 };

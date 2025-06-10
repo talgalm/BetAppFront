@@ -6,23 +6,19 @@ import {
   ItemsHeaderContent,
   ItemsNameImageCircleContent,
   PopUpDiv,
-  PopUpHeader,
   PopUpHeader2,
   PopUpNotInContact,
   PopUpOverlay,
   PopUpScroll,
   SmallAvatar,
 } from './ContactModal.styles';
-import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
-import { ReactComponent as ReturnIcon } from '../../Theme/Icons/LayoutIcons/ReturnArrow.svg';
 import { ReactComponent as AddContactIcon } from '../../Theme/Icons/ContactAdd.svg';
-import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 import { useTranslation } from 'react-i18next';
-import { Control, FieldValues, Path, useController, useForm } from 'react-hook-form';
+import { FieldValues, Path, useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
-import { User } from '../../Interfaces';
+import { Contact, User } from '../../Interfaces';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
-import { Collapse, Fab } from '@mui/material';
+import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
 import {
   ParticipantsCollapseContainer,
@@ -44,9 +40,8 @@ interface ContactModalProps<T extends FieldValues> {
   open: boolean;
   handleClose: () => void;
   handleSave: (users: User[]) => void;
-  control: Control<T>;
-  inputName: Path<T>;
   limit?: number;
+  limitContacts?: Contact[];
 }
 
 export type FormValues = {
@@ -57,8 +52,8 @@ const ContactModal = <T extends FieldValues>({
   open,
   handleClose,
   handleSave,
-  inputName,
   limit,
+  limitContacts,
 }: ContactModalProps<T>) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -90,6 +85,12 @@ const ContactModal = <T extends FieldValues>({
   }, [searchTerm, debouncedSetSearchTerm]);
 
   const handleUserClick = (user: User) => {
+    if (
+      limitContacts &&
+      limitContacts?.some((unableUser) => unableUser.phoneNumber === user.phoneNumber)
+    ) {
+      return;
+    }
     if (limit && selectedUsers.length === limit) {
       return;
     }

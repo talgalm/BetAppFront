@@ -195,8 +195,8 @@ const NewBetParticipants = <T extends FieldValues>({
           open={openModal}
           handleClose={() => handleOpenContactModal(false)}
           handleSave={addUsers}
-          control={control}
-          inputName={inputName}
+          // control={control}
+          // inputName={inputName}
           limit={limit}
         />
       )}

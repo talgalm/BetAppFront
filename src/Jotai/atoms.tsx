@@ -23,3 +23,5 @@ export const finishBetAtom = atom<FinishBetState | null>(null);
 export const betWinnerAtom = atom<string[]>([]);
 
 export const dialogActionAtom = atom<DialogAction | null>(null);
+
+export const contactModalDialogAtom = atom<boolean | null>(null);

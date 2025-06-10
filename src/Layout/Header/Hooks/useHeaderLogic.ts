@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
-import { finishBetAtom, layoutEphemeralAtom } from '../../../Jotai/atoms';
+import { contactModalDialogAtom, finishBetAtom, layoutEphemeralAtom } from '../../../Jotai/atoms';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
 import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
@@ -15,6 +15,8 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
   const [authStep, setActiveStepAuth] = useAtom(UserActiveStep);
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [layoutEphemeral, setLayout] = useAtom(layoutEphemeralAtom);
+  const [contactDialog, setContactDialog] = useAtom(contactModalDialogAtom);
+
   const { mutate: logout } = useLogout();
   const cleanNewBet = useCleanCreateNewBet();
 
@@ -33,6 +35,10 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
   };
 
   const handleNewBetExit = () => {
+    if (contactDialog) {
+      setContactDialog(false);
+      return;
+    }
     if (!layoutEphemeral?.overlay) {
       setOpen(true);
       return;

@@ -10,6 +10,13 @@ export interface User {
   verifyEmail?: boolean;
 }
 
+export interface Contact {
+  id: string;
+  fullName?: string;
+  phoneNumber?: string;
+  status?: string;
+}
+
 export enum BetStatus {
   ACTIVE = 'active',
   PENDING = 'pending',

@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { dialogActionAtom, finishBetAtom } from '../../../Jotai/atoms';
+import { contactModalDialogAtom, dialogActionAtom, finishBetAtom } from '../../../Jotai/atoms';
 import { useUpdateBet } from './useUpdateBet';
 
 interface UseBetLogicProps {
@@ -10,6 +10,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const { mutate: updateBet } = useUpdateBet();
   const [, SetFinishBet] = useAtom(finishBetAtom);
   const [, setDialogAction] = useAtom(dialogActionAtom);
+  const [, setContactDialog] = useAtom(contactModalDialogAtom);
   const handleCloseModal = () => {
     setDialogAction(null);
     setOpen(false);
@@ -26,11 +27,16 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
       betId: '',
       data: { delareWinners: true },
     });
-  const AddSupervisorDialogAction = () =>
+  const AddSupervisorDialogAction = () => {
+    setContactDialog(true);
+    setOpen(false);
+  };
+  const AddSupervisor = (betId: string, supervisorId: string) => {
     updateBet({
-      betId: '',
-      data: {},
+      betId,
+      data: { addSupervisor: supervisorId },
     });
+  };
 
   const pickSingleWinner = (singleWinner: string) =>
     updateBet({
@@ -52,5 +58,6 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
     AddSupervisorDialogAction,
     DrawDialogAction,
     pickSingleWinner,
+    AddSupervisor,
   };
 };
