@@ -147,7 +147,7 @@ const BetPage = (): JSX.Element => {
   });
 
   const handleSupervisorAdd = (users: User[]) => {
-    if (bet && users[0].id) AddSupervisor(bet?.id, users[0].id);
+    if (users[0]) AddSupervisor(users[0]);
   };
 
   if (isLoading) return <BetLoader />;

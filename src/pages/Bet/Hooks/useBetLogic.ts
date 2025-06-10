@@ -1,6 +1,11 @@
 import { useAtom } from 'jotai';
 import { contactModalDialogAtom, dialogActionAtom, finishBetAtom } from '../../../Jotai/atoms';
-import { useUpdateBet } from './useUpdateBet';
+import { UpdateBetAdditionalAction, useUpdateBet } from './useUpdateBet';
+import { useParams } from 'react-router-dom';
+import { useBet } from './useBet';
+import { useSecondRoundVoting } from './useSecondRoundVoting';
+import { User } from '../../../Interfaces';
+import { useDeclareWinner } from './useDeclareWinner';
 
 interface UseBetLogicProps {
   setOpen: (open: boolean) => void;
@@ -8,6 +13,10 @@ interface UseBetLogicProps {
 
 export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const { mutate: updateBet } = useUpdateBet();
+  const { mutate: secondRoundVoting } = useSecondRoundVoting();
+  const { mutate: declareWinner } = useDeclareWinner();
+  const { id } = useParams();
+  const { data: bet } = useBet(id);
   const [, SetFinishBet] = useAtom(finishBetAtom);
   const [, setDialogAction] = useAtom(dialogActionAtom);
   const [, setContactDialog] = useAtom(contactModalDialogAtom);
@@ -17,31 +26,32 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   };
 
   const SecondRoundDialogAction = () =>
-    updateBet({
-      betId: '',
-      data: {},
+    secondRoundVoting({
+      betId: bet?.id ?? '',
     });
 
-  const PickWinnerDialogAction = () =>
-    updateBet({
-      betId: '',
-      data: { delareWinners: true },
+  const PickWinnerDialogAction = (winners?: string[]) =>
+    declareWinner({
+      betId: bet?.id ?? '',
+      winners: winners ?? [],
     });
   const AddSupervisorDialogAction = () => {
     setContactDialog(true);
     setOpen(false);
   };
-  const AddSupervisor = (betId: string, supervisorId: string) => {
+  const AddSupervisor = (supervisor: User) => {
+    if (!bet?.id) return;
+
     updateBet({
-      betId,
-      data: { addSupervisor: supervisorId },
+      betId: bet.id,
+      data: { supervisor },
     });
   };
 
   const pickSingleWinner = (singleWinner: string) =>
-    updateBet({
-      betId: '',
-      data: { singleWinner },
+    declareWinner({
+      betId: bet?.id ?? '',
+      winners: [singleWinner],
     });
   const DrawDialogAction = () => {
     setOpen(false);

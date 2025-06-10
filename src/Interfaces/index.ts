@@ -59,6 +59,7 @@ export interface Prediction {
   phoneNumber: string;
   status?: ParticipantStatus;
   userId?: string;
+  candidate?: boolean;
 }
 
 export enum VoteDecision {

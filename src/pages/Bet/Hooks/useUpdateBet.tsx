@@ -2,11 +2,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
 import { Bet } from '../../../Interfaces';
 
+export enum UpdateBetAdditionalAction {
+  DeclareWinners = 'DeclareWinners',
+  SingleWinner = 'SingleWinner',
+  AddSupervisor = 'AddSupervisor',
+  SecondRoundVoting = 'SecondRoundVoting',
+}
+
 interface UpdateBetPayload {
   betId: string;
-  data: Partial<Bet> & { delareWinners?: boolean } & { singleWinner?: string } & {
-    addSupervisor?: string;
-  };
+  data: Partial<Bet> & { action?: UpdateBetAdditionalAction; payload?: string };
 }
 
 interface UpdateBetResponse {
