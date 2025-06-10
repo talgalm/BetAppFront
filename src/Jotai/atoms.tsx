@@ -1,6 +1,7 @@
 import { atomWithStorage } from 'jotai/utils';
 import { HeaderStyle } from '../Theme/ThemeInterfaces';
 import { atom } from 'jotai';
+import { DialogAction } from '../components/StyledDialog/StyledDialog';
 
 export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;
@@ -20,3 +21,5 @@ export interface FinishBetState {
 export const finishBetAtom = atom<FinishBetState | null>(null);
 
 export const betWinnerAtom = atom<string[]>([]);
+
+export const dialogActionAtom = atom<DialogAction | null>(null);

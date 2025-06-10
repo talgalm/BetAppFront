@@ -22,8 +22,6 @@ import { usePickWinnerAction } from './Hooks/usePickWinner';
 import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useBetLogic } from './Hooks/useBetLogic';
-import { ButtonConfig } from '../../components/Button/StyledButton';
-import { useUpdateBet } from './Hooks/useUpdateBet';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -47,20 +45,24 @@ const BetPage = (): JSX.Element => {
 
   const {
     handleCloseModal,
-    secondRoundVoting,
-    multiWinners,
-    addSupervisor,
+    SecondRoundDialogAction,
+    PickWinnerDialogAction,
+    AddSupervisorDialogAction,
     pickSingleWinner,
-    pickWinnerOption,
+    DrawDialogAction,
   } = useBetLogic({
     setOpen,
   });
 
+  const isDraw =
+    (bet?.status === BetStatus.PENDING_SUPERVISOR && bet.supervisor?.id === user?.id) ||
+    (bet?.status === BetStatus.PENDING_CREATOR && bet.creator?.id === user?.id);
+
   useEffect(() => {
-    if (bet?.status === BetStatus.PENDING_CREATOR) {
+    if (isDraw) {
       setOpen(true);
     }
-  }, [bet]);
+  }, [bet, isDraw, user?.id]);
 
   const handleParticipantAction = useCallback(
     async (action: ParticipantAction) => {
@@ -83,10 +85,7 @@ const BetPage = (): JSX.Element => {
         });
         setPickedWinners([]);
         if ([VoteDecision.UNDECIDED, VoteDecision.ENDED].includes(result.action)) {
-          SetFinishBet({
-            isFinished: true,
-            mode: 'multi',
-          });
+          SetFinishBet(null);
         }
       }
     } catch {
@@ -134,10 +133,10 @@ const BetPage = (): JSX.Element => {
   const dialogType = bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
 
   const dialogButtons = createDialogButtons(dialogType, {
-    secondRoundVoting,
-    multiWinners,
-    addSupervisor,
-    pickWinnerOption,
+    SecondRoundDialogAction,
+    PickWinnerDialogAction,
+    AddSupervisorDialogAction,
+    DrawDialogAction,
   });
 
   if (isLoading) return <BetLoader />;

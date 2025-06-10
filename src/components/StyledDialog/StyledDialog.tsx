@@ -7,11 +7,21 @@ import { PopUpContent, PopUpHeader, PopUpRUDiv } from '../../Errors/ErrorHandler
 import ButtonsHub, { ButtonsHubStatus } from '../../pages/ButtonsHub';
 
 import { ButtonConfig } from '../Button/StyledButton';
+import { useState } from 'react';
+import { dialogActionAtom } from '../../Jotai/atoms';
+import { useAtom } from 'jotai';
 
 export enum DialogType {
   BetCreation = 'betCreation',
   BetCreator = 'betCreator',
   BetSupervisor = 'betSupervisor',
+}
+
+export enum DialogAction {
+  SecondRound = 'SecondRoundDialogAction',
+  PickWinner = 'PickWinnerDialogAction',
+  AddSupervisor = 'AddSupervisorDialogAction',
+  Draw = 'DrawDialogAction',
 }
 
 type ConfirmDialogProps = {
@@ -23,9 +33,10 @@ type ConfirmDialogProps = {
 
 export const StyledDialog: React.FC<ConfirmDialogProps> = ({ open, type, closeModal, buttons }) => {
   const { t } = useTranslation();
+  const [dialogAction] = useAtom(dialogActionAtom);
 
-  const title = t(`StyledDialog.${type}Title`);
-  const subtitle = t(`StyledDialog.${type}Subtitle`);
+  const title = t(`StyledDialog.${dialogAction ?? type}Title`);
+  const subtitle = t(`StyledDialog.${dialogAction ?? type}Subtitle`);
 
   return (
     <Dialog open={open} dir="rtl">

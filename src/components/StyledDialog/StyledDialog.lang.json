@@ -4,9 +4,17 @@
   "betCreationConfimButton": "לסגור בלי לשמור",
   "betCreationCloseButton": "שמירה כטיוטה",
   "betCreatorTitle": "ההתערבות הסתיימה ללא הכרעה",
-  "betCreatorSubtitle": "אנא בחר את הפעולה שתרצה להכריע את ההתערבות",
+  "betCreatorSubtitle": "לצורך סיום התערבות הוגן אנו ממליצים על כמה אופציות לסגירה",
   "SecondRoundVoting": "סיבוב הצבעות נוסף",
-  "MultiWinners": "בחר בכמה זוכים",
-  "betCreatorAddSupervisor": "הוסף מפקח",
-  "betSupervisorPickWinner": "בחר מנצח"
+  "MultiWinners": "בחר זוכים",
+  "BetCreatorAddSupervisor": "הזמן מפקח התערבות",
+  "BetSupervisorPickWinner": "בחר מנצח",
+  "SecondRoundDialogActionTitle" : "בחרת לעשות סבב הצבעות נוסף",
+  "PickWinnerDialogActionTitle" : "בחירת מנצחים",
+  "AddSupervisorDialogActionTitle" : "הזמנת מפקח להתערבות",
+  "DrawDialogActionTitle" : "סגירת התערבות",
+  "SecondRoundDialogActionSubtitle" : "משתתפים אשר לא חלק מהטיקו יעשו הצבעה נוספת על המשתתפים שבתיקו",
+  "PickWinnerDialogActionSubtitle" : "כיוצר התערבות אתה יכול לקבל החלטה על מנצח יחיד בין במשתתפים שבטיקו",
+  "AddSupervisorDialogActionSubtitle" : "ברשותך לבחור מפקח חיצוני אשר לא חלק מההתערבות",
+  "DrawDialogActionSubtitle" : "בחרת לסגור את ההתערבות בתוצאה ״טיקו״ הבטים יתחלקו שווה בין המנצחים"
 }

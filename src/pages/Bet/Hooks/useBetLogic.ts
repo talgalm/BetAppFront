@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { finishBetAtom } from '../../../Jotai/atoms';
+import { dialogActionAtom, finishBetAtom } from '../../../Jotai/atoms';
 import { useUpdateBet } from './useUpdateBet';
 
 interface UseBetLogicProps {
@@ -9,22 +9,24 @@ interface UseBetLogicProps {
 export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const { mutate: updateBet } = useUpdateBet();
   const [, SetFinishBet] = useAtom(finishBetAtom);
+  const [, setDialogAction] = useAtom(dialogActionAtom);
   const handleCloseModal = () => {
+    setDialogAction(null);
     setOpen(false);
   };
 
-  const secondRoundVoting = () =>
+  const SecondRoundDialogAction = () =>
     updateBet({
       betId: '',
       data: {},
     });
 
-  const multiWinners = () =>
+  const PickWinnerDialogAction = () =>
     updateBet({
       betId: '',
       data: { delareWinners: true },
     });
-  const addSupervisor = () =>
+  const AddSupervisorDialogAction = () =>
     updateBet({
       betId: '',
       data: {},
@@ -35,7 +37,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
       betId: '',
       data: { singleWinner },
     });
-  const pickWinnerOption = () => {
+  const DrawDialogAction = () => {
     setOpen(false);
     SetFinishBet({
       isFinished: false,
@@ -45,10 +47,10 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
 
   return {
     handleCloseModal,
-    secondRoundVoting,
-    multiWinners,
-    addSupervisor,
-    pickWinnerOption,
+    SecondRoundDialogAction,
+    PickWinnerDialogAction,
+    AddSupervisorDialogAction,
+    DrawDialogAction,
     pickSingleWinner,
   };
 };

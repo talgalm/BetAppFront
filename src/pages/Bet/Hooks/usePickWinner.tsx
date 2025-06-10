@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { Bet, User, VoteDecision } from '../../../Interfaces';
+import { Bet, ParticipantStatus, User, VoteDecision } from '../../../Interfaces';
+import { ParticipantAction } from './useParticipentAction';
 
 interface ActionPayload {
   betId: string;
@@ -39,9 +40,20 @@ export const usePickWinnerAction = () => {
 
         return {
           ...oldUser,
-          bets: oldUser.bets.map((b) =>
-            b.id === data.bet.id ? { ...b, status: data.bet.status } : b
-          ),
+          bets: oldUser.bets.map((b) => {
+            const updatedBet = b.id === data.bet.id ? { ...b, status: data.bet.status } : b;
+
+            const updatedPredictions = updatedBet.predictions?.map((prediction) =>
+              prediction.userId === oldUser.id
+                ? { ...prediction, status: ParticipantStatus.VOTED }
+                : prediction
+            );
+
+            return {
+              ...updatedBet,
+              predictions: updatedPredictions,
+            };
+          }),
         };
       });
     },

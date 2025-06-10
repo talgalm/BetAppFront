@@ -3,9 +3,11 @@ import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
-import { ParticipantStatus, User } from '../../Interfaces';
-import { DialogType } from '../../components/StyledDialog/StyledDialog';
+import { ParticipantStatus } from '../../Interfaces';
+import { DialogAction, DialogType } from '../../components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';
+import { useAtom } from 'jotai';
+import { dialogActionAtom } from '../../Jotai/atoms';
 
 export const createActionButtons = (
   tagType: TagType,
@@ -83,27 +85,46 @@ export const createDialogButtons = (
 ): ButtonConfig[] => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { t } = useTranslation();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [dialogAction, setDialogAction] = useAtom(dialogActionAtom);
+
+  if (dialogAction) {
+    return [
+      {
+        value: 'אשר',
+        onClick: actions[dialogAction],
+      },
+      {
+        value: 'חזור',
+        onClick: () => setDialogAction(null),
+        colorVariant: ThemeType.Secondary,
+        styleProps: { border: '2px solid #15AB94' },
+      },
+    ];
+  }
 
   return [
     {
       value: t('StyledDialog.SecondRoundVoting'),
-      onClick: actions['secondRoundVoting'],
-      colorVariant: ThemeType.Primary,
+      onClick: () => setDialogAction(DialogAction.SecondRound),
+      colorVariant: ThemeType.Secondary,
+      styleProps: { border: '2px solid #15AB94' },
     },
     {
       value: t('StyledDialog.MultiWinners'),
-      onClick: actions['multiWinners'],
-      colorVariant: ThemeType.Primary,
+      onClick: () => setDialogAction(DialogAction.PickWinner),
+      colorVariant: ThemeType.Secondary,
+      styleProps: { border: '2px solid #15AB94' },
     },
     dialogType === DialogType.BetCreator
       ? {
           value: t('StyledDialog.BetCreatorAddSupervisor'),
-          onClick: actions['addSupervisor'],
+          onClick: () => setDialogAction(DialogAction.AddSupervisor),
           colorVariant: ThemeType.Primary,
         }
       : {
           value: t('StyledDialog.BetSupervisorPickWinner'),
-          onClick: actions['pickWinnerOption'],
+          onClick: () => setDialogAction(DialogAction.Draw),
           colorVariant: ThemeType.Primary,
         },
   ];
