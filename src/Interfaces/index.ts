@@ -18,6 +18,7 @@ export interface Contact {
 }
 
 export enum BetStatus {
+  DRAFT = 'draft',
   ACTIVE = 'active',
   PENDING = 'pending',
   CANCELED = 'canceled',
@@ -36,6 +37,7 @@ export interface Bet {
   betim: number;
   deadline?: Date;
   supervisor?: User & { status?: ParticipantStatus };
+  creatorId?: string;
   creator?: User;
   predictions?: Prediction[];
   isSupervisor?: boolean;

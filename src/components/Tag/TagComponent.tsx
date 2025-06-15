@@ -4,6 +4,7 @@ import { Typography } from '../Topography/topography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 
 export enum TagType {
+  DRAFT = 'דראפט',
   PENDING_APPROVAL = 'ממתין לאישור',
   PENDING_APPROVAL_REST = 'ממתין לאישור שאר משתתפים',
   SUPERVISOR = 'מפקח',
@@ -15,6 +16,7 @@ export enum TagType {
 }
 
 export const betStatusToTagType: Record<BetStatus, TagType> = {
+  [BetStatus.DRAFT]: TagType.DRAFT,
   [BetStatus.ACTIVE]: TagType.ACTIVE,
   [BetStatus.CANCELED]: TagType.CANCELED,
   [BetStatus.COMPLETED]: TagType.COMPLETED,
@@ -55,6 +57,10 @@ export const TagTypeColors: Record<keyof typeof TagType, { background: string; a
     accent: '#D87330',
   },
   CANCELED: {
+    background: '#FFE9F0',
+    accent: '#CA1A61',
+  },
+  DRAFT: {
     background: '#FFE9F0',
     accent: '#CA1A61',
   },

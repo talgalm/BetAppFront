@@ -11,7 +11,7 @@ export const getTagType = (bet: Bet | undefined): TagType => {
     return TagType.COMPLETED;
   }
 
-  const allStatuses = predictions.map((p) => p.status);
+  const allStatuses = predictions.map((p) => p.status).concat(bet.supervisorStatus);
 
   const hasPending = allStatuses.includes(ParticipantStatus.PENDING);
   const hasActive = allStatuses.includes(ParticipantStatus.APPROVED);
@@ -45,7 +45,11 @@ export const getParticipentStatus = (
 ): ParticipantStatus => {
   if (bet && userId) {
     const participant = bet.predictions?.find((p) => p.userId === userId);
-    return participant?.status ?? ParticipantStatus.PENDING;
+    if (!participant) {
+      return bet.supervisorStatus ?? ParticipantStatus.PENDING;
+    } else {
+      return participant?.status ?? ParticipantStatus.PENDING;
+    }
   }
   return ParticipantStatus.CANCELED;
 };

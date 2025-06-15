@@ -5,6 +5,9 @@ import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
 import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
+import { User } from '../../../Interfaces';
+import { useQueryClient } from '@tanstack/react-query';
+import { CreateBetInputs, useCreateBet } from '../../../pages/NewBet/Hooks/useCreatebet';
 
 interface UseHeaderLogicProps {
   setOpen: (open: boolean) => void;
@@ -16,6 +19,9 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
   const [finishBet, SetFinishBet] = useAtom(finishBetAtom);
   const [layoutEphemeral, setLayout] = useAtom(layoutEphemeralAtom);
   const [contactDialog, setContactDialog] = useAtom(contactModalDialogAtom);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData<User>(['user-profile']);
+  const createBet = useCreateBet();
 
   const { mutate: logout } = useLogout();
   const cleanNewBet = useCleanCreateNewBet();
@@ -57,7 +63,24 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
   };
 
   const handleSaveAsDraft = () => {
-    console.log('');
+    const data = localStorage.getItem('betForm');
+    if (data) {
+      try {
+        const parsedData = JSON.parse(data) as CreateBetInputs;
+        parsedData.creator = user?.id || '';
+        // parsedData.Summary = false;
+        createBet.mutate(parsedData, {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['user-profile'] });
+          },
+          onError: (err) => {
+            console.error('Failed to create bet:', err.message);
+          },
+        });
+      } catch (e) {
+        console.error('Invalid draft data in localStorage', e);
+      }
+    }
   };
 
   return {

@@ -3,7 +3,7 @@ import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
-import { ParticipantStatus } from '../../Interfaces';
+import { Bet, ParticipantStatus } from '../../Interfaces';
 import { DialogAction, DialogType } from '../../components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
@@ -13,10 +13,14 @@ export const createActionButtons = (
   tagType: TagType,
   handleAction: (a: ParticipantAction) => void,
   isFinish: boolean,
-  participentStatus?: ParticipantStatus
+  participentStatus?: ParticipantStatus,
+  bet?: Bet
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 
+  if (participentStatus === ParticipantStatus.CANCELED) {
+    return buttons;
+  }
   const oneButtonDispaly = isFinish
     ? t('BetPage.finishAndApprove')
     : t('BetPage.approveAndPickWinner');
@@ -62,7 +66,8 @@ export const createActionButtons = (
     const isLeave = tagType !== TagType.PENDING_APPROVAL;
     buttons.push({
       value: isLeave ? t('BetPage.leaveBet') : t('BetPage.rejectInvite'),
-      onClick: () => handleAction(ParticipantAction.REJECT),
+      onClick: () =>
+        isLeave ? handleAction(ParticipantAction.LEAVE) : handleAction(ParticipantAction.REJECT),
       colorVariant: ThemeType.Secondary,
       styleProps: { color: '#E33E21' },
     });

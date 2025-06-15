@@ -3,7 +3,11 @@ import { ButtonConfig } from '../../components/Button/StyledButton';
 import { DialogType } from '../../components/StyledDialog/StyledDialog';
 import { ThemeType } from '../../Theme/theme';
 
-export const createDialogButtons = (dialogType: DialogType): ButtonConfig[] => {
+export const createDialogButtons = (
+  dialogType: DialogType,
+  onConfirm: () => void,
+  onClose: () => void
+): ButtonConfig[] => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { t } = useTranslation();
   const buttons: ButtonConfig[] = [];
@@ -11,12 +15,12 @@ export const createDialogButtons = (dialogType: DialogType): ButtonConfig[] => {
   if (dialogType === DialogType.BetCreation) {
     buttons.push({
       value: t(`StyledDialog.${dialogType}ConfimButton`),
-      // onClick: onConfirm,
+      onClick: onConfirm,
       colorVariant: ThemeType.Primary,
     });
     buttons.push({
       value: t(`StyledDialog.${dialogType}CloseButton`),
-      // onClick: onClose,
+      onClick: onClose,
       colorVariant: ThemeType.Secondary,
       styleProps: { border: '2px solid #15AB94' },
     });

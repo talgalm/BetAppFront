@@ -35,10 +35,10 @@ export const HeaderContainer = styled('div')({
   `,
 });
 
-export const ContentContainer = styled('div')<{ state?: boolean; isOneButton?: boolean }>(
-  ({ state, isOneButton }) => ({
+export const ContentContainer = styled('div')<{ state?: boolean; full?: boolean }>(
+  ({ state, full }) => ({
     position: 'fixed',
-    inset: `${180}px 0 ${150}px 0`,
+    inset: `${180}px 0 ${state || full ? 0 : 150}px 0`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

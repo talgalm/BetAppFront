@@ -6,6 +6,7 @@ import { Bet, ParticipantStatus, Prediction, User } from '../../../Interfaces';
 export enum ParticipantAction {
   APPROVE = 'approve',
   REJECT = 'reject',
+  LEAVE = 'leave',
 }
 
 interface ActionPayload {

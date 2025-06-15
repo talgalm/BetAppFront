@@ -43,7 +43,11 @@ const Header = () => {
     setOpen,
   });
 
-  const dialogButtons = createDialogButtons(DialogType.BetCreation);
+  const dialogButtons = createDialogButtons(
+    DialogType.BetCreation,
+    handleConfirmExit,
+    handleSaveAsDraft
+  );
 
   return (
     <>

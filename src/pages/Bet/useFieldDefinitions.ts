@@ -20,11 +20,17 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
   const { t } = useTranslation();
   const [finishBet] = useAtom(finishBetAtom);
 
+  const candidates = () => {
+    if (!bet?.predictions) return [];
+    const hasCandidates = bet.predictions.some((pred) => pred.candidate);
+    return hasCandidates ? bet.predictions.filter((pred) => pred.candidate) : bet.predictions;
+  };
+
   const fields: FieldRowProps[] = [
     {
       label: finishBet ? t('BetPage.whoWon') : t('BetPage.participents'),
       value: '',
-      arrValue: bet?.predictions,
+      arrValue: finishBet ? candidates() : bet?.predictions,
     },
     { label: t('BetPage.description'), value: bet?.description },
     {

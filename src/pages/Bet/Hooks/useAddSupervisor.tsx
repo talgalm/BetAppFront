@@ -4,14 +4,15 @@ import { Bet, User } from '../../../Interfaces';
 
 interface ActionPayload {
   betId: string;
-  winners?: string[];
+  phoneNumber?: string;
+  userId?: string;
 }
 
 interface ResultPaylod {
   bet: Bet;
 }
 
-export const useDeclareWinner = () => {
+export const useAddSupervisor = () => {
   const queryClient = useQueryClient();
 
   return useMutation<
@@ -23,9 +24,10 @@ export const useDeclareWinner = () => {
       previousBet?: unknown;
     }
   >({
-    mutationFn: ({ betId, winners }) =>
-      ApiService.makeRequest<ResultPaylod>(`/bets/${betId}/declare-winner`, HTTPMethod.POST, {
-        winners,
+    mutationFn: ({ betId, phoneNumber, userId }) =>
+      ApiService.makeRequest<ResultPaylod>(`/bets/${betId}/add-supervisor`, HTTPMethod.POST, {
+        phoneNumber,
+        userId,
       }),
     onSuccess: (data) => {
       queryClient.setQueryData<Bet>(['bet', data.bet.id], data.bet);

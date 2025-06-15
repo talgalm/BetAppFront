@@ -21,7 +21,7 @@ export type CreateBetInputs = {
   Conditions?: any;
   files?: File[]; // Ignored in the request
   supervisor?: Participant[];
-  Summary?: string;
+  Status?: boolean;
   creator: string;
 };
 

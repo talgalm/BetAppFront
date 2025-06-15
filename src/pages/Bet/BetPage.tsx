@@ -27,6 +27,7 @@ import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { useBetLogic } from './Hooks/useBetLogic';
 import ContactModal from '../ContactModal/ContactModal';
+import { NotificationHeader } from '../Home/SingleBetRow.styles';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -91,9 +92,7 @@ const BetPage = (): JSX.Element => {
           winners: pickedWinners,
         });
         setPickedWinners([]);
-        if ([VoteDecision.UNDECIDED, VoteDecision.ENDED].includes(result.action)) {
-          SetFinishBet(null);
-        }
+        SetFinishBet(null);
       }
     } catch {
       /* empty */
@@ -103,13 +102,17 @@ const BetPage = (): JSX.Element => {
   const handleAction = useCallback(
     (action: ParticipantAction) => {
       const allowedTypes = [TagType.PENDING_APPROVAL, TagType.PENDING_APPROVAL_REST];
-      if (allowedTypes.includes(tagType)) {
+      if (allowedTypes.includes(tagType) || action === ParticipantAction.LEAVE) {
         handleParticipantAction(action);
       } else if (!finishBet) {
-        SetFinishBet({
-          isFinished: true,
-          mode: 'multi',
-        });
+        if (bet?.supervisor?.id === user?.id) {
+          setOpen(true);
+        } else {
+          SetFinishBet({
+            isFinished: true,
+            mode: 'multi',
+          });
+        }
       } else {
         if (finishBet.mode === 'multi') submitWinners();
         else pickSingleWinner(pickedWinners[0]);
@@ -119,6 +122,8 @@ const BetPage = (): JSX.Element => {
       tagType,
       finishBet,
       handleParticipantAction,
+      bet?.supervisor?.id,
+      user?.id,
       SetFinishBet,
       submitWinners,
       pickSingleWinner,
@@ -134,7 +139,8 @@ const BetPage = (): JSX.Element => {
     tagType,
     handleAction,
     finishBet?.isFinished ?? false,
-    participentStatus
+    participentStatus,
+    bet
   );
 
   const dialogType = bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;
@@ -162,12 +168,12 @@ const BetPage = (): JSX.Element => {
         {bet?.createdAt && (
           <Typography value={t('BetPage.createdAt', { date, hour })} variant={TypographyTypes.H2} />
         )}
-        <Tag type={tagType} />
+        <NotificationHeader>
+          {bet?.supervisor?.id === user?.id && <Tag type={TagType.SUPERVISOR} />}
+          <Tag type={tagType} />
+        </NotificationHeader>
       </HeaderContainer>
-      <ContentContainer
-        state={finishBet?.isFinished ?? false}
-        isOneButton={tagType === TagType.COMPLETED}
-      >
+      <ContentContainer state={finishBet?.isFinished} full={buttons.length === 0}>
         {bet?.winners && <WinnerSection winners={bet.winners} />}
         {finishBet
           ? fieldDefinitions

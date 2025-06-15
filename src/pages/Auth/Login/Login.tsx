@@ -35,7 +35,10 @@ const Login = (): JSX.Element => {
   useEffect(() => {
     setIsFormEmpty(Object.values(formValues).some((value) => !value));
     queryClient.clear();
-  }, [formValues]);
+    queryClient.removeQueries();
+    queryClient.resetQueries();
+    queryClient.cancelQueries();
+  }, [formValues, queryClient]);
 
   const onSubmit = (data: LoginFormInput) => {
     const values = getValues();

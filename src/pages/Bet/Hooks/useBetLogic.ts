@@ -1,11 +1,12 @@
 import { useAtom } from 'jotai';
-import { contactModalDialogAtom, dialogActionAtom, finishBetAtom } from '../../../Jotai/atoms';
-import { UpdateBetAdditionalAction, useUpdateBet } from './useUpdateBet';
+import { contactModalDialogAtom, dialogActionAtom } from '../../../Jotai/atoms';
+import { useUpdateBet } from './useUpdateBet';
 import { useParams } from 'react-router-dom';
 import { useBet } from './useBet';
 import { useSecondRoundVoting } from './useSecondRoundVoting';
 import { User } from '../../../Interfaces';
 import { useDeclareWinner } from './useDeclareWinner';
+import { useAddSupervisor } from './useAddSupervisor';
 
 interface UseBetLogicProps {
   setOpen: (open: boolean) => void;
@@ -15,9 +16,9 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const { mutate: updateBet } = useUpdateBet();
   const { mutate: secondRoundVoting } = useSecondRoundVoting();
   const { mutate: declareWinner } = useDeclareWinner();
+  const { mutate: addSupervisor } = useAddSupervisor();
   const { id } = useParams();
   const { data: bet } = useBet(id);
-  const [, SetFinishBet] = useAtom(finishBetAtom);
   const [, setDialogAction] = useAtom(dialogActionAtom);
   const [, setContactDialog] = useAtom(contactModalDialogAtom);
   const handleCloseModal = () => {
@@ -42,10 +43,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const AddSupervisor = (supervisor: User) => {
     if (!bet?.id) return;
 
-    updateBet({
-      betId: bet.id,
-      data: { supervisor },
-    });
+    addSupervisor({ betId: bet.id, phoneNumber: supervisor.phoneNumber, userId: supervisor.id });
   };
 
   const pickSingleWinner = (singleWinner: string) =>
@@ -54,10 +52,8 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
       winners: [singleWinner],
     });
   const DrawDialogAction = () => {
-    setOpen(false);
-    SetFinishBet({
-      isFinished: false,
-      mode: 'single',
+    declareWinner({
+      betId: bet?.id ?? '',
     });
   };
 
