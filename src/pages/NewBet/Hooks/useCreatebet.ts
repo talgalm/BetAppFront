@@ -19,10 +19,11 @@ export type CreateBetInputs = {
   deadline?: Date | string;
   participants?: Participant[];
   Conditions?: any;
-  files?: File[]; // Ignored in the request
+  files?: File[];
   supervisor?: Participant[];
-  Status?: boolean;
+  Status?: string;
   creator: string;
+  BetIdIfExists?: string;
 };
 
 export const useCreateBet = (): UseMutationResult<{ bet: Bet }, Error, CreateBetInputs> => {

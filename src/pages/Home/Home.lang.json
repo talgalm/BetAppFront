@@ -4,6 +4,8 @@
     "CreateNewBet": "צור התערבות חדשה",
     "Notifications": "התראות",
     "Bets" : "התערבויות",
+    "DraftConfirm" : "המשך יצירת התערבות",
+    "DraftCancel" : "מחק",
     "Confirm" : "אישור הצטרפות",
     "Cancel" : "ביטול הזמנה",
     "NoBetsTitle" : "עדיין לא פתחת אף התערבות",

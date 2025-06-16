@@ -29,7 +29,7 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
   const user = queryClient.getQueryData<User>(['user-profile']);
 
   const tagType = getParticipantAwareTagType(bet, user?.id);
-  const isPending = tagType === TagType.PENDING_APPROVAL;
+  const needActionRow = tagType === TagType.PENDING_APPROVAL || TagType.DRAFT;
 
   const handleBet = () => {
     if (bet) {
@@ -68,9 +68,7 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
             ))}
         </StyledAvatarGroup>
       </NotificationRow>
-      {isPending && (
-        <ParticipantActionRow betId={bet?.id ?? ''} predictions={bet?.predictions || []} />
-      )}
+      {needActionRow && <ParticipantActionRow betId={bet?.id ?? ''} type={tagType} />}
     </NotificationContainer>
   );
 };

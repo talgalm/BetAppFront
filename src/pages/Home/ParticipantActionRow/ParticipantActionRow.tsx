@@ -5,21 +5,29 @@ import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { ParticipantAction, useParticipantAction } from '../../Bet/Hooks/useParticipentAction';
 import { useQueryClient } from '@tanstack/react-query';
+import { TagType } from '../../../components/Tag/TagComponent';
+import { useDeleteBet } from '../../Bet/Hooks/useDeleteBet';
+import { useAtom } from 'jotai';
+import { ActiveStep } from '../../../Jotai/newBetAtoms';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/Interface';
+import { useNavigate } from 'react-router-dom';
+import { useBet } from '../../Bet/Hooks/useBet';
 
 interface Props {
   betId: string;
-  predictions: Prediction[];
+  type: TagType;
 }
 
-export default function ParticipantActionRow({ betId, predictions }: Props) {
+export default function ParticipantActionRow({ betId, type }: Props) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
+  const [, setActiveStep] = useAtom(ActiveStep);
+  const { data: bet } = useBet(betId);
 
   const { mutateAsync } = useParticipantAction();
-
-  // const myStatus = predictions.find((p) => p.userId === user?.id)?.status;
-  // if (myStatus !== ParticipantStatus.PENDING) return null;
+  const deleteBet = useDeleteBet();
 
   const send = async (action: ParticipantAction) => {
     try {
@@ -34,19 +42,43 @@ export default function ParticipantActionRow({ betId, predictions }: Props) {
     send(action);
   };
 
+  const handleDeleteDraftBet = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    deleteBet.mutate(betId);
+  };
+
+  const handleContinueNewBet = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveStep(newBetSteps[NewBetStepValueTypes.name]);
+    if (bet) {
+      const cleanedBet = Object.fromEntries(
+        Object.entries(bet).filter(([_, value]) => value != null)
+      );
+      cleanedBet.BetIdIfExists = betId;
+      cleanedBet.participents = bet.predictions;
+      localStorage.setItem('betForm', JSON.stringify(cleanedBet));
+    }
+    navigate('/new-bet');
+  };
+
+  const isPending = type === TagType.PENDING_APPROVAL;
+
+  const ConfirmText = isPending ? t('Home.Confirm') : t('Home.DraftConfirm');
+  const CancelText = isPending ? t('Home.Cancel') : t('Home.DraftCancel');
+
   return (
     <ActionRow>
       <Typography
-        value={t('Home.Confirm')}
+        value={ConfirmText}
         variant={TypographyTypes.Button}
         styleProps={{ color: '#15AB94' }}
-        onClick={handleClick(ParticipantAction.APPROVE)}
+        onClick={isPending ? handleClick(ParticipantAction.APPROVE) : handleContinueNewBet}
       />
       <Typography
-        value={t('Home.Cancel')}
+        value={CancelText}
         variant={TypographyTypes.Button}
         styleProps={{ color: '#E33E21' }}
-        onClick={handleClick(ParticipantAction.REJECT)}
+        onClick={isPending ? handleClick(ParticipantAction.REJECT) : handleDeleteDraftBet}
       />
     </ActionRow>
   );

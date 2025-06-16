@@ -57,7 +57,6 @@ const NewBetConditions = <T extends FieldValues>({
     onChange(updatedValues);
   };
 
-  // add myself to the list conditions
   return (
     <ConditionsContent>
       {inputName &&

@@ -74,6 +74,7 @@ export enum HTTPMethod {
   POST = 'post',
   PUT = 'put',
   PATCH = 'patch',
+  DELETE = 'delete',
 }
 
 export enum StatusCode {

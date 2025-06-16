@@ -5,7 +5,7 @@ import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
 import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
-import { User } from '../../../Interfaces';
+import { BetStatus, User } from '../../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '../../../pages/NewBet/Hooks/useCreatebet';
 
@@ -68,10 +68,11 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
       try {
         const parsedData = JSON.parse(data) as CreateBetInputs;
         parsedData.creator = user?.id || '';
-        // parsedData.Summary = false;
+        parsedData.Status = BetStatus.DRAFT;
         createBet.mutate(parsedData, {
           onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['user-profile'] });
+            handleConfirmExit();
           },
           onError: (err) => {
             console.error('Failed to create bet:', err.message);
