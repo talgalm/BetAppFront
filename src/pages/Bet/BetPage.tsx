@@ -28,6 +28,7 @@ import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDi
 import { useBetLogic } from './Hooks/useBetLogic';
 import ContactModal from '../ContactModal/ContactModal';
 import { NotificationHeader } from '../Home/SingleBetRow.styles';
+import { useBetUpdates } from '../../Connection/useBetUpdates';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -49,6 +50,8 @@ const BetPage = (): JSX.Element => {
   const tagType = getParticipantAwareTagType(bet, user?.id);
   const participentStatus = getParticipentStatus(bet, user?.id);
   const [open, setOpen] = useState(false);
+
+  useBetUpdates();
 
   const {
     handleCloseModal,

@@ -29,7 +29,7 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
   const user = queryClient.getQueryData<User>(['user-profile']);
 
   const tagType = getParticipantAwareTagType(bet, user?.id);
-  const needActionRow = tagType === TagType.PENDING_APPROVAL || TagType.DRAFT;
+  const needActionRow = tagType === TagType.PENDING_APPROVAL || tagType === TagType.DRAFT;
 
   const handleBet = () => {
     if (bet) {
