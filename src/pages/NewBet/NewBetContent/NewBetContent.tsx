@@ -16,7 +16,6 @@ import NewBetSummary from '../NewBetComponents/Summary/Summary';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { useEffect } from 'react';
 import { fireConfetti } from '../../../utils/confetti';
-import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;

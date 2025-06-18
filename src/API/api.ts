@@ -9,49 +9,57 @@ export const ApiService = {
   makeRequest: async <T>(
     endpoint: string,
     method: HTTPMethod,
-    data?: Record<string, unknown>,
+    data?: Record<string, any> | FormData,
     isFormData?: boolean,
     withAuth?: boolean,
     headers?: Record<string, string>
   ): Promise<T> => {
-    const prepareConfig = (): AxiosRequestConfig => ({
-      method,
-      url:
-        method === HTTPMethod.GET
+    const prepareConfig = (): AxiosRequestConfig => {
+      const isGet = method === HTTPMethod.GET;
+
+      const finalHeaders: Record<string, string> = {
+        ...headers,
+      };
+
+      if (!isFormData && !isGet) {
+        finalHeaders['Content-Type'] = ContentType.JSON;
+      }
+
+      const config: AxiosRequestConfig = {
+        method,
+        url: isGet
           ? `${BASE_URL}${endpoint}${data ? `?${new URLSearchParams(data as Record<string, string>).toString()}` : ''}`
           : `${BASE_URL}${endpoint}`,
-      headers: {
-        ...(isFormData
-          ? { 'Content-Type': ContentType.FORM }
-          : { 'Content-Type': ContentType.JSON }),
-        ...headers,
-      },
-      data:
-        method !== HTTPMethod.GET
-          ? isFormData
-            ? new URLSearchParams(data as Record<string, string>).toString()
-            : data
-          : undefined,
-      withCredentials: true,
-    });
+        headers: finalHeaders,
+        withCredentials: true,
+      };
+
+      if (!isGet) {
+        if (isFormData && data instanceof FormData) {
+          config.data = data;
+          delete finalHeaders['Content-Type'];
+        } else {
+          config.data = data;
+        }
+      }
+
+      return config;
+    };
 
     try {
       const response = await axios(prepareConfig());
       return response.data;
     } catch (error: any) {
       if (withAuth && error.response?.status === StatusCode.UNAUTHORIZED) {
-        // attempt to refresh
         try {
           const refreshResponse = await axios.post<{ accessToken: string }>(
             `${BASE_URL}/auth/refresh`,
             {},
-            { withCredentials: true } // send refreshToken cookie
+            { withCredentials: true }
           );
-
           const newAccessToken = refreshResponse.data.accessToken;
           Cookies.set('accessToken', newAccessToken);
 
-          // retry original request
           const retryResponse = await axios(prepareConfig());
           return retryResponse.data;
         } catch (refreshError) {

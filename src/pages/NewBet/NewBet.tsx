@@ -28,6 +28,7 @@ import { useNavigate } from 'react-router-dom';
 import { Bet, User } from '../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
+import { FileInput, useAttachFilesToBet } from './Hooks/useAttachFilesToBet';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -38,6 +39,7 @@ const NewBet = () => {
   const formValues = watch();
   const cleanNewBet = useCleanCreateNewBet();
   const createBet = useCreateBet();
+  const attachFiles = useAttachFilesToBet();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
@@ -113,7 +115,10 @@ const NewBet = () => {
       setActiveStep(newBetSteps[NewBetStepValueTypes.Summary]);
     } else {
       if (nextStep === null) {
-        if (step.step === NewBetStepValueTypes.Success) cleanNewBet();
+        if (step.step === NewBetStepValueTypes.Success) {
+          cleanNewBet();
+          handleFiles();
+        }
       }
       if (nextStep) {
         const progressValue = !back
@@ -156,6 +161,18 @@ const NewBet = () => {
     if (newBet) {
       navigate(`/bet/${newBet.id}`);
     }
+  };
+
+  const handleFiles = () => {
+    const filesReq = { betId: newBet?.id, files: watch('files') } as FileInput;
+    attachFiles.mutate(filesReq, {
+      onSuccess: (res) => {
+        console.log('!');
+      },
+      onError: (err) => {
+        console.error('Failed to create bet:', err.message);
+      },
+    });
   };
 
   const changeNextStep = (checked: boolean) => {
