@@ -3,67 +3,41 @@ import { CSSObject } from '@mui/material/styles';
 
 export interface Layout {
   headerStyle: HeaderStyle;
-  footerStyle: FooterStyle;
 }
 
 export enum HeaderStyle {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  PROFILE = 'profile',
 }
 
-export enum FooterStyle {
-  SHOW = 'show',
-  HIDE = 'hide',
-}
+const baseHeaderStyle: CSSObject = {
+  position: 'fixed',
+  top: -1,
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  transition: 'height 0.3s ease, background-color 0.3s ease',
+};
 
 export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.PRIMARY]: {
+    ...baseHeaderStyle,
     height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
-    position: 'fixed',
-    top: -1,
-    width: '100%',
-    padding: 16,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 1,
-    // boxShadow: `
-    //   0px 2px 5px 0px #CBC6E31A,
-    //   0px 9px 9px 0px #CBC6E317,
-    //   0px 21px 13px 0px #CBC6E30D,
-    //   0px 38px 15px 0px #CBC6E303,
-    //   0px 59px 17px 0px #CBC6E300
-    // `,
   },
   [HeaderStyle.SECONDARY]: {
+    ...baseHeaderStyle,
     height: 56,
     backgroundColor: PRIMARY_BACKGROUND,
-    position: 'fixed',
-    top: -1,
-    width: '100%',
-    padding: 16,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 0,
   },
-};
-
-export const FooterComponentStyles: Record<FooterStyle, CSSObject> = {
-  [FooterStyle.SHOW]: {
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  [HeaderStyle.PROFILE]: {
+    ...baseHeaderStyle,
+    height: 150,
     backgroundColor: PRIMARY_COLOR,
-    boxShadow: '0px -3px 8px 0px rgba(34, 53, 62, 0.25)',
-    padding: 16,
-    marginTop: 'auto',
-    position: 'fixed',
-    bottom: -1,
-    height: 50,
-  },
-  [FooterStyle.HIDE]: {
-    display: 'none',
+    zIndex: 1,
   },
 };

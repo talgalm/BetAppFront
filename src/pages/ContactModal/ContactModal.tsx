@@ -143,7 +143,7 @@ const ContactModal = <T extends FieldValues>({
                   <ParticipantsCollapseContainer key={index}>
                     <ParticipantsCollapseRow key={index}>
                       <AvatarWrapper>
-                        <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
+                        <StyledAvatar src={item.image}> {item.fullName?.charAt(0)} </StyledAvatar>
                         <CloseButton onClick={() => removeUser(item)}>
                           <CloseIconStyled />
                         </CloseButton>
@@ -183,7 +183,7 @@ const ContactModal = <T extends FieldValues>({
                   }}
                 >
                   <ItemsNameImageCircleContent>
-                    <SmallAvatar>{item.fullName?.charAt(0)}</SmallAvatar>
+                    <SmallAvatar src={item.image}>{item.fullName?.charAt(0)}</SmallAvatar>
                     {item.fullName}
                   </ItemsNameImageCircleContent>
                   <Typography value={item.phoneNumber || ''} variant={TypographyTypes.H3} />

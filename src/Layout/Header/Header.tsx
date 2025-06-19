@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   HeaderComponent,
+  HeaderInnerContainer,
   LeftIconDiv,
   LeftIconNoBack,
   LogoDiv,
@@ -21,13 +22,14 @@ import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
 import { useHeaderLogic } from './Hooks/useHeaderLogic';
 import { createDialogButtons } from './buttons';
+import { HeaderStyle } from '../../Theme/ThemeInterfaces';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();
   const [newBetStep] = useAtom(ActiveStep);
   const path = useLocation();
   const [headerStyle] = useAtom(headerAtom);
-  const [contactDialog, setContactDialog] = useAtom(contactModalDialogAtom);
+  const [contactDialog] = useAtom(contactModalDialogAtom);
 
   const { data: user } = useProfile();
   const [open, setOpen] = useState(false);
@@ -52,27 +54,29 @@ const Header = () => {
   return (
     <>
       <HeaderComponent headerStyle={headerStyle}>
-        {!path.pathname.includes('home') && !path.pathname.includes('profile') && (
-          <RightIconDiv onClick={handleNextStep}>
-            <ReturnArrow />
-          </RightIconDiv>
-        )}
-        {(newBetStep !== null || contactDialog) && (
-          <LeftIconNoBack onClick={handleNewBetExit}>
-            <CloseIcon />
-          </LeftIconNoBack>
-        )}
-        {(path.pathname.includes('home') || path.pathname.includes('profile')) && (
-          <>
-            <RightIconDiv onClick={handleLogout}>
-              <HamburgerIcon />
+        <HeaderInnerContainer>
+          {!path.pathname.includes('home') && !path.pathname.includes('profile') && (
+            <RightIconDiv onClick={handleNextStep}>
+              <ReturnArrow />
             </RightIconDiv>
-            <LeftIconDiv>
-              <BetimCounter user={user} />
-            </LeftIconDiv>
-          </>
-        )}
-        <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
+          )}
+          {(newBetStep !== null || contactDialog) && (
+            <LeftIconNoBack onClick={handleNewBetExit}>
+              <CloseIcon />
+            </LeftIconNoBack>
+          )}
+          {(path.pathname.includes('home') || path.pathname.includes('profile')) && (
+            <>
+              <RightIconDiv onClick={handleLogout}>
+                <HamburgerIcon color={path.pathname.includes('profile') ? 'white' : ''} />
+              </RightIconDiv>
+              <LeftIconDiv>
+                <BetimCounter user={user} />
+              </LeftIconDiv>
+            </>
+          )}
+          <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
+        </HeaderInnerContainer>
       </HeaderComponent>
       <EmailVerificationBanner user={user} />
       <StyledDialog

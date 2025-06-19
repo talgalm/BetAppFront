@@ -88,6 +88,7 @@ const NewBetParticipants = <T extends FieldValues>({
         fullName: user.fullName ?? '',
         id: user.id ?? '',
         status: user.status ?? '',
+        image: user.image ?? '',
       };
       arr.push(parseUser);
     });
@@ -145,7 +146,7 @@ const NewBetParticipants = <T extends FieldValues>({
                   <ParticipantsCollapseContainer key={index}>
                     <ParticipantsCollapseRow key={index}>
                       <AvatarWrapper>
-                        <StyledAvatar> {item.fullName?.charAt(0)} </StyledAvatar>
+                        <StyledAvatar src={item.image}>{item.fullName?.charAt(0)}</StyledAvatar>
                         <CloseButton onClick={() => removeUser(item)}>
                           <CloseIconStyled />
                         </CloseButton>
@@ -173,7 +174,7 @@ const NewBetParticipants = <T extends FieldValues>({
               background={isUserSelected(item)}
             >
               <ParticipantsContentUser>
-                <SmallAvatar>{item.fullName?.charAt(0)} </SmallAvatar>
+                <SmallAvatar src={item.image}>{item.fullName?.charAt(0)} </SmallAvatar>
                 <Typography value={item.fullName || ''} variant={TypographyTypes.TextMedium} />
               </ParticipantsContentUser>
               <Typography value={item.phoneNumber || ''} variant={TypographyTypes.TextMedium} />

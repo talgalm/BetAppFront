@@ -126,4 +126,5 @@ export type Participant = {
   guess?: string;
   date?: Date;
   status?: string;
+  image?: string;
 };

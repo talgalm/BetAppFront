@@ -1,7 +1,7 @@
 export interface User {
   id: string;
   fullName?: string;
-  image?: File;
+  image?: string;
   password?: string;
   email?: string;
   phoneNumber?: string;
@@ -62,6 +62,7 @@ export interface Prediction {
   status?: ParticipantStatus;
   userId?: string;
   candidate?: boolean;
+  image?: string;
 }
 
 export enum VoteDecision {

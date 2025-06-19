@@ -62,7 +62,11 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
         <StyledAvatarGroup max={6} spacing="small">
           {bet?.predictions &&
             bet?.predictions.map((participant: Prediction, index) => (
-              <SmallAvatar key={index} status={participant?.status ?? ParticipantStatus.PENDING}>
+              <SmallAvatar
+                key={index}
+                status={participant?.status ?? ParticipantStatus.PENDING}
+                src={participant.image}
+              >
                 {participant.fullName?.charAt(0)}
               </SmallAvatar>
             ))}

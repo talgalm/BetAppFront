@@ -2,9 +2,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import StyledSwitch from '../../components/Switch/Switch';
 import { Container } from './Footer.styles';
+import { useAtom } from 'jotai';
+import { headerAtom } from '../../Jotai/atoms';
+import { HeaderStyle } from '../../Theme/ThemeInterfaces';
 
 const Footer = () => {
   const { pathname } = useLocation();
+  const [header, setHeader] = useAtom(headerAtom);
+
   const navigate = useNavigate();
 
   // show footer only on /home or /profile
@@ -21,7 +26,9 @@ const Footer = () => {
   /* 🔁  handle user toggle */
   const handleToggle = (next: boolean) => {
     setIsHome(next);
-    navigate(next ? '/home' : '/profile', { replace: true }); // or remove replace if you want history
+    navigate(next ? '/home' : '/profile', { replace: true });
+    const layout = !isHome ? HeaderStyle.PRIMARY : HeaderStyle.PROFILE;
+    setHeader(layout);
   };
 
   return (

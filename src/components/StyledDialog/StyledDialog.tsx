@@ -7,7 +7,6 @@ import { PopUpContent, PopUpHeader, PopUpRUDiv } from '../../Errors/ErrorHandler
 import ButtonsHub, { ButtonsHubStatus } from '../../pages/ButtonsHub';
 
 import { ButtonConfig } from '../Button/StyledButton';
-import { useState } from 'react';
 import { dialogActionAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 
@@ -15,6 +14,7 @@ export enum DialogType {
   BetCreation = 'betCreation',
   BetCreator = 'betCreator',
   BetSupervisor = 'betSupervisor',
+  ReplaceImage = 'replcaeImage',
 }
 
 export enum DialogAction {

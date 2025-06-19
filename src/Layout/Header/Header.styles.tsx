@@ -11,6 +11,14 @@ export const HeaderComponent = styled('div')<HeaderProps>(({ headerStyle }) => (
   ...HeaderComponentStyles[headerStyle || HeaderStyle.PRIMARY],
 }));
 
+export const HeaderInnerContainer = styled('div')<{ isOffset?: boolean }>(({ isOffset }) => ({
+  width: '100%',
+  position: 'relative',
+  top: isOffset ? 20 : 0,
+  transition: 'top 0.3s ease',
+  padding: 16,
+}));
+
 export const LogoDiv = styled('div')({
   display: 'flex',
   justifyContent: 'center',

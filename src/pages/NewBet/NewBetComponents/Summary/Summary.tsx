@@ -62,7 +62,9 @@ const NewBetSummary: React.FC = () => {
             />
             <ParticipantsRow>
               {watch().participents?.map((participant: Participant, index) => (
-                <SmallAvatar key={index}>{participant.fullName?.charAt(0)}</SmallAvatar>
+                <SmallAvatar src={participant.image} key={index}>
+                  {participant.fullName?.charAt(0)}
+                </SmallAvatar>
               ))}
             </ParticipantsRow>
           </SummaryColumn>
@@ -224,7 +226,9 @@ const NewBetSummary: React.FC = () => {
               />
 
               <ParticipantsRow>
-                <SmallAvatar>{watch().supervisor?.[0]?.fullName?.charAt(0) ?? ''}</SmallAvatar>
+                <SmallAvatar src={watch().supervisor?.[0]?.image}>
+                  {watch().supervisor?.[0]?.fullName?.charAt(0) ?? ''}
+                </SmallAvatar>
                 <Typography
                   value={watch().supervisor?.[0]?.fullName || ''}
                   variant={TypographyTypes.TextMedium}

@@ -85,7 +85,6 @@ export const AvatarWrapper = styled('div')({
 });
 
 export const StyledAvatar = styled(Avatar)({
-  backgroundColor: 'black',
   width: 36,
   height: 36,
   fontSize: 18,
