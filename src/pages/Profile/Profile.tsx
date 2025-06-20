@@ -20,7 +20,7 @@ const Profile = () => {
   const isUploading = updateImage.isPending;
   const isLoading = isUploading || isRemoving;
 
-  const replcaeImage = () => {
+  const replaceImage = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
       setOpen(false);
@@ -45,7 +45,7 @@ const Profile = () => {
 
   const dialogButtons = createDialogButtons(
     DialogType.ReplaceImage,
-    replcaeImage,
+    replaceImage,
     handleCloseModal,
     handleRemoveImage
   );
@@ -106,7 +106,7 @@ const Profile = () => {
   const getImageUrl = (url: string) => {
     if (!url) return '';
     const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}t=${Date.now()}&v=${imageKey}`;
+    return `${url}${separator}v=${imageKey}`;
   };
 
   return (

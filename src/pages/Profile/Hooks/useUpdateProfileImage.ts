@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { User } from '../../../Interfaces';
+import { User, Bet } from '../../../Interfaces';
 
 export type FileInput = {
   userId: string;
@@ -25,7 +25,25 @@ export const useUpdateProfileImage = (): UseMutationResult<User, Error, FileInpu
     onSuccess: (user) => {
       queryClient.setQueryData<User | null>(['user-profile'], (prev) => {
         if (!prev) return user;
-        return { ...prev, image: user.image };
+
+        return {
+          ...prev,
+          image: user.image,
+          bets:
+            prev.bets?.map((bet) => ({
+              ...bet,
+              predictions:
+                bet.predictions?.map((prediction) => {
+                  if (prediction.userId === user.id) {
+                    return {
+                      ...prediction,
+                      image: user.image,
+                    };
+                  }
+                  return prediction;
+                }) ?? [],
+            })) ?? [],
+        };
       });
     },
   });
