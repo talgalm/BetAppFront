@@ -147,7 +147,7 @@ const NewBet = () => {
     createBet.mutate(data, {
       onSuccess: (res) => {
         queryClient.invalidateQueries({ queryKey: ['user-profile'] });
-        setNewBet(res.bet);
+        setNewBet(res);
         setActiveStep(newBetSteps[NewBetStepValueTypes.Success]);
         setTargetProgress(100);
       },

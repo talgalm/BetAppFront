@@ -70,6 +70,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
         <AvatarsOnlyView isVisible={!isOpen}>
           {sorted.map((participant) => (
             <SmallAvatar
+              src={participant.image}
               key={participant.userId}
               status={participant.status ?? ParticipantStatus.PENDING}
             >
@@ -87,7 +88,10 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
             >
               <UserListRowContainer>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
-                  <SmallAvatar status={participant.status ?? ParticipantStatus.PENDING}>
+                  <SmallAvatar
+                    status={participant.status ?? ParticipantStatus.PENDING}
+                    src={participant.image}
+                  >
                     {participant.fullName?.charAt(0)}
                   </SmallAvatar>
                   <Typography

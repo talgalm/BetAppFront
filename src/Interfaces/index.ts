@@ -44,6 +44,7 @@ export interface Bet {
   supervisorStatus?: ParticipantStatus;
   winners?: User[];
   createdAt?: Date;
+  files?: BetFile[];
 }
 
 export enum ParticipantStatus {
@@ -69,4 +70,12 @@ export enum VoteDecision {
   DRAW = 'draw',
   ENDED = 'ended',
   UNDECIDED = 'undecided',
+}
+
+export interface BetFile {
+  id: string;
+  fileName: string;
+  fileType: string;
+  url: string;
+  uploadedAt: Date;
 }

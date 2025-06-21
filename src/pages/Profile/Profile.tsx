@@ -5,7 +5,6 @@ import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage'
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { createDialogButtons } from '../../Layout/Header/buttons';
 import { useUpdateUser } from './Hooks/useUpdateUser';
-import BetLoader from '../../Theme/Loader/loader';
 
 const Profile = () => {
   const [showImage, setShowImage] = useState(false);

@@ -18,7 +18,6 @@ export type CreateBetInputs = {
   betim: number;
   deadline?: Date | string;
   participants?: Participant[];
-  Conditions?: any;
   files?: File[];
   supervisor?: Participant[];
   Status?: string;
@@ -26,9 +25,9 @@ export type CreateBetInputs = {
   BetIdIfExists?: string;
 };
 
-export const useCreateBet = (): UseMutationResult<{ bet: Bet }, Error, CreateBetInputs> => {
+export const useCreateBet = (): UseMutationResult<Bet, Error, CreateBetInputs> => {
   return useMutation({
-    mutationFn: async (betData: CreateBetInputs): Promise<{ bet: Bet }> => {
+    mutationFn: async (betData: CreateBetInputs): Promise<Bet> => {
       const payload = {
         ...betData,
         deadline: betData.deadline ? new Date(betData.deadline).toISOString() : null,
@@ -40,11 +39,7 @@ export const useCreateBet = (): UseMutationResult<{ bet: Bet }, Error, CreateBet
         supervisor: betData.supervisor ?? [],
       };
 
-      const response = await ApiService.makeRequest<{ bet: Bet }>(
-        '/bets',
-        HTTPMethod.POST,
-        payload
-      );
+      const response = await ApiService.makeRequest<Bet>('/bets', HTTPMethod.POST, payload);
 
       return response;
     },

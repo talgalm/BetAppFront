@@ -154,7 +154,7 @@ export const RotatingArrow = styled(ArrowIcon)<{ open: boolean }>(({ open }) => 
   transition: 'transform 0.2s ease',
   flexShrink: 0,
   alignSelf: 'flex-start',
-  marginTop: 13,
+  marginTop: 15,
 }));
 
 export const DisclaimerWrapper = styled('div')<{ isVisible: boolean }>(({ isVisible }) => ({

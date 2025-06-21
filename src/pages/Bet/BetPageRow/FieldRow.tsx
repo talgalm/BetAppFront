@@ -10,6 +10,8 @@ import { Typography } from '../../../components/Topography/topography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { finishBetAtom } from '../../../Jotai/atoms';
+import { BetFile } from '../../../Interfaces';
+import BetFilesRow from './BetFilesRow';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,
@@ -20,12 +22,13 @@ const FieldRow: React.FC<FieldRowProps> = ({
   disclaimer,
   currentUser,
   isOpen,
+  files,
   onToggle,
 }) => {
   const { t } = useTranslation();
   const [isFinish] = useAtom(finishBetAtom);
 
-  if (!value && !arrValue) return null;
+  if (!value && !arrValue && !files) return null;
 
   return (
     <>
@@ -61,6 +64,10 @@ const FieldRow: React.FC<FieldRowProps> = ({
             isOpen={isOpen}
             Icon={Icon}
           />
+          {files &&
+            (isOpen ? files : files.slice(0, 1)).map((file: BetFile) => (
+              <BetFilesRow key={file.id} {...file} />
+            ))}
           <DisclaimerWrapper isVisible={isOpen && !!disclaimer}>
             {disclaimer && (
               <Typography

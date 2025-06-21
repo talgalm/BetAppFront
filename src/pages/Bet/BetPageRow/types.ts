@@ -1,4 +1,4 @@
-import { ParticipantStatus, Prediction, User } from '../../../Interfaces';
+import { BetFile, ParticipantStatus, Prediction, User } from '../../../Interfaces';
 
 export interface FieldRowProps {
   label: string;
@@ -7,6 +7,7 @@ export interface FieldRowProps {
   icon?: React.ElementType;
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });
   disclaimer?: string;
+  files?: BetFile[];
   currentUser?: User;
   isOpen: boolean;
   onToggle: () => void;

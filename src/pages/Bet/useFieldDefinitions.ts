@@ -2,7 +2,7 @@
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
-import { Bet, Prediction, User } from '../../Interfaces';
+import { Bet, BetFile, Prediction, User } from '../../Interfaces';
 import { formatDate } from '../../utils/Helpers';
 import { finishBetAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
@@ -13,6 +13,7 @@ interface FieldRowProps {
   background?: string;
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   arrValue?: Prediction[] | User;
+  files?: BetFile[];
   disclaimer?: string;
 }
 
@@ -46,7 +47,11 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
       background: '#CED0EF',
       disclaimer: 'deadline',
     },
-    // { label: t('BetPage.files'), value: bet?.description, background: '#CED0EF', icon: FileIcon },
+    {
+      label: t('BetPage.files'),
+      value: '',
+      files: bet?.files,
+    },
     {
       label: t('BetPage.supervisor'),
       value: '',
