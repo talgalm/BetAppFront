@@ -8,6 +8,13 @@ export interface User {
   betim?: number;
   bets: Bet[];
   verifyEmail?: boolean;
+  stats: profileStats;
+}
+
+export interface profileStats {
+  wins: number;
+  draw: number;
+  loses: number;
 }
 
 export interface Contact {

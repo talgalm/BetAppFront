@@ -11,6 +11,7 @@ import WelcomePage from '../../../pages/Auth/WelcomePage/WelcomePage.lang.json';
 import Home from '../../../pages/Home/Home.lang.json';
 import Register from '../../../pages/Auth/Register/Register.lang.json';
 import StyledDialog from '../../../components/StyledDialog/StyledDialog.lang.json';
+import Profile from '../../../pages/Profile/Profile.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
@@ -25,4 +26,5 @@ export default {
   Switch: Switch,
   BetPage: BetPage,
   StyledDialog: StyledDialog,
+  Profile: Profile,
 };

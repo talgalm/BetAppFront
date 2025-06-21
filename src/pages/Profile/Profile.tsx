@@ -1,16 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import { HomeDivContainer, InnerLoader, ProfileImage, ProfileImageWrapper } from './Profile.styles';
+import {
+  Column,
+  HomeDivContainer,
+  InnerLoader,
+  ProfileImage,
+  ProfileImageWrapper,
+  StatsContainer,
+} from './Profile.styles';
 import { useProfile } from '../../Providers/useProfile';
 import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage';
 import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
 import { createDialogButtons } from '../../Layout/Header/buttons';
 import { useUpdateUser } from './Hooks/useUpdateUser';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '../../components/Topography/topography';
+import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 const Profile = () => {
   const [showImage, setShowImage] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageKey, setImageKey] = useState(0);
   const updateImage = useUpdateProfileImage();
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { data: profile } = useProfile();
   const [open, setOpen] = useState(false);
@@ -132,7 +143,20 @@ const Profile = () => {
       />
 
       <HomeDivContainer>
-        <div>sssss</div>
+        <StatsContainer>
+          <Column>
+            <Typography value={profile?.stats?.wins || 0} variant={TypographyTypes.H3} />
+            <Typography value={t('Profile.wins')} variant={TypographyTypes.TextSmall} />
+          </Column>
+          <Column>
+            <Typography value={profile?.stats?.draw || 0} variant={TypographyTypes.H3} />
+            <Typography value={t('Profile.draw')} variant={TypographyTypes.TextSmall} />
+          </Column>
+          <Column>
+            <Typography value={profile?.stats?.loses || 0} variant={TypographyTypes.H3} />
+            <Typography value={t('Profile.loses')} variant={TypographyTypes.TextSmall} />
+          </Column>
+        </StatsContainer>
       </HomeDivContainer>
 
       <StyledDialog

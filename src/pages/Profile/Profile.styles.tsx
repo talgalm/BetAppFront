@@ -43,3 +43,19 @@ export const InnerLoader = styled('div')({
   zIndex: 16,
   backgroundColor: 'transparent',
 });
+
+export const StatsContainer = styled('div')({
+  display: 'flex',
+  width: '50%',
+  marginTop: 40,
+  justifyContent: 'space-between',
+  direction: 'rtl',
+  position: 'fixed',
+});
+
+export const Column = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyItems: 'center',
+});
