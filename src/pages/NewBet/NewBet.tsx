@@ -166,7 +166,7 @@ const NewBet = () => {
   const handleFiles = () => {
     const filesReq = { betId: newBet?.id, files: watch('files') } as FileInput;
     attachFiles.mutate(filesReq, {
-      onSuccess: (res) => {
+      onSuccess: () => {
         console.log('!');
       },
       onError: (err) => {

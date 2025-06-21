@@ -5,7 +5,7 @@ import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styl
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { Typography } from '../../components/Topography/topography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { BetStatus, User, VoteDecision } from '../../Interfaces';
+import { BetStatus, User } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
@@ -142,8 +142,7 @@ const BetPage = (): JSX.Element => {
     tagType,
     handleAction,
     finishBet?.isFinished ?? false,
-    participentStatus,
-    bet
+    participentStatus
   );
 
   const dialogType = bet?.supervisor ? DialogType.BetSupervisor : DialogType.BetCreator;

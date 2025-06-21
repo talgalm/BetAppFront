@@ -1,6 +1,5 @@
 // utils/useFieldDefinitions.ts
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as FileIcon } from '../../Theme/Icons/FilesIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { Bet, BetFile, Prediction, User } from '../../Interfaces';
 import { formatDate } from '../../utils/Helpers';

@@ -8,7 +8,7 @@ import { HeaderStyle } from '../../Theme/ThemeInterfaces';
 
 const Footer = () => {
   const { pathname } = useLocation();
-  const [header, setHeader] = useAtom(headerAtom);
+  const [, setHeader] = useAtom(headerAtom);
 
   const navigate = useNavigate();
 

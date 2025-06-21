@@ -3,7 +3,7 @@ import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
-import { Bet, ParticipantStatus } from '../../Interfaces';
+import { ParticipantStatus } from '../../Interfaces';
 import { DialogAction, DialogType } from '../../components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
@@ -13,8 +13,7 @@ export const createActionButtons = (
   tagType: TagType,
   handleAction: (a: ParticipantAction) => void,
   isFinish: boolean,
-  participentStatus?: ParticipantStatus,
-  bet?: Bet
+  participentStatus?: ParticipantStatus
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 

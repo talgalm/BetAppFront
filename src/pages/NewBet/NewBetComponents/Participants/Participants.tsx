@@ -51,8 +51,8 @@ const NewBetParticipants = <T extends FieldValues>({
   const { showBoundary } = useErrorBoundary();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
-  const { data: mostActives = [], isLoading, error } = useMostActives();
-  const [layout, setLayout] = useAtom(layoutEphemeralAtom);
+  const { data: mostActives = [] } = useMostActives();
+  const [, setLayout] = useAtom(layoutEphemeralAtom);
   const {
     field: { value, onChange },
   } = useController({

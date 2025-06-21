@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 import '@fontsource/ibm-plex-sans-hebrew';
 import { HeaderComponentStyles, HeaderStyle } from '../../Theme/ThemeInterfaces';
-import { ReactComponent as BetimIcon } from '../../Theme/Icons/LayoutIcons/BetimHeaderIcon.svg';
 
 interface HeaderProps {
   headerStyle?: HeaderStyle;

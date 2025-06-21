@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { Prediction, ParticipantStatus, User, Bet } from '../../../Interfaces';

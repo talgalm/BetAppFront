@@ -62,12 +62,12 @@ export const Row = styled('div')<{ isWinner?: boolean }>(({ isWinner }) => ({
   backgroundColor: isWinner ? '#A8D6CC' : 'transparent',
 }));
 
-export const Column = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
+// eslint-disable-next-line no-empty-pattern
+export const Column = styled('div')<{ isOpen?: boolean }>(({}) => ({
   display: 'flex',
   flexDirection: 'column',
   direction: 'rtl',
   gap: 5,
-  // width: isOpen ? '100%' : 'auto',
   width: '100%',
 }));
 

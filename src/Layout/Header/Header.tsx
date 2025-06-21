@@ -22,7 +22,6 @@ import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
 import { useHeaderLogic } from './Hooks/useHeaderLogic';
 import { createDialogButtons } from './buttons';
-import { HeaderStyle } from '../../Theme/ThemeInterfaces';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();

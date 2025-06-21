@@ -14,7 +14,7 @@ import {
 } from './ContactModal.styles';
 import { ReactComponent as AddContactIcon } from '../../Theme/Icons/ContactAdd.svg';
 import { useTranslation } from 'react-i18next';
-import { FieldValues, Path, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
 import { Contact, User } from '../../Interfaces';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
@@ -36,7 +36,7 @@ import { useUsers } from '../Home/Hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
 
-interface ContactModalProps<T extends FieldValues> {
+interface ContactModalProp {
   open: boolean;
   handleClose: () => void;
   handleSave: (users: User[]) => void;
@@ -48,13 +48,13 @@ export type FormValues = {
   searchTerm: string;
 };
 
-const ContactModal = <T extends FieldValues>({
+const ContactModal = ({
   open,
   handleClose,
   handleSave,
   limit,
   limitContacts,
-}: ContactModalProps<T>) => {
+}: ContactModalProp) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);

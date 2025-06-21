@@ -11,7 +11,7 @@ interface FilesRowProps {
   uploadedAt: Date;
 }
 
-const BetFilesRow: React.FC<FilesRowProps> = ({ id, fileName, fileType, url, uploadedAt }) => {
+const BetFilesRow: React.FC<FilesRowProps> = ({ fileName, fileType, url }) => {
   const handleClick = () => {
     const isDownloadable =
       !fileType.startsWith('video/') &&
