@@ -5,7 +5,7 @@ export const SummaryContainer = styled('div')({
   width: '105%',
   flexDirection: 'column',
   gap: 10,
-  height: 'calc(70vh - 100px)',
+  height: 'calc(70vh - 130px)',
   overflowY: 'auto',
   direction: 'ltr',
   paddingRight: 10,

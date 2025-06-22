@@ -1,6 +1,5 @@
 import { useAtom } from 'jotai';
 import { contactModalDialogAtom, dialogActionAtom } from '../../../Jotai/atoms';
-import { useUpdateBet } from './useUpdateBet';
 import { useParams } from 'react-router-dom';
 import { useBet } from './useBet';
 import { useSecondRoundVoting } from './useSecondRoundVoting';
@@ -13,7 +12,6 @@ interface UseBetLogicProps {
 }
 
 export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
-  const { mutate: updateBet } = useUpdateBet();
   const { mutate: secondRoundVoting } = useSecondRoundVoting();
   const { mutate: declareWinner } = useDeclareWinner();
   const { mutate: addSupervisor } = useAddSupervisor();
@@ -21,6 +19,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
   const { data: bet } = useBet(id);
   const [, setDialogAction] = useAtom(dialogActionAtom);
   const [, setContactDialog] = useAtom(contactModalDialogAtom);
+
   const handleCloseModal = () => {
     setDialogAction(null);
     setOpen(false);
@@ -31,11 +30,13 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
       betId: bet?.id ?? '',
     });
 
-  const PickWinnerDialogAction = (winners?: string[]) =>
+  const PickWinnerDialogAction = () => {
     declareWinner({
       betId: bet?.id ?? '',
-      winners: winners ?? [],
     });
+    handleCloseModal();
+  };
+
   const AddSupervisorDialogAction = () => {
     setContactDialog(true);
     setOpen(false);
@@ -55,6 +56,7 @@ export const useBetLogic = ({ setOpen }: UseBetLogicProps) => {
     declareWinner({
       betId: bet?.id ?? '',
     });
+    handleCloseModal();
   };
 
   return {

@@ -28,7 +28,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
   const { t } = useTranslation();
   const [isFinish] = useAtom(finishBetAtom);
 
-  if (!value && !arrValue && !files) return null;
+  if ((!value && !arrValue) || (files && files.length === 0)) return null;
 
   return (
     <>
@@ -65,6 +65,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
             Icon={Icon}
           />
           {files &&
+            files.length > 0 &&
             (isOpen ? files : files.slice(0, 1)).map((file: BetFile) => (
               <BetFilesRow key={file.id} {...file} />
             ))}

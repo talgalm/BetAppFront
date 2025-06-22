@@ -17,6 +17,8 @@ import { SmallAvatar } from '../Bet/BetPage.styles';
 import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
 import { getParticipantAwareTagType } from '../../utils/betUtils';
 import { useQueryClient } from '@tanstack/react-query';
+import { useSocketUpdates } from '../../Connection/useSocketUpdates';
+import { useState } from 'react';
 
 interface SingleBetRowProps {
   bet: Bet;
@@ -37,8 +39,17 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
     }
   };
 
+  const [animate, setAnimate] = useState(false);
+
+  useSocketUpdates((updatedBetId: string) => {
+    if (updatedBetId === bet.id) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 1500);
+    }
+  });
+
   return (
-    <NotificationContainer onClick={handleBet}>
+    <NotificationContainer onClick={handleBet} animate={animate}>
       <NotificationHeader>
         <Tag type={tagType} />
         {isSupervisor && <Tag type={TagType.SUPERVISOR} />}

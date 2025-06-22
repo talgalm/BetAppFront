@@ -27,14 +27,14 @@ import { useEffect } from 'react';
 import { useProfile } from '../../Providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
 import { useAtom } from 'jotai';
-import { useBetUpdates } from '../../Connection/useBetUpdates';
+import { useSocketUpdates } from '../../Connection/useSocketUpdates';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [, setActiveStep] = useAtom(ActiveStep);
 
-  useBetUpdates();
+  useSocketUpdates();
 
   const { data: profile, isLoading } = useProfile();
 

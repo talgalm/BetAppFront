@@ -1,12 +1,39 @@
 import { AvatarGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { keyframes } from '@mui/system';
 
 interface NotificationCubeProps {
   backgroundColor?: string;
+  animate?: boolean;
 }
 
+const popIn = keyframes`
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+const pulseShadow = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(203, 198, 227, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 8px 4px rgba(203, 198, 227, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(203, 198, 227, 0);
+  }
+`;
+
 export const NotificationContainer = styled('div')<NotificationCubeProps>(
-  ({ backgroundColor = '#fff' }) => ({
+  ({ backgroundColor = '#fff', animate = false }) => ({
     padding: 16,
     borderRadius: 16,
     gap: 16,
@@ -26,6 +53,8 @@ export const NotificationContainer = styled('div')<NotificationCubeProps>(
         0px -4px 8px 0px #0000000A
       `
         : 'none',
+
+    animation: animate ? `${pulseShadow} 1200ms ease-out` : 'none',
   })
 );
 
