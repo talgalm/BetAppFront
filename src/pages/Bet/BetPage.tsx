@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useBet } from './Hooks/useBet';
 import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styles';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
-import { BetStatus, User } from '../../Interfaces';
 import { formatDateToGB } from '../../utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
@@ -29,6 +28,8 @@ import { useBetLogic } from './Hooks/useBetLogic';
 import ContactModal from '../ContactModal/ContactModal';
 import { NotificationHeader } from '../Home/SingleBetRow.styles';
 import { useSocketUpdates } from '../../Connection/useSocketUpdates';
+import { BetStatus } from '../../Interfaces/Bet.interface';
+import { User } from '../../Interfaces/User.interface';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();

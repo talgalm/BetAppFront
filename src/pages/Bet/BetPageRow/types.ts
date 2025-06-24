@@ -1,4 +1,6 @@
-import { BetFile, ParticipantStatus, Prediction, User } from '../../../Interfaces';
+import { BetFile } from '../../../Interfaces/Bet.interface';
+import { Prediction, ParticipantStatus } from '../../../Interfaces/Prediction.interface';
+import { User } from '../../../Interfaces/User.interface';
 
 export interface FieldRowProps {
   label: string;

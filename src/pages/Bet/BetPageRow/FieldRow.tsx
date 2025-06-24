@@ -6,12 +6,12 @@ import ParticipentsListBet from './ParticipentsListBet';
 import ParticipentsBet from './ParticipentsBet';
 import { Row, Column, RotatingArrow, DisclaimerWrapper } from '../BetPage.styles';
 import { SummaryRow, StyledDivider } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { finishBetAtom } from '../../../Jotai/atoms';
-import { BetFile } from '../../../Interfaces';
 import BetFilesRow from './BetFilesRow';
+import { BetFile } from '../../../Interfaces/Bet.interface';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,

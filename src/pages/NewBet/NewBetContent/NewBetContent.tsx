@@ -1,5 +1,5 @@
 import { ContentContainer, RowContentContainer } from '../NewBet.styles';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';

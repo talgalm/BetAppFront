@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes, Participant } from '../../Interface';
-import { Typography } from '../../../../components/Topography/topography';
+import { Typography } from '../../../../components/Topography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
 import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { CheckboxDiv, StyledCalendar } from './Calender.styles';
 import { Checkbox } from '@mui/material';
 import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
-import { Typography } from '../Topography/topography';
+import { Typography } from '../Topography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 import { TypographyTypes } from '../Topography/TypographyTypes';

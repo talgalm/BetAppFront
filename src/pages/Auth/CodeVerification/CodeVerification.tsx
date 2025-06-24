@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import StyledButton from '../../../components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';

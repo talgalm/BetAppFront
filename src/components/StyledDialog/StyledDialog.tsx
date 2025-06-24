@@ -1,5 +1,5 @@
 import { Dialog } from '@mui/material';
-import { Typography } from '../Topography/topography';
+import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { useTranslation } from 'react-i18next';

@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { Bet } from '../../../Interfaces';
+import { Bet } from '../../../Interfaces/Bet.interface';
 
 export type Participant = {
   id?: string;

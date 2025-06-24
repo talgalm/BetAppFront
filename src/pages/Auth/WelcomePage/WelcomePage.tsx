@@ -9,7 +9,7 @@ import { ThemeType } from '../../../Theme/theme';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from './interface';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import RegisterForm from '../Register/RegisterForm';
 import RegisterProviderForm from '../Register/RegisterProviderForm';

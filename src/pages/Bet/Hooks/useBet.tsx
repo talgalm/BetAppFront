@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { Bet } from '../../../Interfaces';
 import { ApiService, HTTPMethod } from '../../../API/api';
+import { Bet } from '../../../Interfaces/Bet.interface';
 
 export const useBet = (id?: string, enabled = true) => {
   return useQuery<Bet, Error>({

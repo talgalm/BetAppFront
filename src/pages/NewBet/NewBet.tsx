@@ -8,7 +8,7 @@ import {
 } from './NewBet.styles';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
-import StyledButton, { ButtonConfig } from '../../components/Button/StyledButton';
+import StyledButton from '../../components/Button/StyledButton';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useTranslation } from 'react-i18next';
@@ -19,16 +19,18 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './NewBetContent/NewBetContent';
 import { Checkbox } from '@mui/material';
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '../../Theme/theme';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
-import { Bet, User } from '../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { FileInput, useAttachFilesToBet } from './Hooks/useAttachFilesToBet';
+import { createNewbetButtons } from './buttons';
+import { Bet } from '../../Interfaces/Bet.interface';
+import { User } from '../../Interfaces/User.interface';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
@@ -187,34 +189,13 @@ const NewBet = () => {
     }
   };
 
-  const buttons: ButtonConfig[] = [
-    ...(step.inputName
-      ? [
-          {
-            value: t(
-              step.skipToEnd ? t('NewBet.Save') : (step.continueButtonText ?? t('NewBet.Continue'))
-            ),
-            onClick: () => handleStep(step.continueButton),
-            styleProps: { width: '100%' },
-            disabled: disableButton,
-          },
-        ]
-      : []),
-
-    ...(step.prevButton
-      ? [
-          {
-            icon: <ArrowRight color={PRIMARY_COLOR} />,
-            onClick: () => handleStep(step.prevButton, true),
-            styleProps: {
-              width: '32%',
-              backgroundColor: 'white',
-              border: '2px solid #15AB94',
-            },
-          },
-        ]
-      : []),
-  ];
+  const buttons = createNewbetButtons({
+    step,
+    handleStep,
+    disableButton,
+    t,
+    backIcon: <ArrowRight color={PRIMARY_COLOR} />,
+  });
 
   return (
     <div

@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { ParticipantStatus, Prediction, User } from '../../../Interfaces';
 import { ActionRow } from '../SingleBetRow.styles';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { ParticipantAction, useParticipantAction } from '../../Bet/Hooks/useParticipentAction';
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,6 +11,7 @@ import { ActiveStep } from '../../../Jotai/newBetAtoms';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/Interface';
 import { useNavigate } from 'react-router-dom';
 import { useBet } from '../../Bet/Hooks/useBet';
+import { User } from '../../../Interfaces/User.interface';
 
 interface Props {
   betId: string;

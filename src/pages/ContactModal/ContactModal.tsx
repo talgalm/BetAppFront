@@ -1,4 +1,4 @@
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import {
   CornerFab,
   ItemsBodyContent,
@@ -16,7 +16,6 @@ import { ReactComponent as AddContactIcon } from '../../Theme/Icons/ContactAdd.s
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
-import { Contact, User } from '../../Interfaces';
 import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
@@ -35,6 +34,7 @@ import debounce from 'lodash/debounce';
 import { useUsers } from '../Home/Hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
+import { User, Contact } from '../../Interfaces/User.interface';
 
 interface ContactModalProp {
   open: boolean;

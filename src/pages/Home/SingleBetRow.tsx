@@ -6,9 +6,8 @@ import {
   NotificationTextHeader,
   StyledAvatarGroup,
 } from './SingleBetRow.styles';
-import { Bet, ParticipantStatus, Prediction, User } from '../../Interfaces';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import { formatDate } from '../../utils/Helpers';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import Tag, { TagType } from '../../components/Tag/TagComponent';
@@ -19,6 +18,9 @@ import { getParticipantAwareTagType } from '../../utils/betUtils';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSocketUpdates } from '../../Connection/useSocketUpdates';
 import { useState } from 'react';
+import { Bet } from '../../Interfaces/Bet.interface';
+import { Prediction, ParticipantStatus } from '../../Interfaces/Prediction.interface';
+import { User } from '../../Interfaces/User.interface';
 
 interface SingleBetRowProps {
   bet: Bet;

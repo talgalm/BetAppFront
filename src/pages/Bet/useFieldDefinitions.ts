@@ -1,10 +1,12 @@
 // utils/useFieldDefinitions.ts
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
-import { Bet, BetFile, Prediction, User } from '../../Interfaces';
 import { formatDate } from '../../utils/Helpers';
 import { finishBetAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
+import { BetFile, Bet } from '../../Interfaces/Bet.interface';
+import { Prediction } from '../../Interfaces/Prediction.interface';
+import { User } from '../../Interfaces/User.interface';
 
 interface FieldRowProps {
   label: string;

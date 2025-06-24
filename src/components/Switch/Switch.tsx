@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import Box from '@mui/material/Box';
-import { Typography } from '../Topography/topography';
+import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as HomeIcon } from '../../Theme/Icons/LayoutIcons/SwitchHome.svg';

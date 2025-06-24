@@ -1,4 +1,4 @@
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './Register.styles';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { SubmitHandler, useFormContext } from 'react-hook-form';

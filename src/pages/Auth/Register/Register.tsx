@@ -1,4 +1,4 @@
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './Register.styles';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
@@ -14,7 +14,7 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
 import { useEffect, useState } from 'react';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { useDebouncedValue } from '../../../Hooks/useDebouncedEmailCheck';
+import { useDebouncedValue } from '../Hooks/useDebouncedEmailCheck';
 import { useRegister } from '../Hooks/useRegister';
 import { useCheckEmail } from '../Hooks/useCheckEmail';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';

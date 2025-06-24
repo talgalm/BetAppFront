@@ -1,6 +1,6 @@
-import { User } from '../../Interfaces';
 import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.svg';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
+import { User } from '../../Interfaces/User.interface';
 
 export enum NewBetStepValueTypes {
   Start = 'Start',

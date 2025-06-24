@@ -5,9 +5,10 @@ import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
 import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
-import { BetStatus, User } from '../../../Interfaces';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '../../../pages/NewBet/Hooks/useCreatebet';
+import { User } from '../../../Interfaces/User.interface';
+import { BetStatus } from '../../../Interfaces/Bet.interface';
 
 interface UseHeaderLogicProps {
   setOpen: (open: boolean) => void;

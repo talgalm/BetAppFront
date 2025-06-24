@@ -1,6 +1,6 @@
 import React from 'react';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 
 interface FilesRowProps {

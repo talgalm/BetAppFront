@@ -1,6 +1,6 @@
-import { BetStatus } from '../../Interfaces';
+import { BetStatus } from '../../Interfaces/Bet.interface';
 import { TagStyled } from '../../pages/Home/SingleBetRow.styles';
-import { Typography } from '../Topography/topography';
+import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 
 export enum TagType {

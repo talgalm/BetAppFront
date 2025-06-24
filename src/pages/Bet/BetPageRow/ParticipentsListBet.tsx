@@ -1,7 +1,6 @@
 import React from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { Prediction, ParticipantStatus, User, Bet } from '../../../Interfaces';
 import { AvatarRow, AvatarsOnlyView, DetailsListView, SmallAvatar } from '../BetPage.styles';
 import {
   AddParticipentRow,
@@ -9,7 +8,7 @@ import {
   UserListRowContainer,
   UserListRowWithBorderContainer,
 } from './BetPageRow.styles';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
 import { formatDate } from '../../../utils/Helpers';
 import { ReactComponent as AddIcon } from '../../../Theme/Icons/Bet/AddIcon.svg';
@@ -19,6 +18,9 @@ import { betWinnerAtom, finishBetAtom } from '../../../Jotai/atoms';
 import Radio from '@mui/material/Radio';
 import { useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
+import { Bet } from '../../../Interfaces/Bet.interface';
+import { Prediction, ParticipantStatus } from '../../../Interfaces/Prediction.interface';
+import { User } from '../../../Interfaces/User.interface';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });

@@ -13,7 +13,7 @@ import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDi
 import { createDialogButtons } from '../../Layout/Header/buttons';
 import { useUpdateUser } from './Hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 
 const Profile = () => {

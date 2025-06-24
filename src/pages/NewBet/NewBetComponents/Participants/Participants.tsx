@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { Typography } from '../../../../components/Topography/topography';
+import { Typography } from '../../../../components/Topography/typography';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
-import { User } from '../../../../Interfaces';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
 import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
@@ -33,6 +32,7 @@ import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { layoutEphemeralAtom } from '../../../../Jotai/atoms';
 import { useQueryClient } from '@tanstack/react-query';
+import { User } from '../../../../Interfaces/User.interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;

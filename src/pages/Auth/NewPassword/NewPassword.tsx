@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { NewPasswordFormInput } from '../Login/interface';
 import { SubmitHandler, useFormContext } from 'react-hook-form';

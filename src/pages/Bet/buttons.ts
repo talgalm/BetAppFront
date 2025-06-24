@@ -3,11 +3,11 @@ import { TagType } from '../../components/Tag/TagComponent';
 import { t } from 'i18next';
 import { ThemeType } from '../../Theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
-import { ParticipantStatus } from '../../Interfaces';
 import { DialogAction, DialogType } from '../../components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { dialogActionAtom } from '../../Jotai/atoms';
+import { ParticipantStatus } from '../../Interfaces/Prediction.interface';
 
 export const createActionButtons = (
   tagType: TagType,

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '../../../API/api';
-import { Bet, User } from '../../../Interfaces';
+import { Bet } from '../../../Interfaces/Bet.interface';
+import { User } from '../../../Interfaces/User.interface';
 
 interface ActionPayload {
   betId: string;

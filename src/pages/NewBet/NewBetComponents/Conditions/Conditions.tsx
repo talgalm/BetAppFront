@@ -7,7 +7,7 @@ import {
   ConditionsRowContentCenter,
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
-import { Typography } from '../../../../components/Topography/topography';
+import { Typography } from '../../../../components/Topography/typography';
 import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';
 import DateModal from '../../../../components/DateModal/DateModal';

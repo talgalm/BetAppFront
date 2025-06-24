@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonStyles } from './StyledButton.styles';
-import { Typography } from '../Topography/topography';
+import { Typography } from '../Topography/typography';
 import { useTheme } from '@mui/material/styles';
 import { ThemeType } from '../../Theme/theme';
 import { TypographyTypes } from '../Topography/TypographyTypes';
@@ -10,7 +10,7 @@ export interface ButtonConfig {
   textColor?: string;
   onClick?: () => void;
   variant?: object;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | JSX.Element;
   disabled?: boolean;
   styleProps?: React.CSSProperties;
   colorVariant?: 'primary' | 'secondary' | 'error' | 'success' | ThemeType; // Theme-based colors

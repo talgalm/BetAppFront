@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/topography';
+import { Typography } from '../../../components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './ForgotPassword.styles';
 import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
 import { ForgotPasswordFormInput } from '../Login/interface';

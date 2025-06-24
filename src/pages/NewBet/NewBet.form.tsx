@@ -4,9 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import NewBet from './NewBet';
 import { CreateBetInputs } from './Interface';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '../../Interfaces';
 import { useTranslation } from 'react-i18next';
 import { createBetSchema } from '../../Schemas/NewBetSchema';
+import { User } from '../../Interfaces/User.interface';
 
 const NewBetForm: React.FC = () => {
   const { t } = useTranslation();

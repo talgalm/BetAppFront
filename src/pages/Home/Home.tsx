@@ -9,7 +9,7 @@ import {
   IconContainer,
 } from './Home.styles';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/topography';
+import { Typography } from '../../components/Topography/typography';
 import StyledButton from '../../components/Button/StyledButton';
 import { ThemeType } from '../../Theme/theme';
 import { ReactComponent as HistoryIcon } from '../../Theme/Icons/HomeIcons/HistoryIcon.svg';
@@ -22,12 +22,12 @@ import { TypographyTypes } from '../../components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
 import { NotificationColors } from './Colors';
-import { Bet, BetStatus } from '../../Interfaces';
 import { useEffect } from 'react';
 import { useProfile } from '../../Providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
 import { useAtom } from 'jotai';
 import { useSocketUpdates } from '../../Connection/useSocketUpdates';
+import { BetStatus, Bet } from '../../Interfaces/Bet.interface';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

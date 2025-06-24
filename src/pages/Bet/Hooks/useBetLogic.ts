@@ -3,9 +3,9 @@ import { contactModalDialogAtom, dialogActionAtom } from '../../../Jotai/atoms';
 import { useParams } from 'react-router-dom';
 import { useBet } from './useBet';
 import { useSecondRoundVoting } from './useSecondRoundVoting';
-import { User } from '../../../Interfaces';
 import { useDeclareWinner } from './useDeclareWinner';
 import { useAddSupervisor } from './useAddSupervisor';
+import { User } from '../../../Interfaces/User.interface';
 
 interface UseBetLogicProps {
   setOpen: (open: boolean) => void;
