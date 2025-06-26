@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
-import { authSteps } from '../../../pages/Auth/WelcomePage/auth-steps';
-import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
+import { authSteps } from '@pages/Auth/WelcomePage/auth-steps';
+import { useLogout } from '@pages/Auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
-import { CreateBetInputs, useCreateBet } from '../../../pages/NewBet/Hooks/useCreatebet';
+import { CreateBetInputs, useCreateBet } from '@pages/NewBet/Hooks/useCreatebet';
 import { User } from '@interfaces/User.interface';
 import { BetStatus } from '@interfaces/Bet.interface';
 import { layoutEphemeralAtom } from '@store/layoutAtoms';

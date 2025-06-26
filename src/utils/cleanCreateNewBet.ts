@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { newBetSteps } from '../pages/NewBet/new-bet-steps';
+import { newBetSteps } from '@pages/NewBet/new-bet-steps';
 
 export const useCleanCreateNewBet = () => {
   const navigate = useNavigate();

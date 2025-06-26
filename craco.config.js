@@ -11,6 +11,7 @@ module.exports = {
       '@interfaces': path.resolve(__dirname, 'src/interfaces'),
       '@store': path.resolve(__dirname, 'src/store'),
       '@layout': path.resolve(__dirname, 'src/layout'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
     },
   },
 };

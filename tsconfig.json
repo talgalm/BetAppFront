@@ -11,6 +11,7 @@
       "@interfaces/*": ["interfaces/*"],
       "@store/*": ["store/*"],
       "@layout/*": ["layout/*"],
+      "@pages/*": ["pages/*"]
       // "@components/*": ["components/*"],
       // "@pages/*": ["pages/*"],
       // "@utils/*": ["utils/*"],
