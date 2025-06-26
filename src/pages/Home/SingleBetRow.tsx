@@ -12,7 +12,7 @@ import { formatDate } from '@utils/Helpers';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import Tag, { TagType } from '@components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
-import { SmallAvatar } from '../Bet/BetPage.styles';
+import { SmallAvatar } from '../bet/BetPage.styles';
 import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
 import { getParticipantAwareTagType } from '@utils/betUtils';
 import { useQueryClient } from '@tanstack/react-query';

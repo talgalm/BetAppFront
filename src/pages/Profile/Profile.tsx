@@ -8,10 +8,10 @@ import {
   StatsContainer,
 } from './Profile.styles';
 import { useProfile } from '@providers/useProfile';
-import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage';
+import { FileInput, useUpdateProfileImage } from './hooks/useUpdateProfileImage';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
 import { createDialogButtons } from '@layout/Header/buttons';
-import { useUpdateUser } from './Hooks/useUpdateUser';
+import { useUpdateUser } from './hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

@@ -31,7 +31,7 @@ import {
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
-import { useUsers } from '../Home/Hooks/useUsers';
+import { useUsers } from '../Home/hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
 import { User, Contact } from '@interfaces/User.interface';

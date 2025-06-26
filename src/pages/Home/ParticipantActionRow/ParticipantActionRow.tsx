@@ -2,15 +2,15 @@ import { useTranslation } from 'react-i18next';
 import { ActionRow } from '../SingleBetRow.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { ParticipantAction, useParticipantAction } from '../../Bet/hooks/useParticipentAction';
+import { ParticipantAction, useParticipantAction } from '../../bet/hooks/useParticipentAction';
 import { useQueryClient } from '@tanstack/react-query';
 import { TagType } from '@components/Tag/TagComponent';
-import { useDeleteBet } from '../../Bet/hooks/useDeleteBet';
+import { useDeleteBet } from '../../bet/hooks/useDeleteBet';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/new-bet-steps';
 import { useNavigate } from 'react-router-dom';
-import { useBet } from '../../Bet/hooks/useBet';
+import { useBet } from '../../bet/hooks/useBet';
 import { User } from '@interfaces/User.interface';
 
 interface Props {

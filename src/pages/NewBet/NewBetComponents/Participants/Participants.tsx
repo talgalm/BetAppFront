@@ -28,7 +28,7 @@ import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '@errors/errors';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { useMostActives } from '../../Hooks/useMostActives';
+import { useMostActives } from '../../hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
 import { User } from '@interfaces/User.interface';

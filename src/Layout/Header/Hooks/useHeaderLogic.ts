@@ -5,7 +5,7 @@ import { authSteps } from '@pages/auth/welcome-page/auth-steps';
 import { useLogout } from '@pages/auth/hooks/useLogout';
 import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
-import { CreateBetInputs, useCreateBet } from '@pages/NewBet/Hooks/useCreatebet';
+import { CreateBetInputs, useCreateBet } from '@pages/NewBet/hooks/useCreatebet';
 import { User } from '@interfaces/User.interface';
 import { BetStatus } from '@interfaces/Bet.interface';
 import { layoutEphemeralAtom } from '@store/layoutAtoms';
