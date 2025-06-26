@@ -1,6 +1,7 @@
 import { ReactComponent as CalendarIcon } from '@assets/icons/CalendarIcon.svg';
 import { ReactComponent as BetimIcon } from '@assets/icons/Betim.svg';
 import { User } from '@interfaces/User.interface';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export enum NewBetStepValueTypes {
   Start = 'Start',
@@ -74,7 +75,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     inputName: NewBetStepValueTypes.deadline,
     continueButton: NewBetStepValueTypes.files,
     continuteWithout: true,
-    continuteWithoutIcon: <CalendarIcon color="#15AB94" />,
+    continuteWithoutIcon: <CalendarIcon color={PRIMARY_COLOR} />,
     prevButton: NewBetStepValueTypes.betim,
   },
   [NewBetStepValueTypes.files]: {

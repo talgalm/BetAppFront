@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export const HomeWrapperContainer = styled('div')({
   display: 'flex',
@@ -239,7 +240,7 @@ export const FilesContainer = styled('div')({
   height: '23vh',
   backgroundColor: '#EEF9F8',
   borderRadius: 8,
-  border: `1px dashed #15AB94`,
+  border: `1px dashed ${PRIMARY_COLOR}`,
   flexDirection: 'column',
   gap: 8,
 });

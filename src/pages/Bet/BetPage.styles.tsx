@@ -2,6 +2,7 @@ import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as ArrowIcon } from '@assets/icons/betIcons/Arrow.svg';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export const MainContainer = styled('div')({
   display: 'flex',
@@ -91,8 +92,6 @@ export const DetailsListView = styled('div')<{ isVisible: boolean }>(({ isVisibl
   overflow: 'hidden',
   transition: 'opacity 1s ease',
   position: isVisible ? 'relative' : 'absolute',
-  // backgroundColor: '#15AB94',
-  // borderRadius: 8,
 }));
 
 export const AvatarRow = styled('div')({
@@ -102,7 +101,7 @@ export const AvatarRow = styled('div')({
 
 const statusToBorder: Record<ParticipantStatus, string> = {
   pending: '#EF9645',
-  active: '#15AB94',
+  active: PRIMARY_COLOR,
   canceled: '#DA3E3E',
   voted: '',
 };

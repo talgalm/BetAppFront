@@ -8,6 +8,7 @@ import { useAtom } from 'jotai';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
 import { dialogActionAtom } from '@store/dialogAtoms';
 import { ParticipantAction } from './hooks/useParticipentAction';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export const createActionButtons = (
   tagType: TagType,
@@ -102,7 +103,7 @@ export const createDialogButtons = (
         value: 'חזור',
         onClick: () => setDialogAction(null),
         colorVariant: ThemeType.Secondary,
-        styleProps: { border: '2px solid #15AB94' },
+        styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
       },
     ];
   }
@@ -112,13 +113,13 @@ export const createDialogButtons = (
       value: t('StyledDialog.SecondRoundVoting'),
       onClick: () => setDialogAction(DialogAction.SecondRound),
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: '2px solid #15AB94' },
+      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
     },
     {
       value: t('StyledDialog.MultiWinners'),
       onClick: () => setDialogAction(DialogAction.PickWinner),
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: '2px solid #15AB94' },
+      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
     },
     dialogType === DialogType.BetCreator
       ? {

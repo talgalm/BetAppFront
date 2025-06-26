@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { PRIMARY_COLOR } from './colorTheme';
 
 export enum ThemeType {
   Primary = 'primary',
@@ -8,12 +9,12 @@ export enum ThemeType {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#15AB94',
+      main: PRIMARY_COLOR,
       contrastText: '#FFFFFF',
     },
     secondary: {
       main: '#FFFFFF',
-      contrastText: '#15AB94',
+      contrastText: PRIMARY_COLOR,
     },
     error: {
       main: '#D32F2F',

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonConfig } from '@components/Button/StyledButton';
 import { DialogType } from '@components/StyledDialog/StyledDialog';
 import { ThemeType } from '@theme/theme';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export const createDialogButtons = (
   dialogType: DialogType,
@@ -33,7 +34,7 @@ export const createDialogButtons = (
       value: t(`StyledDialog.${dialogType}CloseButton`),
       onClick: onClose,
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: '2px solid #15AB94' },
+      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
     });
   }
 

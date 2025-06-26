@@ -15,6 +15,7 @@ import {
   SmallAvatar,
   StyledDivider,
 } from '@pages/new-bet/new-bet-components/participants-new-bet/Participants.styles';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>
@@ -24,7 +25,7 @@ const WinnerSection = ({ winners }: { winners: User[] }) => (
         <Typography
           value={winners.length === 1 ? t('BetPage.SingleWinner') : t('BetPage.MultiWinner')}
           variant={TypographyTypes.H3}
-          styleProps={{ color: '#15AB94' }}
+          styleProps={{ color: PRIMARY_COLOR }}
         />
         {winners.map((winner) => (
           <WinnerRow key={winner.id}>

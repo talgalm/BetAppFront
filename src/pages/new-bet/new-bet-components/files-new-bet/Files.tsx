@@ -23,6 +23,7 @@ import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '@errors/errors';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 interface NewBetFilesProps<T extends FieldValues> {
   control?: Control<T>;
@@ -85,7 +86,7 @@ const NewBetFiles = <T extends FieldValues>({
             backgroundColor: 'white',
             height: 32,
             marginTop: 8,
-            border: '2px solid #15AB94',
+            border: `2px solid ${PRIMARY_COLOR}`,
             marginBottom: 10,
           }}
           colorVariant="secondary"

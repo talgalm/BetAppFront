@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 import Calendar from 'react-calendar';
 
 export const StyledCalendar = styled(Calendar)`
@@ -47,7 +48,7 @@ export const StyledCalendar = styled(Calendar)`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #15ab94;
+    color: ${PRIMARY_COLOR};
   }
 
   .react-calendar__navigation {

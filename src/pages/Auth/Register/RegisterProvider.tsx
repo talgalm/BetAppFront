@@ -14,6 +14,7 @@ import ConnectionOptions from '../connection-options/ConnectionOptions';
 import { useUpdateUser } from '../hooks/useUpdateUser';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '../../../store/userAtoms';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();
@@ -82,7 +83,7 @@ const RegisterProvider = (): JSX.Element => {
             colorVariant={ThemeType.Secondary}
             onClick={handleSkip}
             disabled={!providerPhoneNumber}
-            styleProps={{ border: '2px solid #15AB94' }}
+            styleProps={{ border: `2px solid ${PRIMARY_COLOR}` }}
           />
         </SignInContainer>
       </form>

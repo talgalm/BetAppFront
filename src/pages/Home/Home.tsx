@@ -20,7 +20,6 @@ import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { ActiveStep } from '@store/newBetStepAtom';
-import { newBetSteps, NewBetStepValueTypes } from '../new-bet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';
 import { useProfile } from '@providers/useProfile';
@@ -28,6 +27,7 @@ import BetLoader from '@components/loader/loader';
 import { useAtom } from 'jotai';
 import { useSocketUpdates } from '@connection/useSocketUpdates';
 import { BetStatus, Bet } from '@interfaces/Bet.interface';
+import { newBetSteps, NewBetStepValueTypes } from '@pages/new-bet/new-bet-steps';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

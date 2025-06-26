@@ -63,7 +63,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
         <Typography
           value={`${t('Input.YourBalance')} ${userCurrentCoins} ${t('Input.Coins')}`}
           variant={TypographyTypes.H3}
-          styleProps={{ color: '#15AB94' }}
+          styleProps={{ color: PRIMARY_COLOR }}
         />
       </RowContentContainer>
       <CoinsGridContainer>
@@ -103,7 +103,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
         <Typography
           value={`*`}
           variant={TypographyTypes.TextSmall}
-          styleProps={{ color: '#15AB94' }}
+          styleProps={{ color: PRIMARY_COLOR }}
         />
         <Typography
           value={`${t('NewBet.betimDisclaimer')}`}

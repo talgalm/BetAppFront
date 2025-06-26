@@ -1,5 +1,6 @@
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
@@ -52,13 +53,13 @@ export const CubeInput = styled(TextField, {
   borderRadius: 8,
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      border: hasValue ? '1px solid #15AB94' : '1px solid #9798A2',
+      border: hasValue ? `1px solid ${PRIMARY_COLOR}` : '1px solid #9798A2',
     },
     '&:hover fieldset': {
-      border: hasValue ? '1px solid #15AB94' : '1px solid #9798A2',
+      border: hasValue ? `1px solid ${PRIMARY_COLOR}` : '1px solid #9798A2',
     },
     '&.Mui-focused fieldset': {
-      border: '1px solid #15AB94',
+      border: `1px solid ${PRIMARY_COLOR}`,
     },
   },
   '& .MuiInputBase-input': {

@@ -1,3 +1,4 @@
+import { PRIMARY_COLOR } from '@theme/colorTheme';
 import confetti from 'canvas-confetti';
 
 export const fireConfetti = () => {
@@ -10,7 +11,7 @@ export const fireConfetti = () => {
       angle: 90,
       spread: 80,
       origin: { x: Math.random(), y: 1 },
-      colors: ['#15AB94', '#A8D6CC', '#777777'],
+      colors: [PRIMARY_COLOR, '#A8D6CC', '#777777'],
     });
 
     if (Date.now() < end) {

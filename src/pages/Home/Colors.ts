@@ -1,12 +1,14 @@
-export enum NotificationColors {
-  BetBackground = '#EFFDF4',
-  BetAccent = '#15AB94',
-  SupervisorBackground = '#FEF3C7',
-  SupervisorAccent = '#D97706',
-  HistoryBackground = '#FAE8FF',
-  HistoryAccent = '#C026D3',
-  White = '#fff',
-}
+import { PRIMARY_COLOR } from '@theme/colorTheme';
+
+export const NotificationColors = {
+  BetBackground: '#EFFDF4',
+  BetAccent: PRIMARY_COLOR,
+  SupervisorBackground: '#FEF3C7',
+  SupervisorAccent: '#D97706',
+  HistoryBackground: '#FAE8FF',
+  HistoryAccent: '#C026D3',
+  White: '#fff',
+} as const;
 
 export const NotificationTypeColors = {
   bet: {
