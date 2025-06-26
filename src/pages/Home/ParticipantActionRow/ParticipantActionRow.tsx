@@ -7,7 +7,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { TagType } from '@components/Tag/TagComponent';
 import { useDeleteBet } from '../../Bet/Hooks/useDeleteBet';
 import { useAtom } from 'jotai';
-import { ActiveStep } from '../../../Jotai/newBetAtoms';
+import { ActiveStep } from '@store/newBetStepAtom';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/new-bet-steps';
 import { useNavigate } from 'react-router-dom';
 import { useBet } from '../../Bet/Hooks/useBet';

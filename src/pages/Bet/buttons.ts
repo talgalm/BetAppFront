@@ -6,8 +6,8 @@ import { ParticipantAction } from './Hooks/useParticipentAction';
 import { DialogAction, DialogType } from '@components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
-import { dialogActionAtom } from '../../Jotai/atoms';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
+import { dialogActionAtom } from '@store/dialogAtoms';
 
 export const createActionButtons = (
   tagType: TagType,

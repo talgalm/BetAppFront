@@ -8,7 +8,8 @@
       "@components/*": ["components/*"],
       "@connection/*": ["connection/*"],
       "@errors/*": ["errors/*"],
-      "@interfaces/*": ["interfaces/*"]
+      "@interfaces/*": ["interfaces/*"],
+      "@store/*": ["store/*"]
       // "@components/*": ["components/*"],
       // "@pages/*": ["pages/*"],
       // "@utils/*": ["utils/*"],

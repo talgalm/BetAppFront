@@ -20,16 +20,16 @@ import { useFieldDefinitions } from './useFieldDefinitions';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';
 import { useAtom } from 'jotai';
-import { betWinnerAtom, contactModalDialogAtom, finishBetAtom } from '../../Jotai/atoms';
 import { usePickWinnerAction } from './Hooks/usePickWinner';
 import WinnerSection from './BetPageRow/WinnerSection/WinnerSection';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
 import { useBetLogic } from './Hooks/useBetLogic';
 import ContactModal from '../ContactModal/ContactModal';
 import { NotificationHeader } from '../Home/SingleBetRow.styles';
-import { useSocketUpdates } from '@connection/useSocketUpdates';
 import { BetStatus } from '@interfaces/Bet.interface';
 import { User } from '@interfaces/User.interface';
+import { betWinnerAtom, finishBetAtom } from '@store/betAtoms';
+import { contactModalDialogAtom } from '@store/dialogAtoms';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();

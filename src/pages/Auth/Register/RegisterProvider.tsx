@@ -7,13 +7,13 @@ import StyledButton from '@components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
 import { RegisterProviderFormInput } from '@interfaces/Auth.interface';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import BetLoader from '../../../Theme/Loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
-import { VerifiedUserAtom } from '../Store/atoms';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { VerifiedUserAtom } from '../../../store/userAtoms';
 
 const RegisterProvider = (): JSX.Element => {
   const { t } = useTranslation();

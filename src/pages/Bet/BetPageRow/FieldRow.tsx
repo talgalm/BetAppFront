@@ -9,9 +9,9 @@ import { SummaryRow, StyledDivider } from '../../NewBet/NewBetComponents/Summary
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
-import { finishBetAtom } from '../../../Jotai/atoms';
 import BetFilesRow from './BetFilesRow';
 import { BetFile } from '@interfaces/Bet.interface';
+import { finishBetAtom } from '@store/betAtoms';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,

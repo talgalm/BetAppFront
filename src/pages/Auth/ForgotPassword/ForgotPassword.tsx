@@ -6,7 +6,7 @@ import { ForgotPasswordFormInput } from '@interfaces/Auth.interface';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useForgetPassword } from '../Hooks/useForgetPassword';

@@ -11,17 +11,18 @@ import { ReactComponent as ReturnArrow } from '../../Theme/Icons/LayoutIcons/Ret
 import { ReactComponent as HamburgerIcon } from '../../Theme/Icons/LayoutIcons/HamburgerIcon.svg';
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
-import { contactModalDialogAtom, headerAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { useLocation } from 'react-router';
-import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { ActiveStep } from '@store/newBetStepAtom';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
 import { useProfile } from '../../Providers/useProfile';
 import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
 import { useHeaderLogic } from './Hooks/useHeaderLogic';
 import { createDialogButtons } from './buttons';
+import { contactModalDialogAtom } from '@store/dialogAtoms';
+import { headerAtom } from '@store/layoutAtoms';
 
 const Header = () => {
   const isPrimary = useIsPrimaryExpand();

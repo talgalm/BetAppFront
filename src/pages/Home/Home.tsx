@@ -19,7 +19,7 @@ import { ReactComponent as NoBetsIcon } from '../../Theme/Icons/HomeIcons/NoBets
 import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { ActiveStep } from '@store/newBetStepAtom';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';

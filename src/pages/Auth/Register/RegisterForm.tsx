@@ -2,7 +2,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 
 import Register from './Register';
 import { getRegisterStepSchemas } from '../../../Schemas/RegisterSchema';

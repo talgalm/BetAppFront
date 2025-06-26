@@ -9,6 +9,7 @@ module.exports = {
       '@connection': path.resolve(__dirname, 'src/connection'),
       '@errors': path.resolve(__dirname, 'src/errors'),
       '@interfaces': path.resolve(__dirname, 'src/interfaces'),
+      '@store': path.resolve(__dirname, 'src/store'),
     },
   },
 };

@@ -5,17 +5,17 @@ import { NewPasswordFormInput } from '@interfaces/Auth.interface';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useState } from 'react';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { HeaderContainer, SignInContainer } from './NewPassword.styles';
-import { VerifiedUserAtom } from '../Store/atoms';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
 import BetLoader from '../../../Theme/Loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { VerifiedUserAtom } from '../../../store/userAtoms';
 
 const NewPassword = (): JSX.Element => {
   const { t } = useTranslation();

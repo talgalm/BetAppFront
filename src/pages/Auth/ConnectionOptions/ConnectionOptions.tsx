@@ -3,7 +3,7 @@ import { Typography } from '@components/Topography/typography';
 import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import GoogleLoginButton from './GoogleLogin';
 import FacebookLoginButton from './FacebookLogin';
 import {

@@ -9,7 +9,7 @@ import StyledButton from '@components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
 import { RegisterFormInput } from '@interfaces/Auth.interface';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useEffect, useState } from 'react';
 import BetLoader from '../../../Theme/Loader/loader';

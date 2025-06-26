@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
-import { layoutAtom } from '../Jotai/atoms';
 import { HeaderStyle } from '../Theme/layoutStyles';
+import { layoutAtom } from '@store/layoutAtoms';
 
 export const useIsPrimaryExpand = (): boolean => {
   const [layout] = useAtom(layoutAtom);

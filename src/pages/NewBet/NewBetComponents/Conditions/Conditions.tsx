@@ -16,8 +16,8 @@ import { CreateBetInputs } from '../../new-bet-steps';
 import { TagStyled } from '../../../Home/SingleBetRow.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
-import { headerAtom } from '../../../../Jotai/atoms';
 import { HeaderStyle } from '../../../../Theme/layoutStyles';
+import { headerAtom } from '@store/layoutAtoms';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;

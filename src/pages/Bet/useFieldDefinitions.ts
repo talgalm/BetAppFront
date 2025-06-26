@@ -2,11 +2,11 @@
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/Betim.svg';
 import { formatDate } from '../../utils/Helpers';
-import { finishBetAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
 import { BetFile, Bet } from '@interfaces/Bet.interface';
 import { Prediction } from '@interfaces/Prediction.interface';
 import { User } from '@interfaces/User.interface';
+import { finishBetAtom } from '@store/betAtoms';
 
 interface FieldRowProps {
   label: string;

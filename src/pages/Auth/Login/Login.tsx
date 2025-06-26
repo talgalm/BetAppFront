@@ -10,7 +10,7 @@ import { ThemeType } from '../../../Theme/theme';
 import StyledButton from '@components/Button/StyledButton';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { UserActiveStep } from '../../../Jotai/UserAtoms';
+import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useNavigate } from 'react-router-dom';

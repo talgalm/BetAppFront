@@ -25,7 +25,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { formatDate } from '../../../../utils/Helpers';
 import { useAtom } from 'jotai';
-import { ActiveStep } from '../../../../Jotai/newBetAtoms';
+import { ActiveStep } from '@store/newBetStepAtom';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 

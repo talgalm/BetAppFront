@@ -7,8 +7,8 @@ import { PopUpContent, PopUpHeader, PopUpRUDiv } from '@errors/ErrorHandler.styl
 import ButtonsHub, { ButtonsHubStatus } from '../../pages/ButtonsHub';
 
 import { ButtonConfig } from '../Button/StyledButton';
-import { dialogActionAtom } from '../../Jotai/atoms';
 import { useAtom } from 'jotai';
+import { dialogActionAtom } from '@store/dialogAtoms';
 
 export enum DialogType {
   BetCreation = 'betCreation',

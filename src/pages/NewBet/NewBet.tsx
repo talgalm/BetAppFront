@@ -11,7 +11,7 @@ import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './new-bet-st
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { useAtom } from 'jotai';
-import { ActiveStep } from '../../Jotai/newBetAtoms';
+import { ActiveStep } from '@store/newBetStepAtom';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRight } from '../../Theme/Icons/arrowRight.svg';
 
