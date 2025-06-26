@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { ReactComponent as CloseIcon } from '@theme/icons/FullClose.svg';
+import { ReactComponent as CloseIcon } from '@assets/icons/FullClose.svg';
 
 export const FilesContainer = styled('div')({
   display: 'flex',

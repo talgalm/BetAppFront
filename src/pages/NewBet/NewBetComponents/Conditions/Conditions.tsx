@@ -8,7 +8,7 @@ import {
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
 import { Typography } from '@components/Topography/typography';
-import { ReactComponent as CalendarIcon } from '@theme/icons/CalendarIcon.svg';
+import { ReactComponent as CalendarIcon } from '@assets/icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';
 import DateModal from '@components/DateModal/DateModal';
 import { formatDate } from '@utils/Helpers';

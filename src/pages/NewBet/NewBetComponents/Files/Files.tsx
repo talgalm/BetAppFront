@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
 import { Typography } from '@components/Topography/typography';
-import { ReactComponent as UploadFileIcon } from '@theme/icons/UploadIcon.svg';
-import { ReactComponent as FileIcon } from '@theme/icons/FilesIcon.svg';
+import { ReactComponent as UploadFileIcon } from '@assets/icons/UploadIcon.svg';
+import { ReactComponent as FileIcon } from '@assets/icons/FilesIcon.svg';
 import StyledButton from '@components/Button/StyledButton';
 import {
   AvatarWrapper,

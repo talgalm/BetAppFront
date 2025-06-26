@@ -1,9 +1,9 @@
-import { ReactComponent as ConnectionErrorIcon } from '@theme/icons/errorIcons/ConnectionError.svg';
-import { ReactComponent as FileNotSupportedIcon } from '@theme/icons/errorIcons/FileNotSupported.svg';
-import { ReactComponent as FileTooBigIcon } from '@theme/icons/errorIcons/FileTooBig.svg';
-import { ReactComponent as NotEnoughBetimIcon } from '@theme/icons/errorIcons/NotEnoughBetim.svg';
-import { ReactComponent as OverlappingParticipantsIcon } from '@theme/icons/errorIcons/OverlappingParticipants.svg';
-import { ReactComponent as AuthErrorIcon } from '@theme/icons/errorIcons/AuthError.svg';
+import { ReactComponent as ConnectionErrorIcon } from '@assets/icons/errorIcons/ConnectionError.svg';
+import { ReactComponent as FileNotSupportedIcon } from '@assets/icons/errorIcons/FileNotSupported.svg';
+import { ReactComponent as FileTooBigIcon } from '@assets/icons/errorIcons/FileTooBig.svg';
+import { ReactComponent as NotEnoughBetimIcon } from '@assets/icons/errorIcons/NotEnoughBetim.svg';
+import { ReactComponent as OverlappingParticipantsIcon } from '@assets/icons/errorIcons/OverlappingParticipants.svg';
+import { ReactComponent as AuthErrorIcon } from '@assets/icons/errorIcons/AuthError.svg';
 
 export enum ErrorTypes {
   ConnectionError = 'ConnectionError',

@@ -1,8 +1,8 @@
 import { Typography } from '@components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './Register.styles';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
-import { ReactComponent as VisableIcon } from '@theme/icons/authIcons/isVisibaleIcon.svg';
-import { ReactComponent as NotVisiblaeIcon } from '@theme/icons/authIcons/notVisibaleIcon.svg';
+import { ReactComponent as VisableIcon } from '@assets/icons/authIcons/isVisibaleIcon.svg';
+import { ReactComponent as NotVisiblaeIcon } from '@assets/icons/authIcons/notVisibaleIcon.svg';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { ThemeType } from '@theme/theme';
 import StyledButton from '@components/Button/StyledButton';

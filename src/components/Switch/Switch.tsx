@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as HomeIcon } from '@theme/icons/layoutIcons/SwitchHome.svg';
-import { ReactComponent as ProfileIcon } from '@theme/icons/layoutIcons/SwitchProfile.svg';
+import { ReactComponent as HomeIcon } from '@assets/icons/layoutIcons/SwitchHome.svg';
+import { ReactComponent as ProfileIcon } from '@assets/icons/layoutIcons/SwitchProfile.svg';
 
 const CustomSwitch = styled(Switch)({
   width: 335,

@@ -6,7 +6,7 @@ import {
   NotificationTextHeader,
   StyledAvatarGroup,
 } from './SingleBetRow.styles';
-import { ReactComponent as BetimIcon } from '@theme/icons/homeIcons/BetimIcon.svg';
+import { ReactComponent as BetimIcon } from '@assets/icons/homeIcons/BetimIcon.svg';
 import { Typography } from '@components/Topography/typography';
 import { formatDate } from '@utils/Helpers';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

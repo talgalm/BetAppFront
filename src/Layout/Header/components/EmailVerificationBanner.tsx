@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerificationContainer } from '../Header.styles';
-import { ReactComponent as RedCloseIcon } from '@theme/icons/layoutIcons/RedClose.svg';
+import { ReactComponent as RedCloseIcon } from '@assets/icons/layoutIcons/RedClose.svg';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '@interfaces/User.interface';

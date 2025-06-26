@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Typography } from '@components/Topography/typography';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ContactIcon } from '@theme/icons/Contacts.svg';
+import { ReactComponent as ContactIcon } from '@assets/icons/Contacts.svg';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
 import { PRIMARY_COLOR } from '@theme/colorTheme';

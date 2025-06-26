@@ -13,7 +13,7 @@ import StyledButton from '@components/Button/StyledButton';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as ArrowRight } from '@theme/icons/arrowRight.svg';
+import { ReactComponent as ArrowRight } from '@assets/icons/arrowRight.svg';
 
 import { PRIMARY_COLOR } from '@theme/colorTheme';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
