@@ -12,7 +12,7 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useEffect, useState } from 'react';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useDebouncedValue } from '../Hooks/useDebouncedEmailCheck';
 import { useRegister } from '../Hooks/useRegister';

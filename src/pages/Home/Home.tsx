@@ -24,7 +24,7 @@ import { newBetSteps, NewBetStepValueTypes } from '../NewBet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';
 import { useProfile } from '@providers/useProfile';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import { useAtom } from 'jotai';
 import { useSocketUpdates } from '@connection/useSocketUpdates';
 import { BetStatus, Bet } from '@interfaces/Bet.interface';

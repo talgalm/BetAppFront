@@ -14,7 +14,7 @@ import {
 } from '../ConnectionOptions/ConnectionOptions.styles';
 import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styles';
 import { useVerifyCode } from '../Hooks/useVerifyCode';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '../../../store/userAtoms';
 

@@ -10,7 +10,7 @@ import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useForgetPassword } from '../Hooks/useForgetPassword';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const ForgetPassword = (): JSX.Element => {

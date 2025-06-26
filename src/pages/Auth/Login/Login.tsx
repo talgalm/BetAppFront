@@ -14,7 +14,7 @@ import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useNavigate } from 'react-router-dom';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import { useLogin } from '../Hooks/useLogin';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useProfile } from '@providers/useProfile';

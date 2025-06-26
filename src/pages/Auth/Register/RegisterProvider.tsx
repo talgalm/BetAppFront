@@ -9,7 +9,7 @@ import { RegisterProviderFormInput } from '@interfaces/Auth.interface';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
-import BetLoader from '@theme/loader/loader';
+import BetLoader from '@components/loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
