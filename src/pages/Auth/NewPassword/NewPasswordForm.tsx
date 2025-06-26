@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { NewPasswordFormInput } from '../../../interfaces/Auth.interface';
+import { NewPasswordFormInput } from '@interfaces/Auth.interface';
 import NewPassword from './NewPassword';
 import { getNewPasswordSchema } from '../../../Schemas/NewPasswordSchema';
 

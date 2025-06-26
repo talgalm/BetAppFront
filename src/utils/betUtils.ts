@@ -1,7 +1,7 @@
 import { betStatusToTagType, TagType } from '@components/Tag/TagComponent';
-import { Bet, BetStatus } from '../interfaces/Bet.interface';
-import { ParticipantStatus } from '../interfaces/Prediction.interface';
-import { Contact } from '../interfaces/User.interface';
+import { Bet, BetStatus } from '@interfaces/Bet.interface';
+import { ParticipantStatus } from '@interfaces/Prediction.interface';
+import { Contact } from '@interfaces/User.interface';
 
 export const getTagType = (bet: Bet | undefined): TagType => {
   if (!bet) {

@@ -6,7 +6,7 @@ import { CreateBetInputs } from './new-bet-steps';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { createBetSchema } from '../../Schemas/NewBetSchema';
-import { User } from '../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 const NewBetForm: React.FC = () => {
   const { t } = useTranslation();

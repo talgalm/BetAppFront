@@ -6,7 +6,7 @@ import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.s
 import Calendar from '@components/Calendar/Calendar';
 import { FieldValues, Control, Path } from 'react-hook-form';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { User } from '../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 interface ConditionModalProps<T extends FieldValues> {
   open: boolean;

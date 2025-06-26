@@ -14,7 +14,7 @@ import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '../../../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;

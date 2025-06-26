@@ -1,6 +1,6 @@
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
-import { User } from '../../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 interface RegisterPayload {
   email: string;

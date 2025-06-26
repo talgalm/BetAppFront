@@ -1,7 +1,7 @@
 import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as ArrowIcon } from '../../Theme/Icons/Bet/Arrow.svg';
-import { ParticipantStatus } from '../../interfaces/Prediction.interface';
+import { ParticipantStatus } from '@interfaces/Prediction.interface';
 
 export const MainContainer = styled('div')({
   display: 'flex',

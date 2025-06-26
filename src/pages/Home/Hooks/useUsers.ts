@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
-import { User } from '../../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 export const useUsers = (options?: { enabled?: boolean }) => {
   return useQuery<User[], Error>({

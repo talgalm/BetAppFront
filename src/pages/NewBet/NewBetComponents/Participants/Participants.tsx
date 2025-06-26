@@ -32,7 +32,7 @@ import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { layoutEphemeralAtom } from '../../../../Jotai/atoms';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '../../../../interfaces/User.interface';
+import { User } from '@interfaces/User.interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;

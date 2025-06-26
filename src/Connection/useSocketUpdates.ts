@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import socket from './socket';
 import { useQueryClient } from '@tanstack/react-query';
-import { Bet } from '../interfaces/Bet.interface';
+import { Bet } from '@interfaces/Bet.interface';
 
 export function useSocketUpdates(onBetUpdated?: (id: string) => void) {
   const queryClient = useQueryClient();

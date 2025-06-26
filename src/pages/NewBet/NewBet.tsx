@@ -32,8 +32,8 @@ import { FileInput, useAttachFilesToBet } from './Hooks/useAttachFilesToBet';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '@errors/errors';
 import { ErrorHandler } from '@errors/ErrorHandler';
-import { Bet } from '../../interfaces/Bet.interface';
-import { User } from '../../interfaces/User.interface';
+import { Bet } from '@interfaces/Bet.interface';
+import { User } from '@interfaces/User.interface';
 import { createNewBetButtons } from './buttons';
 
 const NewBet = () => {

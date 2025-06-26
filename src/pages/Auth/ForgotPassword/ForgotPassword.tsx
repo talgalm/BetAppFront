@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './ForgotPassword.styles';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
-import { ForgotPasswordFormInput } from '../../../interfaces/Auth.interface';
+import { ForgotPasswordFormInput } from '@interfaces/Auth.interface';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';

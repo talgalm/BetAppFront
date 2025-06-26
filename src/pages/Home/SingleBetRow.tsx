@@ -18,9 +18,9 @@ import { getParticipantAwareTagType } from '../../utils/betUtils';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSocketUpdates } from '@connection/useSocketUpdates';
 import { useState } from 'react';
-import { Bet } from '../../interfaces/Bet.interface';
-import { Prediction, ParticipantStatus } from '../../interfaces/Prediction.interface';
-import { User } from '../../interfaces/User.interface';
+import { Bet } from '@interfaces/Bet.interface';
+import { Prediction, ParticipantStatus } from '@interfaces/Prediction.interface';
+import { User } from '@interfaces/User.interface';
 
 interface SingleBetRowProps {
   bet: Bet;

@@ -27,7 +27,7 @@ import { useProfile } from '../../Providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
 import { useAtom } from 'jotai';
 import { useSocketUpdates } from '@connection/useSocketUpdates';
-import { BetStatus, Bet } from '../../interfaces/Bet.interface';
+import { BetStatus, Bet } from '@interfaces/Bet.interface';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

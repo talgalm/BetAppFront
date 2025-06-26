@@ -7,7 +7,7 @@ import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { ThemeType } from '../../../Theme/theme';
 import StyledButton from '@components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
-import { RegisterFormInput } from '../../../interfaces/Auth.interface';
+import { RegisterFormInput } from '@interfaces/Auth.interface';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';

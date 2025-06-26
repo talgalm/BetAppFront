@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
-import { NewPasswordFormInput } from '../../../interfaces/Auth.interface';
+import { NewPasswordFormInput } from '@interfaces/Auth.interface';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';

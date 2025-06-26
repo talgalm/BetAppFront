@@ -28,8 +28,8 @@ import { useBetLogic } from './Hooks/useBetLogic';
 import ContactModal from '../ContactModal/ContactModal';
 import { NotificationHeader } from '../Home/SingleBetRow.styles';
 import { useSocketUpdates } from '@connection/useSocketUpdates';
-import { BetStatus } from '../../interfaces/Bet.interface';
-import { User } from '../../interfaces/User.interface';
+import { BetStatus } from '@interfaces/Bet.interface';
+import { User } from '@interfaces/User.interface';
 
 const BetPage = (): JSX.Element => {
   const { t } = useTranslation();

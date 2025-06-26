@@ -34,7 +34,7 @@ import debounce from 'lodash/debounce';
 import { useUsers } from '../Home/Hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
-import { User, Contact } from '../../interfaces/User.interface';
+import { User, Contact } from '@interfaces/User.interface';
 
 interface ContactModalProp {
   open: boolean;

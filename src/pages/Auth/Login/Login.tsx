@@ -5,7 +5,7 @@ import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { useFormContext } from 'react-hook-form';
-import { LoginFormInput } from '../../../interfaces/Auth.interface';
+import { LoginFormInput } from '@interfaces/Auth.interface';
 import { ThemeType } from '../../../Theme/theme';
 import StyledButton from '@components/Button/StyledButton';
 import { useEffect, useState } from 'react';

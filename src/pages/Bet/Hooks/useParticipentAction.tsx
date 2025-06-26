@@ -1,9 +1,9 @@
 // src/pages/Bet/Hooks/useParticipantAction.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
-import { Bet } from '../../../interfaces/Bet.interface';
-import { ParticipantStatus, Prediction } from '../../../interfaces/Prediction.interface';
-import { User } from '../../../interfaces/User.interface';
+import { Bet } from '@interfaces/Bet.interface';
+import { ParticipantStatus, Prediction } from '@interfaces/Prediction.interface';
+import { User } from '@interfaces/User.interface';
 
 export enum ParticipantAction {
   APPROVE = 'approve',
