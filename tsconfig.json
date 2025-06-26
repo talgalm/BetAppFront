@@ -17,6 +17,7 @@
       "@utils/*": ["utils/*"],
       "@theme/*": ["theme/*"],
       "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

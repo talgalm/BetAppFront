@@ -14,7 +14,7 @@ import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useEffect, useState } from 'react';
 import BetLoader from '@components/loader/loader';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import { useDebouncedValue } from '../Hooks/useDebouncedEmailCheck';
+import { useDebouncedValue } from '@hooks/useDebouncedEmailCheck';
 import { useRegister } from '../Hooks/useRegister';
 import { useCheckEmail } from '../Hooks/useCheckEmail';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

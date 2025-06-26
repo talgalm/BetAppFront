@@ -24,7 +24,7 @@ import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '@theme/theme';
-import { useCleanCreateNewBet } from '@utils/cleanCreateNewBet';
+import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
