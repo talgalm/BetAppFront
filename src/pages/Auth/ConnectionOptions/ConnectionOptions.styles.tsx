@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
 import { Divider } from '@mui/material';
-import { ReactComponent as Facebook } from '../../../theme/icons/authIcons/FacebookIcon.svg';
-import { ReactComponent as Google } from '../../../theme/icons/authIcons/GoogleIcon.svg';
-import { ReactComponent as Apple } from '../../../theme/icons/authIcons/AppleIcon.svg';
+import { ReactComponent as Facebook } from '@theme/icons/authIcons/FacebookIcon.svg';
+import { ReactComponent as Google } from '@theme/icons/authIcons/GoogleIcon.svg';
+import { ReactComponent as Apple } from '@theme/icons/authIcons/AppleIcon.svg';
 
 export const HeaderContainer = styled('div')({
   width: '100%',

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import StyledButton from '@components/Button/StyledButton';
-import { ThemeType } from '../../../theme/theme';
+import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
@@ -14,7 +14,7 @@ import {
 } from '../ConnectionOptions/ConnectionOptions.styles';
 import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styles';
 import { useVerifyCode } from '../Hooks/useVerifyCode';
-import BetLoader from '../../../theme/loader/loader';
+import BetLoader from '@theme/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '../../../store/userAtoms';
 

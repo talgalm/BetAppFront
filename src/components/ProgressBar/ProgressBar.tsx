@@ -5,9 +5,9 @@ import {
   ProgressBarContainer,
   ProgressIcon,
 } from './ProgressBar.styles';
-import { ReactComponent as HandRight } from '../../theme/icons/HandRight.svg';
-import { ReactComponent as HandLeft } from '../../theme/icons/HandLeft.svg';
-import { ReactComponent as Handshake } from '../../theme/icons/Handshake.svg';
+import { ReactComponent as HandRight } from '@theme/icons/HandRight.svg';
+import { ReactComponent as HandLeft } from '@theme/icons/HandLeft.svg';
+import { ReactComponent as Handshake } from '@theme/icons/Handshake.svg';
 
 interface ProgressBarProps {
   targetProgress: number;

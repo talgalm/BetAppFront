@@ -1,5 +1,5 @@
 import StyledButton, { ButtonConfig } from '@components/Button/StyledButton';
-import { ThemeType } from '../theme/theme';
+import { ThemeType } from '@theme/theme';
 import { ButtonsHubContainer } from './ButtonsHub.styles';
 
 export enum ButtonsHubStatus {

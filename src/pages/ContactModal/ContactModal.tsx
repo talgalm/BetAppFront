@@ -12,10 +12,10 @@ import {
   PopUpScroll,
   SmallAvatar,
 } from './ContactModal.styles';
-import { ReactComponent as AddContactIcon } from '../../theme/icons/ContactAdd.svg';
+import { ReactComponent as AddContactIcon } from '@theme/icons/ContactAdd.svg';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
-import { ReactComponent as Search } from '../../theme/icons/Search.svg';
+import { ReactComponent as Search } from '@theme/icons/Search.svg';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';

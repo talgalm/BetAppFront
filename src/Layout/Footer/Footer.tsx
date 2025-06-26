@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import StyledSwitch from '@components/Switch/Switch';
 import { Container } from './Footer.styles';
 import { useAtom } from 'jotai';
-import { HeaderStyle } from '../../theme/layoutStyles';
+import { HeaderStyle } from '@theme/layoutStyles';
 import { headerAtom } from '@store/layoutAtoms';
 
 const Footer = () => {

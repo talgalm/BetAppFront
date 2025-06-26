@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { PopUpContainer, PopUpContentContainer, PopUpOverlay } from './DateModal.styles';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Calendar from '../Calendar/Calendar';
-import { ReactComponent as CloseIcon } from '../../theme/icons/Close.svg';
+import { ReactComponent as CloseIcon } from '@theme/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import StyledButton from '../Button/StyledButton';
-import { ThemeType } from '../../theme/theme';
+import { ThemeType } from '@theme/theme';
 
 interface DateModalProps<T extends FieldValues> {
   isOpen: boolean;

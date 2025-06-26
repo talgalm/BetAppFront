@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_COLOR, SECONDARY_GREEN } from '../../theme/colorTheme';
+import { PRIMARY_COLOR, SECONDARY_GREEN } from '@theme/colorTheme';
 
 interface StyledButtonProps {
   buttonColor?: string;

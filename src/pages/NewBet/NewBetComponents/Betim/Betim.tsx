@@ -8,9 +8,9 @@ import {
   StyledDivider,
 } from '../Betim/Betim.styles';
 import { Typography } from '@components/Topography/typography';
-import { PRIMARY_COLOR } from '../../../../theme/colorTheme';
-import { ReactComponent as PlusIcon } from '../../../../theme/icons/AddIcon.svg';
-import { ReactComponent as MinusIcon } from '../../../../theme/icons/Minus.svg';
+import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { ReactComponent as PlusIcon } from '@theme/icons/AddIcon.svg';
+import { ReactComponent as MinusIcon } from '@theme/icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useQueryClient } from '@tanstack/react-query';

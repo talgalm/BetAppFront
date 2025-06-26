@@ -15,6 +15,8 @@
       "@providers/*": ["providers/*"],
       "@schemas/*": ["schemas/*"],
       "@utils/*": ["utils/*"],
+      "@theme/*": ["theme/*"],
+      "@assets/*": ["assets/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

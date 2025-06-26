@@ -5,12 +5,12 @@ import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { ForgotPasswordFormInput } from '@interfaces/Auth.interface';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
-import { ThemeType } from '../../../theme/theme';
+import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useForgetPassword } from '../Hooks/useForgetPassword';
-import BetLoader from '../../../theme/loader/loader';
+import BetLoader from '@theme/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const ForgetPassword = (): JSX.Element => {

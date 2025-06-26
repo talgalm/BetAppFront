@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ReactComponent as BetimIcon } from '../../../theme/icons/layoutIcons/BetimHeaderIcon.svg';
+import { ReactComponent as BetimIcon } from '@theme/icons/layoutIcons/BetimHeaderIcon.svg';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '@interfaces/User.interface';

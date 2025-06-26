@@ -7,10 +7,10 @@ import {
   LogoDiv,
   RightIconDiv,
 } from './Header.styles';
-import { ReactComponent as ReturnArrow } from '../../theme/icons/layoutIcons/ReturnArrow.svg';
-import { ReactComponent as HamburgerIcon } from '../../theme/icons/layoutIcons/HamburgerIcon.svg';
-import { ReactComponent as CloseIcon } from '../../theme/icons/Close.svg';
-import { ReactComponent as Logo } from '../../theme/icons/Logo.svg';
+import { ReactComponent as ReturnArrow } from '@theme/icons/layoutIcons/ReturnArrow.svg';
+import { ReactComponent as HamburgerIcon } from '@theme/icons/layoutIcons/HamburgerIcon.svg';
+import { ReactComponent as CloseIcon } from '@theme/icons/Close.svg';
+import { ReactComponent as Logo } from '@theme/icons/Logo.svg';
 import { useAtom } from 'jotai';
 import { useIsPrimaryExpand } from '@utils/Helpers';
 import { useLocation } from 'react-router';

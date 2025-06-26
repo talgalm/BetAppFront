@@ -5,8 +5,8 @@ import {
   StyledDivider,
 } from '../../../NewBet/NewBetComponents/Participants/Participants.styles';
 import { Typography } from '@components/Topography/typography';
-import { ReactComponent as WinnerIcon } from '../../../../theme/icons/betIcons/Winner.svg';
-import { ReactComponent as WinnerCupIcon } from '../../../../theme/icons/betIcons/WinnerCup.svg';
+import { ReactComponent as WinnerIcon } from '@theme/icons/betIcons/Winner.svg';
+import { ReactComponent as WinnerCupIcon } from '@theme/icons/betIcons/WinnerCup.svg';
 import {
   WinnerContainer,
   WinnerContainerWrapper,

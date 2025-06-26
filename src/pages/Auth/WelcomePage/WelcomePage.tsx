@@ -1,11 +1,11 @@
 import { ButtonsContainer, MainContainer, TextConatiner } from './WelcomePage.styles';
-import { ReactComponent as WelcomePageImage } from '../../../theme/icons/authIcons/WelcomePageImage.svg';
-import { ReactComponent as SuccessfulRegisterImage } from '../../../theme/icons/authIcons/WelcomePageImage2.svg';
-import { ReactComponent as SuccessfulChangePasswordImage } from '../../../theme/icons/authIcons/WelcomePageImage3.svg';
+import { ReactComponent as WelcomePageImage } from '@theme/icons/authIcons/WelcomePageImage.svg';
+import { ReactComponent as SuccessfulRegisterImage } from '@theme/icons/authIcons/WelcomePageImage2.svg';
+import { ReactComponent as SuccessfulChangePasswordImage } from '@theme/icons/authIcons/WelcomePageImage3.svg';
 import StyledButton, { ButtonConfig } from '@components/Button/StyledButton';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import { ThemeType } from '../../../theme/theme';
+import { ThemeType } from '@theme/theme';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from './auth-steps';
