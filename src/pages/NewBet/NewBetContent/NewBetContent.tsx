@@ -21,12 +21,14 @@ interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
   control?: Control<T>;
   inputName: Path<T> | undefined;
+  clearErrors?: (name?: Path<T> | Path<T>[]) => void;
 }
 
 const NewBetContent = <T extends FieldValues>({
   type,
   inputName,
   control,
+  clearErrors,
 }: NewBetProps<T>): JSX.Element => {
   const { t } = useTranslation();
 
@@ -74,6 +76,7 @@ const NewBetContent = <T extends FieldValues>({
               extended={false}
               displayCharLimit={false}
               placeholder={t(`NewBet.${type}Title`)}
+              onAnyChange={() => clearErrors?.()}
             />
           )}
           {inputName && type === NewBetStepValueTypes.description && (
@@ -83,6 +86,7 @@ const NewBetContent = <T extends FieldValues>({
               extended={true}
               displayCharLimit={false}
               placeholder={t(`NewBet.${type}Title`)}
+              onAnyChange={() => clearErrors?.()}
             />
           )}
         </div>

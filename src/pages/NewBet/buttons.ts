@@ -1,40 +1,32 @@
 import { ButtonConfig } from '../../components/Button/StyledButton';
-import React from 'react';
 import { NewBetStep, NewBetStepValueTypes } from './Interface';
+import { t } from 'i18next';
 
-type CreateActionButtonsProps = {
-  step: NewBetStep;
+export const createNewBetButtons = (
+  step: NewBetStep,
+  disableButton: boolean,
   handleStep: (
     nextStep: NewBetStepValueTypes | null,
     back?: boolean,
     continueWithout?: NewBetStepValueTypes
-  ) => void;
-  disableButton: boolean;
-  t: (key: string) => string;
-  backIcon: React.ReactNode;
-};
-
-export const createNewbetButtons = ({
-  step,
-  handleStep,
-  disableButton,
-  t,
-  backIcon,
-}: CreateActionButtonsProps): ButtonConfig[] => {
+  ) => void,
+  icon?: React.ReactNode
+): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
 
   if (step.inputName) {
     buttons.push({
-      value: t(step.skipToEnd ? 'NewBet.Save' : (step.continueButtonText ?? 'NewBet.Continue')),
+      value: t(
+        step.skipToEnd ? t('NewBet.Save') : (step.continueButtonText ?? t('NewBet.Continue'))
+      ),
       onClick: () => handleStep(step.continueButton),
       styleProps: { width: '100%' },
       disabled: disableButton,
     });
   }
-
   if (step.prevButton) {
     buttons.push({
-      icon: backIcon,
+      icon: icon,
       onClick: () => handleStep(step.prevButton, true),
       styleProps: {
         width: '32%',

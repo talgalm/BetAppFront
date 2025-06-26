@@ -1,13 +1,8 @@
 import { ReactComponent as RightArrow } from '../../Theme/Icons/arrowRight.svg';
 import { ReactComponent as LeftArrow } from '../../Theme/Icons/arrowLeft.svg';
-import { useEffect, useState } from 'react';
-import { CheckboxDiv, StyledCalendar } from './Calender.styles';
-import { Checkbox } from '@mui/material';
-import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
-import { Typography } from '../Topography/typography';
-import { useTranslation } from 'react-i18next';
-import { Control, Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
-import { TypographyTypes } from '../Topography/TypographyTypes';
+import { useState } from 'react';
+import { StyledCalendar } from './Calender.styles';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 interface CalendarProps<T extends FieldValues> {
   control: Control<T>;

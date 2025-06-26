@@ -15,6 +15,7 @@ interface InputTextFullProps<T extends FieldValues> {
   startIconOnClick?: (param?: any) => void;
   endIconOnClick?: (param?: any) => void;
   maskValue?: boolean;
+  onAnyChange?: () => void;
 }
 
 const StyledInput = <T extends FieldValues>({
@@ -27,6 +28,7 @@ const StyledInput = <T extends FieldValues>({
   startIconOnClick,
   endIconOnClick,
   maskValue,
+  onAnyChange,
 }: InputTextFullProps<T>): JSX.Element => {
   const { t } = useTranslation();
 
@@ -56,6 +58,10 @@ const StyledInput = <T extends FieldValues>({
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   startIconGap={StartIcon !== undefined}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    onAnyChange?.();
+                  }}
                 />
                 {<IconWrapperEnd>{EndIcon && <EndIcon onClick={endIconOnClick} />}</IconWrapperEnd>}
               </WidthDiv>
@@ -65,7 +71,14 @@ const StyledInput = <T extends FieldValues>({
       ) : (
         <WidthDiv>
           <IconWrapperStart>
-            {StartIcon && <StartIcon onClick={startIconOnClick} />}
+            {StartIcon && (
+              <StartIcon
+                onClick={(e) => {
+                  startIconOnClick?.(e);
+                  onAnyChange?.();
+                }}
+              />
+            )}
           </IconWrapperStart>
           <StyledTextField
             fullWidth

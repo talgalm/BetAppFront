@@ -1,0 +1,21 @@
+{
+  "Register": {
+    "Required": "שדה חובה",
+    "EmailInvalid": "כתובת אימייל לא תקינה",
+    "PasswordTooShort": "הסיסמה חייבת להכיל לפחות 6 תווים",
+    "PasswordVerificationTooShort": "אימות הסיסמה חייב להכיל לפחות 6 תווים",
+    "PasswordsDontMatch": "הסיסמאות אינן תואמות",
+    "PhoneInvalid": "מספר טלפון לא תקין",
+    "FullNameRequired": "שם מלא הוא שדה חובה"
+  },
+  "Bet": {
+    "NameRequired": "יש להזין שם תקני",
+    "DescriptionTooLong": "תיאור לא יכול להיות ארוך מ-500 תווים",
+    "BetimPositive": "הערך חייב להיות חיובי",
+    "BetimMax": "הערך לא יכול להיות גבוה מ-100,000",
+    "PhoneInvalid": "מספר טלפון לא תקין",
+    "FullNameRequired": "שם מלא הוא שדה חובה",
+    "IdInvalid": "מזהה לא תקין",
+    "AtLeastOneParticipant": "יש להוסיף לפחות משתתף אחד"
+  }
+}

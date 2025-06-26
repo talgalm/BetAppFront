@@ -3,6 +3,7 @@ import {
   CheckboxContainer,
   CheckboxTextContainer,
   HomeDivContainer,
+  HomeWrapperContainer,
   PageContainer,
   ProgressBarContainer,
 } from './NewBet.styles';
@@ -28,14 +29,18 @@ import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { FileInput, useAttachFilesToBet } from './Hooks/useAttachFilesToBet';
-import { createNewbetButtons } from './buttons';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorTypes } from '../../Errors/interface';
+import { ErrorHandler } from '../../Errors/ErrorHandler';
 import { Bet } from '../../Interfaces/Bet.interface';
 import { User } from '../../Interfaces/User.interface';
+import { createNewBetButtons } from './buttons';
 
 const NewBet = () => {
   const [step, setActiveStep] = useAtom(ActiveStep);
   const { t } = useTranslation();
-  const { control, handleSubmit, watch, setValue, unregister } = useFormContext<CreateBetInputs>();
+  const { control, handleSubmit, watch, setValue, unregister, trigger, clearErrors } =
+    useFormContext<CreateBetInputs>();
   const [targetProgress, setTargetProgress] = useState(0);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const formValues = watch();
@@ -45,6 +50,7 @@ const NewBet = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData<User>(['user-profile']);
+  const { showBoundary } = useErrorBoundary();
 
   const [newBet, setNewBet] = useState<Bet | undefined>(undefined);
 
@@ -103,11 +109,41 @@ const NewBet = () => {
     }
   }, [step.progress]);
 
-  const handleStep = (
+  const handleInputValidation = async () => {
+    const currentInputName = step.inputName;
+    if (!currentInputName) return true;
+
+    const isValid = await trigger(currentInputName as keyof CreateBetInputs);
+
+    // Custom logic example - participants
+    if (currentInputName === 'participents') {
+      const participants = watch('participents');
+      if (participants?.length === 1) {
+        ErrorHandler(showBoundary, ErrorTypes.AtLeastTwoParticipants);
+        return false;
+      }
+
+      // const uniqueIds = new Set(participants?.map((p) => p.id));
+      // if (uniqueIds.size !== participants.length) {
+      //   ErrorHandler(showBoundary, ErrorTypes.DuplicatedParticipants);
+      //   return false;
+      // }
+    }
+
+    return isValid;
+  };
+
+  const handleStep = async (
     nextStep: NewBetStepValueTypes | null,
     back?: boolean,
     continueWithout?: NewBetStepValueTypes
   ) => {
+    const isValid = await handleInputValidation();
+
+    if (!isValid) {
+      return;
+    }
+
     if (continueWithout) {
       unregister(continueWithout);
     } else if (formValues) {
@@ -189,18 +225,15 @@ const NewBet = () => {
     }
   };
 
-  const buttons = createNewbetButtons({
+  const buttons = createNewBetButtons(
     step,
-    handleStep,
     disableButton,
-    t,
-    backIcon: <ArrowRight color={PRIMARY_COLOR} />,
-  });
+    handleStep,
+    <ArrowRight color={PRIMARY_COLOR} />
+  );
 
   return (
-    <div
-      style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', overflowY: 'hidden' }}
-    >
+    <HomeWrapperContainer onClick={() => clearErrors()}>
       <ProgressBarContainer marginTop={step.step !== NewBetStepValueTypes.Start ? 50 : 0}>
         {step.step !== NewBetStepValueTypes.Start && (
           <ProgressBar targetProgress={targetProgress} />
@@ -262,7 +295,7 @@ const NewBet = () => {
           )}
         </ButtonsContainer>
       </HomeDivContainer>
-    </div>
+    </HomeWrapperContainer>
   );
 };
 

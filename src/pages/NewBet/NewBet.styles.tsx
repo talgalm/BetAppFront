@@ -1,5 +1,12 @@
 import { styled } from '@mui/material/styles';
 
+export const HomeWrapperContainer = styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  width: '100%',
+  overflowY: 'hidden',
+});
+
 export const HomeDivContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 50 }) => ({
   display: 'flex',
   flexDirection: 'column',

@@ -11,7 +11,7 @@ export enum ErrorTypes {
   FileNotSupported = 'FileNotSupported',
   FileTooBig = 'FileTooBig',
   OverlappingParticipants = 'OverlappingParticipants',
-  NoParticipants = 'NoParticipants',
+  AtLeastTwoParticipants = 'AtLeastTwoParticipants',
   AuthError = 'AuthError',
 }
 
@@ -59,7 +59,7 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
     subtitle: 'עבר יותר מידי זמן מאז שהתראינו בפעם האחרונה',
     buttonText: 'התחבר מחדש',
   },
-  [ErrorTypes.NoParticipants]: {
+  [ErrorTypes.AtLeastTwoParticipants]: {
     icon: OverlappingParticipantsIcon,
     title: 'יש לבחור לפחות משתתף אחד',
     subtitle: 'נא לבחור לפחות משתתף אחד כדי להמשיך.',
