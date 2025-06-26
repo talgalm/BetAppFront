@@ -8,7 +8,7 @@ import {
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
 import { Typography } from '@components/Topography/typography';
-import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
+import { ReactComponent as CalendarIcon } from '../../../../theme/icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';
 import DateModal from '@components/DateModal/DateModal';
 import { formatDate } from '@utils/Helpers';
@@ -16,7 +16,7 @@ import { CreateBetInputs } from '../../new-bet-steps';
 import { TagStyled } from '../../../Home/SingleBetRow.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
-import { HeaderStyle } from '../../../../Theme/layoutStyles';
+import { HeaderStyle } from '../../../../theme/layoutStyles';
 import { headerAtom } from '@store/layoutAtoms';
 
 interface NewBetParticipantsProps<T extends FieldValues> {

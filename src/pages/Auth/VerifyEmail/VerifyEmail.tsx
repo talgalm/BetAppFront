@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useVerifyEmail } from '../Hooks/useVerifyEmail';
-import BetLoader from '../../../Theme/Loader/loader';
+import BetLoader from '../../../theme/loader/loader';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();

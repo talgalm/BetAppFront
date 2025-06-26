@@ -6,7 +6,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { Typography } from '@components/Topography/typography';
 import Tag, { TagType } from '@components/Tag/TagComponent';
 import { formatDateToGB } from '@utils/Helpers';
-import BetLoader from '../../Theme/Loader/loader';
+import BetLoader from '../../theme/loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';

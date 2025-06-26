@@ -5,8 +5,8 @@ import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { NewBetStepValueTypes } from '../new-bet-steps';
 import Calendar from '@components/Calendar/Calendar';
-import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
-import { ReactComponent as DisplaySmallIcon } from '../../../Theme/Icons/NewBetDisplaySmall.svg';
+import { ReactComponent as DisplayIcon } from '../../../theme/icons/NewBetDisplay.svg';
+import { ReactComponent as DisplaySmallIcon } from '../../../theme/icons/NewBetDisplaySmall.svg';
 
 import NewBetParticipants from '../NewBetComponents/Participants/Participants';
 import NewBetConditions from '../NewBetComponents/Conditions/Conditions';

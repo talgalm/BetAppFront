@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonStyles } from './StyledButton.styles';
 import { Typography } from '../Topography/typography';
 import { useTheme } from '@mui/material/styles';
-import { ThemeType } from '../../Theme/theme';
+import { ThemeType } from '../../theme/theme';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 
 export interface ButtonConfig {

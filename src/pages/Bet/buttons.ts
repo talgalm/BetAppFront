@@ -1,7 +1,7 @@
 import { ButtonConfig } from '@components/Button/StyledButton';
 import { TagType } from '@components/Tag/TagComponent';
 import { t } from 'i18next';
-import { ThemeType } from '../../Theme/theme';
+import { ThemeType } from '../../theme/theme';
 import { ParticipantAction } from './Hooks/useParticipentAction';
 import { DialogAction, DialogType } from '@components/StyledDialog/StyledDialog';
 import { useTranslation } from 'react-i18next';

@@ -1,6 +1,6 @@
 import { FallbackProps } from 'react-error-boundary';
 import { ERROR_MESSAGES, ErrorMessage, ErrorTypes } from './errors';
-import { ReactComponent as CloseIcon } from '../Theme/Icons/Close.svg';
+import { ReactComponent as CloseIcon } from '../theme/icons/Close.svg';
 import { PopUpContent, PopUpDiv, PopUpHeader, PopUpOverlay } from './ErrorHandler.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

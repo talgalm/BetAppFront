@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Avatar, Divider } from '@mui/material';
-import { ReactComponent as CloseIcon } from '../../../../Theme/Icons/FullClose.svg';
+import { ReactComponent as CloseIcon } from '../../../../theme/icons/FullClose.svg';
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',

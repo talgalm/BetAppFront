@@ -1,7 +1,7 @@
 import { Dialog } from '@mui/material';
 import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
-import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
+import { ReactComponent as CloseIcon } from '../../theme/icons/Close.svg';
 import { useTranslation } from 'react-i18next';
 import { PopUpContent, PopUpHeader, PopUpRUDiv } from '@errors/ErrorHandler.styles';
 import ButtonsHub, { ButtonsHubStatus } from '@pages/ButtonsHub';

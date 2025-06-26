@@ -11,7 +11,7 @@ import {
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { formatDate } from '@utils/Helpers';
-import { ReactComponent as AddIcon } from '../../../Theme/Icons/Bet/AddIcon.svg';
+import { ReactComponent as AddIcon } from '../../../theme/icons/betIcons/AddIcon.svg';
 import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 import { useAtom } from 'jotai';
 import Radio from '@mui/material/Radio';

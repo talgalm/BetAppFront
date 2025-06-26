@@ -1,5 +1,5 @@
-import { ReactComponent as RightArrow } from '../../Theme/Icons/arrowRight.svg';
-import { ReactComponent as LeftArrow } from '../../Theme/Icons/arrowLeft.svg';
+import { ReactComponent as RightArrow } from '../../theme/icons/arrowRight.svg';
+import { ReactComponent as LeftArrow } from '../../theme/icons/arrowLeft.svg';
 import { useState } from 'react';
 import { StyledCalendar } from './Calender.styles';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';

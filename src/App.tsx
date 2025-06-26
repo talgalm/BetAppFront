@@ -11,7 +11,7 @@ import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persist
 
 import ErrorFallback from './errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
-import theme from './Theme/theme';
+import theme from './theme/theme';
 import Footer from './layout/Footer/Footer';
 
 const App = () => {

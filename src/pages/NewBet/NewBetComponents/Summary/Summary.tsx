@@ -7,12 +7,12 @@ import {
   Participant,
 } from '../../new-bet-steps';
 import { Typography } from '@components/Topography/typography';
-import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
-import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
-import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';
-import { ReactComponent as FileIcon } from '../../../../Theme/Icons/FilesIcon.svg';
+import { ReactComponent as EditIcon } from '../../../../theme/icons/EditDark.svg';
+import { ReactComponent as LeftArrow } from '../../../../theme/icons/arrowLeftBlack.svg';
+import { ReactComponent as SinglePeopleIcon } from '../../../../theme/icons/SinglePeople.svg';
+import { ReactComponent as FileIcon } from '../../../../theme/icons/FilesIcon.svg';
 
-import { ReactComponent as BetimIcon } from '../../../../Theme/Icons/Betim.svg';
+import { ReactComponent as BetimIcon } from '../../../../theme/icons/Betim.svg';
 
 import {
   ParticipantsRow,

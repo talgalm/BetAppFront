@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import '@fontsource/ibm-plex-sans-hebrew';
-import { HeaderComponentStyles, HeaderStyle } from '../../Theme/layoutStyles';
+import { HeaderComponentStyles, HeaderStyle } from '../../theme/layoutStyles';
 
 interface HeaderProps {
   headerStyle?: HeaderStyle;

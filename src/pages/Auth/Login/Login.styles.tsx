@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { ReactComponent as Apple } from '../../../Theme/Icons/AuthIcons/AppleIcon.svg';
+import { ReactComponent as Apple } from '../../../theme/icons/authIcons/AppleIcon.svg';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
