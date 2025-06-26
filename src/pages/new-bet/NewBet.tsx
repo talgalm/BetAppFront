@@ -18,7 +18,7 @@ import { ReactComponent as ArrowRight } from '@assets/icons/arrowRight.svg';
 import { PRIMARY_COLOR } from '@theme/colorTheme';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
-import NewBetContent from './NewBetContent/NewBetContent';
+import NewBetContent from './new-bet-content/NewBetContent';
 import { Checkbox } from '@mui/material';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

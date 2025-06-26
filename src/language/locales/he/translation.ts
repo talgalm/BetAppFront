@@ -1,4 +1,4 @@
-import NewBet from '@pages/NewBet/NewBet.lang.json';
+import NewBet from '@pages/new-bet/NewBet.lang.json';
 import Input from '@components/Inputs/Input.lang.json';
 import Switch from '@components/Switch/Switch.lang.json';
 import Calendar from '@components/Calendar/Calendar.lang.json';

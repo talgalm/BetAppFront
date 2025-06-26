@@ -14,7 +14,7 @@ import {
 import {
   SmallAvatar,
   StyledDivider,
-} from '@pages/NewBet/new-bet-components/participants-new-bet/Participants.styles';
+} from '@pages/new-bet/new-bet-components/participants-new-bet/Participants.styles';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>

@@ -8,7 +8,7 @@ import { TagType } from '@components/Tag/TagComponent';
 import { useDeleteBet } from '../../bet/hooks/useDeleteBet';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
-import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/new-bet-steps';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../new-bet/new-bet-steps';
 import { useNavigate } from 'react-router-dom';
 import { useBet } from '../../bet/hooks/useBet';
 import { User } from '@interfaces/User.interface';

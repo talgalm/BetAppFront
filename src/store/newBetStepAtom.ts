@@ -1,5 +1,5 @@
 import { atomWithStorage } from 'jotai/utils';
-import { NewBetStep, newBetSteps, NewBetStepValueTypes } from '@pages/NewBet/new-bet-steps';
+import { NewBetStep, newBetSteps, NewBetStepValueTypes } from '@pages/new-bet/new-bet-steps';
 
 export const ActiveStep = atomWithStorage<NewBetStep>(
   'NewBetStep',

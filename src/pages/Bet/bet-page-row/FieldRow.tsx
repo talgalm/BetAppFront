@@ -8,7 +8,7 @@ import { Row, Column, RotatingArrow, DisclaimerWrapper } from '../BetPage.styles
 import {
   SummaryRow,
   StyledDivider,
-} from '../../NewBet/new-bet-components/summary-new-bet/Summary.styles';
+} from '../../new-bet/new-bet-components/summary-new-bet/Summary.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';

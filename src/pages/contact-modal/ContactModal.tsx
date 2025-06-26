@@ -18,7 +18,7 @@ import { useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '@assets/icons/Search.svg';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { Collapse } from '@mui/material';
-import { SelectedContainer } from '../NewBet/NewBet.styles';
+import { SelectedContainer } from '../new-bet/NewBet.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
@@ -34,7 +34,7 @@ import {
   ParticipantsCollapseContainer,
   ParticipantsCollapseRow,
   StyledAvatar,
-} from '@pages/NewBet/new-bet-components/participants-new-bet/Participants.styles';
+} from '@pages/new-bet/new-bet-components/participants-new-bet/Participants.styles';
 
 interface ContactModalProp {
   open: boolean;

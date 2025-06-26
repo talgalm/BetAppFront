@@ -20,7 +20,7 @@ import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { ActiveStep } from '@store/newBetStepAtom';
-import { newBetSteps, NewBetStepValueTypes } from '../NewBet/new-bet-steps';
+import { newBetSteps, NewBetStepValueTypes } from '../new-bet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';
 import { useProfile } from '@providers/useProfile';
