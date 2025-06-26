@@ -6,7 +6,7 @@ import Header from '@layout/Header/Header.lang.json';
 import ContactModal from '@pages/ContactModal/ContactModal.lang.json';
 import ConditionModal from '@pages/ConditionModal/ConditionModal.lang.json';
 import BetPage from '@pages/Bet/BetPage.lang.json';
-import Schemas from '../../../Schemas/Schemas.lang.json';
+import Schemas from '@schemas/Schemas.lang.json';
 
 import WelcomePage from '@pages/Auth/WelcomePage/WelcomePage.lang.json';
 import Home from '@pages/Home/Home.lang.json';

@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 
 import Register from './Register';
-import { getRegisterStepSchemas } from '../../../Schemas/RegisterSchema';
+import { getRegisterStepSchemas } from '@schemas/RegisterSchema';
 import { RegisterFormInput } from '@interfaces/Auth.interface';
 
 const RegisterForm = (): JSX.Element => {

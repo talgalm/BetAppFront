@@ -13,6 +13,7 @@
       "@layout/*": ["layout/*"],
       "@pages/*": ["pages/*"],
       "@providers/*": ["providers/*"],
+      "@schemas/*": ["schemas/*"],
       // "@components/*": ["components/*"],
       // "@pages/*": ["pages/*"],
       // "@utils/*": ["utils/*"],

@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import Login from './Login';
-import { getLoginSchema, LoginFormInput } from '../../../Schemas/LoginSchema';
+import { getLoginSchema, LoginFormInput } from '@schemas/LoginSchema';
 
 const LoginForm = () => {
   const { t } = useTranslation();

@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import ForgotPassword from './ForgotPassword';
 import { ForgotPasswordFormInput } from '@interfaces/Auth.interface';
-import { getForgotPasswordSchema } from '../../../Schemas/ForgotPasswordSchema';
+import { getForgotPasswordSchema } from '@schemas/ForgotPasswordSchema';
 
 const ForgotPasswordForm = (): JSX.Element => {
   const { t } = useTranslation();
