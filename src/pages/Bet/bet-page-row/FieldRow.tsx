@@ -5,7 +5,10 @@ import { FieldRowProps } from './types';
 import ParticipentsListBet from './ParticipentsListBet';
 import ParticipentsBet from './ParticipentsBet';
 import { Row, Column, RotatingArrow, DisclaimerWrapper } from '../BetPage.styles';
-import { SummaryRow, StyledDivider } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
+import {
+  SummaryRow,
+  StyledDivider,
+} from '../../NewBet/NewBetComponents/summary-new-bet/Summary.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';

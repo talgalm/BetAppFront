@@ -14,20 +14,11 @@ import {
 } from './ContactModal.styles';
 import { ReactComponent as AddContactIcon } from '@assets/icons/ContactAdd.svg';
 import { useTranslation } from 'react-i18next';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '@assets/icons/Search.svg';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
-import {
-  ParticipantsCollapseContainer,
-  ParticipantsCollapseRow,
-  AvatarWrapper,
-  StyledAvatar,
-  CloseButton,
-  CloseIconStyled,
-  NameText,
-} from '../NewBet/NewBetComponents/Participants/Participants.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
@@ -35,6 +26,15 @@ import { useUsers } from '../Home/hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
 import { User, Contact } from '@interfaces/User.interface';
+import {
+  AvatarWrapper,
+  CloseButton,
+  CloseIconStyled,
+  NameText,
+  ParticipantsCollapseContainer,
+  ParticipantsCollapseRow,
+  StyledAvatar,
+} from '@pages/NewBet/NewBetComponents/participants-new-bet/Participants.styles';
 
 interface ContactModalProp {
   open: boolean;

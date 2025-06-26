@@ -16,7 +16,7 @@ import {
   StyledImage,
   StyledPDF,
   UploadIconWrapper,
-} from '../Files/Files.styles';
+} from '../files-new-bet/Files.styles';
 import { useTranslation } from 'react-i18next';
 import { Collapse } from '@mui/material';
 import { ErrorHandler } from '@errors/ErrorHandler';

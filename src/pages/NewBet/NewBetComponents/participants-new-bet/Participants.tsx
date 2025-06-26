@@ -6,6 +6,17 @@ import { ReactComponent as ContactIcon } from '@assets/icons/Contacts.svg';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
 import { PRIMARY_COLOR } from '@theme/colorTheme';
+import ContactModal from '../../../contact-modal/ContactModal';
+import { CreateBetInputs, Participant } from '../../new-bet-steps';
+import { ErrorHandler } from '@errors/ErrorHandler';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorTypes } from '@errors/errors';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { useMostActives } from '../../hooks/useMostActives';
+import { useAtom } from 'jotai';
+import { useQueryClient } from '@tanstack/react-query';
+import { User } from '@interfaces/User.interface';
+import { layoutEphemeralAtom } from '@store/layoutAtoms';
 import {
   AvatarWrapper,
   CloseButton,
@@ -21,18 +32,7 @@ import {
   SmallAvatar,
   StyledAvatar,
   StyledDivider,
-} from '../Participants/Participants.styles';
-import ContactModal from '../../../contact-modal/ContactModal';
-import { CreateBetInputs, Participant } from '../../new-bet-steps';
-import { ErrorHandler } from '@errors/ErrorHandler';
-import { useErrorBoundary } from 'react-error-boundary';
-import { ErrorTypes } from '@errors/errors';
-import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { useMostActives } from '../../hooks/useMostActives';
-import { useAtom } from 'jotai';
-import { useQueryClient } from '@tanstack/react-query';
-import { User } from '@interfaces/User.interface';
-import { layoutEphemeralAtom } from '@store/layoutAtoms';
+} from './Participants.styles';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;

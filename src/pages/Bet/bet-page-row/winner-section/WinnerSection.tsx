@@ -1,9 +1,5 @@
 import { t } from 'i18next';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import {
-  SmallAvatar,
-  StyledDivider,
-} from '../../../NewBet/NewBetComponents/Participants/Participants.styles';
 import { Typography } from '@components/Topography/typography';
 import { ReactComponent as WinnerIcon } from '@assets/icons/betIcons/Winner.svg';
 import { ReactComponent as WinnerCupIcon } from '@assets/icons/betIcons/WinnerCup.svg';
@@ -15,6 +11,10 @@ import {
   WinnerRowInner,
   WinnerRowInnerSec,
 } from './WinnerSection.styles';
+import {
+  SmallAvatar,
+  StyledDivider,
+} from '@pages/NewBet/NewBetComponents/participants-new-bet/Participants.styles';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>
