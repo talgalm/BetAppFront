@@ -4,19 +4,19 @@ import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   DontHaveAccountContainer,
   HeaderContainer,
   SignInContainer,
-} from '../ConnectionOptions/ConnectionOptions.styles';
-import { CubeInput, CubesContainer } from '../ForgotPassword/ForgotPassword.styles';
-import { useVerifyCode } from '../Hooks/useVerifyCode';
+} from '../connection-options/ConnectionOptions.styles';
+import { CubeInput, CubesContainer } from '../forgot-password/ForgotPassword.styles';
 import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { VerifiedUserAtom } from '../../../store/userAtoms';
+import { VerifiedUserAtom } from '@store/userAtoms';
+import { useVerifyCode } from '../Hooks/useVerifyCode';
+import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 
 const CodeVerification = (): JSX.Element => {
   const theme = useTheme();

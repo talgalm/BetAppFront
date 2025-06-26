@@ -3,20 +3,19 @@ import { ReactComponent as WelcomePageImage } from '@assets/icons/authIcons/Welc
 import { ReactComponent as SuccessfulRegisterImage } from '@assets/icons/authIcons/WelcomePageImage2.svg';
 import { ReactComponent as SuccessfulChangePasswordImage } from '@assets/icons/authIcons/WelcomePageImage3.svg';
 import StyledButton, { ButtonConfig } from '@components/Button/StyledButton';
-import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { ThemeType } from '@theme/theme';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from './auth-steps';
 import { Typography } from '@components/Topography/typography';
-import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
-import RegisterForm from '../Register/RegisterForm';
-import RegisterProviderForm from '../Register/RegisterProviderForm';
-import LoginForm from '../Login/LoginForm';
-import ForgotPasswordForm from '../ForgotPassword/ForgotPasswordForm';
-import NewPasswordForm from '../NewPassword/NewPasswordForm';
-import CodeVerification from '../CodeVerification/CodeVerification';
+import ConnectionOptions from '../connection-options/ConnectionOptions';
+import RegisterForm from '../register/RegisterForm';
+import RegisterProviderForm from '../register/RegisterProviderForm';
+import LoginForm from '../login/LoginForm';
+import ForgotPasswordForm from '../forgot-password/ForgotPasswordForm';
+import NewPasswordForm from '../new-password/NewPasswordForm';
+import CodeVerification from '../code-verification/CodeVerification';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import ButtonsHub from '../../ButtonsHub';
 

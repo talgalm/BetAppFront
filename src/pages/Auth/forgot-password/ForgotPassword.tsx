@@ -8,7 +8,7 @@ import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
+import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import { useForgetPassword } from '../Hooks/useForgetPassword';
 import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';

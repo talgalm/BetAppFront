@@ -4,8 +4,10 @@ import { useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
-import GoogleLoginButton from './GoogleLogin';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import FacebookLoginButton from './FacebookLogin';
+import GoogleLoginButton from './GoogleLogin';
 import {
   AppleIcon,
   BottomContainer,
@@ -14,8 +16,6 @@ import {
   DividerWithText,
   DontHaveAccountContainer,
 } from './ConnectionOptions.styles';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
-import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 interface ConnectionOptionsProps {
   current?: string;

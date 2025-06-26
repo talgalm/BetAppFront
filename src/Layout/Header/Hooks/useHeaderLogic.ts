@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
-import { authSteps } from '@pages/Auth/WelcomePage/auth-steps';
-import { useLogout } from '@pages/Auth/Hooks/useLogout';
+import { authSteps } from '@pages/auth/welcome-page/auth-steps';
+import { useLogout } from '@pages/auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '@pages/NewBet/Hooks/useCreatebet';

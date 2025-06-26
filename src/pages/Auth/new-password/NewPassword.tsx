@@ -7,7 +7,7 @@ import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
+import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import { useState } from 'react';
 import { ReactComponent as VisableIcon } from '@assets/icons/authIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '@assets/icons/authIcons/notVisibaleIcon.svg';
