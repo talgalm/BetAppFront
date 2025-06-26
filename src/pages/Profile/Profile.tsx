@@ -10,7 +10,7 @@ import {
 import { useProfile } from '../../Providers/useProfile';
 import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
-import { createDialogButtons } from '../../Layout/Header/buttons';
+import { createDialogButtons } from '@layout/Header/buttons';
 import { useUpdateUser } from './Hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';

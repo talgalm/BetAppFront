@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './Providers/AuthProvider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorBoundary } from 'react-error-boundary';
-import Header from './Layout/Header/Header';
+import Header from './layout/Header/Header';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { persistQueryClient } from '@tanstack/react-query-persist-client';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
@@ -12,7 +12,7 @@ import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persist
 import ErrorFallback from './errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme';
-import Footer from './Layout/Footer/Footer';
+import Footer from './layout/Footer/Footer';
 
 const App = () => {
   const queryClient = new QueryClient({

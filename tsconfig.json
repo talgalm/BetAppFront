@@ -9,7 +9,8 @@
       "@connection/*": ["connection/*"],
       "@errors/*": ["errors/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@layout/*": ["layout/*"],
       // "@components/*": ["components/*"],
       // "@pages/*": ["pages/*"],
       // "@utils/*": ["utils/*"],
