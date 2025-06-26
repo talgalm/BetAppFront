@@ -4,7 +4,7 @@ import { ReactComponent as CloseIcon } from '@assets/icons/Close.svg';
 import { PopUpContent, PopUpDiv, PopUpHeader, PopUpOverlay } from './ErrorHandler.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import ButtonsHub from '@pages/ButtonsHub';
+import ButtonsHub from '@components/ButtonsHub/ButtonsHub';
 
 export const ErrorHandler = (
   showBoundary?: (error: { title: string; subtitle: string }) => void,

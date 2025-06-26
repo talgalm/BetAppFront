@@ -7,7 +7,7 @@ import ContactModal from '@pages/contact-modal/ContactModal.lang.json';
 import BetPage from '@pages/bet/BetPage.lang.json';
 import Schemas from '@schemas/Schemas.lang.json';
 
-import Home from '@pages/Home/Home.lang.json';
+import Home from '@pages/home/Home.lang.json';
 import Register from '@pages/auth/register/Register.lang.json';
 import StyledDialog from '@components/StyledDialog/StyledDialog.lang.json';
 import Profile from '@pages/profile/Profile.lang.json';

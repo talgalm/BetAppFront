@@ -13,7 +13,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import Tag, { TagType } from '@components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
 import { SmallAvatar } from '../bet/BetPage.styles';
-import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';
+import ParticipantActionRow from './participant-action-row/ParticipantActionRow';
 import { getParticipantAwareTagType } from '@utils/betUtils';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSocketUpdates } from '@connection/useSocketUpdates';

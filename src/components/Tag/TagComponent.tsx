@@ -1,5 +1,5 @@
 import { BetStatus } from '@interfaces/Bet.interface';
-import { TagStyled } from '@pages/Home/SingleBetRow.styles';
+import { TagStyled } from '@pages/home/SingleBetRow.styles';
 import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
 

@@ -27,7 +27,7 @@ import { ThemeType } from '@theme/theme';
 import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
+import ButtonsHub, { ButtonsHubStatus } from '../../components/ButtonsHub/ButtonsHub';
 import { FileInput, useAttachFilesToBet } from './hooks/useAttachFilesToBet';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '@errors/errors';

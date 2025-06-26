@@ -17,7 +17,7 @@ import ForgotPasswordForm from '../forgot-password/ForgotPasswordForm';
 import NewPasswordForm from '../new-password/NewPasswordForm';
 import CodeVerification from '../code-verification/CodeVerification';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import ButtonsHub from '../../ButtonsHub';
+import ButtonsHub from '../../../components/ButtonsHub/ButtonsHub';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();

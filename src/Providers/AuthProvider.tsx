@@ -4,7 +4,7 @@ import BetLoader from '@components/loader/loader';
 import ErrorFallback, { ErrorHandler } from '@errors/ErrorHandler';
 import { ERROR_MESSAGES, ErrorTypes } from '@errors/errors';
 import { useErrorBoundary } from 'react-error-boundary';
-import { useAuth } from './Hooks/useAuth';
+import { useAuth } from './hooks/useAuth';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { showBoundary } = useErrorBoundary();

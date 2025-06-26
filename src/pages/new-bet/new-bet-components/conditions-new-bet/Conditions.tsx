@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import DateModal from '@components/DateModal/DateModal';
 import { formatDate } from '@utils/Helpers';
 import { CreateBetInputs } from '../../new-bet-steps';
-import { TagStyled } from '../../../Home/SingleBetRow.styles';
+import { TagStyled } from '../../../home/SingleBetRow.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { HeaderStyle } from '@theme/layoutStyles';
