@@ -20,14 +20,14 @@ import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
-import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
+import { newBetSteps, NewBetStepValueTypes } from '../NewBet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';
 import { useProfile } from '../../Providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
 import { useAtom } from 'jotai';
-import { useSocketUpdates } from '../../Connection/useSocketUpdates';
-import { BetStatus, Bet } from '../../Interfaces/Bet.interface';
+import { useSocketUpdates } from '@connection/useSocketUpdates';
+import { BetStatus, Bet } from '../../interfaces/Bet.interface';
 
 const Home = (): JSX.Element => {
   const { t } = useTranslation();

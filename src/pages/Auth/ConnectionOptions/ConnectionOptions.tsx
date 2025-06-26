@@ -14,7 +14,7 @@ import {
   DividerWithText,
   DontHaveAccountContainer,
 } from './ConnectionOptions.styles';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 interface ConnectionOptionsProps {

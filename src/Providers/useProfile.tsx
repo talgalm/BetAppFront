@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { User } from '../Interfaces/User.interface';
+import { User } from '../interfaces/User.interface';
 import { ApiService, HTTPMethod } from '@api/apiService';
 
 type ProfileOptions = Omit<

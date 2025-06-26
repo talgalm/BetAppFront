@@ -1,6 +1,6 @@
 import { UseMutationResult, useMutation } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
-import { User } from '../../../Interfaces/User.interface';
+import { User } from '../../../interfaces/User.interface';
 interface PartialUserPayload {
   id: string;
   FullName?: string;

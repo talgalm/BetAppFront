@@ -8,10 +8,10 @@ import { TagType } from '@components/Tag/TagComponent';
 import { useDeleteBet } from '../../Bet/Hooks/useDeleteBet';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../Jotai/newBetAtoms';
-import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/Interface';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../NewBet/new-bet-steps';
 import { useNavigate } from 'react-router-dom';
 import { useBet } from '../../Bet/Hooks/useBet';
-import { User } from '../../../Interfaces/User.interface';
+import { User } from '../../../interfaces/User.interface';
 
 interface Props {
   betId: string;

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
-import { NewPasswordFormInput } from '../Login/interface';
+import { NewPasswordFormInput } from '../../../interfaces/Auth.interface';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useState } from 'react';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';

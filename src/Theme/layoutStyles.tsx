@@ -1,4 +1,4 @@
-import { PRIMARY_BACKGROUND, PRIMARY_COLOR } from './ColorTheme';
+import { PRIMARY_BACKGROUND, PRIMARY_COLOR } from './colorTheme';
 import { CSSObject } from '@mui/material/styles';
 
 export interface Layout {

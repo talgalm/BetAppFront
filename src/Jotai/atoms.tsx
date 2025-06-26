@@ -1,5 +1,5 @@
 import { atomWithStorage } from 'jotai/utils';
-import { HeaderStyle } from '../Theme/ThemeInterfaces';
+import { HeaderStyle } from '../Theme/layoutStyles';
 import { atom } from 'jotai';
 import { DialogAction } from '@components/StyledDialog/StyledDialog';
 

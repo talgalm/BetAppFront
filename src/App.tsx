@@ -9,7 +9,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { persistQueryClient } from '@tanstack/react-query-persist-client';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 
-import ErrorFallback from './Errors/ErrorHandler';
+import ErrorFallback from './errors/ErrorHandler';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme';
 import Footer from './Layout/Footer/Footer';

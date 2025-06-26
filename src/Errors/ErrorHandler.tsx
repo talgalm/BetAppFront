@@ -1,5 +1,5 @@
 import { FallbackProps } from 'react-error-boundary';
-import { ERROR_MESSAGES, ErrorMessage, ErrorTypes } from './interface';
+import { ERROR_MESSAGES, ErrorMessage, ErrorTypes } from './errors';
 import { ReactComponent as CloseIcon } from '../Theme/Icons/Close.svg';
 import { PopUpContent, PopUpDiv, PopUpHeader, PopUpOverlay } from './ErrorHandler.styles';
 import { Typography } from '@components/Topography/typography';

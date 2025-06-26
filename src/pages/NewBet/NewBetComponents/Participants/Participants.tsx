@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
-import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
+import { PRIMARY_COLOR } from '../../../../Theme/colorTheme';
 import {
   AvatarWrapper,
   CloseButton,
@@ -23,16 +23,16 @@ import {
   StyledDivider,
 } from '../Participants/Participants.styles';
 import ContactModal from '../../../ContactModal/ContactModal';
-import { CreateBetInputs, Participant } from '../../Interface';
-import { ErrorHandler } from '../../../../Errors/ErrorHandler';
+import { CreateBetInputs, Participant } from '../../new-bet-steps';
+import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
-import { ErrorTypes } from '../../../../Errors/interface';
+import { ErrorTypes } from '@errors/errors';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { layoutEphemeralAtom } from '../../../../Jotai/atoms';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '../../../../Interfaces/User.interface';
+import { User } from '../../../../interfaces/User.interface';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;

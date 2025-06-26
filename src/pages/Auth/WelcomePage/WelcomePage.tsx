@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { ThemeType } from '../../../Theme/theme';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
-import { authSteps, AuthStepValueTypes } from './interface';
+import { authSteps, AuthStepValueTypes } from './auth-steps';
 import { Typography } from '@components/Topography/typography';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import RegisterForm from '../Register/RegisterForm';

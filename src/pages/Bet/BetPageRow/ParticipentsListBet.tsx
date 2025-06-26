@@ -18,9 +18,9 @@ import { betWinnerAtom, finishBetAtom } from '../../../Jotai/atoms';
 import Radio from '@mui/material/Radio';
 import { useParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { Bet } from '../../../Interfaces/Bet.interface';
-import { Prediction, ParticipantStatus } from '../../../Interfaces/Prediction.interface';
-import { User } from '../../../Interfaces/User.interface';
+import { Bet } from '../../../interfaces/Bet.interface';
+import { Prediction, ParticipantStatus } from '../../../interfaces/Prediction.interface';
+import { User } from '../../../interfaces/User.interface';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });

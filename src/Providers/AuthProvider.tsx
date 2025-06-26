@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import BetLoader from '../Theme/Loader/loader';
-import ErrorFallback, { ErrorHandler } from '../Errors/ErrorHandler';
-import { ERROR_MESSAGES, ErrorTypes } from '../Errors/interface';
+import ErrorFallback, { ErrorHandler } from '@errors/ErrorHandler';
+import { ERROR_MESSAGES, ErrorTypes } from '@errors/errors';
 import { useErrorBoundary } from 'react-error-boundary';
 import { useAuth } from './Hooks/useAuth';
 

@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { TFunction } from 'i18next';
-import { AuthStepValueTypes } from '../pages/Auth/WelcomePage/interface';
+import { AuthStepValueTypes } from '../pages/Auth/WelcomePage/auth-steps';
 
 export const getRegisterStepSchemas = (t: TFunction) => ({
   [AuthStepValueTypes.RegisterInfo]: z.object({

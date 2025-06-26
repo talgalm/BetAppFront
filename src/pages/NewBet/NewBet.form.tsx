@@ -2,11 +2,11 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import NewBet from './NewBet';
-import { CreateBetInputs } from './Interface';
+import { CreateBetInputs } from './new-bet-steps';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { createBetSchema } from '../../Schemas/NewBetSchema';
-import { User } from '../../Interfaces/User.interface';
+import { User } from '../../interfaces/User.interface';
 
 const NewBetForm: React.FC = () => {
   const { t } = useTranslation();

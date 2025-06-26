@@ -7,7 +7,7 @@ import {
   PageContainer,
   ProgressBarContainer,
 } from './NewBet.styles';
-import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
+import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './new-bet-steps';
 import { useFormContext } from 'react-hook-form';
 import StyledButton from '@components/Button/StyledButton';
 import { useAtom } from 'jotai';
@@ -15,7 +15,7 @@ import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRight } from '../../Theme/Icons/arrowRight.svg';
 
-import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
+import { PRIMARY_COLOR } from '../../Theme/colorTheme';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './NewBetContent/NewBetContent';
@@ -30,10 +30,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { FileInput, useAttachFilesToBet } from './Hooks/useAttachFilesToBet';
 import { useErrorBoundary } from 'react-error-boundary';
-import { ErrorTypes } from '../../Errors/interface';
-import { ErrorHandler } from '../../Errors/ErrorHandler';
-import { Bet } from '../../Interfaces/Bet.interface';
-import { User } from '../../Interfaces/User.interface';
+import { ErrorTypes } from '@errors/errors';
+import { ErrorHandler } from '@errors/ErrorHandler';
+import { Bet } from '../../interfaces/Bet.interface';
+import { User } from '../../interfaces/User.interface';
 import { createNewBetButtons } from './buttons';
 
 const NewBet = () => {

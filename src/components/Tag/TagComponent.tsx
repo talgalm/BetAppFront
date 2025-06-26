@@ -1,4 +1,4 @@
-import { BetStatus } from '../../Interfaces/Bet.interface';
+import { BetStatus } from '../../interfaces/Bet.interface';
 import { TagStyled } from '../../pages/Home/SingleBetRow.styles';
 import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';

@@ -4,7 +4,7 @@ import StyledSwitch from '@components/Switch/Switch';
 import { Container } from './Footer.styles';
 import { useAtom } from 'jotai';
 import { headerAtom } from '../../Jotai/atoms';
-import { HeaderStyle } from '../../Theme/ThemeInterfaces';
+import { HeaderStyle } from '../../Theme/layoutStyles';
 
 const Footer = () => {
   const { pathname } = useLocation();

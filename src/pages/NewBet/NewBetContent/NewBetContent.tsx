@@ -3,7 +3,7 @@ import { Typography } from '@components/Topography/typography';
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
-import { NewBetStepValueTypes } from '../Interface';
+import { NewBetStepValueTypes } from '../new-bet-steps';
 import Calendar from '@components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '../../../Theme/Icons/NewBetDisplay.svg';
 import { ReactComponent as DisplaySmallIcon } from '../../../Theme/Icons/NewBetDisplaySmall.svg';

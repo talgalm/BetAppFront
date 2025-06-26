@@ -6,7 +6,7 @@ import { UserActiveStep } from '../../../Jotai/UserAtoms';
 
 import Register from './Register';
 import { getRegisterStepSchemas } from '../../../Schemas/RegisterSchema';
-import { RegisterFormInput } from '../Login/interface';
+import { RegisterFormInput } from '../../../interfaces/Auth.interface';
 
 const RegisterForm = (): JSX.Element => {
   const { t } = useTranslation();

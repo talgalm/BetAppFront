@@ -6,6 +6,9 @@
     "paths": {
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
+      "@connection/*": ["connection/*"],
+      "@errors/*": ["errors/*"],
+      "@interfaces/*": ["interfaces/*"]
       // "@components/*": ["components/*"],
       // "@pages/*": ["pages/*"],
       // "@utils/*": ["utils/*"],

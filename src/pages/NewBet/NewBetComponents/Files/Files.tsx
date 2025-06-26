@@ -19,9 +19,9 @@ import {
 } from '../Files/Files.styles';
 import { useTranslation } from 'react-i18next';
 import { Collapse } from '@mui/material';
-import { ErrorHandler } from '../../../../Errors/ErrorHandler';
+import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
-import { ErrorTypes } from '../../../../Errors/interface';
+import { ErrorTypes } from '@errors/errors';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 interface NewBetFilesProps<T extends FieldValues> {

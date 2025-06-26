@@ -11,7 +11,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { finishBetAtom } from '../../../Jotai/atoms';
 import BetFilesRow from './BetFilesRow';
-import { BetFile } from '../../../Interfaces/Bet.interface';
+import { BetFile } from '../../../interfaces/Bet.interface';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,

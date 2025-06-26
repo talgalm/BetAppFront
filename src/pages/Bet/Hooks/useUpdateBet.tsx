@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
-import { Bet } from '../../../Interfaces/Bet.interface';
+import { Bet } from '../../../interfaces/Bet.interface';
 
 export enum UpdateBetAdditionalAction {
   DeclareWinners = 'DeclareWinners',

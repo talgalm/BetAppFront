@@ -14,7 +14,7 @@ import {
   WinnerRowInner,
   WinnerRowInnerSec,
 } from './WinnerSection.styles';
-import { User } from '../../../../Interfaces/User.interface';
+import { User } from '../../../../interfaces/User.interface';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>

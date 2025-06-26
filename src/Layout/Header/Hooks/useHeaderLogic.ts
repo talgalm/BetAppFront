@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
 import { contactModalDialogAtom, finishBetAtom, layoutEphemeralAtom } from '../../../Jotai/atoms';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
-import { authSteps } from '../../../pages/Auth/WelcomePage/interface';
+import { authSteps } from '../../../pages/Auth/WelcomePage/auth-steps';
 import { useLogout } from '../../../pages/Auth/Hooks/useLogout';
 import { useCleanCreateNewBet } from '../../../utils/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '../../../pages/NewBet/Hooks/useCreatebet';
-import { User } from '../../../Interfaces/User.interface';
-import { BetStatus } from '../../../Interfaces/Bet.interface';
+import { User } from '../../../interfaces/User.interface';
+import { BetStatus } from '../../../interfaces/Bet.interface';
 
 interface UseHeaderLogicProps {
   setOpen: (open: boolean) => void;

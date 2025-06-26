@@ -1,5 +1,5 @@
 import { ButtonConfig } from '@components/Button/StyledButton';
-import { NewBetStep, NewBetStepValueTypes } from './Interface';
+import { NewBetStep, NewBetStepValueTypes } from './new-bet-steps';
 import { t } from 'i18next';
 
 export const createNewBetButtons = (

@@ -4,7 +4,7 @@ import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
-import { authSteps, AuthStepValueTypes } from '../WelcomePage/interface';
+import { authSteps, AuthStepValueTypes } from '../WelcomePage/auth-steps';
 import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {

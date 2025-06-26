@@ -8,13 +8,13 @@ import {
   StyledDivider,
 } from '../Betim/Betim.styles';
 import { Typography } from '@components/Topography/typography';
-import { PRIMARY_COLOR } from '../../../../Theme/ColorTheme';
+import { PRIMARY_COLOR } from '../../../../Theme/colorTheme';
 import { ReactComponent as PlusIcon } from '../../../../Theme/Icons/AddIcon.svg';
 import { ReactComponent as MinusIcon } from '../../../../Theme/Icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '../../../../Interfaces/User.interface';
+import { User } from '../../../../interfaces/User.interface';
 
 interface BetimProps<T extends FieldValues> {
   control?: Control<T>;

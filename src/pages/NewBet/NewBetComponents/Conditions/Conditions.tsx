@@ -12,12 +12,12 @@ import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/Calendar
 import { useTranslation } from 'react-i18next';
 import DateModal from '@components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
-import { CreateBetInputs } from '../../Interface';
+import { CreateBetInputs } from '../../new-bet-steps';
 import { TagStyled } from '../../../Home/SingleBetRow.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { headerAtom } from '../../../../Jotai/atoms';
-import { HeaderStyle } from '../../../../Theme/ThemeInterfaces';
+import { HeaderStyle } from '../../../../Theme/layoutStyles';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
