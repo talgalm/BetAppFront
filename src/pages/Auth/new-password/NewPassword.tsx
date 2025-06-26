@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { ReactComponent as VisableIcon } from '@assets/icons/authIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '@assets/icons/authIcons/notVisibaleIcon.svg';
 import { HeaderContainer, SignInContainer } from './NewPassword.styles';
-import { useUpdateUser } from '../Hooks/useUpdateUser';
+import { useUpdateUser } from '../hooks/useUpdateUser';
 import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '../../../store/userAtoms';

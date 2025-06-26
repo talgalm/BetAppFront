@@ -11,7 +11,7 @@ import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import BetLoader from '@components/loader/loader';
 import ConnectionOptions from '../connection-options/ConnectionOptions';
-import { useUpdateUser } from '../Hooks/useUpdateUser';
+import { useUpdateUser } from '../hooks/useUpdateUser';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '../../../store/userAtoms';
 

@@ -15,7 +15,7 @@ import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import ConnectionOptions from '../connection-options/ConnectionOptions';
 import { useNavigate } from 'react-router-dom';
 import BetLoader from '@components/loader/loader';
-import { useLogin } from '../Hooks/useLogin';
+import { useLogin } from '../hooks/useLogin';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useProfile } from '@providers/useProfile';
 import { useQueryClient } from '@tanstack/react-query';

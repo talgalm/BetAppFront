@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps } from '@pages/auth/welcome-page/auth-steps';
-import { useLogout } from '@pages/auth/Hooks/useLogout';
+import { useLogout } from '@pages/auth/hooks/useLogout';
 import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '@pages/NewBet/Hooks/useCreatebet';

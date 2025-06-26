@@ -15,8 +15,8 @@ import { useEffect, useState } from 'react';
 import BetLoader from '@components/loader/loader';
 import ConnectionOptions from '../connection-options/ConnectionOptions';
 import { useDebouncedValue } from '@hooks/useDebouncedEmailCheck';
-import { useRegister } from '../Hooks/useRegister';
-import { useCheckEmail } from '../Hooks/useCheckEmail';
+import { useRegister } from '../hooks/useRegister';
+import { useCheckEmail } from '../hooks/useCheckEmail';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const Register = (): JSX.Element => {

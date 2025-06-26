@@ -15,7 +15,7 @@ import { CubeInput, CubesContainer } from '../forgot-password/ForgotPassword.sty
 import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { VerifiedUserAtom } from '@store/userAtoms';
-import { useVerifyCode } from '../Hooks/useVerifyCode';
+import { useVerifyCode } from '../hooks/useVerifyCode';
 import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 
 const CodeVerification = (): JSX.Element => {

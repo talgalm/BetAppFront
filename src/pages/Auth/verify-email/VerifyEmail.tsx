@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useVerifyEmail } from '../Hooks/useVerifyEmail';
+import { useVerifyEmail } from '../hooks/useVerifyEmail';
 import BetLoader from '@components/loader/loader';
 
 const VerifyEmail = () => {

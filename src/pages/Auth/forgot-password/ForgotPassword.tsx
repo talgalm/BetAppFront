@@ -9,7 +9,7 @@ import { ThemeType } from '@theme/theme';
 import { UserActiveStep } from '@store/authStepAtom';
 import { useAtom } from 'jotai';
 import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
-import { useForgetPassword } from '../Hooks/useForgetPassword';
+import { useForgetPassword } from '../hooks/useForgetPassword';
 import BetLoader from '@components/loader/loader';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
