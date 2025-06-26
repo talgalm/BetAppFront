@@ -23,7 +23,7 @@ import { ActiveStep } from '@store/newBetStepAtom';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/new-bet-steps';
 import { NotificationColors } from './Colors';
 import { useEffect } from 'react';
-import { useProfile } from '../../Providers/useProfile';
+import { useProfile } from '@providers/useProfile';
 import BetLoader from '../../Theme/Loader/loader';
 import { useAtom } from 'jotai';
 import { useSocketUpdates } from '@connection/useSocketUpdates';

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { PrimaryBackground } from './App.styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from './Providers/AuthProvider';
+import { AuthProvider } from './providers/AuthProvider';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorBoundary } from 'react-error-boundary';
 import Header from './layout/Header/Header';

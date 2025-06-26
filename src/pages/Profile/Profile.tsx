@@ -7,7 +7,7 @@ import {
   ProfileImageWrapper,
   StatsContainer,
 } from './Profile.styles';
-import { useProfile } from '../../Providers/useProfile';
+import { useProfile } from '@providers/useProfile';
 import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
 import { createDialogButtons } from '@layout/Header/buttons';

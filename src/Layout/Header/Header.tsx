@@ -16,7 +16,7 @@ import { useIsPrimaryExpand } from '../../utils/Helpers';
 import { useLocation } from 'react-router';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
-import { useProfile } from '../../Providers/useProfile';
+import { useProfile } from '@providers/useProfile';
 import EmailVerificationBanner from './components/EmailVerificationBanner';
 import BetimCounter from './components/BetimCounter';
 import { useHeaderLogic } from './Hooks/useHeaderLogic';

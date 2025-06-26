@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import BetLoader from '../../../Theme/Loader/loader';
 import { useLogin } from '../Hooks/useLogin';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { useProfile } from '../../../Providers/useProfile';
+import { useProfile } from '@providers/useProfile';
 import { useQueryClient } from '@tanstack/react-query';
 
 const Login = (): JSX.Element => {

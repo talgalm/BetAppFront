@@ -8,7 +8,7 @@ import Home from './pages/Home/Home';
 import NewBetForm from './pages/NewBet/NewBet.form';
 import WelcomePage from './pages/Auth/WelcomePage/WelcomePage';
 import VerifyEmail from './pages/Auth/VerifyEmail/VerifyEmail';
-import AuthCallback from './Providers/AuthCallback';
+import AuthCallback from './providers/AuthCallback';
 import BetPage from './pages/Bet/BetPage';
 import Profile from './pages/Profile/Profile';
 
