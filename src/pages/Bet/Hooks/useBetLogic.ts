@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
 import { useParams } from 'react-router-dom';
-import { useBet } from './useBet';
-import { useSecondRoundVoting } from './useSecondRoundVoting';
-import { useDeclareWinner } from './useDeclareWinner';
-import { useAddSupervisor } from './useAddSupervisor';
 import { User } from '@interfaces/User.interface';
 import { dialogActionAtom, contactModalDialogAtom } from '@store/dialogAtoms';
+import { useAddSupervisor } from './useAddSupervisor';
+import { useBet } from './useBet';
+import { useDeclareWinner } from './useDeclareWinner';
+import { useSecondRoundVoting } from './useSecondRoundVoting';
 
 interface UseBetLogicProps {
   setOpen: (open: boolean) => void;

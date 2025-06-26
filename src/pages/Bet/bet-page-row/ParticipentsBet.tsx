@@ -1,11 +1,11 @@
 import React from 'react';
-import { UserSingleRow } from './BetPageRow.styles';
 import { SmallAvatar } from '../BetPage.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useParams } from 'react-router-dom';
 import { useBet } from '../hooks/useBet';
 import { User } from '@interfaces/User.interface';
+import { UserSingleRow } from './BetPageRow.styles';
 
 const ParticipentsBet: React.FC<{ user: User }> = ({ user }) => {
   const { id } = useParams();

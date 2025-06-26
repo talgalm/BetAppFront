@@ -2,12 +2,6 @@ import React from 'react';
 import { isArray } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { AvatarRow, AvatarsOnlyView, DetailsListView, SmallAvatar } from '../BetPage.styles';
-import {
-  AddParticipentRow,
-  UserListContainer,
-  UserListRowContainer,
-  UserListRowWithBorderContainer,
-} from './BetPageRow.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { formatDate } from '@utils/Helpers';
@@ -21,6 +15,12 @@ import { Bet } from '@interfaces/Bet.interface';
 import { Prediction, ParticipantStatus } from '@interfaces/Prediction.interface';
 import { User } from '@interfaces/User.interface';
 import { betWinnerAtom, finishBetAtom } from '@store/betAtoms';
+import {
+  AddParticipentRow,
+  UserListContainer,
+  UserListRowContainer,
+  UserListRowWithBorderContainer,
+} from './BetPageRow.styles';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });

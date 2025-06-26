@@ -7,6 +7,7 @@ import {
 import { Typography } from '@components/Topography/typography';
 import { ReactComponent as WinnerIcon } from '@assets/icons/betIcons/Winner.svg';
 import { ReactComponent as WinnerCupIcon } from '@assets/icons/betIcons/WinnerCup.svg';
+import { User } from '@interfaces/User.interface';
 import {
   WinnerContainer,
   WinnerContainerWrapper,
@@ -14,7 +15,6 @@ import {
   WinnerRowInner,
   WinnerRowInnerSec,
 } from './WinnerSection.styles';
-import { User } from '@interfaces/User.interface';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>
