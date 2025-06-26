@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { ButtonConfig } from '../../components/Button/StyledButton';
-import { DialogType } from '../../components/StyledDialog/StyledDialog';
+import { ButtonConfig } from '@components/Button/StyledButton';
+import { DialogType } from '@components/StyledDialog/StyledDialog';
 import { ThemeType } from '../../Theme/theme';
 
 export const createDialogButtons = (

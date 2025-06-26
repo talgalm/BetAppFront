@@ -7,10 +7,10 @@ import {
   StyledAvatarGroup,
 } from './SingleBetRow.styles';
 import { ReactComponent as BetimIcon } from '../../Theme/Icons/HomeIcons/BetimIcon.svg';
-import { Typography } from '../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { formatDate } from '../../utils/Helpers';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
-import Tag, { TagType } from '../../components/Tag/TagComponent';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import Tag, { TagType } from '@components/Tag/TagComponent';
 import { useNavigate } from 'react-router-dom';
 import { SmallAvatar } from '../Bet/BetPage.styles';
 import ParticipantActionRow from './ParticipantActionRow/ParticipantActionRow';

@@ -1,4 +1,4 @@
-import StyledButton, { ButtonConfig } from '../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '@components/Button/StyledButton';
 import { ThemeType } from '../Theme/theme';
 import { ButtonsHubContainer } from './ButtonsHub.styles';
 

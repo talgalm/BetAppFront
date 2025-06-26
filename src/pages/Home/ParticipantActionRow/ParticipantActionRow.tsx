@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { ActionRow } from '../SingleBetRow.styles';
-import { Typography } from '../../../components/Topography/typography';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { ParticipantAction, useParticipantAction } from '../../Bet/Hooks/useParticipentAction';
 import { useQueryClient } from '@tanstack/react-query';
-import { TagType } from '../../../components/Tag/TagComponent';
+import { TagType } from '@components/Tag/TagComponent';
 import { useDeleteBet } from '../../Bet/Hooks/useDeleteBet';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../Jotai/newBetAtoms';

@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/typography';
-import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import { Typography } from '@components/Topography/typography';
+import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { NewPasswordFormInput } from '../Login/interface';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import StyledButton from '../../../components/Button/StyledButton';
+import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../../Theme/theme';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { useAtom } from 'jotai';
@@ -15,7 +15,7 @@ import { HeaderContainer, SignInContainer } from './NewPassword.styles';
 import { VerifiedUserAtom } from '../Store/atoms';
 import { useUpdateUser } from '../Hooks/useUpdateUser';
 import BetLoader from '../../../Theme/Loader/loader';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const NewPassword = (): JSX.Element => {
   const { t } = useTranslation();

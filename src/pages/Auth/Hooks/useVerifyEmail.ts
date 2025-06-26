@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 
 export const useVerifyEmail = () => {
   return useMutation<{ verify: boolean }, Error, string>({

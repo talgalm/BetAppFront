@@ -1,4 +1,4 @@
-import { Typography } from '../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import {
   CornerFab,
   ItemsBodyContent,
@@ -16,7 +16,7 @@ import { ReactComponent as AddContactIcon } from '../../Theme/Icons/ContactAdd.s
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ReactComponent as Search } from '../../Theme/Icons/Search.svg';
-import StyledInput from '../../components/Inputs/StyledInput/StyledInput';
+import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { Collapse } from '@mui/material';
 import { SelectedContainer } from '../NewBet/NewBet.styles';
 import {
@@ -28,7 +28,7 @@ import {
   CloseIconStyled,
   NameText,
 } from '../NewBet/NewBetComponents/Participants/Participants.styles';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash/debounce';
 import { useUsers } from '../Home/Hooks/useUsers';

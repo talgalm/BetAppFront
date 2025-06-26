@@ -2,14 +2,14 @@ import { ButtonsContainer, MainContainer, TextConatiner } from './WelcomePage.st
 import { ReactComponent as WelcomePageImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage.svg';
 import { ReactComponent as SuccessfulRegisterImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage2.svg';
 import { ReactComponent as SuccessfulChangePasswordImage } from '../../../Theme/Icons/AuthIcons/WelcomePageImage3.svg';
-import StyledButton, { ButtonConfig } from '../../../components/Button/StyledButton';
+import StyledButton, { ButtonConfig } from '@components/Button/StyledButton';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { ThemeType } from '../../../Theme/theme';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
 import { authSteps, AuthStepValueTypes } from './interface';
-import { Typography } from '../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import RegisterForm from '../Register/RegisterForm';
 import RegisterProviderForm from '../Register/RegisterProviderForm';
@@ -17,7 +17,7 @@ import LoginForm from '../Login/LoginForm';
 import ForgotPasswordForm from '../ForgotPassword/ForgotPasswordForm';
 import NewPasswordForm from '../NewPassword/NewPasswordForm';
 import CodeVerification from '../CodeVerification/CodeVerification';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import ButtonsHub from '../../ButtonsHub';
 
 const WelcomePage = (): JSX.Element => {

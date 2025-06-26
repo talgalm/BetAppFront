@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Typography } from '../../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '../../../../Theme/Icons/Contacts.svg';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
@@ -27,7 +27,7 @@ import { CreateBetInputs, Participant } from '../../Interface';
 import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
-import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useMostActives } from '../../Hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { layoutEphemeralAtom } from '../../../../Jotai/atoms';

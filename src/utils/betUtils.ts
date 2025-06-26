@@ -1,4 +1,4 @@
-import { betStatusToTagType, TagType } from '../components/Tag/TagComponent';
+import { betStatusToTagType, TagType } from '@components/Tag/TagComponent';
 import { Bet, BetStatus } from '../Interfaces/Bet.interface';
 import { ParticipantStatus } from '../Interfaces/Prediction.interface';
 import { Contact } from '../Interfaces/User.interface';

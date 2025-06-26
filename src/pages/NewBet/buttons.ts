@@ -1,4 +1,4 @@
-import { ButtonConfig } from '../../components/Button/StyledButton';
+import { ButtonConfig } from '@components/Button/StyledButton';
 import { NewBetStep, NewBetStepValueTypes } from './Interface';
 import { t } from 'i18next';
 

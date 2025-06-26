@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
-import { Typography } from '../../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { ReactComponent as UploadFileIcon } from '../../../../Theme/Icons/UploadIcon.svg';
 import { ReactComponent as FileIcon } from '../../../../Theme/Icons/FilesIcon.svg';
-import StyledButton from '../../../../components/Button/StyledButton';
+import StyledButton from '@components/Button/StyledButton';
 import {
   AvatarWrapper,
   CloseButton,
@@ -22,7 +22,7 @@ import { Collapse } from '@mui/material';
 import { ErrorHandler } from '../../../../Errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '../../../../Errors/interface';
-import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 interface NewBetFilesProps<T extends FieldValues> {
   control?: Control<T>;

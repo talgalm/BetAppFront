@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes, Participant } from '../../Interface';
-import { Typography } from '../../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { ReactComponent as EditIcon } from '../../../../Theme/Icons/EditDark.svg';
 import { ReactComponent as LeftArrow } from '../../../../Theme/Icons/arrowLeftBlack.svg';
 import { ReactComponent as SinglePeopleIcon } from '../../../../Theme/Icons/SinglePeople.svg';
@@ -22,7 +22,7 @@ import { formatDate } from '../../../../utils/Helpers';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../../../Jotai/newBetAtoms';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';
-import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateBetInputs>();

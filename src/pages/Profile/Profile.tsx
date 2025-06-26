@@ -9,12 +9,12 @@ import {
 } from './Profile.styles';
 import { useProfile } from '../../Providers/useProfile';
 import { FileInput, useUpdateProfileImage } from './Hooks/useUpdateProfileImage';
-import { DialogType, StyledDialog } from '../../components/StyledDialog/StyledDialog';
+import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
 import { createDialogButtons } from '../../Layout/Header/buttons';
 import { useUpdateUser } from './Hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/typography';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const Profile = () => {
   const [showImage, setShowImage] = useState(false);

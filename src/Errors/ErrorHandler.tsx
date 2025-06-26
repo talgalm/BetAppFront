@@ -2,8 +2,8 @@ import { FallbackProps } from 'react-error-boundary';
 import { ERROR_MESSAGES, ErrorMessage, ErrorTypes } from './interface';
 import { ReactComponent as CloseIcon } from '../Theme/Icons/Close.svg';
 import { PopUpContent, PopUpDiv, PopUpHeader, PopUpOverlay } from './ErrorHandler.styles';
-import { Typography } from '../components/Topography/typography';
-import { TypographyTypes } from '../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import ButtonsHub from '../pages/ButtonsHub';
 
 export const ErrorHandler = (

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
-import StyledInput from '../../../../components/Inputs/StyledInput/StyledInput';
+import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import {
   ConditionsContent,
   ConditionsRowContent,
   ConditionsRowContentCenter,
   StyledAvatar,
 } from '../Conditions/Conditions.styles';
-import { Typography } from '../../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { ReactComponent as CalendarIcon } from '../../../../Theme/Icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';
-import DateModal from '../../../../components/DateModal/DateModal';
+import DateModal from '@components/DateModal/DateModal';
 import { formatDate } from '../../../../utils/Helpers';
 import { CreateBetInputs } from '../../Interface';
 import { TagStyled } from '../../../Home/SingleBetRow.styles';
-import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { headerAtom } from '../../../../Jotai/atoms';
 import { HeaderStyle } from '../../../../Theme/ThemeInterfaces';

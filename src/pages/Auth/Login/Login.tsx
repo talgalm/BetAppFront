@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './Login.styles';
-import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { useFormContext } from 'react-hook-form';
 import { LoginFormInput } from './interface';
 import { ThemeType } from '../../../Theme/theme';
-import StyledButton from '../../../components/Button/StyledButton';
+import StyledButton from '@components/Button/StyledButton';
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '../../../Jotai/UserAtoms';
@@ -16,7 +16,7 @@ import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useNavigate } from 'react-router-dom';
 import BetLoader from '../../../Theme/Loader/loader';
 import { useLogin } from '../Hooks/useLogin';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useProfile } from '../../../Providers/useProfile';
 import { useQueryClient } from '@tanstack/react-query';
 

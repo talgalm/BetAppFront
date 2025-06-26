@@ -9,19 +9,19 @@ import {
 } from './NewBet.styles';
 import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from './Interface';
 import { useFormContext } from 'react-hook-form';
-import StyledButton from '../../components/Button/StyledButton';
+import StyledButton from '@components/Button/StyledButton';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRight } from '../../Theme/Icons/arrowRight.svg';
 
 import { PRIMARY_COLOR } from '../../Theme/ColorTheme';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import ProgressBar from '@components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './NewBetContent/NewBetContent';
 import { Checkbox } from '@mui/material';
-import { Typography } from '../../components/Topography/typography';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useCreateBet } from './Hooks/useCreatebet';
 import { ThemeType } from '../../Theme/theme';
 import { useCleanCreateNewBet } from '../../utils/cleanCreateNewBet';

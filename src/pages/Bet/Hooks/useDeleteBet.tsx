@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 
 export const useDeleteBet = () => {
   const queryClient = useQueryClient();

@@ -1,6 +1,6 @@
 // src/pages/Bet/Hooks/useParticipantAction.ts
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 import { Bet } from '../../../Interfaces/Bet.interface';
 import { ParticipantStatus, Prediction } from '../../../Interfaces/Prediction.interface';
 import { User } from '../../../Interfaces/User.interface';

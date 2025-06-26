@@ -1,8 +1,8 @@
 import React from 'react';
 import { UserSingleRow } from './BetPageRow.styles';
 import { SmallAvatar } from '../BetPage.styles';
-import { Typography } from '../../../components/Topography/typography';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useParams } from 'react-router-dom';
 import { useBet } from '../Hooks/useBet';
 import { User } from '../../../Interfaces/User.interface';

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 
 export const useCheckEmail = (email: string) => {
   return useQuery<{ exists: boolean }, Error>({

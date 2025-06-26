@@ -9,8 +9,8 @@ import {
   IconContainer,
 } from './Home.styles';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../../components/Topography/typography';
-import StyledButton from '../../components/Button/StyledButton';
+import { Typography } from '@components/Topography/typography';
+import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '../../Theme/theme';
 import { ReactComponent as HistoryIcon } from '../../Theme/Icons/HomeIcons/HistoryIcon.svg';
 import { ReactComponent as SupervisorIcon } from '../../Theme/Icons/HomeIcons/Supervisor.svg';
@@ -18,7 +18,7 @@ import { ReactComponent as BetsIcon } from '../../Theme/Icons/HomeIcons/BetsIcon
 import { ReactComponent as NoBetsIcon } from '../../Theme/Icons/HomeIcons/NoBetsIcon.svg';
 import SingleBetRow from './SingleBetRow';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { ActiveStep } from '../../Jotai/newBetAtoms';
 import { newBetSteps, NewBetStepValueTypes } from '../NewBet/Interface';
 import { NotificationColors } from './Colors';

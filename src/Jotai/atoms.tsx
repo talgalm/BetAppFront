@@ -1,7 +1,7 @@
 import { atomWithStorage } from 'jotai/utils';
 import { HeaderStyle } from '../Theme/ThemeInterfaces';
 import { atom } from 'jotai';
-import { DialogAction } from '../components/StyledDialog/StyledDialog';
+import { DialogAction } from '@components/StyledDialog/StyledDialog';
 
 export const layoutAtom = atomWithStorage<{
   headerStyle: HeaderStyle;

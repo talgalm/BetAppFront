@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 import { Bet } from '../../../Interfaces/Bet.interface';
 
 export const useSecondRoundVoting = () => {

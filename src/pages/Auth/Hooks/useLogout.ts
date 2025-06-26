@@ -1,5 +1,5 @@
 import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
-import { ApiService, HTTPMethod } from '../../../API/api';
+import { ApiService, HTTPMethod } from '@api/apiService';
 
 export const useLogout = (): UseMutationResult<void, Error, void> => {
   const queryClient = useQueryClient(); // ←  access the singleton cache

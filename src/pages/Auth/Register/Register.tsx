@@ -1,11 +1,11 @@
-import { Typography } from '../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { HeaderContainer, SignInContainer } from './Register.styles';
-import StyledInput from '../../../components/Inputs/StyledInput/StyledInput';
+import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as VisableIcon } from '../../../Theme/Icons/AuthIcons/isVisibaleIcon.svg';
 import { ReactComponent as NotVisiblaeIcon } from '../../../Theme/Icons/AuthIcons/notVisibaleIcon.svg';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { ThemeType } from '../../../Theme/theme';
-import StyledButton from '../../../components/Button/StyledButton';
+import StyledButton from '@components/Button/StyledButton';
 import { useTranslation } from 'react-i18next';
 import { RegisterFormInput } from '../Login/interface';
 import { useAtom } from 'jotai';
@@ -17,7 +17,7 @@ import ConnectionOptions from '../ConnectionOptions/ConnectionOptions';
 import { useDebouncedValue } from '../Hooks/useDebouncedEmailCheck';
 import { useRegister } from '../Hooks/useRegister';
 import { useCheckEmail } from '../Hooks/useCheckEmail';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 
 const Register = (): JSX.Element => {
   const { t } = useTranslation();

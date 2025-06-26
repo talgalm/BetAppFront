@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { PopUpDiv, PopUpOverlay } from '../ContactModal/ContactModal.styles';
 import { PopUpContent, PopUpHeader } from './ConditionModal.styles';
-import { Typography } from '../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { ReactComponent as CalendarIcon } from '../../Theme/Icons/CalendarIcon.svg';
-import Calendar from '../../components/Calendar/Calendar';
+import Calendar from '@components/Calendar/Calendar';
 import { FieldValues, Control, Path } from 'react-hook-form';
-import { TypographyTypes } from '../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '../../Interfaces/User.interface';
 
 interface ConditionModalProps<T extends FieldValues> {

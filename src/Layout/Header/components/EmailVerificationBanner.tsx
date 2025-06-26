@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VerificationContainer } from '../Header.styles';
 import { ReactComponent as RedCloseIcon } from '../../../Theme/Icons/LayoutIcons/RedClose.svg';
-import { Typography } from '../../../components/Topography/typography';
-import { TypographyTypes } from '../../../components/Topography/TypographyTypes';
+import { Typography } from '@components/Topography/typography';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '../../../Interfaces/User.interface';
 
 interface EmailVerificationBannerProps {

@@ -1,10 +1,10 @@
 import { t } from 'i18next';
-import { TypographyTypes } from '../../../../components/Topography/TypographyTypes';
+import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import {
   SmallAvatar,
   StyledDivider,
 } from '../../../NewBet/NewBetComponents/Participants/Participants.styles';
-import { Typography } from '../../../../components/Topography/typography';
+import { Typography } from '@components/Topography/typography';
 import { ReactComponent as WinnerIcon } from '../../../../Theme/Icons/Bet/Winner.svg';
 import { ReactComponent as WinnerCupIcon } from '../../../../Theme/Icons/Bet/WinnerCup.svg';
 import {
