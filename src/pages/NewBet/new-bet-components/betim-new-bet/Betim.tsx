@@ -6,7 +6,7 @@ import {
   CoinsGridContainer,
   RowContentContainer,
   StyledDivider,
-} from '../betim-new-bet/Betim.styles';
+} from './Betim.styles';
 import { Typography } from '@components/Topography/typography';
 import { PRIMARY_COLOR } from '@theme/colorTheme';
 import { ReactComponent as PlusIcon } from '@assets/icons/AddIcon.svg';

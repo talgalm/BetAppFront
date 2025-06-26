@@ -6,7 +6,7 @@ import {
   ConditionsRowContent,
   ConditionsRowContentCenter,
   StyledAvatar,
-} from '../conditions-new-bet/Conditions.styles';
+} from './Conditions.styles';
 import { Typography } from '@components/Topography/typography';
 import { ReactComponent as CalendarIcon } from '@assets/icons/CalendarIcon.svg';
 import { useTranslation } from 'react-i18next';

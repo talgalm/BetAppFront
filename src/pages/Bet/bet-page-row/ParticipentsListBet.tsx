@@ -6,7 +6,7 @@ import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { formatDate } from '@utils/Helpers';
 import { ReactComponent as AddIcon } from '@assets/icons/betIcons/AddIcon.svg';
-import { SummaryRow } from '../../NewBet/NewBetComponents/summary-new-bet/Summary.styles';
+import { SummaryRow } from '../../NewBet/new-bet-components/summary-new-bet/Summary.styles';
 import { useAtom } from 'jotai';
 import Radio from '@mui/material/Radio';
 import { useParams } from 'react-router-dom';

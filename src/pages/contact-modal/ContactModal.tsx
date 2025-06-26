@@ -34,7 +34,7 @@ import {
   ParticipantsCollapseContainer,
   ParticipantsCollapseRow,
   StyledAvatar,
-} from '@pages/NewBet/NewBetComponents/participants-new-bet/Participants.styles';
+} from '@pages/NewBet/new-bet-components/participants-new-bet/Participants.styles';
 
 interface ContactModalProp {
   open: boolean;

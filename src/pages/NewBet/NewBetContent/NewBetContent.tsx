@@ -8,14 +8,14 @@ import Calendar from '@components/Calendar/Calendar';
 import { ReactComponent as DisplayIcon } from '@assets/icons/NewBetDisplay.svg';
 import { ReactComponent as DisplaySmallIcon } from '@assets/icons/NewBetDisplaySmall.svg';
 
-import NewBetConditions from '../NewBetComponents/conditions-new-bet/Conditions';
-import Betim from '../NewBetComponents/betim-new-bet/Betim';
-import NewBetFiles from '../NewBetComponents/files-new-bet/Files';
-import NewBetSummary from '../NewBetComponents/summary-new-bet/Summary';
+import NewBetConditions from '../new-bet-components/conditions-new-bet/Conditions';
+import Betim from '../new-bet-components/betim-new-bet/Betim';
+import NewBetFiles from '../new-bet-components/files-new-bet/Files';
+import NewBetSummary from '../new-bet-components/summary-new-bet/Summary';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect } from 'react';
 import { fireConfetti } from '@utils/confetti';
-import NewBetParticipants from '../NewBetComponents/participants-new-bet/Participants';
+import NewBetParticipants from '../new-bet-components/participants-new-bet/Participants';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;

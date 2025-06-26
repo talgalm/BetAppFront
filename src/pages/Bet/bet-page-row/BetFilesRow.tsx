@@ -1,7 +1,7 @@
 import React from 'react';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { Typography } from '@components/Topography/typography';
-import { SummaryRow } from '../../NewBet/NewBetComponents/summary-new-bet/Summary.styles';
+import { SummaryRow } from '../../NewBet/new-bet-components/summary-new-bet/Summary.styles';
 
 interface FilesRowProps {
   id: string;
