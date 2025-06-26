@@ -8,7 +8,7 @@ import {
   StyledDivider,
 } from './Betim.styles';
 import { Typography } from '@components/Topography/typography';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 import { ReactComponent as PlusIcon } from '@assets/icons/AddIcon.svg';
 import { ReactComponent as MinusIcon } from '@assets/icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +63,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
         <Typography
           value={`${t('Input.YourBalance')} ${userCurrentCoins} ${t('Input.Coins')}`}
           variant={TypographyTypes.H3}
-          styleProps={{ color: PRIMARY_COLOR }}
+          styleProps={{ color: PRIMARY_GREEN }}
         />
       </RowContentContainer>
       <CoinsGridContainer>
@@ -83,7 +83,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
                   <Typography
                     value={field.value ?? 0}
                     variant={TypographyTypes.H1}
-                    styleProps={{ color: PRIMARY_COLOR }}
+                    styleProps={{ color: PRIMARY_GREEN }}
                   />
                   <StyledDivider flexItem />
                   <PlusIcon onClick={handlePlusClick} />
@@ -92,7 +92,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
                 <Typography
                   value={index === 3 ? t('NewBet.other') : item}
                   variant={TypographyTypes.H1}
-                  styleProps={{ color: PRIMARY_COLOR }}
+                  styleProps={{ color: PRIMARY_GREEN }}
                 />
               )}
             </CoinContainer>
@@ -103,7 +103,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
         <Typography
           value={`*`}
           variant={TypographyTypes.TextSmall}
-          styleProps={{ color: PRIMARY_COLOR }}
+          styleProps={{ color: PRIMARY_GREEN }}
         />
         <Typography
           value={`${t('NewBet.betimDisclaimer')}`}

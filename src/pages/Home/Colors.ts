@@ -1,8 +1,8 @@
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const NotificationColors = {
   BetBackground: '#EFFDF4',
-  BetAccent: PRIMARY_COLOR,
+  BetAccent: PRIMARY_GREEN,
   SupervisorBackground: '#FEF3C7',
   SupervisorAccent: '#D97706',
   HistoryBackground: '#FAE8FF',

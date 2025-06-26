@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { Bet } from '@interfaces/Bet.interface';
 import { Prediction, ParticipantStatus } from '@interfaces/Prediction.interface';
 import { User } from '@interfaces/User.interface';
+import { THIRD_GREEN } from '@theme/colorTheme';
 
 interface SingleBetRowProps {
   bet: Bet;
@@ -68,7 +69,7 @@ const SingleBetRow = ({ bet, isSupervisor }: SingleBetRowProps): JSX.Element => 
             <Typography value={formatDate(bet?.deadline)} variant={TypographyTypes.TextMedium} />
           </TagStyled>
         )}
-        <TagStyled background="#CEEFEA">
+        <TagStyled background={THIRD_GREEN}>
           <BetimIcon />
           <Typography value={bet?.betim} variant={TypographyTypes.TextMedium} />
         </TagStyled>

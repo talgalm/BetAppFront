@@ -2,6 +2,7 @@ import { BetStatus } from '@interfaces/Bet.interface';
 import { TagStyled } from '@pages/home/SingleBetRow.styles';
 import { Typography } from '../Topography/typography';
 import { TypographyTypes } from '../Topography/TypographyTypes';
+import { TAG_COLORS } from '@theme/colorTheme';
 
 export enum TagType {
   DRAFT = 'דראפט',
@@ -29,40 +30,40 @@ export const betStatusToTagType: Record<BetStatus, TagType> = {
 
 export const TagTypeColors: Record<keyof typeof TagType, { background: string; accent: string }> = {
   PENDING_APPROVAL: {
-    background: '#FFEED6',
-    accent: '#D87330',
+    background: TAG_COLORS.ORANGE_BACKGROUND,
+    accent: TAG_COLORS.ORANGE_ACCENT,
   },
   PENDING_APPROVAL_REST: {
-    background: '#FFEED6',
-    accent: '#D87330',
+    background: TAG_COLORS.ORANGE_BACKGROUND,
+    accent: TAG_COLORS.ORANGE_ACCENT,
   },
   SUPERVISOR: {
-    background: '#FFFAB8',
-    accent: '#9E6C00',
+    background: TAG_COLORS.YELLOW_BACKGROUND,
+    accent: TAG_COLORS.YELLOW_ACCENT,
   },
   ACTIVE: {
-    background: '#DEF7F9',
-    accent: '#0F7C98',
+    background: TAG_COLORS.GREEN_BACKGROUND,
+    accent: TAG_COLORS.GREEN_ACCENT,
   },
   COMPLETED: {
-    background: '#EDF2FE',
-    accent: '#3758C7',
+    background: TAG_COLORS.BLUE_BACKGROUND,
+    accent: TAG_COLORS.BLUE_ACCENT,
   },
   PENDING_DECISION: {
-    background: '#FFEED6',
-    accent: '#D87330',
+    background: TAG_COLORS.ORANGE_BACKGROUND,
+    accent: TAG_COLORS.ORANGE_ACCENT,
   },
   FINAL_DECISION_PENDING: {
-    background: '#FFEED6',
-    accent: '#D87330',
+    background: TAG_COLORS.ORANGE_BACKGROUND,
+    accent: TAG_COLORS.ORANGE_ACCENT,
   },
   CANCELED: {
-    background: '#FFE9F0',
-    accent: '#CA1A61',
+    background: TAG_COLORS.PINK_BACKGROUND,
+    accent: TAG_COLORS.PINK_ACCENT,
   },
   DRAFT: {
-    background: '#FFE9F0',
-    accent: '#CA1A61',
+    background: TAG_COLORS.PINK_BACKGROUND,
+    accent: TAG_COLORS.PINK_ACCENT,
   },
 };
 

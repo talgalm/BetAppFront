@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const WinnerContainerWrapper = styled('div')({
   padding: 16,
@@ -15,11 +15,11 @@ export const WinnerContainer = styled('div')({
   padding: 8,
   backgroundColor: '#EFFDF4',
   boxShadow: `
-      0px 1px 3px 0px ${PRIMARY_COLOR}1A,
-      0px 5px 5px 0px ${PRIMARY_COLOR}17,
-      0px 12px 7px 0px ${PRIMARY_COLOR}0D,
-      0px 22px 9px 0px ${PRIMARY_COLOR}03,
-      0px 34px 10px 0px ${PRIMARY_COLOR}00
+      0px 1px 3px 0px ${PRIMARY_GREEN}1A,
+      0px 5px 5px 0px ${PRIMARY_GREEN}17,
+      0px 12px 7px 0px ${PRIMARY_GREEN}0D,
+      0px 22px 9px 0px ${PRIMARY_GREEN}03,
+      0px 34px 10px 0px ${PRIMARY_GREEN}00
     `,
 });
 export const WinnerRow = styled('div')({

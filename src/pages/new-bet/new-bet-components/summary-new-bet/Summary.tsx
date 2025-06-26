@@ -28,6 +28,7 @@ import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../files-new-bet/Files.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { THIRD_GREEN } from '@theme/colorTheme';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateBetInputs>();
@@ -146,7 +147,7 @@ const NewBetSummary: React.FC = () => {
               styleProps={{ color: 'black' }}
             />
             <SummaryRow>
-              <SummaryRow background={'#CEEFEA'}>
+              <SummaryRow background={THIRD_GREEN}>
                 <SinglePeopleIcon />
                 <Typography
                   value={watch().betim}
@@ -173,7 +174,7 @@ const NewBetSummary: React.FC = () => {
                 variant={TypographyTypes.H3}
                 styleProps={{ color: 'black' }}
               />
-              <SummaryRow background={'#CEEFEA'}>
+              <SummaryRow background={THIRD_GREEN}>
                 <Typography
                   value={formatDate(watch().deadline)}
                   variant={TypographyTypes.TextMedium}

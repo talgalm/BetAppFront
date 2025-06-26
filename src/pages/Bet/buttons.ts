@@ -8,7 +8,7 @@ import { useAtom } from 'jotai';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
 import { dialogActionAtom } from '@store/dialogAtoms';
 import { ParticipantAction } from './hooks/useParticipentAction';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { ERROR_COLOR, PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const createActionButtons = (
   tagType: TagType,
@@ -69,13 +69,13 @@ export const createActionButtons = (
       onClick: () =>
         isLeave ? handleAction(ParticipantAction.LEAVE) : handleAction(ParticipantAction.REJECT),
       colorVariant: ThemeType.Secondary,
-      styleProps: { color: '#E33E21' },
+      styleProps: { color: ERROR_COLOR },
     });
   } else if (tagType === TagType.COMPLETED) {
     buttons.push({
       value: t('BetPage.DeleteBet'),
       colorVariant: ThemeType.Secondary,
-      styleProps: { color: '#E33E21' },
+      styleProps: { color: ERROR_COLOR },
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onClick: () => {},
     });
@@ -103,7 +103,7 @@ export const createDialogButtons = (
         value: 'חזור',
         onClick: () => setDialogAction(null),
         colorVariant: ThemeType.Secondary,
-        styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
+        styleProps: { border: `2px solid ${PRIMARY_GREEN}` },
       },
     ];
   }
@@ -113,13 +113,13 @@ export const createDialogButtons = (
       value: t('StyledDialog.SecondRoundVoting'),
       onClick: () => setDialogAction(DialogAction.SecondRound),
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
+      styleProps: { border: `2px solid ${PRIMARY_GREEN}` },
     },
     {
       value: t('StyledDialog.MultiWinners'),
       onClick: () => setDialogAction(DialogAction.PickWinner),
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
+      styleProps: { border: `2px solid ${PRIMARY_GREEN}` },
     },
     dialogType === DialogType.BetCreator
       ? {

@@ -15,7 +15,7 @@ import { ActiveStep } from '@store/newBetStepAtom';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRight } from '@assets/icons/arrowRight.svg';
 
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './new-bet-content/NewBetContent';
@@ -229,7 +229,7 @@ const NewBet = () => {
     step,
     disableButton,
     handleStep,
-    <ArrowRight color={PRIMARY_COLOR} />
+    <ArrowRight color={PRIMARY_GREEN} />
   );
 
   return (
@@ -252,9 +252,9 @@ const NewBet = () => {
                 onChange={(e) => changeNextStep(e.target.checked)}
                 defaultChecked={false}
                 sx={{
-                  color: PRIMARY_COLOR,
+                  color: PRIMARY_GREEN,
                   '&.Mui-checked': {
-                    color: PRIMARY_COLOR,
+                    color: PRIMARY_GREEN,
                   },
                 }}
               />

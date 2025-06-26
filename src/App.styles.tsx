@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { MAIN_FONT, PRIMARY_BACKGROUND } from './theme/colorTheme';
+import { PRIMARY_BACKGROUND } from './theme/colorTheme';
+import { MAIN_FONT } from '@theme/fonts';
 
 export const PrimaryBackground = styled('div')({
   display: 'flex',

@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_BACKGROUND, PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
 
 export const HomeWrapperContainer = styled('div')({
   display: 'flex',
@@ -16,7 +16,7 @@ export const HomeDivContainer = styled('div')<{ marginTop?: number }>(({ marginT
   marginTop,
   width: '100%',
   position: 'fixed',
-  backgroundColor: '#ffffff', // or your theme background
+  backgroundColor: `${PRIMARY_BACKGROUND}`,
 }));
 
 export const ProgressBarContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 0 }) => ({
@@ -186,7 +186,7 @@ export const ParticipantsContent = styled('div')({
   height: '30vh',
   marginTop: 10,
   borderBottom: '1px solid #C8C8E1',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: `${PRIMARY_BACKGROUND}`,
 });
 
 export const ConditionsContent = styled('div')({
@@ -219,7 +219,7 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     paddingBottom: 4,
     paddingLeft: 8,
     paddingRight: 8,
-    backgroundColor: background ? '#CEEFEA' : 'transparent',
+    backgroundColor: background ? `${THIRD_GREEN}` : 'transparent',
   })
 );
 
@@ -240,7 +240,7 @@ export const FilesContainer = styled('div')({
   height: '23vh',
   backgroundColor: '#EEF9F8',
   borderRadius: 8,
-  border: `1px dashed ${PRIMARY_COLOR}`,
+  border: `1px dashed ${PRIMARY_GREEN}`,
   flexDirection: 'column',
   gap: 8,
 });

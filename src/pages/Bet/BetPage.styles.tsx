@@ -2,7 +2,7 @@ import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as ArrowIcon } from '@assets/icons/betIcons/Arrow.svg';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { ERROR_COLOR, PRIMARY_BACKGROUND, PRIMARY_GREEN, SECONDARY_GREEN } from '@theme/colorTheme';
 
 export const MainContainer = styled('div')({
   display: 'flex',
@@ -26,7 +26,7 @@ export const HeaderContainer = styled('div')({
   width: '100%',
   zIndex: 2,
   textAlign: 'right',
-  backgroundColor: '#ffffff',
+  backgroundColor: `${PRIMARY_BACKGROUND}`,
   boxShadow: `
     0px 2px 5px 0px #CBC6E31A,
     0px 9px 9px 0px #CBC6E317,
@@ -60,7 +60,7 @@ export const Row = styled('div')<{ isWinner?: boolean }>(({ isWinner }) => ({
   alignItems: 'center',
   gap: 16,
   padding: '8px 16px 8px 16px',
-  backgroundColor: isWinner ? '#A8D6CC' : 'transparent',
+  backgroundColor: isWinner ? `${SECONDARY_GREEN}` : 'transparent',
 }));
 
 // eslint-disable-next-line no-empty-pattern
@@ -101,8 +101,8 @@ export const AvatarRow = styled('div')({
 
 const statusToBorder: Record<ParticipantStatus, string> = {
   pending: '#EF9645',
-  active: PRIMARY_COLOR,
-  canceled: '#DA3E3E',
+  active: PRIMARY_GREEN,
+  canceled: ERROR_COLOR,
   voted: '',
 };
 

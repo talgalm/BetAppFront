@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { PRIMARY_COLOR } from './colorTheme';
+import { ERROR_COLOR, PRIMARY_BACKGROUND, PRIMARY_GREEN, SECONDARY_GREEN } from './colorTheme';
 
 export enum ThemeType {
   Primary = 'primary',
@@ -9,15 +9,15 @@ export enum ThemeType {
 const theme = createTheme({
   palette: {
     primary: {
-      main: PRIMARY_COLOR,
-      contrastText: '#FFFFFF',
+      main: PRIMARY_GREEN,
+      contrastText: PRIMARY_BACKGROUND,
     },
     secondary: {
-      main: '#FFFFFF',
-      contrastText: PRIMARY_COLOR,
+      main: PRIMARY_BACKGROUND,
+      contrastText: PRIMARY_GREEN,
     },
     error: {
-      main: '#D32F2F',
+      main: ERROR_COLOR,
     },
     success: {
       main: '#4CAF50',
@@ -27,7 +27,7 @@ const theme = createTheme({
       secondary: '#777777',
     },
     action: {
-      disabledBackground: '#A8D6CC',
+      disabledBackground: SECONDARY_GREEN,
     },
   },
   typography: {
@@ -69,7 +69,7 @@ const theme = createTheme({
       //TextSmall
       fontWeight: 500,
       fontSize: 9,
-      color: '#ffffff',
+      color: PRIMARY_BACKGROUND,
       fontFamily: 'Fredoka',
     },
     button: {

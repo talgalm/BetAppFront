@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { ReactComponent as CloseIcon } from '@assets/icons/FullClose.svg';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
 
 export const FilesContainer = styled('div')({
   display: 'flex',
@@ -8,9 +8,9 @@ export const FilesContainer = styled('div')({
   alignItems: 'center',
   width: 343,
   height: '30vh',
-  backgroundColor: '#CEEFEA',
+  backgroundColor: `${THIRD_GREEN}`,
   borderRadius: 8,
-  border: `1px dashed ${PRIMARY_COLOR}`,
+  border: `1px dashed ${PRIMARY_GREEN}`,
   flexDirection: 'column',
 });
 

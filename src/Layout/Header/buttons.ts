@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonConfig } from '@components/Button/StyledButton';
 import { DialogType } from '@components/StyledDialog/StyledDialog';
 import { ThemeType } from '@theme/theme';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { ERROR_COLOR, PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const createDialogButtons = (
   dialogType: DialogType,
@@ -26,7 +26,7 @@ export const createDialogButtons = (
       value: t(`StyledDialog.${dialogType}UpdateButton`),
       onClick: onUpdate,
       colorVariant: ThemeType.Secondary,
-      styleProps: { color: '#E33E21' },
+      styleProps: { color: ERROR_COLOR },
     });
   }
   if (dialogType === DialogType.BetCreation) {
@@ -34,7 +34,7 @@ export const createDialogButtons = (
       value: t(`StyledDialog.${dialogType}CloseButton`),
       onClick: onClose,
       colorVariant: ThemeType.Secondary,
-      styleProps: { border: `2px solid ${PRIMARY_COLOR}` },
+      styleProps: { border: `2px solid ${PRIMARY_GREEN}` },
     });
   }
 

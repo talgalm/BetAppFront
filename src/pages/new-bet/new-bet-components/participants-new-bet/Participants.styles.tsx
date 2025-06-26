@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Avatar, Divider } from '@mui/material';
 import { ReactComponent as CloseIcon } from '@assets/icons/FullClose.svg';
+import { PRIMARY_BACKGROUND, THIRD_GREEN } from '@theme/colorTheme';
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',
@@ -53,7 +54,7 @@ export const ParticipantsContent = styled('div')({
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: 'calc(100% + 10px)',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: `${PRIMARY_BACKGROUND}`,
 });
 
 export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
@@ -65,7 +66,7 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     padding: 4,
     alignItems: 'center',
     borderRadius: 8,
-    backgroundColor: background ? '#CEEFEA' : 'transparent',
+    backgroundColor: background ? `${THIRD_GREEN}` : 'transparent',
   })
 );
 

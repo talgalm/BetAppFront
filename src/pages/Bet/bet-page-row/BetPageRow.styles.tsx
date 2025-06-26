@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import { SECONDARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
 
 export const UserListContainer = styled('div')({
   display: 'flex',
@@ -15,9 +16,9 @@ export const UserListRowWithBorderContainer = styled('div')<{
   flexDirection: 'column',
   gap: 5,
 
-  backgroundColor: finisMode && selected ? '#CEEFEA' : 'white',
+  backgroundColor: finisMode && selected ? `${THIRD_GREEN}` : 'white',
 
-  border: finisMode ? '1px solid var(--TealDisabled, #A8D6CC)' : 'none',
+  border: finisMode ? `1px solid var(--TealDisabled, ${SECONDARY_GREEN})` : 'none',
   borderRadius: finisMode ? 16 : 0,
   padding: finisMode ? 16 : 0,
   paddingBottom: finisMode ? 12 : 0,

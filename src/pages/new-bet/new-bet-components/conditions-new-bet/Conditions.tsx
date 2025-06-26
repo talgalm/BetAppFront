@@ -18,7 +18,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { HeaderStyle } from '@theme/layoutStyles';
 import { headerAtom } from '@store/layoutAtoms';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -82,16 +82,16 @@ const NewBetConditions = <T extends FieldValues>({
               />
 
               <ConditionsRowContentCenter onClick={() => handleOpenModal(userIndex)}>
-                {!userDate && <CalendarIcon color={PRIMARY_COLOR} />}
+                {!userDate && <CalendarIcon color={PRIMARY_GREEN} />}
                 {!userDate && (
                   <Typography
                     value={t(`NewBet.ConditionAddDate`)}
                     variant={TypographyTypes.TextMedium}
-                    styleProps={{ color: PRIMARY_COLOR }}
+                    styleProps={{ color: PRIMARY_GREEN }}
                   />
                 )}
                 {userDate && (
-                  <TagStyled background="#CEEFEA">
+                  <TagStyled background={THIRD_GREEN}>
                     <Typography value={formatDate(userDate)} variant={TypographyTypes.TextMedium} />
                   </TagStyled>
                 )}

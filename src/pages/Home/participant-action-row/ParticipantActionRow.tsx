@@ -12,7 +12,7 @@ import { CreateBetInputs, newBetSteps, NewBetStepValueTypes } from '../../new-be
 import { useNavigate } from 'react-router-dom';
 import { useBet } from '../../bet/hooks/useBet';
 import { User } from '@interfaces/User.interface';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { ERROR_COLOR, PRIMARY_GREEN } from '@theme/colorTheme';
 
 interface Props {
   betId: string;
@@ -72,13 +72,13 @@ export default function ParticipantActionRow({ betId, type }: Props) {
       <Typography
         value={ConfirmText}
         variant={TypographyTypes.Button}
-        styleProps={{ color: PRIMARY_COLOR }}
+        styleProps={{ color: PRIMARY_GREEN }}
         onClick={isPending ? handleClick(ParticipantAction.APPROVE) : handleContinueNewBet}
       />
       <Typography
         value={CancelText}
         variant={TypographyTypes.Button}
-        styleProps={{ color: '#E33E21' }}
+        styleProps={{ color: ERROR_COLOR }}
         onClick={isPending ? handleClick(ParticipantAction.REJECT) : handleDeleteDraftBet}
       />
     </ActionRow>

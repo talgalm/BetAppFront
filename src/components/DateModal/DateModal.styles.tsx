@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import StyledButton from '../Button/StyledButton';
+import { PRIMARY_BACKGROUND } from '@theme/colorTheme';
 
 export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   position: 'fixed',
@@ -24,7 +24,7 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
 
 export const PopUpContainer = styled('div')({
   width: '100%',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: `${PRIMARY_BACKGROUND}`,
   borderRadius: 16,
   padding: 16,
   display: 'flex',

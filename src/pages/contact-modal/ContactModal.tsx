@@ -35,6 +35,7 @@ import {
   ParticipantsCollapseRow,
   StyledAvatar,
 } from '@pages/new-bet/new-bet-components/participants-new-bet/Participants.styles';
+import { THIRD_GREEN } from '@theme/colorTheme';
 
 interface ContactModalProp {
   open: boolean;
@@ -177,7 +178,7 @@ const ContactModal = ({
                   onClick={() => handleUserClick(item)}
                   style={{
                     background: selectedUsers.some((selectedUser) => selectedUser.id === item.id)
-                      ? '#CEEFEA'
+                      ? `${THIRD_GREEN}`
                       : 'transparent',
                     cursor: 'pointer',
                   }}

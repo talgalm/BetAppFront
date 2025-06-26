@@ -1,7 +1,7 @@
 import { ButtonConfig } from '@components/Button/StyledButton';
 import { NewBetStep, NewBetStepValueTypes } from './new-bet-steps';
 import { t } from 'i18next';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const createNewBetButtons = (
   step: NewBetStep,
@@ -32,7 +32,7 @@ export const createNewBetButtons = (
       styleProps: {
         width: '32%',
         backgroundColor: 'white',
-        border: `2px solid ${PRIMARY_COLOR}`,
+        border: `2px solid ${PRIMARY_GREEN}`,
       },
     });
   }

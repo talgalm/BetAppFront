@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as ContactIcon } from '@assets/icons/Contacts.svg';
 import { Control, FieldValues, Path, useController, useFormContext } from 'react-hook-form';
 import Collapse from '@mui/material/Collapse';
-import { PRIMARY_COLOR } from '@theme/colorTheme';
+import { PRIMARY_GREEN } from '@theme/colorTheme';
 import ContactModal from '../../../contact-modal/ContactModal';
 import { CreateBetInputs, Participant } from '../../new-bet-steps';
 import { ErrorHandler } from '@errors/ErrorHandler';
@@ -188,7 +188,7 @@ const NewBetParticipants = <T extends FieldValues>({
         <Typography
           value={t(`NewBet.contacts`)}
           variant={TypographyTypes.TextBig}
-          styleProps={{ color: PRIMARY_COLOR }}
+          styleProps={{ color: PRIMARY_GREEN }}
         />
       </RowCenterContentContainer>
       {control && inputName && (

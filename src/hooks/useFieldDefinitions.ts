@@ -7,6 +7,7 @@ import { BetFile, Bet } from '@interfaces/Bet.interface';
 import { Prediction } from '@interfaces/Prediction.interface';
 import { User } from '@interfaces/User.interface';
 import { finishBetAtom } from '@store/betAtoms';
+import { THIRD_GREEN } from '@theme/colorTheme';
 
 interface FieldRowProps {
   label: string;
@@ -38,7 +39,7 @@ export const useFieldDefinitions = (bet?: Bet): FieldRowProps[] => {
     {
       label: t('BetPage.betim'),
       value: bet?.betim,
-      background: '#CEEFEA',
+      background: `${THIRD_GREEN}`,
       icon: BetimIcon,
       disclaimer: 'betim',
     },

@@ -1,18 +1,20 @@
-// export const PRIMARY_BACKGROUND = '#FFFFFFE6';
 export const PRIMARY_BACKGROUND = '#FFFFFF';
-export const PRIMARY_COLOR = '#15AB94';
-export const SECONDERY_COLOR = '#f7a400';
-export const TEXT_COLOR = '#000000';
-export const TEXT_SEC_COLOR = '#EDEDF5';
-export const TEXT_THIRD_COLOR = '#48494D';
-export const TEXT_ICON_COLOR = '#9798A2';
-export const TEXT_ICON_COLOR_SEC = '#7F8CB9';
-export const BORDER_COLOR_sec = '#228B22';
-
-export const MAIN_FONT = "'Fredoka', sans-serif";
-
-export const PRIMARY_BUTTON_COLOR = '#EDEDF5';
-export const SECONDERY_BUTTON_COLOR = '#C8C8E1';
-
-/// --------- //
+export const PRIMARY_GREEN = '#15AB94';
 export const SECONDARY_GREEN = '#A8D6CC';
+export const THIRD_GREEN = '#CEEFEA';
+export const ERROR_COLOR = '#E33E21';
+
+export const TAG_COLORS = {
+  ORANGE_BACKGROUND: '#FFEED6',
+  ORANGE_ACCENT: '#D87330',
+  YELLOW_BACKGROUND: '#FFFAB8',
+  YELLOW_ACCENT: '#9E6C00',
+  GREEN_BACKGROUND: '#DEF7F9',
+  GREEN_ACCENT: '#0F7C98',
+  BLUE_BACKGROUND: '#EDF2FE',
+  BLUE_ACCENT: '#3758C7',
+  PINK_BACKGROUND: '#FFE9F0',
+  PINK_ACCENT: '#CA1A61',
+};
+
+export const PROGRESS_BAR_PRIMARY_COLOR = '#5CCBB8';

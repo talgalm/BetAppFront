@@ -1,7 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { TEXT_THIRD_COLOR } from '@theme/colorTheme';
 import { TextField } from '@mui/material';
-import { padding } from 'polished';
 
 export const NumOfChars = styled('div')({
   display: 'flex',
