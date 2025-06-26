@@ -10,7 +10,7 @@ import {
 } from './BetPageRow.styles';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { formatDate } from '../../../utils/Helpers';
+import { formatDate } from '@utils/Helpers';
 import { ReactComponent as AddIcon } from '../../../Theme/Icons/Bet/AddIcon.svg';
 import { SummaryRow } from '../../NewBet/NewBetComponents/Summary/Summary.styles';
 import { useAtom } from 'jotai';

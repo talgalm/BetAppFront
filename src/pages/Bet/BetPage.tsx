@@ -5,17 +5,13 @@ import { HeaderContainer, MainContainer, ContentContainer } from './BetPage.styl
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { Typography } from '@components/Topography/typography';
 import Tag, { TagType } from '@components/Tag/TagComponent';
-import { formatDateToGB } from '../../utils/Helpers';
+import { formatDateToGB } from '@utils/Helpers';
 import BetLoader from '../../Theme/Loader/loader';
 import { useQueryClient } from '@tanstack/react-query';
 import { ParticipantAction, useParticipantAction } from './Hooks/useParticipentAction';
 import ButtonsHub, { ButtonsHubStatus } from '../ButtonsHub';
 import { createActionButtons, createDialogButtons } from './buttons';
-import {
-  extractContacts,
-  getParticipantAwareTagType,
-  getParticipentStatus,
-} from '../../utils/betUtils';
+import { extractContacts, getParticipantAwareTagType, getParticipentStatus } from '@utils/betUtils';
 import { useFieldDefinitions } from './useFieldDefinitions';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import FieldRow from './BetPageRow/FieldRow';

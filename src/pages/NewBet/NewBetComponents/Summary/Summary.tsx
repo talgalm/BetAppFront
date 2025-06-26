@@ -23,7 +23,7 @@ import {
   SummaryRow,
 } from './Summary.styles';
 import { useTranslation } from 'react-i18next';
-import { formatDate } from '../../../../utils/Helpers';
+import { formatDate } from '@utils/Helpers';
 import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../Files/Files.styles';

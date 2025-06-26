@@ -12,7 +12,7 @@ import { ReactComponent as HamburgerIcon } from '../../Theme/Icons/LayoutIcons/H
 import { ReactComponent as CloseIcon } from '../../Theme/Icons/Close.svg';
 import { ReactComponent as Logo } from '../../Theme/Icons/Logo.svg';
 import { useAtom } from 'jotai';
-import { useIsPrimaryExpand } from '../../utils/Helpers';
+import { useIsPrimaryExpand } from '@utils/Helpers';
 import { useLocation } from 'react-router';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { DialogType, StyledDialog } from '@components/StyledDialog/StyledDialog';
