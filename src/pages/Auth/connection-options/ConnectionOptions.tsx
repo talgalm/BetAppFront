@@ -9,11 +9,11 @@ import { authSteps, AuthStepValueTypes } from '../welcome-page/auth-steps';
 import FacebookLoginButton from './FacebookLogin';
 import GoogleLoginButton from './GoogleLogin';
 import {
-  AppleIcon,
   BottomContainer,
   ConnectionOptionsContainer,
-  ConnectionOptionsTab,
   DividerWithText,
+  ConnectionOptionsTab,
+  AppleIcon,
   DontHaveAccountContainer,
 } from './ConnectionOptions.styles';
 
@@ -24,7 +24,7 @@ interface ConnectionOptionsProps {
 const ConnectionOptions = ({ current }: ConnectionOptionsProps): JSX.Element => {
   const theme = useTheme();
   const { t } = useTranslation();
-  const [step, setActiveStep] = useAtom(UserActiveStep);
+  const [_, setActiveStep] = useAtom(UserActiveStep);
 
   const handleNextStep = () => {
     if (current === 'Register') {

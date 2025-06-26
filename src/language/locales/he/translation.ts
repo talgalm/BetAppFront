@@ -3,7 +3,7 @@ import Input from '@components/Inputs/Input.lang.json';
 import Switch from '@components/Switch/Switch.lang.json';
 import Calendar from '@components/Calendar/Calendar.lang.json';
 import Header from '@layout/Header/Header.lang.json';
-import ContactModal from '@pages/ContactModal/ContactModal.lang.json';
+import ContactModal from '@pages/contact-modal/ContactModal.lang.json';
 import BetPage from '@pages/Bet/BetPage.lang.json';
 import Schemas from '@schemas/Schemas.lang.json';
 

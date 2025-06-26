@@ -22,7 +22,7 @@ import {
   StyledAvatar,
   StyledDivider,
 } from '../Participants/Participants.styles';
-import ContactModal from '../../../ContactModal/ContactModal';
+import ContactModal from '../../../contact-modal/ContactModal';
 import { CreateBetInputs, Participant } from '../../new-bet-steps';
 import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';

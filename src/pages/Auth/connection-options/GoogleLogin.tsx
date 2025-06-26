@@ -1,5 +1,4 @@
 import { GoogleIcon } from './ConnectionOptions.styles';
-import { useQueryClient } from '@tanstack/react-query';
 
 function GoogleLoginButton() {
   const handleGoogleLogin = () => {
