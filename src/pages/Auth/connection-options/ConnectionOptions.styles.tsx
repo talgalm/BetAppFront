@@ -4,6 +4,7 @@ import { ReactComponent as Facebook } from '@assets/icons/authIcons/FacebookIcon
 import { ReactComponent as Google } from '@assets/icons/authIcons/GoogleIcon.svg';
 import { ReactComponent as Apple } from '@assets/icons/authIcons/AppleIcon.svg';
 import { DIVIDER_GREY } from '@theme/colorTheme';
+import { CSSProperties } from 'react';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
@@ -97,3 +98,9 @@ export const DontHaveAccountContainer = styled('div')({
   padding: 16,
   gap: 3,
 });
+
+export const EllipsisTextStyle: CSSProperties = {
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};

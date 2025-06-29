@@ -15,6 +15,7 @@ import {
   ConnectionOptionsTab,
   AppleIcon,
   DontHaveAccountContainer,
+  EllipsisTextStyle,
 } from './ConnectionOptions.styles';
 
 interface ConnectionOptionsProps {
@@ -71,7 +72,7 @@ const ConnectionOptions = ({ current }: ConnectionOptionsProps): JSX.Element => 
           <Typography
             value={t('WelcomePage.ConnectWith')}
             variant={TypographyTypes.TextSmall}
-            styleProps={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+            styleProps={EllipsisTextStyle}
           />
         </DividerWithText>
         <ConnectionOptionsTab>

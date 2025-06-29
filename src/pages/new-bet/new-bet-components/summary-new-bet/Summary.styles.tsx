@@ -1,5 +1,6 @@
 import { Avatar, Divider, styled } from '@mui/material';
-import { DIVIDER_PURPLE } from '@theme/colorTheme';
+import { DIVIDER_PURPLE, PRIMARY_BLACK } from '@theme/colorTheme';
+import { CSSProperties } from 'react';
 
 export const SummaryContainer = styled('div')({
   display: 'flex',
@@ -65,3 +66,12 @@ export const SmallAvatar = styled(Avatar)({
   height: 24,
   fontSize: 11,
 });
+
+export const EllipsisTextStyle: CSSProperties = {
+  color: PRIMARY_BLACK,
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  width: '300px',
+  direction: 'rtl',
+};
