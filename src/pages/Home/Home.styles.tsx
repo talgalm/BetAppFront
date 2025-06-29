@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { COMPLEX_CONTAIER, PRIMARY_WHITE } from '@theme/colorTheme';
 
 export const HomeDivContainer = styled('div')({
   display: 'flex',
@@ -17,7 +18,7 @@ export const ComplexContainer = styled('div')({
   gap: 8,
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: '#EFF6FF',
+  backgroundColor: COMPLEX_CONTAIER,
   width: '100%',
   direction: 'rtl',
   boxShadow: `
@@ -42,7 +43,7 @@ interface NotificationCubeProps {
 }
 
 export const NotificationCubeContainer = styled('div')<NotificationCubeProps>(
-  ({ backgroundColor = '#fff' }) => ({
+  ({ backgroundColor = PRIMARY_WHITE }) => ({
     padding: 16,
     borderRadius: 8,
     gap: 8,
@@ -62,7 +63,7 @@ interface NotificationNumberProps {
 }
 
 export const NotificationNumber = styled('div')<NotificationNumberProps>(
-  ({ backgroundColor = '#fff' }) => ({
+  ({ backgroundColor = PRIMARY_WHITE }) => ({
     borderRadius: 8,
     display: 'flex',
     width: 16,

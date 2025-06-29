@@ -8,7 +8,7 @@ import {
   StyledDivider,
 } from './Betim.styles';
 import { Typography } from '@components/Topography/typography';
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, PRIMARY_GREY } from '@theme/colorTheme';
 import { ReactComponent as PlusIcon } from '@assets/icons/AddIcon.svg';
 import { ReactComponent as MinusIcon } from '@assets/icons/Minus.svg';
 import { useTranslation } from 'react-i18next';
@@ -108,7 +108,7 @@ const Betim = <T extends FieldValues>({ inputName, control }: BetimProps<T>): JS
         <Typography
           value={`${t('NewBet.betimDisclaimer')}`}
           variant={TypographyTypes.TextSmall}
-          styleProps={{ color: '#9798A2' }}
+          styleProps={{ color: PRIMARY_GREY }}
         />
       </div>
     </>

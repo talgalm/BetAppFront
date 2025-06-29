@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_BACKGROUND } from '@theme/colorTheme';
+import { OVERLAY_GREY, PRIMARY_WHITE } from '@theme/colorTheme';
 
 export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => ({
   position: 'fixed',
@@ -7,7 +7,7 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: '#B2B2B259',
+  backgroundColor: OVERLAY_GREY,
   backdropFilter: 'blur(6px)',
   zIndex: 9999,
   display: 'flex',
@@ -24,7 +24,7 @@ export const PopUpOverlay = styled('div')<{ isOpen?: boolean }>(({ isOpen }) => 
 
 export const PopUpContainer = styled('div')({
   width: '100%',
-  backgroundColor: `${PRIMARY_BACKGROUND}`,
+  backgroundColor: `${PRIMARY_WHITE}`,
   borderRadius: 16,
   padding: 16,
   display: 'flex',

@@ -2,6 +2,7 @@ import React from 'react';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { Typography } from '@components/Topography/typography';
 import { SummaryRow } from '../../new-bet/new-bet-components/summary-new-bet/Summary.styles';
+import { PRIMARY_BLACK } from '@theme/colorTheme';
 
 interface FilesRowProps {
   id: string;
@@ -34,7 +35,7 @@ const BetFilesRow: React.FC<FilesRowProps> = ({ fileName, fileType, url }) => {
       <Typography
         value={fileName}
         variant={TypographyTypes.TextSmall}
-        styleProps={{ color: 'black' }}
+        styleProps={{ color: PRIMARY_BLACK }}
       />
     </SummaryRow>
   );

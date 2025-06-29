@@ -23,7 +23,7 @@ import { ErrorHandler } from '@errors/ErrorHandler';
 import { useErrorBoundary } from 'react-error-boundary';
 import { ErrorTypes } from '@errors/errors';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { FILES_UPLOAD_BLUE, PRIMARY_GREEN, PRIMARY_GREY } from '@theme/colorTheme';
 
 interface NewBetFilesProps<T extends FieldValues> {
   control?: Control<T>;
@@ -71,12 +71,12 @@ const NewBetFiles = <T extends FieldValues>({
           <Typography
             value={t(`NewBet.uploadFilesTitle`)}
             variant={TypographyTypes.TextBig}
-            styleProps={{ color: '#001845', fontWeight: 400 }}
+            styleProps={{ color: FILES_UPLOAD_BLUE, fontWeight: 400 }}
           />
           <Typography
             value={t(`NewBet.uploadFilesSubtitle`)}
             variant={TypographyTypes.TextSmall}
-            styleProps={{ color: '#9798A2', fontWeight: 500 }}
+            styleProps={{ color: PRIMARY_GREY, fontWeight: 500 }}
           />
         </FilesRow>
         <StyledButton

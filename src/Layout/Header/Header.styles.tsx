@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import '@fontsource/ibm-plex-sans-hebrew';
 import { HeaderComponentStyles, HeaderStyle } from '@theme/layoutStyles';
+import { COMPLEX_CONTAIER, ERROR2_COLOR } from '@theme/colorTheme';
 
 interface HeaderProps {
   headerStyle?: HeaderStyle;
@@ -39,7 +40,7 @@ export const LeftIconDiv = styled('div')({
   padding: '4px 8px 4px 8px',
   gap: 4,
   borderRadius: 4,
-  backgroundColor: '#EFF6FF',
+  backgroundColor: COMPLEX_CONTAIER,
 });
 
 export const LeftIconNoBack = styled('div')({
@@ -58,7 +59,7 @@ export const BetimIconDiv = styled('div')({});
 export const VerificationContainer = styled('div')({
   position: 'absolute',
   marginTop: 56,
-  backgroundColor: '#DA3E3E4D',
+  backgroundColor: `${ERROR2_COLOR}4D`,
   padding: '8px 16px 8px 16px',
   display: 'flex',
   justifyContent: 'flex-end',

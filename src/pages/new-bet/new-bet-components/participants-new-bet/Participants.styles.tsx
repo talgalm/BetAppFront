@@ -1,7 +1,13 @@
 import { styled } from '@mui/material/styles';
 import { Avatar, Divider } from '@mui/material';
 import { ReactComponent as CloseIcon } from '@assets/icons/FullClose.svg';
-import { PRIMARY_BACKGROUND, THIRD_GREEN } from '@theme/colorTheme';
+import {
+  PRIMARY_WHITE,
+  LIGHT_GREEN,
+  PRIMARY_BLACK,
+  TAG_PURPLE,
+  DIVIDER_GREY,
+} from '@theme/colorTheme';
 
 export const RowCenterContentContainer = styled('div')({
   display: 'flex',
@@ -42,7 +48,7 @@ export const SelectedContainer = styled('div')({
     display: 'none',
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#C8C8E1',
+    background: TAG_PURPLE,
     borderRadius: 10,
   },
 });
@@ -54,7 +60,7 @@ export const ParticipantsContent = styled('div')({
   alignItems: 'flex-start',
   flexDirection: 'column',
   width: 'calc(100% + 10px)',
-  backgroundColor: `${PRIMARY_BACKGROUND}`,
+  backgroundColor: `${PRIMARY_WHITE}`,
 });
 
 export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
@@ -66,7 +72,7 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     padding: 4,
     alignItems: 'center',
     borderRadius: 8,
-    backgroundColor: background ? `${THIRD_GREEN}` : 'transparent',
+    backgroundColor: background ? `${LIGHT_GREEN}` : 'transparent',
   })
 );
 
@@ -120,7 +126,7 @@ export const NameText = styled('div')({
   marginTop: 5,
   marginBottom: 5,
   fontSize: 12,
-  color: 'black',
+  color: PRIMARY_BLACK,
   textAlign: 'center',
 });
 
@@ -140,6 +146,6 @@ export const ParticipantsCollapseRow = styled('div')({
 export const StyledDivider = styled(Divider)({
   width: '100%',
   borderBottomWidth: 1,
-  borderColor: '#DADADA',
+  borderColor: DIVIDER_GREY,
   marginBottom: 16,
 });

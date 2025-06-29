@@ -3,6 +3,7 @@ import { ReactComponent as BetimIcon } from '@assets/icons/layoutIcons/BetimHead
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '@interfaces/User.interface';
+import { BETIM_BLUE } from '@theme/colorTheme';
 
 interface BetimCounterProps {
   user: User | undefined | null;
@@ -50,7 +51,7 @@ export const BetimCounter = ({ user }: BetimCounterProps) => {
       <Typography
         value={animatedBetim}
         variant={TypographyTypes.TextSmall}
-        styleProps={{ color: '#2A69C6' }}
+        styleProps={{ color: BETIM_BLUE }}
       />
     </>
   );

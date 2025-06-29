@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, PRIMARY_GREY } from '@theme/colorTheme';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
@@ -53,10 +53,10 @@ export const CubeInput = styled(TextField, {
   borderRadius: 8,
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      border: hasValue ? `1px solid ${PRIMARY_GREEN}` : '1px solid #9798A2',
+      border: hasValue ? `1px solid ${PRIMARY_GREEN}` : `1px solid ${PRIMARY_GREY}`,
     },
     '&:hover fieldset': {
-      border: hasValue ? `1px solid ${PRIMARY_GREEN}` : '1px solid #9798A2',
+      border: hasValue ? `1px solid ${PRIMARY_GREEN}` : `1px solid ${PRIMARY_GREY}`,
     },
     '&.Mui-focused fieldset': {
       border: `1px solid ${PRIMARY_GREEN}`,

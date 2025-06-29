@@ -1,5 +1,5 @@
 import { styled } from '@mui/material';
-import { SECONDARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import { SECONDARY_GREEN, LIGHT_GREEN, DIVIDER_GREY } from '@theme/colorTheme';
 
 export const UserListContainer = styled('div')({
   display: 'flex',
@@ -16,7 +16,7 @@ export const UserListRowWithBorderContainer = styled('div')<{
   flexDirection: 'column',
   gap: 5,
 
-  backgroundColor: finisMode && selected ? `${THIRD_GREEN}` : 'white',
+  backgroundColor: finisMode && selected ? `${LIGHT_GREEN}` : 'white',
 
   border: finisMode ? `1px solid var(--TealDisabled, ${SECONDARY_GREEN})` : 'none',
   borderRadius: finisMode ? 16 : 0,
@@ -26,7 +26,7 @@ export const UserListRowWithBorderContainer = styled('div')<{
 
   ...(selected && !finisMode
     ? {
-        borderBottom: '1px solid #DADADA',
+        borderBottom: `1px solid ${DIVIDER_GREY}`,
         paddingBottom: 10,
       }
     : {}),

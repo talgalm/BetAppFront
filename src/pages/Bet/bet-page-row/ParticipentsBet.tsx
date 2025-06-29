@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useBet } from '../hooks/useBet';
 import { User } from '@interfaces/User.interface';
 import { UserSingleRow } from './BetPageRow.styles';
+import { PRIMARY_BLACK } from '@theme/colorTheme';
 
 const ParticipentsBet: React.FC<{ user: User }> = ({ user }) => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const ParticipentsBet: React.FC<{ user: User }> = ({ user }) => {
       <Typography
         value={user.fullName}
         variant={TypographyTypes.TextMedium}
-        styleProps={{ color: 'black' }}
+        styleProps={{ color: PRIMARY_BLACK }}
       />
     </UserSingleRow>
   );

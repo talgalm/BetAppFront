@@ -3,6 +3,7 @@ import { Divider } from '@mui/material';
 import { ReactComponent as Facebook } from '@assets/icons/authIcons/FacebookIcon.svg';
 import { ReactComponent as Google } from '@assets/icons/authIcons/GoogleIcon.svg';
 import { ReactComponent as Apple } from '@assets/icons/authIcons/AppleIcon.svg';
+import { DIVIDER_GREY } from '@theme/colorTheme';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
@@ -65,7 +66,7 @@ export const FacebookIcon = styled(Facebook)({
   height: 56,
   borderRadius: 8,
   padding: 15,
-  border: '1px solid #DADADA',
+  border: `1px solid ${DIVIDER_GREY}`,
 });
 
 export const GoogleIcon = styled(Google)({
@@ -74,7 +75,7 @@ export const GoogleIcon = styled(Google)({
   height: 56,
   borderRadius: 8,
   padding: 15,
-  border: '1px solid #DADADA',
+  border: `1px solid ${DIVIDER_GREY}`,
 });
 
 export const AppleIcon = styled(Apple)({
@@ -83,7 +84,7 @@ export const AppleIcon = styled(Apple)({
   height: 56,
   borderRadius: 8,
   padding: 15,
-  border: '1px solid #DADADA',
+  border: `1px solid ${DIVIDER_GREY}`,
 });
 
 export const DontHaveAccountContainer = styled('div')({

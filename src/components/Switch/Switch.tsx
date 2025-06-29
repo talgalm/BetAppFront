@@ -8,6 +8,7 @@ import { TypographyTypes } from '../Topography/TypographyTypes';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as HomeIcon } from '@assets/icons/layoutIcons/SwitchHome.svg';
 import { ReactComponent as ProfileIcon } from '@assets/icons/layoutIcons/SwitchProfile.svg';
+import { PRIMARY_WHITE, SWITCH_GREY, SWITCH_WHITE, THIRD_GREEN } from '@theme/colorTheme';
 
 const CustomSwitch = styled(Switch)({
   width: 335,
@@ -22,7 +23,7 @@ const CustomSwitch = styled(Switch)({
       transform: 'translateX(160px)',
       color: 'red',
       '& + .MuiSwitch-track': {
-        backgroundColor: '#f8f8fb',
+        backgroundColor: SWITCH_WHITE,
         opacity: 1,
       },
     },
@@ -31,11 +32,11 @@ const CustomSwitch = styled(Switch)({
     width: 160,
     height: 48,
     borderRadius: 28,
-    backgroundColor: '#fff',
+    backgroundColor: PRIMARY_WHITE,
   },
   '& .MuiSwitch-track': {
     borderRadius: 32,
-    backgroundColor: '#f8f8fb',
+    backgroundColor: SWITCH_WHITE,
     opacity: 1,
   },
 });
@@ -65,14 +66,14 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
             justifyContent: 'center',
             zIndex: 2,
             pointerEvents: 'none',
-            color: checked ? '#9e9e9e' : '#4cafab',
+            color: checked ? SWITCH_GREY : THIRD_GREEN,
           }}
         >
           <ProfileIcon />
           <Typography
             value={t('Switch.Profile')}
             variant={TypographyTypes.TextSmall}
-            styleProps={{ color: checked ? '#9e9e9e' : '', fontSize: 10 }}
+            styleProps={{ color: checked ? SWITCH_GREY : '', fontSize: 10 }}
           />
         </Box>
 
@@ -90,14 +91,14 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
             justifyContent: 'center',
             zIndex: 2,
             pointerEvents: 'none',
-            color: checked ? '#4cafab' : '#9e9e9e',
+            color: checked ? THIRD_GREEN : SWITCH_GREY,
           }}
         >
           <HomeIcon />
           <Typography
             value={t('Switch.Home')}
             variant={TypographyTypes.TextSmall}
-            styleProps={{ color: checked ? '' : '#9e9e9e', fontSize: 10 }}
+            styleProps={{ color: checked ? '' : SWITCH_GREY, fontSize: 10 }}
           />
         </Box>
 

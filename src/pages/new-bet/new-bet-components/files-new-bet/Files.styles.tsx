@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { ReactComponent as CloseIcon } from '@assets/icons/FullClose.svg';
-import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, LIGHT_GREEN, TAG_PURPLE, DIVIDER_PURPLE } from '@theme/colorTheme';
 
 export const FilesContainer = styled('div')({
   display: 'flex',
@@ -8,7 +8,7 @@ export const FilesContainer = styled('div')({
   alignItems: 'center',
   width: 343,
   height: '30vh',
-  backgroundColor: `${THIRD_GREEN}`,
+  backgroundColor: `${LIGHT_GREEN}`,
   borderRadius: 8,
   border: `1px dashed ${PRIMARY_GREEN}`,
   flexDirection: 'column',
@@ -52,7 +52,7 @@ export const SelectedContainer = styled('div')({
     display: 'none',
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#C8C8E1',
+    background: DIVIDER_PURPLE,
     borderRadius: 10,
   },
 });
@@ -86,7 +86,7 @@ export const StyledPDF = styled('div')({
   gap: 4,
   flexShrink: 0,
   borderRadius: 6,
-  backgroundColor: '#CED0EF',
+  backgroundColor: TAG_PURPLE,
 });
 
 export const StyledImage = styled('img')({

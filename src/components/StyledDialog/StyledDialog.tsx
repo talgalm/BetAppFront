@@ -9,6 +9,7 @@ import ButtonsHub, { ButtonsHubStatus } from '@components/ButtonsHub/ButtonsHub'
 import { ButtonConfig } from '../Button/StyledButton';
 import { useAtom } from 'jotai';
 import { dialogActionAtom } from '@store/dialogAtoms';
+import { PRIMARY_BLACK } from '@theme/colorTheme';
 
 export enum DialogType {
   BetCreation = 'betCreation',
@@ -46,11 +47,15 @@ export const StyledDialog: React.FC<ConfirmDialogProps> = ({ open, type, closeMo
         </PopUpHeader>
 
         <PopUpContent>
-          <Typography value={title} variant={TypographyTypes.H3} styleProps={{ color: 'black' }} />
+          <Typography
+            value={title}
+            variant={TypographyTypes.H3}
+            styleProps={{ color: PRIMARY_BLACK }}
+          />
           <Typography
             value={subtitle}
             variant={TypographyTypes.TextMedium}
-            styleProps={{ color: 'black' }}
+            styleProps={{ color: PRIMARY_BLACK }}
           />
         </PopUpContent>
 

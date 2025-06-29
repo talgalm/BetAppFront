@@ -1,5 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_BACKGROUND, PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import {
+  PRIMARY_WHITE,
+  PRIMARY_GREEN,
+  LIGHT_GREEN,
+  DIVIDER_PURPLE,
+  CONTAINER_WHITE,
+} from '@theme/colorTheme';
 
 export const HomeWrapperContainer = styled('div')({
   display: 'flex',
@@ -16,7 +22,7 @@ export const HomeDivContainer = styled('div')<{ marginTop?: number }>(({ marginT
   marginTop,
   width: '100%',
   position: 'fixed',
-  backgroundColor: `${PRIMARY_BACKGROUND}`,
+  backgroundColor: `${PRIMARY_WHITE}`,
 }));
 
 export const ProgressBarContainer = styled('div')<{ marginTop?: number }>(({ marginTop = 0 }) => ({
@@ -171,7 +177,7 @@ export const SelectedContainer = styled('div')({
     display: 'none',
   },
   '&::-webkit-scrollbar-thumb': {
-    background: '#C8C8E1',
+    background: DIVIDER_PURPLE,
     borderRadius: 10,
   },
 });
@@ -186,7 +192,7 @@ export const ParticipantsContent = styled('div')({
   height: '30vh',
   marginTop: 10,
   borderBottom: '1px solid #C8C8E1',
-  backgroundColor: `${PRIMARY_BACKGROUND}`,
+  backgroundColor: `${PRIMARY_WHITE}`,
 });
 
 export const ConditionsContent = styled('div')({
@@ -219,7 +225,7 @@ export const ParticipantsContentRow = styled('div')<{ background?: boolean }>(
     paddingBottom: 4,
     paddingLeft: 8,
     paddingRight: 8,
-    backgroundColor: background ? `${THIRD_GREEN}` : 'transparent',
+    backgroundColor: background ? `${LIGHT_GREEN}` : 'transparent',
   })
 );
 
@@ -238,7 +244,7 @@ export const FilesContainer = styled('div')({
   alignItems: 'center',
   width: '100%',
   height: '23vh',
-  backgroundColor: '#EEF9F8',
+  backgroundColor: CONTAINER_WHITE,
   borderRadius: 8,
   border: `1px dashed ${PRIMARY_GREEN}`,
   flexDirection: 'column',

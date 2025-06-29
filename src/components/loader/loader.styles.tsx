@@ -1,11 +1,12 @@
 import { styled } from '@mui/material/styles';
+import { PRIMARY_WHITE } from '@theme/colorTheme';
 
 export const LoaderContainer = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   height: '100vh',
-  backgroundColor: '#f9f9f9',
+  backgroundColor: PRIMARY_WHITE,
   position: 'fixed',
   top: 0,
   left: 0,

@@ -1,4 +1,5 @@
 import { Avatar, Divider, styled } from '@mui/material';
+import { DIVIDER_PURPLE } from '@theme/colorTheme';
 
 export const SummaryContainer = styled('div')({
   display: 'flex',
@@ -55,7 +56,7 @@ export const ParticipantsRow = styled('div')({
 export const StyledDivider = styled(Divider)({
   width: '100%',
   borderBottomWidth: 1,
-  borderColor: '#C8C8E1',
+  borderColor: DIVIDER_PURPLE,
 });
 
 export const SmallAvatar = styled(Avatar)({

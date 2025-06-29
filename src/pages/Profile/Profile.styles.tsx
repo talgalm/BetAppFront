@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import { PRIMARY_BACKGROUND } from '@theme/colorTheme';
+import { PRIMARY_WHITE } from '@theme/colorTheme';
 
 export const HomeDivContainer = styled('div')({
   display: 'flex',
@@ -22,7 +22,7 @@ export const ProfileImageWrapper = styled('div')({
 export const ProfileImage = styled(Avatar)<{ enter?: boolean }>(({ enter }) => ({
   width: 100,
   height: 100,
-  border: `4px solid ${PRIMARY_BACKGROUND}`,
+  border: `4px solid ${PRIMARY_WHITE}`,
   zIndex: 12,
   position: 'fixed',
   opacity: enter ? 1 : 0,

@@ -15,6 +15,7 @@ import { useAtom } from 'jotai';
 import BetFilesRow from './BetFilesRow';
 import { BetFile } from '@interfaces/Bet.interface';
 import { finishBetAtom } from '@store/betAtoms';
+import { PRIMARY_BLACK } from '@theme/colorTheme';
 
 const FieldRow: React.FC<FieldRowProps> = ({
   label,
@@ -40,7 +41,10 @@ const FieldRow: React.FC<FieldRowProps> = ({
           <Typography
             value={label}
             variant={TypographyTypes.H3}
-            styleProps={{ color: 'black', marginBottom: label === t('BetPage.whoWon') ? 10 : 0 }}
+            styleProps={{
+              color: PRIMARY_BLACK,
+              marginBottom: label === t('BetPage.whoWon') ? 10 : 0,
+            }}
           />
           {background ? (
             <SummaryRow background={background}>
@@ -48,7 +52,7 @@ const FieldRow: React.FC<FieldRowProps> = ({
                 <Typography
                   value={value}
                   variant={TypographyTypes.TextSmall}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               )}
               {Icon && <Icon width={18} height={18} />}

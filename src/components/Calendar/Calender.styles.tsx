@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, LIGHT_GREEN } from '@theme/colorTheme';
 import Calendar from 'react-calendar';
 
 export const StyledCalendar = styled(Calendar)`
@@ -43,7 +43,7 @@ export const StyledCalendar = styled(Calendar)`
     width: 30px;
     height: 30px;
     font-size: 16px;
-    background-color: ${THIRD_GREEN};
+    background-color: ${LIGHT_GREEN};
     border-radius: 50%;
     display: flex;
     justify-content: center;

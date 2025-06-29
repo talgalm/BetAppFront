@@ -2,7 +2,13 @@ import { Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ReactComponent as ArrowIcon } from '@assets/icons/betIcons/Arrow.svg';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
-import { ERROR_COLOR, PRIMARY_BACKGROUND, PRIMARY_GREEN, SECONDARY_GREEN } from '@theme/colorTheme';
+import {
+  ERROR_COLOR,
+  PRIMARY_WHITE,
+  PRIMARY_GREEN,
+  SECONDARY_GREEN,
+  SECONDARY_ORANGE,
+} from '@theme/colorTheme';
 
 export const MainContainer = styled('div')({
   display: 'flex',
@@ -26,7 +32,7 @@ export const HeaderContainer = styled('div')({
   width: '100%',
   zIndex: 2,
   textAlign: 'right',
-  backgroundColor: `${PRIMARY_BACKGROUND}`,
+  backgroundColor: `${PRIMARY_WHITE}`,
   boxShadow: `
     0px 2px 5px 0px #CBC6E31A,
     0px 9px 9px 0px #CBC6E317,
@@ -100,7 +106,7 @@ export const AvatarRow = styled('div')({
 });
 
 const statusToBorder: Record<ParticipantStatus, string> = {
-  pending: '#EF9645',
+  pending: SECONDARY_ORANGE,
   active: PRIMARY_GREEN,
   canceled: ERROR_COLOR,
   voted: '',

@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { ReactComponent as Apple } from '@assets/icons/authIcons/AppleIcon.svg';
+import { DIVIDER_GREY } from '@theme/colorTheme';
 
 export const HeaderContainer = styled('div')({
   width: '100%',
@@ -27,7 +28,7 @@ export const AppleIcon = styled(Apple)({
   height: 56,
   borderRadius: 8,
   padding: 15,
-  border: '1px solid #DADADA',
+  border: `1px solid ${DIVIDER_GREY}`,
 });
 
 export const DontHaveAccountContainer = styled('div')({

@@ -16,6 +16,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useEffect } from 'react';
 import { fireConfetti } from '@utils/confetti';
 import NewBetParticipants from '../new-bet-components/participants-new-bet/Participants';
+import { PRIMARY_BLACK } from '@theme/colorTheme';
 
 interface NewBetProps<T extends FieldValues> {
   type?: NewBetStepValueTypes;
@@ -43,14 +44,14 @@ const NewBetContent = <T extends FieldValues>({
         <Typography
           value={t(`NewBet.${type}Title`)}
           variant={TypographyTypes.H1}
-          styleProps={{ color: 'black' }}
+          styleProps={{ color: PRIMARY_BLACK }}
         />
       </RowContentContainer>
       <RowContentContainer>
         <Typography
           value={t(`NewBet.${type}Subtitle`)}
           variant={TypographyTypes.H2}
-          styleProps={{ color: 'black' }}
+          styleProps={{ color: PRIMARY_BLACK }}
         />
       </RowContentContainer>
       {t(`NewBet.${type}Subtitle2`) !== '' && (
@@ -58,7 +59,7 @@ const NewBetContent = <T extends FieldValues>({
           <Typography
             value={t(`NewBet.${type}Subtitle2`)}
             variant={TypographyTypes.H3}
-            styleProps={{ color: 'black' }}
+            styleProps={{ color: PRIMARY_BLACK }}
           />
         </RowContentContainer>
       )}

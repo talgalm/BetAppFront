@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { LinearProgress, linearProgressClasses } from '@mui/material';
-import { PROGRESS_BAR_PRIMARY_COLOR, THIRD_GREEN } from '@theme/colorTheme';
+import { PROGRESS_BAR_PRIMARY_COLOR, LIGHT_GREEN } from '@theme/colorTheme';
 
 export const ProgressBarContainer = styled('div')({
   position: 'relative',
@@ -14,9 +14,9 @@ export const ProgressBarContent = styled(LinearProgress)(({ theme }) => ({
   borderRadius: 5,
   transform: 'rotate(180deg)',
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: `${THIRD_GREEN}`,
+    backgroundColor: `${LIGHT_GREEN}`,
     ...theme.applyStyles('dark', {
-      backgroundColor: `${THIRD_GREEN}`,
+      backgroundColor: `${LIGHT_GREEN}`,
     }),
   },
   [`& .${linearProgressClasses.bar}`]: {

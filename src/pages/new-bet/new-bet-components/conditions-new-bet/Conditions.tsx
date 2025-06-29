@@ -18,7 +18,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useAtom } from 'jotai';
 import { HeaderStyle } from '@theme/layoutStyles';
 import { headerAtom } from '@store/layoutAtoms';
-import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, LIGHT_GREEN, PRIMARY_BLACK } from '@theme/colorTheme';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   control?: Control<T>;
@@ -71,7 +71,7 @@ const NewBetConditions = <T extends FieldValues>({
                 <Typography
                   value={user.fullName?.split(' ')[0] || ''}
                   variant={TypographyTypes.TextBig}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               </ConditionsRowContentCenter>
 
@@ -91,7 +91,7 @@ const NewBetConditions = <T extends FieldValues>({
                   />
                 )}
                 {userDate && (
-                  <TagStyled background={THIRD_GREEN}>
+                  <TagStyled background={LIGHT_GREEN}>
                     <Typography value={formatDate(userDate)} variant={TypographyTypes.TextMedium} />
                   </TagStyled>
                 )}

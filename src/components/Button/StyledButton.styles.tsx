@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_BACKGROUND, PRIMARY_GREEN, SECONDARY_GREEN } from '@theme/colorTheme';
+import { PRIMARY_WHITE, PRIMARY_GREEN, SECONDARY_GREEN } from '@theme/colorTheme';
 
 interface StyledButtonProps {
   buttonColor?: string;
@@ -23,7 +23,7 @@ export const ButtonStyles = styled('button')<StyledButtonProps>(({ buttonColor, 
   //     ? `1.5px solid ${PRIMARY_COLOR}`
   //     : 'none',
   border: 'none',
-  color: `${PRIMARY_BACKGROUND}`,
+  color: `${PRIMARY_WHITE}`,
   opacity: disabled ? 0.6 : 1,
   pointerEvents: disabled ? 'none' : 'auto',
 }));

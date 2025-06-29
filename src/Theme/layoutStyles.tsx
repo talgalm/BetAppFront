@@ -1,4 +1,4 @@
-import { PRIMARY_BACKGROUND, PRIMARY_GREEN } from './colorTheme';
+import { PRIMARY_WHITE, PRIMARY_GREEN } from './colorTheme';
 import { CSSObject } from '@mui/material/styles';
 
 export interface Layout {
@@ -25,13 +25,13 @@ export const HeaderComponentStyles: Record<HeaderStyle, CSSObject> = {
   [HeaderStyle.PRIMARY]: {
     ...baseHeaderStyle,
     height: 56,
-    backgroundColor: PRIMARY_BACKGROUND,
+    backgroundColor: PRIMARY_WHITE,
     zIndex: 1,
   },
   [HeaderStyle.SECONDARY]: {
     ...baseHeaderStyle,
     height: 56,
-    backgroundColor: PRIMARY_BACKGROUND,
+    backgroundColor: PRIMARY_WHITE,
     zIndex: 0,
   },
   [HeaderStyle.PROFILE]: {

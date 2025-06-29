@@ -15,7 +15,7 @@ import {
   SmallAvatar,
   StyledDivider,
 } from '@pages/new-bet/new-bet-components/participants-new-bet/Participants.styles';
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { PRIMARY_BLACK, PRIMARY_GREEN, PRIMARY_ORANGE } from '@theme/colorTheme';
 
 const WinnerSection = ({ winners }: { winners: User[] }) => (
   <>
@@ -34,19 +34,19 @@ const WinnerSection = ({ winners }: { winners: User[] }) => (
               <Typography
                 value={winner.fullName}
                 variant={TypographyTypes.TextMedium}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
             </WinnerRowInner>
             <WinnerRowInnerSec>
               <Typography
                 value={t('BetPage.betim')}
                 variant={TypographyTypes.H2}
-                styleProps={{ color: '#D97706' }}
+                styleProps={{ color: PRIMARY_ORANGE }}
               />
               <Typography
                 value={winner.betim}
                 variant={TypographyTypes.H2}
-                styleProps={{ color: '#D97706' }}
+                styleProps={{ color: PRIMARY_ORANGE }}
               />
               <WinnerCupIcon />
             </WinnerRowInnerSec>

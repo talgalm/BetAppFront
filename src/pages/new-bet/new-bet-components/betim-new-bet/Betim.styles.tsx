@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { PRIMARY_GREEN, THIRD_GREEN } from '@theme/colorTheme';
+import { PRIMARY_GREEN, LIGHT_GREEN, CONTAINER_WHITE } from '@theme/colorTheme';
 
 export const CoinsGridContainer = styled('div')({
   display: 'flex',
@@ -16,7 +16,7 @@ export const CoinContainer = styled('div')<{
   display: 'flex',
   width: '100%',
   height: '7vh',
-  backgroundColor: '#EEF9F8',
+  backgroundColor: CONTAINER_WHITE,
   borderRadius: 12,
   justifyContent: 'center',
   alignItems: 'center',
@@ -37,7 +37,7 @@ export const RowContentContainer = styled('div')({
 export const StyledDivider = styled(Divider)({
   mx: 2,
   borderRightWidth: 2,
-  borderColor: `${THIRD_GREEN}`,
+  borderColor: `${LIGHT_GREEN}`,
   orientation: 'vertical',
 });
 

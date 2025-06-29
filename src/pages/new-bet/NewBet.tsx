@@ -15,7 +15,7 @@ import { ActiveStep } from '@store/newBetStepAtom';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRight } from '@assets/icons/arrowRight.svg';
 
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { PRIMARY_BLACK, PRIMARY_GREEN } from '@theme/colorTheme';
 import ProgressBar from '@components/ProgressBar/ProgressBar';
 import { useEffect, useState } from 'react';
 import NewBetContent from './new-bet-content/NewBetContent';
@@ -262,12 +262,12 @@ const NewBet = () => {
                 <Typography
                   value={t(`NewBet.DescriptionCheckboxTitle`)}
                   variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
                 <Typography
                   value={t(`NewBet.DescriptionCheckboxSubTitle`)}
                   variant={TypographyTypes.TextSmall}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               </CheckboxTextContainer>
             </CheckboxContainer>

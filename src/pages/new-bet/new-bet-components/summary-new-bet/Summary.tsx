@@ -28,7 +28,7 @@ import { useAtom } from 'jotai';
 import { ActiveStep } from '@store/newBetStepAtom';
 import { AvatarWrapper, StyledImage, StyledPDF } from '../files-new-bet/Files.styles';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-import { THIRD_GREEN } from '@theme/colorTheme';
+import { LIGHT_GREEN, PRIMARY_BLACK, TAG_PURPLE } from '@theme/colorTheme';
 
 const NewBetSummary: React.FC = () => {
   const { watch } = useFormContext<CreateBetInputs>();
@@ -49,7 +49,7 @@ const NewBetSummary: React.FC = () => {
           <Typography
             value={watch().name}
             variant={TypographyTypes.H2}
-            styleProps={{ color: 'black' }}
+            styleProps={{ color: PRIMARY_BLACK }}
           />
         )}
         <EditIcon />
@@ -64,7 +64,7 @@ const NewBetSummary: React.FC = () => {
             <Typography
               value={t('NewBet.SummaryParticipantsTitle')}
               variant={TypographyTypes.H3}
-              styleProps={{ color: 'black' }}
+              styleProps={{ color: PRIMARY_BLACK }}
             />
             <ParticipantsRow>
               {watch().participents?.map((participant: Participant, index) => (
@@ -88,13 +88,13 @@ const NewBetSummary: React.FC = () => {
               <Typography
                 value={t('NewBet.SummaryDescriptionTitle')}
                 variant={TypographyTypes.H3}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
               <Typography
                 value={watch().description || ''}
                 variant={TypographyTypes.TextBig}
                 styleProps={{
-                  color: 'black',
+                  color: PRIMARY_BLACK,
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -121,14 +121,14 @@ const NewBetSummary: React.FC = () => {
               <Typography
                 value={t('NewBet.SummaryConditionsTitle')}
                 variant={TypographyTypes.H3}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
-              <SummaryRow background={'#CED0EF'}>
+              <SummaryRow background={TAG_PURPLE}>
                 <SinglePeopleIcon />
                 <Typography
                   value={t('NewBet.SummaryConditionsaTag')}
                   variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               </SummaryRow>
             </SummaryColumn>
@@ -144,15 +144,15 @@ const NewBetSummary: React.FC = () => {
             <Typography
               value={t('NewBet.SummaryBetimTitle')}
               variant={TypographyTypes.H3}
-              styleProps={{ color: 'black' }}
+              styleProps={{ color: PRIMARY_BLACK }}
             />
             <SummaryRow>
-              <SummaryRow background={THIRD_GREEN}>
+              <SummaryRow background={LIGHT_GREEN}>
                 <SinglePeopleIcon />
                 <Typography
                   value={watch().betim}
                   variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
                 <BetimIcon width={18} height={18} />
               </SummaryRow>
@@ -172,13 +172,13 @@ const NewBetSummary: React.FC = () => {
               <Typography
                 value={t('NewBet.SummaryDeadlineTitle')}
                 variant={TypographyTypes.H3}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
-              <SummaryRow background={THIRD_GREEN}>
+              <SummaryRow background={LIGHT_GREEN}>
                 <Typography
                   value={formatDate(watch().deadline)}
                   variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               </SummaryRow>
             </SummaryColumn>
@@ -195,7 +195,7 @@ const NewBetSummary: React.FC = () => {
               <Typography
                 value={t('NewBet.SummaryFilesTitle')}
                 variant={TypographyTypes.H3}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
               <SummaryRow gap={4}>
                 {watch().files?.map((file: File, index: number) => (
@@ -228,7 +228,7 @@ const NewBetSummary: React.FC = () => {
               <Typography
                 value={t('NewBet.SummarySupervisorTitle')}
                 variant={TypographyTypes.H3}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
 
               <ParticipantsRow>
@@ -238,7 +238,7 @@ const NewBetSummary: React.FC = () => {
                 <Typography
                   value={watch().supervisor?.[0]?.fullName || ''}
                   variant={TypographyTypes.TextMedium}
-                  styleProps={{ color: 'black' }}
+                  styleProps={{ color: PRIMARY_BLACK }}
                 />
               </ParticipantsRow>
             </SummaryColumn>

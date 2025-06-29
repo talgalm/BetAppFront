@@ -1,5 +1,12 @@
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
+import {
+  ERROR_COLOR,
+  GREY2_INPUT,
+  GREY_INPUT,
+  LIGHT_INPUT,
+  PRIMARY_WHITE,
+} from '@theme/colorTheme';
 
 export const NumOfChars = styled('div')({
   display: 'flex',
@@ -41,19 +48,19 @@ export const StyledTextField = styled(TextField)<{
   '& .MuiOutlinedInput-root': {
     fontFamily: 'Fredoka, sans-serif !important',
     borderRadius: 16,
-    backgroundColor: '#fff',
+    backgroundColor: PRIMARY_WHITE,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.05)',
     '& fieldset': {
-      borderColor: '#E0E0E0',
+      borderColor: LIGHT_INPUT,
     },
     '&:hover fieldset': {
-      borderColor: '#BDBDBD',
+      borderColor: GREY_INPUT,
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#C8C8D0',
+      borderColor: GREY2_INPUT,
     },
     '&.Mui-error fieldset': {
-      borderColor: '#F44336',
+      borderColor: ERROR_COLOR,
     },
   },
   '& .MuiOutlinedInput-input': {
@@ -72,11 +79,11 @@ export const StyledTextField = styled(TextField)<{
       background: 'transparent',
     },
     '&::-webkit-scrollbar-thumb': {
-      background: '#E0E0E0',
+      background: LIGHT_INPUT,
       borderRadius: '4px',
     },
     '&::-webkit-scrollbar-thumb:hover': {
-      background: '#BDBDBD',
+      background: GREY_INPUT,
     },
   },
   '& .MuiInputAdornment-root': {

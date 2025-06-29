@@ -1,6 +1,7 @@
 import { AvatarGroup } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@mui/system';
+import { PRIMARY_WHITE } from '@theme/colorTheme';
 
 interface NotificationCubeProps {
   backgroundColor?: string;
@@ -33,7 +34,7 @@ const pulseShadow = keyframes`
 `;
 
 export const NotificationContainer = styled('div')<NotificationCubeProps>(
-  ({ backgroundColor = '#fff', animate = false }) => ({
+  ({ backgroundColor = PRIMARY_WHITE, animate = false }) => ({
     padding: 16,
     borderRadius: 16,
     gap: 16,
@@ -43,7 +44,7 @@ export const NotificationContainer = styled('div')<NotificationCubeProps>(
     display: 'flex',
     backgroundColor,
     boxShadow:
-      backgroundColor === '#fff'
+      backgroundColor === PRIMARY_WHITE
         ? `
         0px 2px 5px 0px #CBC6E31A,
         0px 9px 9px 0px #CBC6E317,

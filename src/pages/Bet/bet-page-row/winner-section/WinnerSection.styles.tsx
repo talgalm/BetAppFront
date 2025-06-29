@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { FORTH_GREEN, PRIMARY_GREEN } from '@theme/colorTheme';
 
 export const WinnerContainerWrapper = styled('div')({
   padding: 16,
@@ -13,7 +13,7 @@ export const WinnerContainer = styled('div')({
   borderRadius: 8,
   gap: 8,
   padding: 8,
-  backgroundColor: '#EFFDF4',
+  backgroundColor: FORTH_GREEN,
   boxShadow: `
       0px 1px 3px 0px ${PRIMARY_GREEN}1A,
       0px 5px 5px 0px ${PRIMARY_GREEN}17,

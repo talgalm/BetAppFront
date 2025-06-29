@@ -21,6 +21,7 @@ import {
   UserListRowContainer,
   UserListRowWithBorderContainer,
 } from './BetPageRow.styles';
+import { PRIMARY_BLACK, TAG_PURPLE, TEXT_BLUE } from '@theme/colorTheme';
 
 interface Props {
   arrValue?: Prediction[] | (User & { status?: ParticipantStatus });
@@ -99,7 +100,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
                   <Typography
                     value={participant.fullName}
                     variant={TypographyTypes.TextMedium}
-                    styleProps={{ color: 'black' }}
+                    styleProps={{ color: PRIMARY_BLACK }}
                   />
                 </div>
                 {isOpen && isFinish && (
@@ -113,14 +114,14 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
               <Typography
                 value={participant.guess}
                 variant={TypographyTypes.TextSmall}
-                styleProps={{ color: 'black' }}
+                styleProps={{ color: PRIMARY_BLACK }}
               />
               {participant.date && (
-                <SummaryRow background={'#CED0EF'}>
+                <SummaryRow background={TAG_PURPLE}>
                   <Typography
                     value={formatDate(participant.date)}
                     variant={TypographyTypes.TextMedium}
-                    styleProps={{ color: 'black' }}
+                    styleProps={{ color: PRIMARY_BLACK }}
                   />
                   {Icon && <Icon width={18} height={18} />}
                 </SummaryRow>
@@ -135,7 +136,7 @@ const ParticipentsListBet: React.FC<Props> = ({ arrValue, currentUser, isOpen, I
           <Typography
             value={t('BetPage.addParticipent')}
             variant={TypographyTypes.TextMedium}
-            styleProps={{ color: '#5862CA' }}
+            styleProps={{ color: TEXT_BLUE }}
           />
         </AddParticipentRow>
       )}

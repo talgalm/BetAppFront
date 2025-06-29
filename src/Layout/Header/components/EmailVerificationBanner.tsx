@@ -5,6 +5,7 @@ import { ReactComponent as RedCloseIcon } from '@assets/icons/layoutIcons/RedClo
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { User } from '@interfaces/User.interface';
+import { ERROR2_COLOR } from '@theme/colorTheme';
 
 interface EmailVerificationBannerProps {
   user: User | null | undefined;
@@ -35,7 +36,7 @@ const EmailVerificationBanner = ({ user }: EmailVerificationBannerProps) => {
       <Typography
         value={`שלחנו לך קוד אימות למייל ${user.email}`}
         variant={TypographyTypes.TextSmall}
-        styleProps={{ color: '#DA3E3E' }}
+        styleProps={{ color: ERROR2_COLOR }}
       />
       <RedCloseIcon onClick={handleDismiss} />
     </VerificationContainer>
