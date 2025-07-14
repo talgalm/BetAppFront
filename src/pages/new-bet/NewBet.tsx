@@ -54,13 +54,14 @@ const NewBet = () => {
 
   const [newBet, setNewBet] = useState<Bet | undefined>(undefined);
 
+  const shouldNotDisable =
+    step.step === NewBetStepValueTypes.Start ||
+    step.step === NewBetStepValueTypes.Summary ||
+    step.step === NewBetStepValueTypes.Success ||
+    step.step === NewBetStepValueTypes.supervisor;
+
   useEffect(() => {
-    if (
-      step.step === NewBetStepValueTypes.Start ||
-      step.step === NewBetStepValueTypes.Summary ||
-      step.step === NewBetStepValueTypes.Success ||
-      step.step === NewBetStepValueTypes.supervisor
-    ) {
+    if (shouldNotDisable) {
       setDisableButton(false);
       return;
     }
@@ -115,19 +116,14 @@ const NewBet = () => {
 
     const isValid = await trigger(currentInputName as keyof CreateBetInputs);
 
-    // Custom logic example - participants
     if (currentInputName === 'participents') {
       const participants = watch('participents');
       if (participants?.length === 1) {
         ErrorHandler(showBoundary, ErrorTypes.AtLeastTwoParticipants);
         return false;
+      } else {
+        return true;
       }
-
-      // const uniqueIds = new Set(participants?.map((p) => p.id));
-      // if (uniqueIds.size !== participants.length) {
-      //   ErrorHandler(showBoundary, ErrorTypes.DuplicatedParticipants);
-      //   return false;
-      // }
     }
 
     return isValid;
@@ -229,6 +225,7 @@ const NewBet = () => {
     step,
     disableButton,
     handleStep,
+    handleBet,
     <ArrowRight color={PRIMARY_GREEN} />
   );
 
@@ -286,13 +283,13 @@ const NewBet = () => {
             </div>
           )}
           <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW_AND_FIXED} />
-          {step.step === NewBetStepValueTypes.Success && (
+          {/* {step.step === NewBetStepValueTypes.Success && (
             <StyledButton
               value={t('NewBet.WatchBet')}
               onClick={handleBet}
               colorVariant={ThemeType.Secondary}
             />
-          )}
+          )} */}
         </ButtonsContainer>
       </HomeDivContainer>
     </HomeWrapperContainer>

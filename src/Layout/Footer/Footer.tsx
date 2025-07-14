@@ -27,8 +27,8 @@ const Footer = () => {
   const handleToggle = (next: boolean) => {
     setIsHome(next);
     navigate(next ? '/home' : '/profile', { replace: true });
-    const layout = !isHome ? HeaderStyle.PRIMARY : HeaderStyle.PROFILE;
-    setHeader(layout);
+    // const layout = !isHome ? HeaderStyle.PRIMARY : HeaderStyle.PROFILE;
+    // setHeader(layout);
   };
 
   return (

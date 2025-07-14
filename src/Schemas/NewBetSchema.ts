@@ -35,8 +35,9 @@ export const createBetSchema = (t: TFunction) =>
               .transform((val) => val.replace(/\s+/g, ''))
               .refine((val) => /^\d{10,15}$/.test(val), {
                 message: t('Schemas.Bet.PhoneInvalid'),
-              }),
-            fullName: strictString(t('Schemas.Bet.FullNameRequired'), 1, 100),
+              })
+              .optional(),
+            fullName: strictString(t('Schemas.Bet.FullNameRequired'), 1, 100).optional(),
             id: z.string().uuid(t('Schemas.Bet.IdInvalid')).optional(),
             status: z.enum(['active', 'inactive']).optional(),
           })

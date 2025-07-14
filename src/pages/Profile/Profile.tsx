@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Column,
   HomeDivContainer,
   InnerLoader,
+  ProfileHeaderContainer,
+  ProfileHeaderTextContainer,
   ProfileImage,
   ProfileImageWrapper,
   StatsContainer,
@@ -15,7 +16,6 @@ import { useUpdateUser } from './hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
-
 const Profile = () => {
   const [showImage, setShowImage] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -120,44 +120,49 @@ const Profile = () => {
   };
 
   return (
-    <>
-      <ProfileImageWrapper onClick={handleAvatarClick}>
-        <ProfileImage
-          key={imageKey}
-          enter={showImage && (!profile?.image || imageLoaded)}
-          src={getImageUrl(profile?.image || '')}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-          style={{ cursor: 'pointer' }}
+    <HomeDivContainer>
+      <ProfileHeaderContainer>
+        <ProfileImageWrapper onClick={handleAvatarClick}>
+          <ProfileImage
+            key={imageKey}
+            enter={showImage && (!profile?.image || imageLoaded)}
+            src={getImageUrl(profile?.image || '')}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            style={{ cursor: 'pointer' }}
+          />
+          {(isLoading || (!imageLoaded && profile?.image)) && <InnerLoader />}
+        </ProfileImageWrapper>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
         />
-
-        {(isLoading || (!imageLoaded && profile?.image)) && <InnerLoader />}
-      </ProfileImageWrapper>
-
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-      />
-
-      <HomeDivContainer>
-        <StatsContainer>
-          <Column>
-            <Typography value={profile?.stats?.wins || 0} variant={TypographyTypes.H3} />
-            <Typography value={t('Profile.wins')} variant={TypographyTypes.TextSmall} />
-          </Column>
-          <Column>
-            <Typography value={profile?.stats?.draw || 0} variant={TypographyTypes.H3} />
-            <Typography value={t('Profile.draw')} variant={TypographyTypes.TextSmall} />
-          </Column>
-          <Column>
-            <Typography value={profile?.stats?.loses || 0} variant={TypographyTypes.H3} />
-            <Typography value={t('Profile.loses')} variant={TypographyTypes.TextSmall} />
-          </Column>
-        </StatsContainer>
-      </HomeDivContainer>
+        <ProfileHeaderTextContainer>
+          <Typography value={profile?.fullName} variant={TypographyTypes.H1} />
+          <Typography
+            value={profile?.phoneNumber || profile?.email}
+            variant={TypographyTypes.TextMedium}
+          />
+        </ProfileHeaderTextContainer>
+      </ProfileHeaderContainer>
+      <StatsContainer>
+        <Typography value={'סטטיסטיקה'} variant={TypographyTypes.H3} />
+        {/* <Column>
+          <Typography value={profile?.stats?.wins || 0} variant={TypographyTypes.H3} />
+          <Typography value={t('Profile.wins')} variant={TypographyTypes.TextSmall} />
+        </Column>
+        <Column>
+          <Typography value={profile?.stats?.draw || 0} variant={TypographyTypes.H3} />
+          <Typography value={t('Profile.draw')} variant={TypographyTypes.TextSmall} />
+        </Column>
+        <Column>
+          <Typography value={profile?.stats?.loses || 0} variant={TypographyTypes.H3} />
+          <Typography value={t('Profile.loses')} variant={TypographyTypes.TextSmall} />
+        </Column> */}
+      </StatsContainer>
 
       <StyledDialog
         type={DialogType.ReplaceImage}
@@ -165,7 +170,7 @@ const Profile = () => {
         closeModal={handleCloseModal}
         buttons={dialogButtons}
       />
-    </>
+    </HomeDivContainer>
   );
 };
 

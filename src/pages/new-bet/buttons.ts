@@ -2,6 +2,7 @@ import { ButtonConfig } from '@components/Button/StyledButton';
 import { NewBetStep, NewBetStepValueTypes } from './new-bet-steps';
 import { t } from 'i18next';
 import { PRIMARY_GREEN } from '@theme/colorTheme';
+import { ThemeType } from '@theme/theme';
 
 export const createNewBetButtons = (
   step: NewBetStep,
@@ -11,6 +12,7 @@ export const createNewBetButtons = (
     back?: boolean,
     continueWithout?: NewBetStepValueTypes
   ) => void,
+  handleBet?: () => void,
   icon?: React.ReactNode
 ): ButtonConfig[] => {
   const buttons: ButtonConfig[] = [];
@@ -34,6 +36,14 @@ export const createNewBetButtons = (
         backgroundColor: 'white',
         border: `2px solid ${PRIMARY_GREEN}`,
       },
+    });
+  }
+
+  if (step.step === NewBetStepValueTypes.Success && handleBet) {
+    buttons.push({
+      value: t('NewBet.WatchBet'),
+      onClick: handleBet,
+      colorVariant: ThemeType.Secondary,
     });
   }
 

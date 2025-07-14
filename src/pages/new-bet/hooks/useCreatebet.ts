@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { useMutation, UseMutationResult, useQueryClient } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
 import { Bet } from '@interfaces/Bet.interface';
 
@@ -26,6 +26,8 @@ export type CreateBetInputs = {
 };
 
 export const useCreateBet = (): UseMutationResult<Bet, Error, CreateBetInputs> => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (betData: CreateBetInputs): Promise<Bet> => {
       const payload = {
@@ -42,6 +44,9 @@ export const useCreateBet = (): UseMutationResult<Bet, Error, CreateBetInputs> =
       const response = await ApiService.makeRequest<Bet>('/bets', HTTPMethod.POST, payload);
 
       return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     },
   });
 };

@@ -22,21 +22,8 @@
 
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "todo-tree.general.tags": ["TODO", "REPLACE"],
-  "todo-tree.tree.autoRefresh": true,
-  "todo-tree.highlights.customHighlight": {
-    "TODO": {
-      "foreground": "#000000",
-      "background": "#FFFF00",
-      "iconColour": "#000000"
-    },
-    "REPLACE": {
-      "foreground": "#000000",
-      "background": "#648843",
-      "iconColour": "#000000",
-      "icon": "pencil"
-    }
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
