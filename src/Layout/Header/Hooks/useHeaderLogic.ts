@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import { useAtom } from 'jotai';
 import { UserActiveStep } from '@store/authStepAtom';
 import { authSteps } from '@pages/auth/welcome-page/auth-steps';
-import { useLogout } from '@pages/auth/hooks/useLogout';
 import { useCleanCreateNewBet } from '@hooks/cleanCreateNewBet';
 import { useQueryClient } from '@tanstack/react-query';
 import { CreateBetInputs, useCreateBet } from '@pages/new-bet/hooks/useCreatebet';
@@ -26,7 +25,6 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
   const user = queryClient.getQueryData<User>(['user-profile']);
   const createBet = useCreateBet();
 
-  const { mutate: logout } = useLogout();
   const cleanNewBet = useCleanCreateNewBet();
 
   const handleNextStep = () => {
@@ -37,10 +35,6 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
     } else {
       navigate('/home');
     }
-  };
-
-  const handleLogout = () => {
-    logout();
   };
 
   const handleNewBetExit = () => {
@@ -89,7 +83,6 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
 
   return {
     handleNextStep,
-    handleLogout,
     handleNewBetExit,
     handleConfirmExit,
     handleCancelExit,

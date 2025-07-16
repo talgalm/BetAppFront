@@ -37,7 +37,6 @@ const Header = () => {
   const {
     handleSaveAsDraft,
     handleNextStep,
-    handleLogout,
     handleNewBetExit,
     handleConfirmExit,
     handleCancelExit,
@@ -67,9 +66,9 @@ const Header = () => {
           )}
           {(path.pathname.includes('home') || path.pathname.includes('profile')) && (
             <>
-              <RightIconDiv onClick={handleLogout}>
+              {/* <RightIconDiv onClick={handleLogout}>
                 <HamburgerIcon color={path.pathname.includes('profile') ? 'white' : ''} />
-              </RightIconDiv>
+              </RightIconDiv> */}
               <LeftIconDiv>
                 <BetimCounter user={user} />
               </LeftIconDiv>

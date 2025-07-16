@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { Avatar } from '@mui/material';
-import { PRIMARY_WHITE } from '@theme/colorTheme';
+import { Avatar, Divider } from '@mui/material';
+import { DIVIDER_GREY, PRIMARY_WHITE } from '@theme/colorTheme';
 
 export const HomeDivContainer = styled('div')({
   display: 'flex',
@@ -8,6 +8,7 @@ export const HomeDivContainer = styled('div')({
   alignItems: 'center',
   justifyContent: 'center',
   padding: 16,
+  width: '100%',
   gap: 10,
   marginBottom: 60,
 });
@@ -32,14 +33,14 @@ export const ProfileHeaderTextContainer = styled('div')({
 });
 
 export const ProfileImageWrapper = styled('div')({
-  width: 62,
-  height: 62,
+  width: 68,
+  height: 68,
   marginLeft: 'auto',
 });
 
 export const ProfileImage = styled(Avatar)<{ enter?: boolean }>(({ enter }) => ({
-  width: 62,
-  height: 62,
+  width: 68,
+  height: 68,
   border: `4px solid ${PRIMARY_WHITE}`,
   zIndex: 12,
   position: 'fixed',
@@ -62,8 +63,8 @@ export const InnerLoader = styled('div')({
 
 export const StatsContainer = styled('div')({
   display: 'flex',
-  marginTop: 40,
   justifyContent: 'space-between',
+  flexDirection: 'column',
   direction: 'rtl',
   borderRadius: 16,
   padding: 16,
@@ -80,9 +81,48 @@ export const StatsContainer = styled('div')({
   `,
 });
 
+export const Row = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+});
+
+export const ActionRow = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  alignItems: 'center',
+  padding: 8,
+  justifyContent: 'space-between',
+});
+
 export const Column = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyItems: 'center',
+  gap: 4,
+});
+
+export const ActionsContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginTop: 30,
+  gap: 4,
+});
+
+export const StyledDivider = styled(Divider)({
+  width: '100%',
+  borderBottomWidth: 1,
+  borderColor: DIVIDER_GREY,
+});
+
+export const RowFixed = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  gap: 12,
 });

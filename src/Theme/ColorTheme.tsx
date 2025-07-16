@@ -42,6 +42,7 @@ export const CONTAINER_WHITE = '#EEF9F8';
 export const OVERLAY_GREY = '#B2B2B259';
 export const TEXT_BLUE = '#5862CA';
 export const COMPLEX_CONTAIER = '#EFF6FF';
+export const EXIT_RED = '#EB5B5B';
 
 export const NotificationColors = {
   BetBackground: FORTH_GREEN,

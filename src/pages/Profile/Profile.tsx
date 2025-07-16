@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  ActionRow,
+  ActionsContainer,
+  Column,
   HomeDivContainer,
   InnerLoader,
   ProfileHeaderContainer,
   ProfileHeaderTextContainer,
   ProfileImage,
   ProfileImageWrapper,
+  Row,
+  RowFixed,
   StatsContainer,
+  StyledDivider,
 } from './Profile.styles';
 import { useProfile } from '@providers/useProfile';
 import { FileInput, useUpdateProfileImage } from './hooks/useUpdateProfileImage';
@@ -16,6 +22,16 @@ import { useUpdateUser } from './hooks/useUpdateUser';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/Topography/typography';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
+import { ERROR2_COLOR, EXIT_RED, PRIMARY_GREEN, SECONDARY_ORANGE } from '@theme/colorTheme';
+import { ReactComponent as WinsIcon } from '@assets/icons/profileIcons/winsIcon.svg';
+import { ReactComponent as DrawIcon } from '@assets/icons/profileIcons/drawIcon.svg';
+import { ReactComponent as LossIcon } from '@assets/icons/profileIcons/lossIcon.svg';
+import { ReactComponent as SettingsIcon } from '@assets/icons/profileIcons/settingsIcon.svg';
+import { ReactComponent as SupportIcon } from '@assets/icons/profileIcons/supportIcon.svg';
+import { ReactComponent as LeftArrow } from '@assets/icons/arrowLeftBlack.svg';
+import StyledButton from '@components/Button/StyledButton';
+import { ThemeType } from '@theme/theme';
+import { useLogout } from '@pages/auth/hooks/useLogout';
 const Profile = () => {
   const [showImage, setShowImage] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -26,6 +42,7 @@ const Profile = () => {
   const { data: profile } = useProfile();
   const [open, setOpen] = useState(false);
   const { mutate, isPending: isRemoving } = useUpdateUser();
+  const { mutate: logout } = useLogout();
 
   const isUploading = updateImage.isPending;
   const isLoading = isUploading || isRemoving;
@@ -150,19 +167,69 @@ const Profile = () => {
       </ProfileHeaderContainer>
       <StatsContainer>
         <Typography value={'סטטיסטיקה'} variant={TypographyTypes.H3} />
-        {/* <Column>
-          <Typography value={profile?.stats?.wins || 0} variant={TypographyTypes.H3} />
-          <Typography value={t('Profile.wins')} variant={TypographyTypes.TextSmall} />
-        </Column>
-        <Column>
-          <Typography value={profile?.stats?.draw || 0} variant={TypographyTypes.H3} />
-          <Typography value={t('Profile.draw')} variant={TypographyTypes.TextSmall} />
-        </Column>
-        <Column>
-          <Typography value={profile?.stats?.loses || 0} variant={TypographyTypes.H3} />
-          <Typography value={t('Profile.loses')} variant={TypographyTypes.TextSmall} />
-        </Column> */}
+        <Row>
+          <Column>
+            <WinsIcon />
+            <Typography value={profile?.stats?.wins || 0} variant={TypographyTypes.H3} />
+            <Typography
+              value={t('Profile.wins')}
+              variant={TypographyTypes.VerySmall}
+              styleProps={{ color: PRIMARY_GREEN }}
+            />
+          </Column>
+          <Column>
+            <DrawIcon />
+            <Typography value={profile?.stats?.draw || 0} variant={TypographyTypes.H3} />
+            <Typography
+              value={t('Profile.draw')}
+              variant={TypographyTypes.VerySmall}
+              styleProps={{ color: SECONDARY_ORANGE }}
+            />
+          </Column>
+          <Column>
+            <LossIcon />
+            <Typography value={profile?.stats?.loses || 0} variant={TypographyTypes.H3} />
+            <Typography
+              value={t('Profile.loses')}
+              variant={TypographyTypes.VerySmall}
+              styleProps={{ color: ERROR2_COLOR }}
+            />
+          </Column>
+        </Row>
       </StatsContainer>
+      <ActionsContainer>
+        <StyledDivider />
+        <ActionRow>
+          <LeftArrow />
+          <RowFixed>
+            <Typography value={t('Profile.settings')} variant={TypographyTypes.H3} />
+            <SettingsIcon />
+          </RowFixed>
+        </ActionRow>
+        <StyledDivider />
+        <ActionRow>
+          <LeftArrow />
+          <RowFixed>
+            <Typography value={t('Profile.support')} variant={TypographyTypes.H3} />
+            <SupportIcon />
+          </RowFixed>
+        </ActionRow>
+        <StyledDivider />
+        <ActionRow>
+          <LeftArrow />
+          <RowFixed>
+            <Typography value={t('Profile.info')} variant={TypographyTypes.H3} />
+            <SupportIcon />
+          </RowFixed>
+        </ActionRow>
+        <StyledDivider />
+      </ActionsContainer>
+      <StyledButton
+        value={t(`NewBet.Approve`)}
+        onClick={() => logout()}
+        colorVariant={ThemeType.Secondary}
+        styleProps={{ color: EXIT_RED }}
+      />
 
       <StyledDialog
         type={DialogType.ReplaceImage}
