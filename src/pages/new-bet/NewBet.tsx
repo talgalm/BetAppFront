@@ -282,14 +282,14 @@ const NewBet = () => {
               />
             </div>
           )}
-          <ButtonsHub buttons={buttons} type={ButtonsHubStatus.ROW_AND_FIXED} />
-          {/* {step.step === NewBetStepValueTypes.Success && (
-            <StyledButton
-              value={t('NewBet.WatchBet')}
-              onClick={handleBet}
-              colorVariant={ThemeType.Secondary}
-            />
-          )} */}
+          <ButtonsHub
+            buttons={buttons}
+            type={
+              step.step === NewBetStepValueTypes.Success
+                ? ButtonsHubStatus.FIXED
+                : ButtonsHubStatus.ROW_AND_FIXED
+            }
+          />
         </ButtonsContainer>
       </HomeDivContainer>
     </HomeWrapperContainer>

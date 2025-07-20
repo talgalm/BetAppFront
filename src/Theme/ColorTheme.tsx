@@ -8,6 +8,7 @@ export const LIGHT_GREEN = '#CEEFEA';
 export const ERROR_COLOR = '#E33E21';
 export const ERROR2_COLOR = '#DA3E3E';
 export const PRIMARY_BLACK = '#000000';
+export const SECONDARY_BLACK = '#1D1D1D';
 export const PRIMARY_ORANGE = '#D97706';
 export const SECONDARY_ORANGE = '#EF9645';
 

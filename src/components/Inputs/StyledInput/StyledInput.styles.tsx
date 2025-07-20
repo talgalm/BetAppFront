@@ -6,6 +6,8 @@ import {
   GREY_INPUT,
   LIGHT_INPUT,
   PRIMARY_WHITE,
+  SECONDARY_BLACK,
+  TAG_PURPLE,
 } from '@theme/colorTheme';
 
 export const NumOfChars = styled('div')({
@@ -20,6 +22,7 @@ export const WidthDiv = styled('div')({
   display: 'flex',
   alignItems: 'center',
   position: 'relative',
+  backgroundColor: 'transparent',
 });
 
 export const IconWrapperEnd = styled('div')({
@@ -44,7 +47,10 @@ export const IconWrapperStart = styled('div')({
 export const StyledTextField = styled(TextField)<{
   marginExtand?: boolean;
   startIconGap?: boolean;
-}>(({ marginExtand = false, startIconGap = false }) => ({
+  isLabel?: boolean;
+}>(({ marginExtand = false, startIconGap = false, isLabel = false }) => ({
+  backgroundColor: isLabel ? TAG_PURPLE : '',
+  borderRadius: 8,
   '& .MuiOutlinedInput-root': {
     fontFamily: 'Fredoka, sans-serif !important',
     borderRadius: 16,
@@ -52,12 +58,18 @@ export const StyledTextField = styled(TextField)<{
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.05)',
     '& fieldset': {
       borderColor: LIGHT_INPUT,
+      '& legend': {
+        textAlign: 'right',
+        marginLeft: 'auto',
+        marginRight: '24px',
+      },
     },
     '&:hover fieldset': {
       borderColor: GREY_INPUT,
     },
     '&.Mui-focused fieldset': {
-      borderColor: GREY2_INPUT,
+      borderColor: LIGHT_INPUT, // Changed from GREY2_INPUT to LIGHT_INPUT to remove green line
+      borderWidth: '0px', // Ensure same border width as non-focused state
     },
     '&.Mui-error fieldset': {
       borderColor: ERROR_COLOR,
@@ -86,6 +98,24 @@ export const StyledTextField = styled(TextField)<{
       background: GREY_INPUT,
     },
   },
+  // Fix for RTL label positioning
+  '& .MuiInputLabel-root': {
+    right: 24,
+    left: 'auto',
+    color: SECONDARY_BLACK,
+    transformOrigin: 'right',
+    fontFamily: 'Fredoka, sans-serif !important',
+    '&.MuiInputLabel-shrink': {
+      transform: 'translate(11px, 3px) scale(0.75)',
+    },
+  },
+  // Fix for RTL label when focused/shrunk
+  '& .MuiInputLabel-outlined': {
+    color: SECONDARY_BLACK,
+    '&.MuiInputLabel-shrink': {
+      transform: 'translate(11px, 3px) scale(0.75)',
+    },
+  },
   '& .MuiInputAdornment-root': {
     margin: '0px',
   },
@@ -93,5 +123,32 @@ export const StyledTextField = styled(TextField)<{
     textAlign: 'right',
     lineHeight: 1,
     fontFamily: 'Fredoka, sans-serif !important',
+    direction: 'rtl',
+  },
+  // Fix for icons positioning in RTL
+  '& .MuiInputAdornment-positionStart': {
+    marginRight: 0,
+    marginLeft: 8,
+  },
+  '& .MuiInputAdornment-positionEnd': {
+    marginLeft: 0,
+    marginRight: 8,
+  },
+  '& .MuiFilledInput-root': {
+    '&::before': {
+      borderBottom: 'none',
+    },
+    '&::after': {
+      borderBottom: 'none',
+    },
+    '&:hover::before': {
+      borderBottom: 'none',
+    },
+    '&.Mui-focused::after': {
+      borderBottom: 'none',
+    },
+    '&.Mui-disabled::before': {
+      borderBottom: 'none',
+    },
   },
 }));

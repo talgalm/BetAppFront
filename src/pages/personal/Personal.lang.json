@@ -1,0 +1,8 @@
+{
+  "fullNameLabel": "שם מלא",
+  "fullNameNote": "זה השם שהחברים שלך רואים",
+  "emailLabel": "כתובת מייל",
+  "emailNote": "זה המייל שישמש לשחזור סיסמא במידת הצורך",
+  "phoneNumberLabel": "טלפון נייד",
+  "phoneNumberNote": "זה המספר שישמש לשחזור סיסמא במידת הצורך"
+}

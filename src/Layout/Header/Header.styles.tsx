@@ -28,6 +28,7 @@ export const LogoDiv = styled('div')({
 export const RightIconDiv = styled('div')({
   position: 'absolute',
   right: 10,
+  bottom: 16,
 });
 
 export const LeftIconDiv = styled('div')({

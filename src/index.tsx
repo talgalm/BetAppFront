@@ -11,6 +11,7 @@ import VerifyEmail from './pages/auth/verify-email/VerifyEmail';
 import AuthCallback from './providers/AuthCallback';
 import BetPage from './pages/bet/BetPage';
 import Profile from './pages/profile/Profile';
+import PersonalForm from '@pages/personal/PersonalPageForm';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -29,6 +30,18 @@ export const pagesRouter = createBrowserRouter([
         path: '/profile',
         element: <Profile />,
       },
+      {
+        path: '/personal',
+        element: <PersonalForm />,
+      },
+      // {
+      //   path: '/settings',
+      //   element: <Settings />,
+      // },
+      // {
+      //   path: '/support',
+      //   element: <Support />,
+      // },
       {
         path: '/new-bet',
         element: <NewBetForm />,

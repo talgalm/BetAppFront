@@ -11,7 +11,8 @@ import Home from '@pages/home/Home.lang.json';
 import Register from '@pages/auth/register/Register.lang.json';
 import StyledDialog from '@components/StyledDialog/StyledDialog.lang.json';
 import Profile from '@pages/profile/Profile.lang.json';
-import WelcomePage from '@pages/auth/welcome-page/WelcomePage';
+import WelcomePage from '@pages/auth/welcome-page/WelcomePage.lang.json';
+import Personal from '@pages/personal/Personal.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
@@ -27,4 +28,5 @@ export default {
   StyledDialog: StyledDialog,
   Profile: Profile,
   Schemas: Schemas,
+  Personal: Personal,
 };

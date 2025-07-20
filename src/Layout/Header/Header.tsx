@@ -64,15 +64,10 @@ const Header = () => {
               <CloseIcon />
             </LeftIconNoBack>
           )}
-          {(path.pathname.includes('home') || path.pathname.includes('profile')) && (
-            <>
-              {/* <RightIconDiv onClick={handleLogout}>
-                <HamburgerIcon color={path.pathname.includes('profile') ? 'white' : ''} />
-              </RightIconDiv> */}
-              <LeftIconDiv>
-                <BetimCounter user={user} />
-              </LeftIconDiv>
-            </>
+          {path.pathname !== '/' && (
+            <LeftIconDiv>
+              <BetimCounter user={user} />
+            </LeftIconDiv>
           )}
           <LogoDiv>{isPrimary && <Logo />}</LogoDiv>
         </HeaderInnerContainer>

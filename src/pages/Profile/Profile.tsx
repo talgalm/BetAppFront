@@ -28,11 +28,14 @@ import { ReactComponent as DrawIcon } from '@assets/icons/profileIcons/drawIcon.
 import { ReactComponent as LossIcon } from '@assets/icons/profileIcons/lossIcon.svg';
 import { ReactComponent as SettingsIcon } from '@assets/icons/profileIcons/settingsIcon.svg';
 import { ReactComponent as SupportIcon } from '@assets/icons/profileIcons/supportIcon.svg';
+import { ReactComponent as PersonalInfoIcon } from '@assets/icons/profileIcons/personalInfo.svg';
 import { ReactComponent as LeftArrow } from '@assets/icons/arrowLeftBlack.svg';
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '@theme/theme';
 import { useLogout } from '@pages/auth/hooks/useLogout';
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
+  const navigate = useNavigate();
   const [showImage, setShowImage] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageKey, setImageKey] = useState(0);
@@ -199,6 +202,14 @@ const Profile = () => {
       </StatsContainer>
       <ActionsContainer>
         <StyledDivider />
+        <ActionRow onClick={() => navigate('/personal')}>
+          <LeftArrow />
+          <RowFixed>
+            <Typography value={t('Profile.personalInfo')} variant={TypographyTypes.H3} />
+            <PersonalInfoIcon />
+          </RowFixed>
+        </ActionRow>
+        <StyledDivider />
         <ActionRow>
           <LeftArrow />
           <RowFixed>
@@ -211,14 +222,6 @@ const Profile = () => {
           <LeftArrow />
           <RowFixed>
             <Typography value={t('Profile.support')} variant={TypographyTypes.H3} />
-            <SupportIcon />
-          </RowFixed>
-        </ActionRow>
-        <StyledDivider />
-        <ActionRow>
-          <LeftArrow />
-          <RowFixed>
-            <Typography value={t('Profile.info')} variant={TypographyTypes.H3} />
             <SupportIcon />
           </RowFixed>
         </ActionRow>

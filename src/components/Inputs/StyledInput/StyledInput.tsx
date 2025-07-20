@@ -4,6 +4,7 @@ import { StyledTextField, WidthDiv, IconWrapperEnd, IconWrapperStart } from './S
 import { TypographyTypes } from '../../Topography/TypographyTypes';
 
 interface InputTextFullProps<T extends FieldValues> {
+  label?: string;
   control?: Control<T>;
   inputName?: Path<T>;
   extended?: boolean;
@@ -19,6 +20,7 @@ interface InputTextFullProps<T extends FieldValues> {
 }
 
 const StyledInput = <T extends FieldValues>({
+  label,
   control,
   inputName,
   extended,
@@ -41,15 +43,16 @@ const StyledInput = <T extends FieldValues>({
           defaultValue={'' as PathValue<T, Path<T>>}
           render={({ field, fieldState }) => {
             return (
-              <WidthDiv>
+              <WidthDiv dir="rtl">
                 <IconWrapperStart>
                   {StartIcon && <StartIcon onClick={startIconOnClick} />}
                 </IconWrapperStart>
 
                 <StyledTextField
+                  label={label}
                   fullWidth
                   placeholder={placeholder ?? t('Input.TextFull.Placeholder')}
-                  variant="outlined"
+                  variant={label ? 'filled' : 'outlined'}
                   multiline={extended}
                   type={maskValue ? 'password' : 'text'}
                   rows={extended ? 2 : undefined}
@@ -58,6 +61,7 @@ const StyledInput = <T extends FieldValues>({
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   startIconGap={StartIcon !== undefined}
+                  isLabel={label !== undefined}
                   onChange={(e) => {
                     field.onChange(e);
                     onAnyChange?.();
@@ -87,6 +91,7 @@ const StyledInput = <T extends FieldValues>({
             multiline={extended}
             rows={extended ? 4 : undefined}
             startIconGap={StartIcon !== null}
+            label={label}
           />
           {<IconWrapperEnd>{EndIcon && <EndIcon />}</IconWrapperEnd>}
         </WidthDiv>
