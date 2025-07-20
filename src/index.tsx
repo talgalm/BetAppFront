@@ -12,6 +12,7 @@ import AuthCallback from './providers/AuthCallback';
 import BetPage from './pages/bet/BetPage';
 import Profile from './pages/profile/Profile';
 import PersonalForm from '@pages/personal/PersonalPageForm';
+import Settings from '@pages/settings/SettingsPage';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -34,10 +35,10 @@ export const pagesRouter = createBrowserRouter([
         path: '/personal',
         element: <PersonalForm />,
       },
-      // {
-      //   path: '/settings',
-      //   element: <Settings />,
-      // },
+      {
+        path: '/settings',
+        element: <Settings />,
+      },
       // {
       //   path: '/support',
       //   element: <Support />,

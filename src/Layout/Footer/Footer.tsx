@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import StyledSwitch from '@components/Switch/Switch';
 import { Container } from './Footer.styles';
 import { useAtom } from 'jotai';
-import { HeaderStyle } from '@theme/layoutStyles';
 import { headerAtom } from '@store/layoutAtoms';
 
 const Footer = () => {
@@ -13,7 +12,11 @@ const Footer = () => {
   const navigate = useNavigate();
 
   // show footer only on /home or /profile
-  const visible = pathname.startsWith('/home') || pathname.startsWith('/profile');
+  const visible =
+    pathname.startsWith('/home') ||
+    pathname.startsWith('/profile') ||
+    pathname.startsWith('/personal') ||
+    pathname.startsWith('/settings');
 
   // internal toggle state mirrors the current route
   const [isHome, setIsHome] = useState(pathname.startsWith('/home'));

@@ -13,6 +13,7 @@ import StyledDialog from '@components/StyledDialog/StyledDialog.lang.json';
 import Profile from '@pages/profile/Profile.lang.json';
 import WelcomePage from '@pages/auth/welcome-page/WelcomePage.lang.json';
 import Personal from '@pages/personal/Personal.lang.json';
+import Settings from '@pages/settings/Settings.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
@@ -29,4 +30,5 @@ export default {
   Profile: Profile,
   Schemas: Schemas,
   Personal: Personal,
+  Settings: Settings,
 };

@@ -210,7 +210,7 @@ const Profile = () => {
           </RowFixed>
         </ActionRow>
         <StyledDivider />
-        <ActionRow>
+        <ActionRow onClick={() => navigate('/settings')}>
           <LeftArrow />
           <RowFixed>
             <Typography value={t('Profile.settings')} variant={TypographyTypes.H3} />
@@ -228,7 +228,7 @@ const Profile = () => {
         <StyledDivider />
       </ActionsContainer>
       <StyledButton
-        value={t(`NewBet.Approve`)}
+        value={t(`Profile.exit`)}
         onClick={() => logout()}
         colorVariant={ThemeType.Secondary}
         styleProps={{ color: EXIT_RED }}

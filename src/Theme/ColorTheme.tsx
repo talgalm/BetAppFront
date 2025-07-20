@@ -32,6 +32,7 @@ export const PRIMARY_GREY = '#9798A2';
 export const TAG_PURPLE = '#CED0EF';
 export const BETIM_BLUE = '#2A69C6';
 export const FILES_UPLOAD_BLUE = '#001845';
+export const CLOSE_ACCOUNT_RED = '#F6CFCF';
 
 export const LIGHT_INPUT = '#E0E0E0';
 export const GREY_INPUT = '#BDBDBD';
