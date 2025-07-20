@@ -13,6 +13,7 @@ import BetPage from './pages/bet/BetPage';
 import Profile from './pages/profile/Profile';
 import PersonalForm from '@pages/personal/PersonalPageForm';
 import Settings from '@pages/settings/SettingsPage';
+import Support from '@pages/support/SupportPage';
 
 export const pagesRouter = createBrowserRouter([
   {
@@ -39,10 +40,10 @@ export const pagesRouter = createBrowserRouter([
         path: '/settings',
         element: <Settings />,
       },
-      // {
-      //   path: '/support',
-      //   element: <Support />,
-      // },
+      {
+        path: '/support',
+        element: <Support />,
+      },
       {
         path: '/new-bet',
         element: <NewBetForm />,

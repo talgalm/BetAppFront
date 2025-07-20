@@ -218,7 +218,7 @@ const Profile = () => {
           </RowFixed>
         </ActionRow>
         <StyledDivider />
-        <ActionRow>
+        <ActionRow onClick={() => navigate('/support')}>
           <LeftArrow />
           <RowFixed>
             <Typography value={t('Profile.support')} variant={TypographyTypes.H3} />

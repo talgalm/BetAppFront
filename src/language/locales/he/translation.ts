@@ -14,6 +14,7 @@ import Profile from '@pages/profile/Profile.lang.json';
 import WelcomePage from '@pages/auth/welcome-page/WelcomePage.lang.json';
 import Personal from '@pages/personal/Personal.lang.json';
 import Settings from '@pages/settings/Settings.lang.json';
+import Support from '@pages/support/Support.lang.json';
 
 export default {
   WelcomePage: WelcomePage,
@@ -31,4 +32,5 @@ export default {
   Schemas: Schemas,
   Personal: Personal,
   Settings: Settings,
+  Support: Support,
 };

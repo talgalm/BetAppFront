@@ -16,7 +16,8 @@ const Footer = () => {
     pathname.startsWith('/home') ||
     pathname.startsWith('/profile') ||
     pathname.startsWith('/personal') ||
-    pathname.startsWith('/settings');
+    pathname.startsWith('/settings') ||
+    pathname.startsWith('/support');
 
   // internal toggle state mirrors the current route
   const [isHome, setIsHome] = useState(pathname.startsWith('/home'));
