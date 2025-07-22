@@ -51,6 +51,9 @@ export const StyledTextField = styled(TextField)<{
 }>(({ marginExtand = false, startIconGap = false, isLabel = false }) => ({
   backgroundColor: isLabel ? TAG_PURPLE : '',
   borderRadius: 8,
+  '& .MuiInputLabel-root.Mui-focused': {
+    color: SECONDARY_BLACK,
+  },
   '& .MuiOutlinedInput-root': {
     fontFamily: 'Fredoka, sans-serif !important',
     borderRadius: 16,
@@ -68,8 +71,8 @@ export const StyledTextField = styled(TextField)<{
       borderColor: GREY_INPUT,
     },
     '&.Mui-focused fieldset': {
-      borderColor: LIGHT_INPUT, // Changed from GREY2_INPUT to LIGHT_INPUT to remove green line
-      borderWidth: '0px', // Ensure same border width as non-focused state
+      borderColor: LIGHT_INPUT,
+      borderWidth: '0px',
     },
     '&.Mui-error fieldset': {
       borderColor: ERROR_COLOR,

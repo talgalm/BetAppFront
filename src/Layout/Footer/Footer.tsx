@@ -2,12 +2,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import StyledSwitch from '@components/Switch/Switch';
 import { Container } from './Footer.styles';
-import { useAtom } from 'jotai';
-import { headerAtom } from '@store/layoutAtoms';
 
 const Footer = () => {
   const { pathname } = useLocation();
-  const [, setHeader] = useAtom(headerAtom);
 
   const navigate = useNavigate();
 

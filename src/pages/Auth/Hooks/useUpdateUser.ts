@@ -1,27 +1,30 @@
-import { UseMutationResult, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient, UseMutationResult } from '@tanstack/react-query';
 import { ApiService, HTTPMethod } from '@api/apiService';
 import { User } from '@interfaces/User.interface';
+
 interface PartialUserPayload {
   id: string;
   FullName?: string;
   Password?: string;
   Email?: string;
   PhoneNumber?: string;
-  Image?: File;
 }
+
 export const useUpdateUser = (): UseMutationResult<{ user: User }, Error, PartialUserPayload> => {
-  const mutation = useMutation({
-    mutationFn: async (data: PartialUserPayload): Promise<{ user: User }> => {
-      const { id, ...fieldsToUpdate } = data;
-      const response = await ApiService.makeRequest<{ user: User }>(
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id, ...fieldsToUpdate }): Promise<{ user: User }> => {
+      return ApiService.makeRequest<{ user: User }>(
         `/users/${id}`,
         HTTPMethod.PATCH,
         fieldsToUpdate
       );
-
-      return response;
+    },
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ['user-profile', variables.id],
+      });
     },
   });
-
-  return mutation;
 };

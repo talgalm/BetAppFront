@@ -4,5 +4,7 @@
   "emailLabel": "כתובת מייל",
   "emailNote": "זה המייל שישמש לשחזור סיסמא במידת הצורך",
   "phoneNumberLabel": "טלפון נייד",
-  "phoneNumberNote": "זה המספר שישמש לשחזור סיסמא במידת הצורך"
+  "phoneNumberNote": "זה המספר שישמש לשחזור סיסמא במידת הצורך",
+  "update": "עדכן",
+  "updating" : "מעדכן"
 }

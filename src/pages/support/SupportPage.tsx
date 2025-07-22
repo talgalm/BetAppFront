@@ -15,40 +15,36 @@ import { SECONDARY_BLACK } from '@theme/colorTheme';
 const Support = () => {
   const { t } = useTranslation();
 
+  const supportItems = [
+    { label: t('Support.commonQuestions') },
+    { label: t('Support.privacyPolicy') },
+    { label: t('Support.contact') },
+    { label: t('Support.accessibility') },
+  ];
+
+  const SupportItem = ({ label }: { label: string }) => (
+    <>
+      <ActionRow>
+        <RowFixed>
+          <Typography value={label} variant={TypographyTypes.H3} />
+        </RowFixed>
+        <LeftArrow />
+      </ActionRow>
+      <StyledDivider />
+    </>
+  );
+
   return (
     <HomeDivContainer>
       <Typography value={t('Profile.support')} variant={TypographyTypes.H1} />
+
       <ActionsContainer>
         <StyledDivider />
-        <ActionRow>
-          <RowFixed>
-            <Typography value={t('Support.commonQuetions')} variant={TypographyTypes.H3} />
-          </RowFixed>
-          <LeftArrow />
-        </ActionRow>
-        <StyledDivider />
-        <ActionRow>
-          <RowFixed>
-            <Typography value={t('Support.privacyPolicy')} variant={TypographyTypes.H3} />
-          </RowFixed>
-          <LeftArrow />
-        </ActionRow>
-        <StyledDivider />
-        <ActionRow>
-          <RowFixed>
-            <Typography value={t('Support.contact')} variant={TypographyTypes.H3} />
-          </RowFixed>
-          <LeftArrow />
-        </ActionRow>
-        <StyledDivider />
-        <ActionRow>
-          <RowFixed>
-            <Typography value={t('Support.accessibility')} variant={TypographyTypes.H3} />
-          </RowFixed>
-          <LeftArrow />
-        </ActionRow>
-        <StyledDivider />
+        {supportItems.map((item, index) => (
+          <SupportItem key={index} label={item.label} />
+        ))}
       </ActionsContainer>
+
       <VersionContainer>
         <Typography
           value={t('Support.version')}

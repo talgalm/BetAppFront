@@ -7,60 +7,124 @@ import { PersonalInfoFormInput } from '@schemas/UpdatePersonalInfo';
 import StyledInput from '@components/Inputs/StyledInput/StyledInput';
 import { ReactComponent as EditIcon } from '@assets/icons/profileIcons/editIcon.svg';
 import { SECONDARY_BLACK } from '@theme/colorTheme';
+import { useMemo, useEffect, useState, useCallback } from 'react';
+import StyledButton from '@components/Button/StyledButton';
+import { useUpdateUser } from '@pages/auth/hooks/useUpdateUser';
+import { useProfile } from '@providers/useProfile';
+
+interface FieldConfig {
+  name: keyof PersonalInfoFormInput;
+  labelKey: string;
+  noteKey: string;
+}
 
 const Personal = () => {
   const { t } = useTranslation();
-  const { control, getValues } = useFormContext<PersonalInfoFormInput>();
+  const { mutate, isPending } = useUpdateUser();
+  const {
+    control,
+    watch,
+    formState: { defaultValues },
+    reset,
+  } = useFormContext<PersonalInfoFormInput>();
+  const { data: profile } = useProfile();
 
-  console.log(getValues());
+  const watchedValues = watch();
+  const [hasChanges, setHasChanges] = useState<boolean>(false);
+  const [changedFields, setChangedFields] = useState<Partial<PersonalInfoFormInput>>({});
+
+  useEffect(() => {
+    if (defaultValues) {
+      const changes: Partial<PersonalInfoFormInput> = {};
+      let hasAnyChanges = false;
+
+      Object.keys(defaultValues).forEach((key) => {
+        const fieldKey = key as keyof PersonalInfoFormInput;
+        const currentValue = watchedValues[fieldKey];
+        const defaultValue = defaultValues[fieldKey];
+
+        if (currentValue !== defaultValue) {
+          changes[fieldKey] = currentValue;
+          hasAnyChanges = true;
+        }
+      });
+
+      setHasChanges(hasAnyChanges);
+      setChangedFields(changes);
+    }
+  }, [watchedValues, defaultValues]);
+
+  const handleUpdate = useCallback(() => {
+    if (Object.keys(changedFields).length > 0) {
+      const updatePayload = {
+        id: profile?.id || '',
+        ...changedFields,
+      };
+
+      mutate(updatePayload, {
+        onSuccess: () => {
+          reset(watchedValues);
+        },
+        onError: (error) => {
+          console.error('Update failed:', error);
+        },
+      });
+    }
+  }, [changedFields, profile?.id, mutate, reset, watchedValues]);
+
+  const fields: FieldConfig[] = useMemo(
+    () => [
+      {
+        name: 'fullName',
+        labelKey: 'Personal.fullNameLabel',
+        noteKey: 'Personal.fullNameNote',
+      },
+      {
+        name: 'email',
+        labelKey: 'Personal.emailLabel',
+        noteKey: 'Personal.emailNote',
+      },
+      {
+        name: 'phoneNumber',
+        labelKey: 'Personal.phoneNumberLabel',
+        noteKey: 'Personal.phoneNumberNote',
+      },
+    ],
+    []
+  );
+
+  const renderField = ({ name, labelKey, noteKey }: FieldConfig) => (
+    <div key={name}>
+      <StyledInput
+        inputName={name}
+        control={control}
+        placeholder={t(labelKey)}
+        endIcon={EditIcon}
+        label={t(labelKey)}
+      />
+      <Typography
+        value={t(noteKey)}
+        variant={TypographyTypes.VerySmall}
+        styleProps={{
+          paddingRight: 16,
+          paddingTop: 5,
+          color: SECONDARY_BLACK,
+        }}
+      />
+    </div>
+  );
 
   return (
     <HomeDivContainer>
       <Typography value={t('Profile.personalInfo')} variant={TypographyTypes.H1} />
-      <InputsContainer>
-        <div>
-          <StyledInput
-            inputName="fullName"
-            control={control}
-            placeholder={t(`Personal.fullNameLabel`)}
-            endIcon={EditIcon}
-            label={t(`Personal.fullNameLabel`)}
-          />
-          <Typography
-            value={t(`Personal.fullNameNote`)}
-            variant={TypographyTypes.VerySmall}
-            styleProps={{ paddingRight: 16, paddingTop: 5, color: SECONDARY_BLACK }}
-          />
-        </div>
-        <div>
-          <StyledInput
-            inputName="email"
-            control={control}
-            placeholder={t(`Personal.emailLabel`)}
-            endIcon={EditIcon}
-            label={t(`Personal.emailLabel`)}
-          />
-          <Typography
-            value={t(`Personal.emailNote`)}
-            variant={TypographyTypes.VerySmall}
-            styleProps={{ paddingRight: 16, paddingTop: 5, color: SECONDARY_BLACK }}
-          />
-        </div>
-        <div>
-          <StyledInput
-            inputName="phoneNumber"
-            control={control}
-            placeholder={t(`Personal.phoneNumberLabel`)}
-            endIcon={EditIcon}
-            label={t(`Personal.phoneNumberLabel`)}
-          />
-          <Typography
-            value={t(`Personal.phoneNumberNote`)}
-            variant={TypographyTypes.VerySmall}
-            styleProps={{ paddingRight: 16, paddingTop: 5, color: SECONDARY_BLACK }}
-          />
-        </div>
-      </InputsContainer>
+      <InputsContainer>{fields.map(renderField)}</InputsContainer>
+
+      <StyledButton
+        value={isPending ? t('Personal.updating') : t('Personal.update')}
+        onClick={handleUpdate}
+        disabled={!hasChanges || isPending}
+        styleProps={{ marginTop: 16 }}
+      />
     </HomeDivContainer>
   );
 };
