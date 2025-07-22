@@ -78,6 +78,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/facebook-js-sdk": "^3.3.12",
     "@types/js-cookie": "^3.0.6",
