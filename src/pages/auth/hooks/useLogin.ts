@@ -12,7 +12,7 @@ export const useLogin = (): UseMutationResult<{ accessToken: string }, Error, Lo
       const response = await ApiService.makeRequest<{
         accessToken: string;
       }>('/auth/login', HTTPMethod.POST, { email, password }, false, false);
-      document.cookie = `accessToken=${response.accessToken}; path=/; SameSite=Strict;`;
+      document.cookie = `accessToken=${response.accessToken}; path=/;`;
 
       return response;
     },
