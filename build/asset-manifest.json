@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.5e2505fb.css",
-    "main.js": "/static/js/main.a545ac2a.js",
+    "main.js": "/static/js/main.540dd884.js",
     "static/media/WelcomePageImage2.svg": "/static/media/WelcomePageImage2.cf592058da677b0234045ae110edc2e5.svg",
     "static/media/NewBetDisplay.svg": "/static/media/NewBetDisplay.4426f328c95b48d5ddcee7b90e93abe9.svg",
     "static/media/NewBetDisplaySmall.svg": "/static/media/NewBetDisplaySmall.2a4dbc9bee97becb4d9be3ee83471db2.svg",
@@ -69,10 +69,10 @@
     "static/media/Minus.svg": "/static/media/Minus.007ddaac2932f1d7ddd1302f333aa9e5.svg",
     "static/media/lossIcon.svg": "/static/media/lossIcon.d9606620d21192c882c084297d9a8236.svg",
     "main.5e2505fb.css.map": "/static/css/main.5e2505fb.css.map",
-    "main.a545ac2a.js.map": "/static/js/main.a545ac2a.js.map"
+    "main.540dd884.js.map": "/static/js/main.540dd884.js.map"
   },
   "entrypoints": [
     "static/css/main.5e2505fb.css",
-    "static/js/main.a545ac2a.js"
+    "static/js/main.540dd884.js"
   ]
 }
