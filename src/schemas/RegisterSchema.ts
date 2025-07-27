@@ -12,7 +12,7 @@ export const getRegisterStepSchemas = (t: TFunction) => ({
       .min(1, t('Register.Validation.FullNameRequired')),
     phoneNumber: z
       .string({ required_error: t('Register.Validation.Required') })
-      .min(10, t('Register.Validation.PhoneInvalid')),
+      .regex(/^\+?[1-9]\d{7,14}$/, t('Register.Validation.PhoneInvalid')),
   }),
 
   [AuthStepValueTypes.RegisterPassword]: z
