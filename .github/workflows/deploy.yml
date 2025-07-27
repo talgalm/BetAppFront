@@ -1,0 +1,34 @@
+name: Deploy Frontend to EC2
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH access
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 16.171.130.116 >> ~/.ssh/known_hosts
+
+      - name: Run deployment script on EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@16.171.130.116 << 'EOF'
+            cd ~/BetAppFront
+            git pull origin main
+            npm install
+            npm run build
+            sudo rm -rf /var/www/habet.space/*
+            sudo cp -r ~/BetAppFront/build/* /var/www/habet.space/
+            sudo chown -R www-data:www-data /var/www/habet.space
+            sudo nginx -t
+            sudo systemctl reload nginx
+          EOF
