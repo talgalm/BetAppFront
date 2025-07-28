@@ -62,6 +62,21 @@ const WelcomePage = (): JSX.Element => {
     </>
   );
 
+  const pickContacts = async () => {
+    try {
+      if ('contacts' in navigator && 'ContactsManager' in window) {
+        const contacts = await (navigator as any).contacts.select(['name', 'tel'], {
+          multiple: true,
+        });
+        console.log(contacts);
+      } else {
+        alert('Contact Picker API not supported on this device/browser.');
+      }
+    } catch (err) {
+      console.error('Error picking contacts:', err);
+    }
+  };
+
   return (
     <MainContainer>
       {step.step === AuthStepValueTypes.Welcome && (
@@ -72,6 +87,7 @@ const WelcomePage = (): JSX.Element => {
           <ButtonsContainer>
             <ButtonsHub buttons={buttons} />
           </ButtonsContainer>
+          <button onClick={pickContacts}>Pick Contact</button>
         </>
       )}
 
