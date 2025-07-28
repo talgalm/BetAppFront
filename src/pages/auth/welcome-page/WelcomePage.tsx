@@ -87,7 +87,7 @@ const WelcomePage = (): JSX.Element => {
           <ButtonsContainer>
             <ButtonsHub buttons={buttons} />
           </ButtonsContainer>
-          <button onClick={pickContacts}>Pick Contact</button>
+          <button onClick={pickContacts}>Pick Contact!</button>
         </>
       )}
 
