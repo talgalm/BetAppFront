@@ -10,7 +10,7 @@ export interface User {
   betim?: number;
   bets: Bet[];
   verifyEmail?: boolean;
-  stats: ProfileStats;
+  stats?: ProfileStats;
 }
 
 export interface ProfileStats {
@@ -19,9 +19,14 @@ export interface ProfileStats {
   loses: number;
 }
 
-export interface Contact {
+export interface InnerContact {
   id: string;
   fullName?: string;
   phoneNumber?: string;
   status?: string;
+}
+
+export interface Contact {
+  name?: string[];
+  tel?: string[];
 }

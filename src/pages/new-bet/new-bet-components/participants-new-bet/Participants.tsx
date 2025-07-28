@@ -15,7 +15,7 @@ import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useMostActives } from '../../hooks/useMostActives';
 import { useAtom } from 'jotai';
 import { useQueryClient } from '@tanstack/react-query';
-import { User } from '@interfaces/User.interface';
+import { Contact, User } from '@interfaces/User.interface';
 import { layoutEphemeralAtom } from '@store/layoutAtoms';
 import {
   AvatarWrapper,
@@ -33,6 +33,7 @@ import {
   StyledAvatar,
   StyledDivider,
 } from './Participants.styles';
+import { pickContacts } from '@utils/betUtils';
 
 interface NewBetParticipantsProps<T extends FieldValues> {
   limit?: number;
@@ -129,6 +130,15 @@ const NewBetParticipants = <T extends FieldValues>({
     }
   };
 
+  const tryOpenContacts = async () => {
+    try {
+      const users = await pickContacts();
+      addUsers(users);
+    } catch {
+      handleOpenContactModal(true);
+    }
+  };
+
   return (
     <>
       {!limit && value.filter((item: User) => item.id !== user?.id).length > 0 && (
@@ -183,7 +193,7 @@ const NewBetParticipants = <T extends FieldValues>({
         {mostActives.length === 0 && <div></div>}
       </ParticipantsContent>
       <StyledDivider />
-      <RowCenterContentContainer onClick={() => handleOpenContactModal(true)}>
+      <RowCenterContentContainer onClick={() => tryOpenContacts()}>
         <ContactIcon />
         <Typography
           value={t(`NewBet.contacts`)}

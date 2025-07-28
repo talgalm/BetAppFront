@@ -1,7 +1,7 @@
 import { betStatusToTagType, TagType } from '@components/Tag/TagComponent';
 import { Bet, BetStatus } from '@interfaces/Bet.interface';
 import { ParticipantStatus } from '@interfaces/Prediction.interface';
-import { Contact } from '@interfaces/User.interface';
+import { Contact, InnerContact, User } from '@interfaces/User.interface';
 
 export const getTagType = (bet: Bet | undefined): TagType => {
   if (!bet) {
@@ -70,7 +70,7 @@ export const getParticipantAwareTagType = (
   return baseTagType;
 };
 
-export const extractContacts = (bet: Bet | null | undefined): Contact[] => {
+export const extractContacts = (bet: Bet | null | undefined): InnerContact[] => {
   if (!bet || !bet.predictions) {
     return [];
   }
@@ -82,4 +82,29 @@ export const extractContacts = (bet: Bet | null | undefined): Contact[] => {
       fullName: prediction.fullName!,
       phoneNumber: prediction.phoneNumber,
     }));
+};
+export const pickContacts = async (): Promise<User[]> => {
+  try {
+    if ('contacts' in navigator && 'ContactsManager' in window) {
+      const rawContacts: Contact[] = await (navigator as any).contacts.select(['name', 'tel'], {
+        multiple: true,
+      });
+
+      const users: User[] = rawContacts.map((contact) => ({
+        id: '',
+        fullName: contact.name?.[0] ?? '',
+        phoneNumber: contact.tel?.[0] ?? '',
+        bets: [],
+        stats: undefined,
+      }));
+
+      return users;
+    } else {
+      alert('Contact Picker API not supported on this device/browser.');
+      return [];
+    }
+  } catch (err) {
+    console.error('Error picking contacts:', err);
+    return [];
+  }
 };

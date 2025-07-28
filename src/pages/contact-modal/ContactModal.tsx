@@ -25,7 +25,7 @@ import debounce from 'lodash/debounce';
 import { useUsers } from '../home/hooks/useUsers';
 import CheckIcon from '@mui/icons-material/Check';
 import { useQueryClient } from '@tanstack/react-query';
-import { User, Contact } from '@interfaces/User.interface';
+import { User, InnerContact } from '@interfaces/User.interface';
 import {
   AvatarWrapper,
   CloseButton,
@@ -42,7 +42,7 @@ interface ContactModalProp {
   handleClose: () => void;
   handleSave: (users: User[]) => void;
   limit?: number;
-  limitContacts?: Contact[];
+  limitContacts?: InnerContact[];
 }
 
 export type FormValues = {
