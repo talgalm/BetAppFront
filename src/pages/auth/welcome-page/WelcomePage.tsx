@@ -62,18 +62,19 @@ const WelcomePage = (): JSX.Element => {
     </>
   );
 
-  const pickContacts = async () => {
-    try {
-      if ('contacts' in navigator && 'ContactsManager' in window) {
-        const contacts = await (navigator as any).contacts.select(['name', 'tel'], {
-          multiple: true,
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Join me on Habet!',
+          text: 'Let’s track bets together on Habet!',
+          url: 'https://habet.space',
         });
-        console.log(contacts);
-      } else {
-        alert('Contact Picker API not supported on this device/browser.');
+      } catch (err) {
+        console.error('Error sharing:', err);
       }
-    } catch (err) {
-      console.error('Error picking contacts:', err);
+    } else {
+      alert('Web Share API is not supported on this browser.');
     }
   };
 
@@ -87,9 +88,9 @@ const WelcomePage = (): JSX.Element => {
           <ButtonsContainer>
             <ButtonsHub buttons={buttons} />
           </ButtonsContainer>
-          <button onClick={pickContacts}>Pick Contact!</button>
         </>
       )}
+      <button onClick={handleShare}>Invite Friends!</button>
 
       {step.step === AuthStepValueTypes.Login && <LoginForm />}
       {(step.step === AuthStepValueTypes.RegisterInfo ||
