@@ -87,6 +87,10 @@ export const StyledCalendar = styled(Calendar)`
     font-family: 'Fredoka', sans-serif;
     list-style: none;
   }
+  .past-date {
+    color: #ccc !important;
+    pointer-events: none;
+  }
 `;
 
 export const CheckboxDiv = styled('div')({

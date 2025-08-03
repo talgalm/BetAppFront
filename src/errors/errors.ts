@@ -13,6 +13,8 @@ export enum ErrorTypes {
   OverlappingParticipants = 'OverlappingParticipants',
   AtLeastTwoParticipants = 'AtLeastTwoParticipants',
   AuthError = 'AuthError',
+  InvalidCredentials = 'InvalidCredentials',
+  EmailNotVerified = 'EmailNotVerified',
 }
 
 export interface ErrorMessage {
@@ -64,5 +66,17 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
     title: 'יש לבחור לפחות משתתף אחד',
     subtitle: 'נא לבחור לפחות משתתף אחד כדי להמשיך.',
     buttonText: 'בחר משתתף',
+  },
+  [ErrorTypes.InvalidCredentials]: {
+    icon: AuthErrorIcon,
+    title: 'פרטי ההתחברות שגויים',
+    subtitle: 'האימייל או הסיסמה שהזנת שגויים. נא לנסות שוב.',
+    buttonText: 'נסה שוב',
+  },
+  [ErrorTypes.EmailNotVerified]: {
+    icon: AuthErrorIcon,
+    title: 'החשבון לא מאומת',
+    subtitle: 'נא לאמת את כתובת האימייל שלך לפני התחברות.',
+    buttonText: 'שלח אימייל שוב',
   },
 };

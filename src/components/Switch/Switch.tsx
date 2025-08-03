@@ -51,7 +51,7 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
 
   return (
     <FormGroup>
-      <Box sx={{ position: 'relative', width: 328, height: 64 }}>
+      <Box sx={{ position: 'relative', width: '100%', height: 64 }}>
         {/* Left Side - Profile */}
         <Box
           sx={{

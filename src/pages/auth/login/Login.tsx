@@ -19,9 +19,13 @@ import { useLogin } from '../hooks/useLogin';
 import { TypographyTypes } from '@components/Topography/TypographyTypes';
 import { useProfile } from '@providers/useProfile';
 import { useQueryClient } from '@tanstack/react-query';
+import { useErrorBoundary } from 'react-error-boundary';
+import { ErrorTypes } from '@errors/errors';
+import { ErrorHandler } from '@errors/ErrorHandler';
 
 const Login = (): JSX.Element => {
   const { t } = useTranslation();
+  const { showBoundary } = useErrorBoundary();
   const { control, handleSubmit, watch, getValues } = useFormContext<LoginFormInput>();
   const [, setActiveStep] = useAtom(UserActiveStep);
   const { mutate, isPending } = useLogin();
@@ -34,11 +38,7 @@ const Login = (): JSX.Element => {
 
   useEffect(() => {
     setIsFormEmpty(Object.values(formValues).some((value) => !value));
-    queryClient.clear();
-    queryClient.removeQueries();
-    queryClient.resetQueries();
-    queryClient.cancelQueries();
-  }, [formValues, queryClient]);
+  }, [formValues]);
 
   const onSubmit = (data: LoginFormInput) => {
     const values = getValues();
@@ -48,8 +48,17 @@ const Login = (): JSX.Element => {
         navigate(`/home`);
       },
       onError: (error: any) => {
-        console.error('Registration failed:', error);
-        alert(t('WelcomePage.RegistrationFailed'));
+        const message = error?.response?.data?.message || error.message;
+
+        if (message === 'INVALID_PASSWORD') {
+          ErrorHandler(showBoundary, ErrorTypes.InvalidCredentials);
+        } else if (message === 'EMAIL_NOT_VERIFIED') {
+          ErrorHandler(showBoundary, ErrorTypes.EmailNotVerified);
+        } else if (message === 'DB_CONNECTION_FAILED') {
+          ErrorHandler(showBoundary, ErrorTypes.ConnectionError);
+        } else {
+          ErrorHandler(showBoundary, ErrorTypes.AuthError);
+        }
       },
     });
   };

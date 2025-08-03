@@ -75,6 +75,7 @@ export const newBetSteps: Record<NewBetStepValueTypes, NewBetStep> = {
     inputName: NewBetStepValueTypes.deadline,
     continueButton: NewBetStepValueTypes.files,
     continuteWithout: true,
+    continueButtonText: 'NewBet.DeadlineContinueWithout',
     continuteWithoutIcon: <CalendarIcon color={PRIMARY_GREEN} />,
     prevButton: NewBetStepValueTypes.betim,
   },

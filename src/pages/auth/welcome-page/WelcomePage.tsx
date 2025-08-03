@@ -90,7 +90,7 @@ const WelcomePage = (): JSX.Element => {
           </ButtonsContainer>
         </>
       )}
-      <button onClick={handleShare}>Invite Friends!</button>
+      {/* <button onClick={handleShare}>Invite Friends!</button> */}
 
       {step.step === AuthStepValueTypes.Login && <LoginForm />}
       {(step.step === AuthStepValueTypes.RegisterInfo ||

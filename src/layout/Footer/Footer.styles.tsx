@@ -7,10 +7,12 @@ export const Container = styled('div')(({ theme }) => ({
   left: 0,
   bottom: 10,
   width: '100%',
+  maxWidth: '100vw',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '0 16px',
+  padding: '0',
+  margin: '0',
 
   transition: 'transform 300ms ease-in-out, opacity 300ms ease-in-out',
   transform: 'translateY(110%)',

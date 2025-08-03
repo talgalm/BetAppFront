@@ -87,6 +87,13 @@ const Calendar = <T extends FieldValues>({ control, inputName }: CalendarProps<T
               showNeighboringMonth={false}
               minDate={today}
               tileDisabled={({ date, view }) => disableTile(date, view)}
+              tileClassName={({ date, view }) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const dateToCheck = new Date(date);
+                dateToCheck.setHours(0, 0, 0, 0);
+                return view === 'month' && dateToCheck < today ? 'past-date' : '';
+              }}
               onActiveStartDateChange={({ activeStartDate }) => {
                 setActiveStartDate(activeStartDate ?? new Date());
               }}
