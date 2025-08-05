@@ -14,7 +14,6 @@ export const Container = styled('div')(({ theme }) => ({
   padding: '0',
   margin: '0',
 
-  transition: 'transform 300ms ease-in-out, opacity 300ms ease-in-out',
   transform: 'translateY(110%)',
   opacity: 0,
 

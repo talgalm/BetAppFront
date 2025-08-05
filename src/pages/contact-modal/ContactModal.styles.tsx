@@ -137,7 +137,7 @@ export const SmallAvatar = styled(Avatar)({
 
 export const CornerFab = styled(Fab)(({ theme }) => ({
   position: 'fixed',
-  bottom: theme.spacing(2),
+  bottom: theme.spacing(20),
   left: theme.spacing(2),
   zIndex: 1300,
   [theme.breakpoints.up('sm')]: {

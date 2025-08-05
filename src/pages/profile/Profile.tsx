@@ -3,6 +3,7 @@ import {
   ActionRow,
   ActionsContainer,
   Column,
+  EditIconWrapper,
   HomeDivContainer,
   InnerLoader,
   ProfileHeaderContainer,
@@ -30,6 +31,8 @@ import { ReactComponent as SettingsIcon } from '@assets/icons/profileIcons/setti
 import { ReactComponent as SupportIcon } from '@assets/icons/profileIcons/supportIcon.svg';
 import { ReactComponent as PersonalInfoIcon } from '@assets/icons/profileIcons/personalInfo.svg';
 import { ReactComponent as LeftArrow } from '@assets/icons/arrowLeftBlack.svg';
+import { ReactComponent as EditIcon } from '@assets/icons/profileIcons/editImageIcon.svg';
+
 import StyledButton from '@components/Button/StyledButton';
 import { ThemeType } from '@theme/theme';
 import { useLogout } from '@pages/auth/hooks/useLogout';
@@ -151,6 +154,9 @@ const Profile = () => {
             onError={handleImageError}
             style={{ cursor: 'pointer' }}
           />
+          <EditIconWrapper>
+            <EditIcon />
+          </EditIconWrapper>
           {(isLoading || (!imageLoaded && profile?.image)) && <InnerLoader />}
         </ProfileImageWrapper>
         <input

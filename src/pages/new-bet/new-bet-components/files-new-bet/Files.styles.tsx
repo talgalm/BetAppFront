@@ -6,7 +6,7 @@ export const FilesContainer = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: 343,
+  width: '100%',
   height: '30vh',
   backgroundColor: `${LIGHT_GREEN}`,
   borderRadius: 8,

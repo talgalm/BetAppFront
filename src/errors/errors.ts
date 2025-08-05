@@ -76,7 +76,7 @@ export const ERROR_MESSAGES: Record<ErrorTypes, ErrorMessage> = {
   [ErrorTypes.EmailNotVerified]: {
     icon: AuthErrorIcon,
     title: 'החשבון לא מאומת',
-    subtitle: 'נא לאמת את כתובת האימייל שלך לפני התחברות.',
+    subtitle: 'ניתן להפעיל את החשבון דרך האימות במייל',
     buttonText: 'שלח אימייל שוב',
   },
 };

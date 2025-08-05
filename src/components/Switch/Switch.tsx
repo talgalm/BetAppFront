@@ -11,7 +11,7 @@ import { ReactComponent as ProfileIcon } from '@assets/icons/layoutIcons/SwitchP
 import { PRIMARY_WHITE, SWITCH_GREY, SWITCH_WHITE, THIRD_GREEN } from '@theme/colorTheme';
 
 const CustomSwitch = styled(Switch)({
-  width: 335,
+  width: 'calc(100vw - 32px)',
   height: 64,
   padding: 0,
   borderRadius: 32,
@@ -20,8 +20,7 @@ const CustomSwitch = styled(Switch)({
     padding: 8,
     transitionDuration: '300ms',
     '&.Mui-checked': {
-      transform: 'translateX(160px)',
-      color: 'red',
+      transform: 'translateX(calc((100vw - 64px)/2))',
       '& + .MuiSwitch-track': {
         backgroundColor: SWITCH_WHITE,
         opacity: 1,
@@ -29,7 +28,7 @@ const CustomSwitch = styled(Switch)({
     },
   },
   '& .MuiSwitch-thumb': {
-    width: 160,
+    width: 'calc((100vw - 32px)/2)',
     height: 48,
     borderRadius: 28,
     backgroundColor: PRIMARY_WHITE,
@@ -58,7 +57,7 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '50%',
+            width: '52.5%',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -83,7 +82,7 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
             position: 'absolute',
             top: 0,
             right: 0,
-            width: '50%',
+            width: '52.5%',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -102,7 +101,7 @@ export default function StyledSwitch({ checked, onChange }: StyledSwitchProps) {
           />
         </Box>
 
-        <CustomSwitch checked={checked} onChange={(_, next) => onChange(next)} />
+        <CustomSwitch checked={checked} onChange={(_, next) => onChange(next)} disableRipple />
       </Box>
     </FormGroup>
   );

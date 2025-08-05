@@ -9,7 +9,8 @@ export const ButtonsHubContainer = styled('div')<{
   flexDirection: isRow ? 'row' : 'column',
   gap: 12, ///////// 15?
   padding: isFixed ? 16 : 0,
-  paddingBottom: isFixed ? 0 : 12,
+  // paddingBottom: isFixed ? 0 : 12, //
+  paddingBottom: 24, //
   position: isFixed ? 'fixed' : 'relative',
   bottom: isFixed ? 10 : 'auto', ///////// 0?
   left: isFixed ? 0 : 'auto',

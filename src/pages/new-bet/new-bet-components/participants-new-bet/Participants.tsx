@@ -131,12 +131,7 @@ const NewBetParticipants = <T extends FieldValues>({
   };
 
   const tryOpenContacts = async () => {
-    try {
-      const users = await pickContacts();
-      addUsers(users);
-    } catch {
-      handleOpenContactModal(true);
-    }
+    handleOpenContactModal(true);
   };
 
   return (

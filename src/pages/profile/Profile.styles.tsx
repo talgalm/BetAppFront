@@ -15,12 +15,12 @@ export const HomeDivContainer = styled('div')({
 
 export const ProfileHeaderContainer = styled('div')({
   display: 'flex',
-  marginTop: 75,
+  marginTop: 36,
   width: '100%',
   padding: 16,
   direction: 'rtl',
   alignItems: 'center',
-  gap: 32,
+  gap: 16,
 });
 
 export const ProfileHeaderTextContainer = styled('div')({
@@ -36,14 +36,15 @@ export const ProfileImageWrapper = styled('div')({
   width: 68,
   height: 68,
   marginLeft: 'auto',
+  position: 'relative',
 });
 
 export const ProfileImage = styled(Avatar)<{ enter?: boolean }>(({ enter }) => ({
   width: 68,
   height: 68,
   border: `4px solid ${PRIMARY_WHITE}`,
-  zIndex: 12,
-  position: 'fixed',
+  zIndex: 0,
+  position: 'relative',
   opacity: enter ? 1 : 0,
   transition: 'opacity 0.5s ease',
   objectFit: 'cover',
@@ -125,4 +126,22 @@ export const RowFixed = styled('div')({
   flexDirection: 'row',
   alignItems: 'center',
   gap: 12,
+});
+
+export const EditIconWrapper = styled('div')({
+  position: 'absolute',
+  top: 46,
+  left: 22,
+  width: 23,
+  height: 14,
+  backgroundColor: '#FFFFFF29',
+  backdropFilter: 'blur(4px)',
+  borderRadius: 9,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  opacity: 1,
+  cursor: 'pointer',
+  zIndex: 20,
 });

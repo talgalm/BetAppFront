@@ -33,7 +33,7 @@ export const useHeaderLogic = ({ setOpen }: UseHeaderLogicProps) => {
     } else if (finishBet) {
       SetFinishBet(null);
     } else {
-      navigate('/home');
+      navigate(-1);
     }
   };
 

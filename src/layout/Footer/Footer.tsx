@@ -34,7 +34,9 @@ const Footer = () => {
 
   return (
     <Container data-visible={visible}>
-      <StyledSwitch checked={isHome} onChange={handleToggle} />
+      <div style={{ marginBottom: 16 }}>
+        <StyledSwitch checked={isHome} onChange={handleToggle} />
+      </div>
     </Container>
   );
 };
